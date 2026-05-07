@@ -1,0 +1,12 @@
+{
+  "name": "portraits-purposeful-youth-exchange",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "check": "node --check api/ppy.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

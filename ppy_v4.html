@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portraits of Purposeful Youth — The Exchange</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1A2E; --navy:#1E2D4A; --navy-mid:#2E4268;
+  --teal:#3B7A8F; --teal-light:#7BBFD4;
+  --burgundy:#7B3D42; --peach:#C9A499; --terra:#C4724A;
+  --purple:#5B3D5A; --taupe:#8B7B6B; --olive:#7A7840;
+  --cream:#FAF7F4; --parchment:#F5F1EB;
+  --white:#FFFFFF; --g100:#F0EFED; --g200:#E0DEDB; --g400:#B0ADA8; --g600:#6B6864;
+  --serif:'Playfair Display',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.7;font-size:16px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(13,26,46,0.97);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:60px}
+.nav-logo{font-family:var(--serif);font-size:1rem;color:var(--white);font-weight:600}
+.nav-logo em{color:var(--teal-light);font-style:italic}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.5);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--teal);color:var(--white)!important;padding:0.35rem 1rem;border-radius:6px;font-weight:600!important}
+.nav-cta:hover{background:#4a94ab!important}
+
+/* SHARED */
+section{padding:5.5rem 2.5rem}
+.container{max-width:1080px;margin:0 auto}
+.eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem}
+.rule{width:2.5rem;height:3px;background:var(--teal);border-radius:2px;margin-bottom:2rem}
+h2{font-family:var(--serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:1.25rem}
+h2 em{color:var(--teal);font-style:italic}
+.lead{font-size:1.05rem;color:var(--g600);max-width:680px;line-height:1.75;margin-bottom:1rem}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.875rem;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.btn-teal{background:var(--teal);color:var(--white);box-shadow:0 4px 16px rgba(59,122,143,0.3)}
+.btn-teal:hover{background:#4a94ab;transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.18)}
+.btn-ghost:hover{background:rgba(255,255,255,0.13)}
+
+/* LANDING */
+#landing{background:var(--ink);min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 6rem;position:relative;overflow:hidden}
+#landing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(59,122,143,0.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 70%,rgba(123,61,66,0.08) 0%,transparent 50%)}
+.landing-mark{position:absolute;right:7vw;top:50%;transform:translateY(-46%);width:min(42vw,520px);opacity:0.18;filter:drop-shadow(0 20px 55px rgba(0,0,0,0.2));pointer-events:none;z-index:0}
+.prov-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.prov-overline{font-size:0.7rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3rem}
+.prov-statement{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.15;color:var(--white);font-weight:400;margin-bottom:1.5rem}
+.prov-statement strong{font-weight:700}
+.prov-statement em{color:var(--teal-light);font-style:italic}
+.prov-pause{width:3rem;height:2px;background:var(--teal);margin:2rem 0}
+.prov-response{font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,0.6);max-width:640px;line-height:1.75;margin-bottom:2.5rem}
+.prov-name{font-family:var(--serif);font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--white);font-weight:600;margin-bottom:2rem}
+.prov-name span{color:var(--teal-light);font-style:italic}
+.prov-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.prov-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.2);font-size:0.72rem;letter-spacing:0.08em;text-align:center}
+.prov-scroll::after{content:'↓';display:block;margin-top:0.3rem;font-size:1rem}
+
+/* CLAIM */
+#claim{background:var(--cream)}
+.claim-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.claim-pull{font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.6rem);line-height:1.4;color:var(--navy);border-left:4px solid var(--teal);padding-left:1.5rem;margin-bottom:2rem}
+.consequence-list{list-style:none;display:flex;flex-direction:column;gap:1.25rem}
+.consequence-list li{display:flex;gap:1rem;align-items:flex-start;font-size:0.95rem;color:var(--g600);line-height:1.65}
+.consequence-list li::before{content:'→';color:var(--teal);font-weight:700;margin-top:.1rem;flex-shrink:0}
+
+/* ABOUT */
+#about{background:var(--white);border-top:1px solid var(--g100);border-bottom:1px solid var(--g100)}
+.about-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:4rem;align-items:start}
+.about-panel{background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1.6rem}
+.about-panel-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--navy);margin-bottom:0.8rem}
+.about-panel p{font-size:0.9rem;color:var(--g600);line-height:1.75;margin-bottom:0.85rem}
+.about-note{margin-top:1.1rem;padding:0.9rem 1rem;background:rgba(59,122,143,0.09);border-left:3px solid var(--teal);border-radius:8px;font-size:0.84rem;color:var(--g600);line-height:1.65}
+.about-list{list-style:none;display:flex;flex-direction:column;gap:0.95rem;margin-top:1.5rem}
+.about-list li{display:grid;grid-template-columns:1.7rem 1fr;gap:0.8rem;font-size:0.92rem;color:var(--g600);line-height:1.65}
+.about-list span{width:1.7rem;height:1.7rem;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700}
+
+/* ARGUMENT */
+#argument{background:var(--navy);color:var(--white);text-align:center;padding:6rem 2.5rem}
+.arg-inner{max-width:780px;margin:0 auto}
+.arg-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1.5rem}
+.arg-claim{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.3rem);font-weight:600;line-height:1.25;color:var(--white);margin-bottom:1rem}
+.arg-claim em{color:var(--teal-light);font-style:italic}
+.arg-body{font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.8;max-width:640px;margin:1.5rem auto 2rem}
+.arg-implication{display:inline-block;background:rgba(59,122,143,0.18);border:1px solid rgba(59,122,143,0.4);border-radius:10px;padding:1.25rem 2rem;font-size:1rem;color:var(--teal-light);font-style:italic;font-family:var(--serif);line-height:1.5}
+
+/* FRAMEWORK */
+#framework{background:var(--white)}
+.framework-intro{max-width:660px;margin-bottom:2.5rem}
+.conf-legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem;font-size:0.78rem;color:var(--g600);align-items:center}
+.conf-item{display:flex;align-items:center;gap:0.4rem}
+.conf-dot{width:8px;height:8px;border-radius:50%;background:#1E4D40}
+.conf-dot.d{background:#7A5200}.conf-dot.e{background:var(--purple)}
+.lens-overview{display:flex;align-items:stretch;margin:0 0 2rem;overflow-x:auto;padding:0.2rem 0 0.8rem}
+.lens-tab{min-width:170px;border-radius:12px 12px 8px 8px;padding:1rem 1rem 0.9rem;color:var(--white);box-shadow:0 10px 24px rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.14);position:relative}
+.lens-tab+.lens-tab{margin-left:-1.05rem}
+.lens-tab:nth-child(1){background:var(--burgundy);z-index:7}
+.lens-tab:nth-child(2){background:var(--peach);color:var(--navy);z-index:6}
+.lens-tab:nth-child(3){background:var(--navy);z-index:5}
+.lens-tab:nth-child(4){background:var(--terra);z-index:4}
+.lens-tab:nth-child(5){background:var(--purple);z-index:3}
+.lens-tab:nth-child(6){background:var(--taupe);z-index:2}
+.lens-tab:nth-child(7){background:var(--olive);z-index:1}
+.lens-tab-num{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:0.65;margin-bottom:0.5rem}
+.lens-tab-name{font-family:var(--serif);font-size:1rem;font-weight:600;line-height:1.2}
+.lenses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem}
+
+/* Lens cards */
+.ap-card{border-radius:14px;padding:1.75rem 1.75rem 1.25rem;color:var(--white);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.ap-card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,0.2)}
+.ap-card:nth-child(1){background:var(--burgundy)}
+.ap-card:nth-child(2){background:var(--peach);color:var(--navy)}
+.ap-card:nth-child(3){background:var(--navy)}
+.ap-card:nth-child(4){background:var(--terra)}
+.ap-card:nth-child(5){background:var(--purple)}
+.ap-card:nth-child(6){background:var(--taupe)}
+.ap-card:nth-child(7){background:var(--olive)}
+.ap-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.6rem}
+.ap-num{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6}
+.ap-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.18rem 0.5rem;border-radius:4px;background:rgba(255,255,255,0.18);white-space:nowrap}
+.ap-card:nth-child(2) .ap-badge{background:rgba(30,45,74,0.12)}
+.ap-name{font-family:var(--serif);font-size:1.15rem;font-weight:600;line-height:1.2;margin-bottom:0.65rem}
+.ap-def{font-size:0.855rem;line-height:1.65;opacity:0.85}
+.ap-toggle{margin-top:1rem;padding-top:0.85rem;border-top:1px solid rgba(255,255,255,0.18);font-size:0.78rem;font-weight:600;opacity:0.6;cursor:pointer;transition:opacity .2s}
+.ap-card:nth-child(2) .ap-toggle{border-color:rgba(30,45,74,0.15)}
+.ap-toggle:hover{opacity:1}
+.ap-expanded{display:none;margin-top:0.75rem;font-size:0.82rem;line-height:1.65;opacity:0.85}
+.ap-expanded strong{display:block;margin-bottom:0.35rem;font-size:0.7rem;letter-spacing:0.07em;text-transform:uppercase;opacity:0.7}
+.ap-exchange-link{display:inline-flex;align-items:center;gap:0.3rem;margin-top:0.75rem;font-size:0.75rem;font-weight:600;opacity:0.6;text-decoration:underline;cursor:pointer;transition:opacity .2s}
+.ap-exchange-link:hover{opacity:1}
+
+/* Lens reactions */
+.ap-reactions{display:flex;gap:0.4rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid rgba(255,255,255,0.12);flex-wrap:wrap}
+.ap-card:nth-child(2) .ap-reactions{border-color:rgba(30,45,74,0.12)}
+.react-btn{
+  display:flex;align-items:center;gap:0.3rem;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:20px;padding:0.22rem 0.6rem;
+  font-size:0.72rem;font-weight:500;
+  color:inherit;cursor:pointer;
+  transition:all .18s;white-space:nowrap;
+  opacity:0.75;
+}
+.ap-card:nth-child(2) .react-btn{background:rgba(30,45,74,0.08);border-color:rgba(30,45,74,0.18)}
+.react-btn:hover{opacity:1;transform:scale(1.04)}
+.react-btn.active{opacity:1;background:rgba(255,255,255,0.28);font-weight:700}
+.ap-card:nth-child(2) .react-btn.active{background:rgba(30,45,74,0.2)}
+.react-count{font-weight:700}
+
+/* FEATURES */
+#features{background:var(--parchment)}
+.feature-activity{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.2rem;align-items:start}
+.feature-cards{display:flex;flex-direction:column;gap:0.75rem}
+.feat-card{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1rem;transition:border-color .2s,box-shadow .2s,transform .2s}
+.feat-card:hover{border-color:var(--teal);box-shadow:0 6px 18px rgba(59,122,143,0.08);transform:translateY(-1px)}
+.feat-top{display:flex;align-items:flex-start;gap:0.8rem;margin-bottom:0.35rem}
+.feat-rank{width:1.8rem;height:1.8rem;border-radius:50%;background:var(--g100);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;flex-shrink:0}
+.feat-name{font-family:var(--serif);font-size:1.08rem;font-weight:600;color:var(--navy);line-height:1.25}
+.feat-def{font-size:0.86rem;color:var(--g600);line-height:1.6;margin-left:2.6rem}
+.feat-actions{display:flex;gap:0.35rem;margin-left:auto}
+.rank-btn{width:1.75rem;height:1.75rem;border-radius:7px;border:1px solid var(--g200);background:var(--white);color:var(--g600);cursor:pointer;font-size:0.78rem;font-weight:700}
+.rank-btn:hover{border-color:var(--teal);color:var(--teal)}
+.feature-workspace{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.4rem;position:sticky;top:80px}
+.activity-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:0.6rem}
+.activity-copy{font-size:0.9rem;color:var(--g600);line-height:1.7;margin-bottom:1rem}
+.feature-summary{background:var(--g100);border-left:3px solid var(--teal);border-radius:8px;padding:0.9rem 1rem;font-size:0.86rem;color:var(--g600);line-height:1.65;margin:1rem 0}
+.add-feature-row{display:flex;gap:0.5rem;margin-top:1rem}
+.add-feature-row input{flex:1;padding:0.58rem 0.75rem;border:1.5px solid var(--g200);border-radius:7px;font-family:var(--sans);font-size:0.86rem}
+.feature-reflect{width:100%;min-height:86px;resize:vertical;padding:0.7rem 0.8rem;border:1.5px solid var(--g200);border-radius:8px;font-family:var(--sans);font-size:0.9rem;color:var(--ink);margin-top:0.65rem}
+.feature-reflect:focus,.add-feature-row input:focus{outline:none;border-color:var(--teal)}
+.activity-actions{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:0.85rem}
+
+/* PULSE */
+#pulse{background:var(--ink);padding:5rem 2.5rem}
+.pulse-inner{max-width:1080px;margin:0 auto}
+.pulse-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:3rem}
+.pulse-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.75rem}
+.pulse-title{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:var(--white);line-height:1.2;margin-bottom:0.75rem}
+.pulse-title em{color:var(--teal-light);font-style:italic}
+.pulse-sub{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.7}
+.pulse-prompt-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:1.5rem}
+.pulse-prompt-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.85rem}
+.pulse-prompt-q{font-family:var(--serif);font-size:1.05rem;color:var(--white);line-height:1.4;margin-bottom:1.25rem}
+.pulse-ap-btns{display:flex;flex-direction:column;gap:0.5rem}
+.pulse-ap-btn{
+  display:flex;align-items:center;gap:0.6rem;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:0.55rem 0.85rem;
+  font-size:0.82rem;color:rgba(255,255,255,0.75);
+  cursor:pointer;transition:all .18s;text-align:left;
+  font-family:var(--sans);
+}
+.pulse-ap-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:var(--white)}
+.pulse-ap-btn.voted{border-color:var(--teal);background:rgba(59,122,143,0.18);color:var(--white)}
+.pulse-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pulse-bars{display:flex;flex-direction:column;gap:0.85rem}
+.pulse-bar-row{display:flex;align-items:center;gap:0.85rem}
+.pulse-bar-label{font-size:0.78rem;color:rgba(255,255,255,0.55);width:170px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pulse-bar-track{flex:1;background:rgba(255,255,255,0.07);border-radius:20px;height:10px;overflow:hidden}
+.pulse-bar-fill{height:100%;border-radius:20px;transition:width 0.6s cubic-bezier(0.4,0,0.2,1)}
+.pulse-bar-count{font-size:0.75rem;color:rgba(255,255,255,0.4);width:28px;text-align:right;flex-shrink:0}
+.pulse-voted-note{display:none;text-align:center;margin-top:1rem;font-size:0.8rem;color:rgba(255,255,255,0.4);font-style:italic}
+
+/* OPEN QUESTIONS */
+#questions{background:var(--parchment);border-top:1px solid var(--g200)}
+.q-meta{font-size:0.82rem;color:var(--g600);margin-bottom:2.5rem;padding:1rem 1.25rem;background:rgba(59,122,143,0.08);border-radius:8px;border-left:3px solid var(--teal);line-height:1.65;max-width:640px}
+.q-categories{display:flex;flex-direction:column;gap:2.5rem}
+.q-cat-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+.q-cat-label::after{content:'';flex:1;height:1px;background:var(--g200)}
+.q-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.q-card{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.5rem;position:relative;transition:border-color .2s,box-shadow .2s}
+.q-card:hover{border-color:var(--teal);box-shadow:0 4px 16px rgba(59,122,143,0.08)}
+.q-card::before{content:'?';position:absolute;top:0.85rem;right:1.25rem;font-family:var(--serif);font-size:2.5rem;font-weight:700;color:var(--g100);line-height:1}
+.q-text{font-size:0.95rem;color:var(--navy);line-height:1.6;font-style:italic;font-family:var(--serif);margin-bottom:1rem}
+.q-contribute{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.78rem;font-weight:600;color:var(--teal);cursor:pointer;border:1.5px solid rgba(59,122,143,0.3);border-radius:6px;padding:0.3rem 0.7rem;transition:all .2s;text-decoration:none}
+.q-contribute:hover{background:var(--teal);color:var(--white);border-color:var(--teal)}
+
+/* PATHWAYS */
+#pathways{background:var(--ink);color:var(--white);text-align:center}
+.pathways-inner{max-width:960px;margin:0 auto}
+.pathways-q{font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:600;color:var(--white);margin-bottom:0.5rem}
+.pathways-sub{font-size:0.9rem;color:rgba(255,255,255,0.45);margin-bottom:3rem}
+.pathway-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;text-align:left}
+.pw-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.75rem 1.5rem;cursor:pointer;transition:all .2s}
+.pw-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(59,122,143,0.4);transform:translateY(-2px)}
+.pw-card.active{background:rgba(59,122,143,0.18);border-color:var(--teal)}
+.pw-icon{font-size:1.6rem;margin-bottom:0.75rem}
+.pw-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.4rem}
+.pw-desc{font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.6}
+.pw-detail{margin-top:2rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:2rem;text-align:left;display:none}
+.pw-detail.active{display:block}
+.pw-detail-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--teal-light);margin-bottom:0.75rem}
+.pw-detail-body{font-size:0.9rem;color:rgba(255,255,255,0.6);line-height:1.75;max-width:680px}
+.pw-detail-cta{display:inline-block;margin-top:1.25rem;background:var(--teal);color:var(--white);padding:0.55rem 1.25rem;border-radius:7px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:background .2s;text-decoration:none}
+.pw-detail-cta:hover{background:#4a94ab}
+
+/* EXCHANGE */
+#exchange{background:var(--white)}
+.exchange-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem}
+
+/* Exchange tabs */
+.exchange-tabs{display:flex;gap:0.35rem;margin-bottom:2rem;background:var(--g100);border-radius:10px;padding:0.3rem;width:fit-content}
+.ex-tab{
+  padding:0.5rem 1.2rem;border-radius:7px;border:none;
+  font-size:0.85rem;font-weight:600;cursor:pointer;
+  background:transparent;color:var(--g600);
+  transition:all .18s;display:flex;align-items:center;gap:0.4rem;
+  font-family:var(--sans);
+}
+.ex-tab:hover{color:var(--navy)}
+.ex-tab.active{background:var(--white);color:var(--navy);box-shadow:0 1px 6px rgba(0,0,0,0.1)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* Discussions panel */
+.exchange-layout{display:grid;grid-template-columns:210px 1fr;gap:2.5rem;align-items:start}
+.ex-sidebar{}
+.sidebar-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g400);margin-bottom:0.6rem}
+.ap-filter-list{list-style:none;display:flex;flex-direction:column;gap:0.2rem}
+.ap-filter-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0.45rem 0.7rem;border-radius:7px;border:none;background:transparent;cursor:pointer;font-size:0.8rem;color:var(--g600);font-family:var(--sans);transition:all .2s;text-align:left}
+.ap-filter-btn:hover{background:var(--g100);color:var(--navy)}
+.ap-filter-btn.active{background:var(--navy);color:var(--white)}
+.ap-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-right:0.4rem}
+.f-count{font-size:0.7rem;font-weight:600;background:rgba(0,0,0,0.1);border-radius:10px;padding:0.1rem 0.4rem}
+.ap-filter-btn.active .f-count{background:rgba(255,255,255,0.2)}
+
+/* Post form */
+.new-post-panel{background:var(--g100);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;display:none;border:1.5px dashed var(--g400)}
+.new-post-panel.open{display:block}
+.form-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:1rem}
+.form-row{margin-bottom:0.85rem}
+.form-row label{display:block;font-size:0.75rem;font-weight:600;color:var(--navy);margin-bottom:0.28rem;letter-spacing:0.04em}
+.form-row input,.form-row textarea,.form-row select{width:100%;padding:0.55rem 0.8rem;border:1.5px solid var(--g200);border-radius:7px;font-family:var(--sans);font-size:0.875rem;color:var(--ink);background:var(--white);transition:border-color .2s}
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus{outline:none;border-color:var(--teal)}
+.form-row textarea{min-height:90px;resize:vertical}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem}
+.form-actions{display:flex;gap:0.75rem;margin-top:0.5rem}
+.btn-sm{padding:0.5rem 1.1rem;border-radius:7px;font-weight:600;font-size:0.85rem;cursor:pointer;border:none;font-family:var(--sans)}
+.btn-navy{background:var(--navy);color:var(--white)}.btn-navy:hover{background:var(--navy-mid)}
+.btn-outline{background:transparent;color:var(--g600);border:1.5px solid var(--g200)}.btn-outline:hover{border-color:var(--navy);color:var(--navy)}
+
+/* Post cards */
+.posts-list{display:flex;flex-direction:column;gap:1.1rem}
+.post-card{border:1.5px solid var(--g200);border-radius:12px;padding:1.5rem;background:var(--white);transition:border-color .2s,box-shadow .2s}
+.post-card:hover{border-color:var(--g400);box-shadow:0 4px 16px rgba(0,0,0,0.06)}
+.post-meta{display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;margin-bottom:0.85rem}
+.post-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--white);flex-shrink:0}
+.post-author{font-weight:600;font-size:0.875rem;color:var(--navy)}
+.post-role{font-size:0.72rem;color:var(--g600)}
+.post-time{font-size:0.72rem;color:var(--g400);margin-left:auto}
+.ap-tag{display:inline-flex;align-items:center;gap:0.3rem;padding:0.18rem 0.55rem;border-radius:4px;font-size:0.65rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;background:rgba(30,45,74,0.07);color:var(--navy)}
+.cat-tag{padding:0.18rem 0.55rem;border-radius:4px;font-size:0.65rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+.cat-practice{background:rgba(59,122,143,0.1);color:var(--teal)}
+.cat-research{background:rgba(30,45,74,0.08);color:var(--navy)}
+.cat-question{background:rgba(196,114,74,0.1);color:var(--terra)}
+.cat-policy{background:rgba(91,61,90,0.1);color:var(--purple)}
+.cat-design{background:rgba(122,120,64,0.1);color:var(--olive)}
+.cat-experience{background:rgba(123,61,66,0.1);color:var(--burgundy)}
+.post-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:0.45rem;line-height:1.3}
+.post-body{font-size:0.875rem;color:var(--g600);line-height:1.7}
+.post-footer{display:flex;align-items:center;gap:1rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid var(--g100)}
+.post-action{background:none;border:none;cursor:pointer;font-size:0.8rem;color:var(--g600);display:flex;align-items:center;gap:0.3rem;transition:color .2s;padding:0;font-family:var(--sans)}
+.post-action:hover{color:var(--navy)}.post-action.liked{color:var(--burgundy)}
+.comments-section{display:none;margin-top:1rem}
+.comments-section.open{display:block}
+.comment{display:flex;gap:0.65rem;padding:0.65rem 0;border-bottom:1px solid var(--g100)}
+.comment:last-of-type{border-bottom:none}
+.c-avatar{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:700;color:var(--white)}
+.c-author{font-weight:600;font-size:0.8rem;color:var(--navy)}
+.c-role{font-size:0.7rem;color:var(--g400);font-weight:400}
+.c-text{font-size:0.83rem;color:var(--g600);line-height:1.6;margin-top:0.15rem}
+.comment-input-row{display:flex;gap:0.65rem;align-items:center;margin-top:0.75rem}
+.comment-input{flex:1;padding:0.45rem 0.7rem;border:1.5px solid var(--g200);border-radius:7px;font-family:var(--sans);font-size:0.83rem;color:var(--ink)}
+.comment-input:focus{outline:none;border-color:var(--teal)}
+.empty-state{text-align:center;padding:3.5rem 2rem;color:var(--g400);font-style:italic;font-size:0.9rem}
+
+/* ── SPARKS ── */
+.sparks-panel{}
+.sparks-intro{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-bottom:2.5rem}
+.sparks-what{font-size:0.9rem;color:var(--g600);line-height:1.75}
+.sparks-what strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:0.4rem}
+
+/* Sentence starter */
+.starter-widget{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);
+  border-radius:12px;padding:1.5rem;color:var(--white);
+}
+.starter-tag{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.6rem}
+.starter-prompt{font-family:var(--serif);font-size:1rem;color:var(--white);line-height:1.4;margin-bottom:1rem}
+.starter-prompt .blank{
+  display:inline-block;
+  border-bottom:2px solid var(--teal-light);
+  min-width:80px;color:var(--teal-light);
+  font-style:italic;padding:0 0.2rem;
+}
+.starter-input-row{display:flex;gap:0.6rem;align-items:center}
+.starter-input{
+  flex:1;padding:0.5rem 0.8rem;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:7px;color:var(--white);
+  font-family:var(--sans);font-size:0.875rem;
+}
+.starter-input::placeholder{color:rgba(255,255,255,0.35)}
+.starter-input:focus{outline:none;border-color:var(--teal-light)}
+.starter-submit{
+  background:var(--teal);color:var(--white);
+  border:none;border-radius:7px;padding:0.5rem 1rem;
+  font-size:0.82rem;font-weight:600;cursor:pointer;
+  transition:background .18s;white-space:nowrap;font-family:var(--sans);
+}
+.starter-submit:hover{background:#4a94ab}
+.starter-responses{margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;max-height:120px;overflow-y:auto}
+.starter-resp{font-size:0.82rem;color:rgba(255,255,255,0.65);padding:0.3rem 0;border-bottom:1px solid rgba(255,255,255,0.08);line-height:1.5}
+.starter-resp:last-child{border-bottom:none}
+
+/* Sparks stream */
+.sparks-submit-row{display:flex;gap:0.6rem;align-items:flex-start;margin-bottom:2rem;padding:1rem 1.25rem;background:var(--g100);border-radius:10px}
+.sparks-submit-input{
+  flex:1;padding:0.55rem 0.8rem;
+  border:1.5px solid var(--g200);border-radius:7px;
+  font-family:var(--sans);font-size:0.875rem;color:var(--ink);
+  background:var(--white);resize:none;min-height:52px;
+}
+.sparks-submit-input:focus{outline:none;border-color:var(--teal)}
+.sparks-submit-col{display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end}
+.char-count{font-size:0.72rem;color:var(--g400)}
+.sparks-ap-sel{padding:0.4rem 0.6rem;border:1.5px solid var(--g200);border-radius:6px;font-size:0.78rem;background:var(--white);color:var(--ink);font-family:var(--sans)}
+.sparks-ap-sel:focus{outline:none;border-color:var(--teal)}
+.sparks-stream{columns:2;gap:1rem}
+@media(max-width:640px){.sparks-stream{columns:1}}
+.spark-card{
+  break-inside:avoid;
+  margin-bottom:1rem;
+  background:var(--white);
+  border:1.5px solid var(--g200);
+  border-radius:10px;padding:1rem 1.1rem;
+  position:relative;
+  transition:border-color .2s,box-shadow .2s;
+}
+.spark-card:hover{border-color:var(--g400);box-shadow:0 3px 12px rgba(0,0,0,0.06)}
+.spark-ap-dot{
+  display:inline-block;width:8px;height:8px;
+  border-radius:50%;margin-right:0.4rem;
+  vertical-align:middle;
+}
+.spark-ap-label{font-size:0.65rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--g400)}
+.spark-text{font-family:var(--serif);font-size:0.95rem;color:var(--navy);line-height:1.55;margin:0.5rem 0 0.75rem;font-style:italic}
+.spark-meta{font-size:0.72rem;color:var(--g400)}
+.spark-like{
+  background:none;border:none;cursor:pointer;
+  font-size:0.75rem;color:var(--g400);padding:0;
+  float:right;transition:color .2s;font-family:var(--sans);
+}
+.spark-like:hover,.spark-like.liked{color:var(--burgundy)}
+
+/* ── PROMPT BANK ── */
+.prompts-panel{}
+.prompts-intro{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:2.5rem;align-items:start}
+.prompts-what{font-size:0.9rem;color:var(--g600);line-height:1.75}
+.prompts-what strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:0.4rem}
+
+/* Submit prompt form */
+.prompt-submit-box{background:var(--g100);border-radius:12px;padding:1.5rem;border:1.5px dashed var(--g400)}
+.prompt-submit-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:0.85rem}
+.prompt-cards{display:flex;flex-direction:column;gap:1rem}
+.prompt-card{
+  background:var(--white);border:1.5px solid var(--g200);
+  border-radius:12px;padding:1.4rem;
+  transition:border-color .2s,box-shadow .2s;
+}
+.prompt-card:hover{border-color:var(--teal);box-shadow:0 4px 14px rgba(59,122,143,0.08)}
+.prompt-q{
+  font-family:var(--serif);font-size:1.05rem;
+  color:var(--navy);line-height:1.45;margin-bottom:0.85rem;
+}
+.prompt-context{
+  font-size:0.82rem;color:var(--g600);line-height:1.6;
+  padding:0.65rem 0.85rem;background:var(--g100);
+  border-radius:7px;margin-bottom:0.85rem;
+  border-left:3px solid var(--g400);font-style:italic;
+}
+.prompt-footer{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
+.prompt-ap-badge{
+  font-size:0.65rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.2rem 0.5rem;border-radius:4px;
+  background:rgba(30,45,74,0.07);color:var(--navy);
+  display:flex;align-items:center;gap:0.3rem;
+}
+.prompt-used{
+  display:flex;align-items:center;gap:0.3rem;
+  font-size:0.78rem;color:var(--g400);cursor:pointer;
+  background:none;border:none;padding:0;
+  transition:color .2s;font-family:var(--sans);
+}
+.prompt-used:hover,.prompt-used.used{color:var(--teal)}
+.prompt-used.used{font-weight:600}
+.prompt-contrib{font-size:0.72rem;color:var(--g400);margin-left:auto}
+
+/* Copy edits */
+.copyedit-intro{display:grid;grid-template-columns:0.9fr 1.1fr;gap:2.5rem;margin-bottom:2rem;align-items:start}
+.copyedit-help{font-size:0.9rem;color:var(--g600);line-height:1.75}
+.copyedit-help strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:0.4rem}
+.copyedit-box{background:var(--g100);border-radius:12px;padding:1.5rem;border:1.5px dashed var(--g400)}
+.copyedit-preview{margin-top:1rem;background:var(--white);border:1.5px solid var(--g200);border-radius:10px;padding:1rem;font-family:var(--sans);font-size:0.84rem;color:var(--g600);line-height:1.6;white-space:pre-wrap}
+.edit-notes-list{display:flex;flex-direction:column;gap:1rem}
+.edit-note-card{border:1.5px solid var(--g200);border-radius:12px;background:var(--white);padding:1.25rem}
+.edit-note-meta{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;margin-bottom:0.65rem}
+.edit-section{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);background:rgba(59,122,143,0.1);padding:0.18rem 0.5rem;border-radius:4px}
+.edit-note-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy)}
+.edit-note-body{font-size:0.86rem;color:var(--g600);line-height:1.65;white-space:pre-wrap}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;text-align:center;font-size:0.82rem}
+.footer-logo{font-family:var(--serif);font-size:1.15rem;color:var(--white);margin-bottom:0.35rem}
+.footer-logo em{color:var(--teal-light);font-style:italic}
+.footer-sub{color:rgba(255,255,255,0.3);font-size:0.75rem;margin-bottom:1.5rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.8rem;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+.footer-draft{margin-top:1.5rem;font-size:0.72rem;color:rgba(255,255,255,0.2)}
+
+/* Responsive */
+@media(max-width:900px){
+  .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity{grid-template-columns:1fr;gap:2rem}
+  .feature-workspace{position:static}
+  .landing-mark{right:-8rem;width:28rem;opacity:0.1}
+  .ap-filter-list{flex-direction:row;flex-wrap:wrap}
+  .ap-filter-btn{width:auto}
+  .sidebar-label{display:none}
+}
+@media(max-width:640px){
+  nav{padding:0 1.25rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.25rem}
+  .form-2col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Portraits of <em>Purposeful</em> Youth</div>
+  <ul class="nav-links">
+    <li><a href="#landing">Home</a></li>
+    <li><a href="#claim">The Claim</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#framework">Framework</a></li>
+    <li><a href="#pulse">Community Pulse</a></li>
+    <li><a href="#questions">Open Questions</a></li>
+    <li><a href="#exchange" class="nav-cta">The Exchange</a></li>
+  </ul>
+</nav>
+
+<!-- LANDING -->
+<section id="landing">
+  <img class="landing-mark" src="assets/pip-lab-logo.png" alt="" aria-hidden="true"/>
+  <div class="prov-inner">
+    <div class="prov-overline">Purpose Science &amp; Innovation Exchange · Purpose and Identity Processes Lab</div>
+    <div class="prov-statement">
+      We often ask whether young people<br><strong>have</strong> purpose.<br><br>
+      We almost never ask whether the conditions<br>around youth <em>support</em> its development.
+    </div>
+    <div class="prov-pause"></div>
+    <p class="prov-response">That asymmetry may suggest something is missing within the young person, while letting environments, institutions, and relationships that shape their development off the hook. This exchange is about changing that.</p>
+    <div class="prov-name">Portraits of <span>Purposeful</span> Youth</div>
+    <div class="prov-actions">
+      <a href="#exchange" class="btn btn-teal">Help shape the questions</a>
+      <a href="#claim" class="btn btn-teal">What changes when you see it this way</a>
+      <a href="#about" class="btn btn-ghost">How this works →</a>
+    </div>
+  </div>
+  <div class="prov-scroll">scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-wrap">
+    <div>
+      <div class="eyebrow">About &amp; Context</div>
+      <div class="rule"></div>
+      <h2>This is a place to <em>learn in public</em></h2>
+      <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is a working exchange hosted by the Purpose and Identity Processes (PIP) Lab at Cornell University. PIP Lab is an academic research lab interested in how young people develop purpose and identity in real contexts.</p>
+      <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">The goal of this exchange is not to turn visitors into research participants, but to help our questions get better. We want our research to stay grounded in the issues, tensions, and solutions that matter to young people and the systems around them.</p>
+    </div>
+    <div class="about-panel">
+      <div class="about-panel-title">How to read this exchange</div>
+      <p>Information shared here is meant to guide inquiry through interaction. It is not treated as survey data, counted as findings, or used as a substitute for ethical research design.</p>
+      <p>What people share helps us notice where the framework is clear, where it misses lived experience, and what questions future research might ask more usefully and responsibly.</p>
+      <div class="about-note">In plain terms: this is a learning space, not a data collection instrument. Contributions may inform future versions of our work by steering us in more productive directions.</div>
+      <ul class="about-list">
+        <li><span>1</span><div><strong>Ground the work.</strong> Keep our questions connected to real settings, not just academic silos.</div></li>
+        <li><span>2</span><div><strong>Surface better questions.</strong> Help us see what actually needs inquiry before we design studies around it.</div></li>
+        <li><span>3</span><div><strong>Respect different kinds of knowing.</strong> Treat practice, lived experience, and scholarship as distinguishable and equally beneficial sources of guidance.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- THE CLAIM -->
+<section id="claim">
+  <div class="container claim-grid">
+    <div>
+      <div class="eyebrow">The Claim</div>
+      <div class="rule"></div>
+      <blockquote class="claim-pull">A sense of purpose is not distributed evenly across young people. It is cultivated — or constrained — by the unique set of conditions that surround them.</blockquote>
+      <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is a claim with evidence behind it. Purpose — a self-organizing and forward-looking aim — is a developmental resource. But it does not emerge by chance. It grows in relation to what young people can see, what they are given the chance to do, who recognizes them, and what their environment makes possible.</p>
+    </div>
+    <div>
+      <h2>What your perspective informs</h2>
+      <ul class="consequence-list">
+        <li>What researchers study — shifting from traits and scores to mechanisms and conditions</li>
+        <li>What practitioners build — designing environments that actively cultivate purpose</li>
+        <li>What policymakers fund — holding institutions accountable for creating conditions that support purposeful development</li>
+        <li>Who is seen as purposeful — recognizing that constrained purpose often reflects constrained conditions, not constrained potential</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ARGUMENT -->
+<section id="argument">
+  <div class="arg-inner">
+    <div class="arg-eyebrow">What makes this an exchange?</div>
+    <div class="arg-claim">If purpose develops in conditions,<br>then knowledge about purpose development<br>must <em>recognize and engage with those conditions.</em></div>
+    <p class="arg-body">A framework that engages only with academic theory is limited in what it can accomplish. It treats knowledge as fixed, delivered from above, and available to too few people. More generative knowledge has to be cultivated through practice, recognition, and conditions that invite many ways of knowing. The academic conversation around purpose has been happening in a closed loop. This is an opportunity to open it.</p>
+    <div class="arg-implication">"It becomes an exchange when the framework is shaped by the people, places, and conditions it is trying to understand."</div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section id="framework">
+  <div class="container">
+      <div class="framework-intro">
+      <div class="eyebrow">The Framework</div>
+      <div class="rule"></div>
+      <h2>Seven Lenses of<br><em>Purposeful Experience</em></h2>
+      <p class="lead" style="font-size:0.975rem">These seven lenses are a starting place for expanding the collective vocabulary for seeing purpose development. Much of the work on purpose has emphasized what one's purpose is, or how strongly purpose is felt. Those questions matter, but they may not be enough. The lenses help us notice additional conditions, processes, and forms of support that shape purpose development. Use them to tell us what feels useful, what feels off, and where the language still fails to capture what happens in real settings.</p>
+    </div>
+    <div class="lens-overview" aria-label="Seven lenses overview">
+      <div class="lens-tab"><div class="lens-tab-num">01</div><div class="lens-tab-name">Sense of Purpose</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">02</div><div class="lens-tab-name">Scope and Awareness</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">03</div><div class="lens-tab-name">Orientation</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">04</div><div class="lens-tab-name">Opportunities for Practice</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">05</div><div class="lens-tab-name">Recognition and Reflection</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">06</div><div class="lens-tab-name">Environmental Affordances</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">07</div><div class="lens-tab-name">Normative Climate</div></div>
+    </div>
+    <div class="conf-legend">
+      <span style="font-size:0.75rem;color:var(--g400);font-weight:500">Epistemic status:</span>
+      <div class="conf-item"><div class="conf-dot"></div><span>Research-grounded</span></div>
+      <div class="conf-item"><div class="conf-dot d"></div><span>Actively developing</span></div>
+      <div class="conf-item"><div class="conf-dot e"></div><span>Empirically emerging</span></div>
+    </div>
+    <div class="lenses-grid">
+
+      <div class="ap-card">
+        <div class="ap-header"><div class="ap-num">01 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
+        <div class="ap-name">Sense of Purpose</div>
+        <div class="ap-def">How purposeful one feels. The subjective experience of perceiving that one's actions carry meaning and direction — the felt sense of purpose, distinct from being able to articulate or explain it.</div>
+        <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+        <div class="ap-expanded"><strong>In practice</strong>Does this young person report that what they do matters? Do they express a sense of drive or direction — even without words for it? Is there something they return to, even when it's hard?<div class="ap-exchange-link" onclick="goToAp(1)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="1">
+          <button class="react-btn" onclick="react(this,1,'resonates')">✓ <span>Resonates</span> <span class="react-count">28</span></button>
+          <button class="react-btn" onclick="react(this,1,'missing')">+ Missing something <span class="react-count">4</span></button>
+          <button class="react-btn" onclick="react(this,1,'more')">→ Want more <span class="react-count">11</span></button>
+          <button class="react-btn" onclick="react(this,1,'skeptical')">? Skeptical <span class="react-count">2</span></button>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-header"><div class="ap-num">02 · Inner Experience</div><div class="ap-badge">Actively developing</div></div>
+        <div class="ap-name">Scope and Awareness</div>
+        <div class="ap-def">What a young person can imagine, see, or name as possible targets for purpose. The horizon of possibility — the range of lives, roles, and forms of contribution they can conceive of for someone like themselves.</div>
+        <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+        <div class="ap-expanded"><strong>In practice</strong>Can this young person name roles, causes, or futures they care about? Has their horizon expanded over time, or stayed fixed? Constrained scope often reflects constrained exposure — not constrained capacity.<div class="ap-exchange-link" onclick="goToAp(2)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="2">
+          <button class="react-btn" onclick="react(this,2,'resonates')">✓ <span>Resonates</span> <span class="react-count">19</span></button>
+          <button class="react-btn" onclick="react(this,2,'missing')">+ Missing something <span class="react-count">9</span></button>
+          <button class="react-btn" onclick="react(this,2,'more')">→ Want more <span class="react-count">22</span></button>
+          <button class="react-btn" onclick="react(this,2,'skeptical')">? Skeptical <span class="react-count">1</span></button>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-header"><div class="ap-num">03 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
+        <div class="ap-name">Orientation</div>
+        <div class="ap-def">The topical content that organizes one's attention and behavioral priorities — what a young person cares about, gravitates toward, and consistently returns to. The subject matter of their purposeful engagement.</div>
+        <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+        <div class="ap-expanded"><strong>In practice</strong>What themes or domains does this young person gravitate toward without being asked? Do their choices reveal a consistent orientation — toward justice, care, craft, knowledge, community — even across different settings?<div class="ap-exchange-link" onclick="goToAp(3)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="3">
+          <button class="react-btn" onclick="react(this,3,'resonates')">✓ <span>Resonates</span> <span class="react-count">31</span></button>
+          <button class="react-btn" onclick="react(this,3,'missing')">+ Missing something <span class="react-count">6</span></button>
+          <button class="react-btn" onclick="react(this,3,'more')">→ Want more <span class="react-count">14</span></button>
+          <button class="react-btn" onclick="react(this,3,'skeptical')">? Skeptical <span class="react-count">3</span></button>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-header"><div class="ap-num">04 · Active Engagement</div><div class="ap-badge">Actively developing</div></div>
+        <div class="ap-name">Opportunities for Practice</div>
+        <div class="ap-def">Concrete chances to explore, try, and enact purposeful action. Not just exposure — genuine opportunities to act, contribute, and experience oneself as a capable agent in something that matters beyond the self.</div>
+        <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+        <div class="ap-expanded"><strong>In practice</strong>Does this young person have regular, authentic chances to act on what they care about? Are those opportunities real — with stakes and impact — or performative? Who controls access to them?<div class="ap-exchange-link" onclick="goToAp(4)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="4">
+          <button class="react-btn" onclick="react(this,4,'resonates')">✓ <span>Resonates</span> <span class="react-count">44</span></button>
+          <button class="react-btn" onclick="react(this,4,'missing')">+ Missing something <span class="react-count">7</span></button>
+          <button class="react-btn" onclick="react(this,4,'more')">→ Want more <span class="react-count">18</span></button>
+          <button class="react-btn" onclick="react(this,4,'skeptical')">? Skeptical <span class="react-count">2</span></button>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-header"><div class="ap-num">05 · Active Engagement</div><div class="ap-badge">Research-grounded</div></div>
+        <div class="ap-name">Recognition and Reflection</div>
+        <div class="ap-def">Feedback, validation, and structured sense-making from oneself and others. The relational and reflective processes through which purposeful experience becomes visible, interpreted, and integrated into identity.</div>
+        <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+        <div class="ap-expanded"><strong>In practice</strong>Do adults and peers name and affirm what this young person contributes? Are there structured opportunities to reflect and extract meaning? Is this young person developing a narrative of their own purposeful identity?<div class="ap-exchange-link" onclick="goToAp(5)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="5">
+          <button class="react-btn" onclick="react(this,5,'resonates')">✓ <span>Resonates</span> <span class="react-count">37</span></button>
+          <button class="react-btn" onclick="react(this,5,'missing')">+ Missing something <span class="react-count">5</span></button>
+          <button class="react-btn" onclick="react(this,5,'more')">→ Want more <span class="react-count">16</span></button>
+          <button class="react-btn" onclick="react(this,5,'skeptical')">? Skeptical <span class="react-count">1</span></button>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-header"><div class="ap-num">06 · Conditions</div><div class="ap-badge">Actively developing</div></div>
+        <div class="ap-name">Environmental Affordances</div>
+        <div class="ap-def">Material, social, and institutional resources that make purposeful action possible. The structures, spaces, and relationships that either enable or foreclose what a young person can do with what they care about.</div>
+        <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+        <div class="ap-expanded"><strong>In practice</strong>What resources does this young person have access to? Who gatekeeps them? Are the environments this young person inhabits designed with purposeful development in mind — or does it happen despite the design?<div class="ap-exchange-link" onclick="goToAp(6)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="6">
+          <button class="react-btn" onclick="react(this,6,'resonates')">✓ <span>Resonates</span> <span class="react-count">41</span></button>
+          <button class="react-btn" onclick="react(this,6,'missing')">+ Missing something <span class="react-count">8</span></button>
+          <button class="react-btn" onclick="react(this,6,'more')">→ Want more <span class="react-count">20</span></button>
+          <button class="react-btn" onclick="react(this,6,'skeptical')">? Skeptical <span class="react-count">4</span></button>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-header"><div class="ap-num">07 · Conditions</div><div class="ap-badge">Empirically emerging</div></div>
+        <div class="ap-name">Normative Climate</div>
+        <div class="ap-def">The sociocultural signals — explicit and implicit — about what kinds of purpose are valued, legitimate, and possible in a given context. The messages a young person receives about who gets to pursue purpose, and what kinds count.</div>
+        <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+        <div class="ap-expanded"><strong>In practice</strong>What does this environment communicate about whose futures matter and which forms of contribution are worth pursuing? Are cultural norms expanding or narrowing what this young person believes is possible for someone like them?<div class="ap-exchange-link" onclick="goToAp(7)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="7">
+          <button class="react-btn" onclick="react(this,7,'resonates')">✓ <span>Resonates</span> <span class="react-count">33</span></button>
+          <button class="react-btn" onclick="react(this,7,'missing')">+ Missing something <span class="react-count">12</span></button>
+          <button class="react-btn" onclick="react(this,7,'more')">→ Want more <span class="react-count">25</span></button>
+          <button class="react-btn" onclick="react(this,7,'skeptical')">? Skeptical <span class="react-count">6</span></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNING FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="eyebrow">Features that guide how purpose functions</div>
+    <div class="rule"></div>
+    <h2>Put the Features <em>to Work</em></h2>
+    <p class="lead" style="font-size:0.975rem">These features are not unique to purpose. They are attributes that might shape what we see through the various lenses of purpose, informing how purpose becomes visible, durable, meaningful, and supported across settings. We think they may be functional ingredients that bring the lenses to light, but that remains an open area of inquiry. If you were looking at one young person, program, classroom, or community, which feature would matter most first, and what would that priority help us ask?</p>
+    <div class="feature-activity">
+      <div class="feature-cards" id="featureCards"></div>
+      <div class="feature-workspace">
+        <div class="activity-title">Your working order</div>
+        <p class="activity-copy">Move a feature up or down based on what feels most consequential in the setting you have in mind. There is no correct order; the point is to make your reasoning visible.</p>
+        <div class="feature-summary" id="featureSummary"></div>
+        <label class="form-row" style="display:block">
+          <span style="display:block;font-size:0.75rem;font-weight:600;color:var(--navy);margin-bottom:0.28rem;letter-spacing:0.04em">What does your order suggest we should ask next?</span>
+          <textarea class="feature-reflect" id="featureReflect" placeholder="e.g. In our setting, Purpose Resonance comes first because young people disengage when an opportunity does not feel connected to who they are..." oninput="updateFeatureSummary()"></textarea>
+        </label>
+        <div class="add-feature-row">
+          <input id="newFeatureInput" placeholder="Add a missing feature..." onkeydown="if(event.key==='Enter')addFeature()"/>
+          <button class="btn-sm btn-navy" onclick="addFeature()">Add</button>
+        </div>
+        <div class="activity-actions">
+          <button class="btn-sm btn-outline" onclick="resetFeatures()">Reset order</button>
+          <button class="btn-sm btn-navy" onclick="sendFeatureReflection()">Bring this to the Exchange</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY PULSE -->
+<section id="pulse">
+  <div class="pulse-inner">
+    <div class="pulse-header">
+      <div>
+        <div class="pulse-eyebrow">Community Pulse</div>
+        <div class="pulse-title">What does the field<br><em>want to understand next?</em></div>
+        <p class="pulse-sub">This is a low-friction signal of curiosity, not a poll with scientific claims. It helps us see which lenses people most want to understand more deeply, and where future prompts or conversations may need to go next.</p>
+      </div>
+      <div class="pulse-prompt-box">
+        <div class="pulse-prompt-label">This month's question</div>
+        <div class="pulse-prompt-q">Which lens are you most interested in, and want to know more about?</div>
+        <div class="pulse-ap-btns" id="pulseButtons">
+          <button class="pulse-ap-btn" onclick="castPulse(1,this)"><span class="pulse-dot" style="background:#7B3D42"></span>Sense of Purpose</button>
+          <button class="pulse-ap-btn" onclick="castPulse(2,this)"><span class="pulse-dot" style="background:#C9A499"></span>Scope &amp; Awareness</button>
+          <button class="pulse-ap-btn" onclick="castPulse(3,this)"><span class="pulse-dot" style="background:#1E2D4A"></span>Orientation</button>
+          <button class="pulse-ap-btn" onclick="castPulse(4,this)"><span class="pulse-dot" style="background:#C4724A"></span>Opportunities for Practice</button>
+          <button class="pulse-ap-btn" onclick="castPulse(5,this)"><span class="pulse-dot" style="background:#5B3D5A"></span>Recognition &amp; Reflection</button>
+          <button class="pulse-ap-btn" onclick="castPulse(6,this)"><span class="pulse-dot" style="background:#8B7B6B"></span>Environmental Affordances</button>
+          <button class="pulse-ap-btn" onclick="castPulse(7,this)"><span class="pulse-dot" style="background:#7A7840"></span>Normative Climate</button>
+        </div>
+        <div class="pulse-voted-note" id="pulseVotedNote">Thanks — your response is reflected in the pulse.</div>
+      </div>
+    </div>
+    <div class="pulse-bars" id="pulseBars"></div>
+  </div>
+</section>
+
+<!-- OPEN QUESTIONS -->
+<section id="questions">
+  <div class="container">
+    <div style="max-width:660px;margin-bottom:2.5rem">
+      <div class="eyebrow">Open Questions</div>
+      <div class="rule"></div>
+      <h2>What we <em>don't know yet</em></h2>
+      <p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add the question that should have been here from the start.</p>
+    </div>
+    <div class="q-meta">This section will grow as the exchange develops. The questions below are starting points; the most useful contribution may be naming the better question.</div>
+    <div class="q-categories">
+      <div>
+        <div class="q-cat-label">Questions the research community can address</div>
+        <div class="q-cards">
+          <div class="q-card"><div class="q-text">How do the seven lenses interact with each other? Is there a developmental sequence, or do they operate in parallel?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('research')">+ Contribute to this question</a></div>
+          <div class="q-card"><div class="q-text">Are Magnitude and Stability empirically separable in adolescent samples? What measurement approaches create enough discrimination?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('research')">+ Contribute to this question</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="q-cat-label">Questions practitioners can surface from the field</div>
+        <div class="q-cards">
+          <div class="q-card"><div class="q-text">How do you support Scope and Awareness with young people navigating genuinely constrained futures — without setting them up for harm?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('practice')">+ Contribute to this question</a></div>
+          <div class="q-card"><div class="q-text">Which lens breaks down first in under-resourced settings? What does the sequence of constraint look like in practice?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('practice')">+ Contribute to this question</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="q-cat-label">Questions only young people can answer from the inside</div>
+        <div class="q-cards">
+          <div class="q-card"><div class="q-text">What does Resonance actually feel like when it's present — and what does its absence feel like, from the inside?</div><a class="q-contribute" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('sparkInput').focus(),400)">+ Share a spark</a></div>
+          <div class="q-card"><div class="q-text">When purpose feels constrained, what do the adults and institutions around you most get wrong?</div><a class="q-contribute" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('sparkInput').focus(),400)">+ Share a spark</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATHWAYS -->
+<section id="pathways">
+  <div class="pathways-inner container">
+    <div class="eyebrow" style="color:rgba(255,255,255,0.35)">Who Are You?</div>
+    <div class="pathways-q">The exchange needs different things from different people.</div>
+    <div class="pathways-sub">Start here if you are wondering what kind of contribution would actually be useful. Different vantage points can strengthen different parts of the inquiry.</div>
+    <div class="pathway-grid">
+      <div class="pw-card" onclick="selectPw('researcher',this)"><div class="pw-icon">🔬</div><div class="pw-title">Researcher or Scholar</div><div class="pw-desc">You study purpose, youth development, motivation, identity, or related fields.</div></div>
+      <div class="pw-card" onclick="selectPw('practitioner',this)"><div class="pw-icon">🏫</div><div class="pw-title">Practitioner or Educator</div><div class="pw-desc">You work directly with young people — in schools, programs, or community settings.</div></div>
+      <div class="pw-card" onclick="selectPw('policy',this)"><div class="pw-icon">🏛️</div><div class="pw-title">Policymaker or Funder</div><div class="pw-desc">You make decisions about what systems invest in and what gets built at scale.</div></div>
+      <div class="pw-card" onclick="selectPw('youth',this)"><div class="pw-icon">🌱</div><div class="pw-title">Young Person</div><div class="pw-desc">The research is trying to describe something you already know from the inside.</div></div>
+    </div>
+    <div class="pw-detail" id="detail-researcher"><div class="pw-detail-title">For researchers and scholars</div><div class="pw-detail-body">The framework carries an open epistemic status — different lenses have different evidentiary foundations, stated explicitly. What we need is honest engagement with those differences: where you see convergence with existing literature, where you see tension, what empirical approaches you'd propose, and what the open questions board is missing. The exchange is designed for sustained dialogue, not just single posts.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('discussions');openNewPost('research')">Start a research discussion</a></div>
+    <div class="pw-detail" id="detail-practitioner"><div class="pw-detail-title">For practitioners and educators</div><div class="pw-detail-body">Usability is tested in practice, not in theory. We need honest description: what these lenses look like in your setting, which ones feel accurate and which feel off, where the framework gives you useful language and where it lets you down. The most valuable contributions are specific — a particular program, student, or moment where something clicked or didn't. Bring those. The Prompt Bank is also yours: if you've found a question that opens things up, share it.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('prompts')">Browse &amp; add to the Prompt Bank</a></div>
+    <div class="pw-detail" id="detail-policy"><div class="pw-detail-title">For policymakers and funders</div><div class="pw-detail-body">The framework is designed to be actionable at the systems level. What we need is pressure-testing: Does this framework give you useful language for accountability decisions? Does it surface the right questions for investment? Where does it fall short of what you need to actually change institutional practice? The goal is a framework that can inform policy — but that requires the policy community to tell us where it needs to go further.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('discussions');openNewPost('policy')">Raise a policy question</a></div>
+    <div class="pw-detail" id="detail-youth"><div class="pw-detail-title">For young people</div><div class="pw-detail-body">This framework was built by researchers trying to describe something you live. That means it's probably right about some things and wrong or incomplete about others — and only you can tell us which is which. Sparks is the easiest place to start: one sentence, something real you've experienced. That's it. The inside view doesn't exist in academic literature. It exists in you, and it belongs in this exchange.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('sparkInput').focus(),400)">Drop a Spark</a></div>
+  </div>
+</section>
+
+<!-- THE EXCHANGE -->
+<section id="exchange">
+  <div class="container">
+    <div class="exchange-header">
+      <div>
+        <div class="eyebrow">The Exchange</div>
+        <div class="rule"></div>
+        <h2>Where the framework <em>grows</em></h2>
+        <p class="lead" style="font-size:0.95rem;max-width:560px">Choose the lightest useful way to respond. A sentence, a prompt, a question, or a longer reflection can all help us see what the next version of this work needs to ask.</p>
+      </div>
+    </div>
+
+    <!-- Tab nav -->
+    <div class="exchange-tabs">
+      <button class="ex-tab active" onclick="openTab('discussions',this)">💬 Discussions</button>
+      <button class="ex-tab" onclick="openTab('sparks',this)">⚡ Sparks</button>
+      <button class="ex-tab" onclick="openTab('prompts',this)">💡 Prompt Bank</button>
+      <button class="ex-tab" onclick="openTab('edits',this)">✎ Copy Edits</button>
+    </div>
+
+    <!-- DISCUSSIONS TAB -->
+    <div class="tab-panel active" id="panel-discussions">
+      <button class="btn btn-teal btn-sm" onclick="toggleNewPost()" id="newPostBtn" style="margin-bottom:1.25rem">+ Start a discussion</button>
+      <div class="new-post-panel" id="newPostPanel">
+        <div class="form-title">Add your contribution</div>
+        <div class="form-2col">
+          <div class="form-row"><label>Your name</label><input type="text" id="fAuthor" placeholder="Dr. Maya Ortega"/></div>
+          <div class="form-row"><label>Role / affiliation</label><input type="text" id="fRole" placeholder="Program Director · Chicago"/></div>
+        </div>
+        <div class="form-2col">
+          <div class="form-row"><label>Contribution type</label><select id="fCat"><option value="practice">Practice</option><option value="research">Research</option><option value="question">Question</option><option value="policy">Policy</option><option value="design">Design</option><option value="experience">Lived Experience</option></select></div>
+          <div class="form-row"><label>Lens (if relevant)</label><select id="fAp"><option value="0">All / general</option><option value="1">01 · Sense of Purpose</option><option value="2">02 · Scope and Awareness</option><option value="3">03 · Orientation</option><option value="4">04 · Opportunities for Practice</option><option value="5">05 · Recognition and Reflection</option><option value="6">06 · Environmental Affordances</option><option value="7">07 · Normative Climate</option></select></div>
+        </div>
+        <div class="form-row"><label>Title</label><input type="text" id="fTitle" placeholder="e.g. How Normative Climate showed up in our community assessment"/></div>
+        <div class="form-row"><label>Your contribution</label><textarea id="fBody" placeholder="Share what you're seeing, asking, or thinking. Specific is better — a particular setting, student, or moment is more useful than a general observation."></textarea></div>
+        <div class="form-actions"><button class="btn-sm btn-navy" onclick="submitPost()">Publish</button><button class="btn-sm btn-outline" onclick="toggleNewPost()">Cancel</button></div>
+      </div>
+      <div class="exchange-layout">
+        <div class="ex-sidebar">
+          <div class="sidebar-label">Filter by lens</div>
+          <ul class="ap-filter-list" id="apFilterList">
+            <li><button class="ap-filter-btn active" onclick="filterByAp(0,this)">All contributions <span class="f-count" id="cnt-0">—</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(1,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#7B3D42"></span>Sense of Purpose</span><span class="f-count" id="cnt-1">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(2,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#C9A499"></span>Scope &amp; Awareness</span><span class="f-count" id="cnt-2">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(3,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#1E2D4A"></span>Orientation</span><span class="f-count" id="cnt-3">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(4,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#C4724A"></span>Opps. for Practice</span><span class="f-count" id="cnt-4">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(5,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#5B3D5A"></span>Recognition &amp; Reflection</span><span class="f-count" id="cnt-5">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(6,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#8B7B6B"></span>Env. Affordances</span><span class="f-count" id="cnt-6">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(7,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#7A7840"></span>Normative Climate</span><span class="f-count" id="cnt-7">0</span></button></li>
+          </ul>
+        </div>
+        <div><div id="filterLabel" style="font-size:0.82rem;color:var(--g600);margin-bottom:1rem"></div><div class="posts-list" id="postsList"></div></div>
+      </div>
+    </div>
+
+    <!-- SPARKS TAB -->
+    <div class="tab-panel" id="panel-sparks">
+      <div class="sparks-intro">
+        <div class="sparks-what">
+          <strong>Sparks — one sentence, something real</strong>
+          A moment you witnessed purpose — or its absence — in a young person. Not an analysis. Not a case study. A flash of something true. These accumulate into something that no survey or interview can capture. Tag the lens if one fits. Everything else is optional.
+        </div>
+        <div class="starter-widget">
+          <div class="starter-tag">This month's sentence starter</div>
+          <div class="starter-prompt" id="starterPrompt"></div>
+          <div class="starter-input-row">
+            <input class="starter-input" id="starterInput" placeholder="finish the sentence…" onkeydown="if(event.key==='Enter')submitStarter()"/>
+            <button class="starter-submit" onclick="submitStarter()">Add →</button>
+          </div>
+          <div class="starter-responses" id="starterResponses"></div>
+        </div>
+      </div>
+      <div class="sparks-submit-row">
+        <textarea class="sparks-submit-input" id="sparkInput" placeholder="Drop a spark — one sentence, something real you observed or experienced…" oninput="updateCharCount(this)" maxlength="200" rows="2"></textarea>
+        <div class="sparks-submit-col">
+          <span class="char-count" id="sparkCharCount">200</span>
+          <select class="sparks-ap-sel" id="sparkAp">
+            <option value="0">any lens</option>
+            <option value="1">01 Sense of Purpose</option>
+            <option value="2">02 Scope &amp; Awareness</option>
+            <option value="3">03 Orientation</option>
+            <option value="4">04 Practice</option>
+            <option value="5">05 Recognition</option>
+            <option value="6">06 Affordances</option>
+            <option value="7">07 Normative Climate</option>
+          </select>
+          <button class="btn-sm btn-navy" onclick="submitSpark()">Spark it ⚡</button>
+        </div>
+      </div>
+      <div class="sparks-stream" id="sparksStream"></div>
+    </div>
+
+    <!-- PROMPT BANK TAB -->
+    <div class="tab-panel" id="panel-prompts">
+      <div class="prompts-intro">
+        <div class="prompts-what">
+          <strong>What opens up purpose?</strong>
+          A living library of questions that practitioners, researchers, and young people have found genuinely useful for exploring purpose — in programs, classrooms, research interviews, and conversations. Browse, use, and add your own. This library will inform how any purpose-exploration tools in this space are designed, so that they carry community wisdom rather than just researcher assumptions.
+        </div>
+        <div class="prompt-submit-box">
+          <div class="prompt-submit-title">Add a prompt to the bank</div>
+          <div class="form-row"><label>The question</label><input type="text" id="pQ" placeholder="e.g. When do you feel most like yourself?"/></div>
+          <div class="form-row"><label>Context — when and with whom does this work?</label><input type="text" id="pCtx" placeholder="e.g. Works well with older adolescents skeptical of 'purpose' language"/></div>
+          <div class="form-2col">
+            <div class="form-row"><label>Lens it surfaces (if any)</label><select id="pAp"><option value="0">General / multiple</option><option value="1">Sense of Purpose</option><option value="2">Scope &amp; Awareness</option><option value="3">Orientation</option><option value="4">Practice</option><option value="5">Recognition</option><option value="6">Affordances</option><option value="7">Normative Climate</option></select></div>
+            <div class="form-row"><label>Your role (optional)</label><input type="text" id="pRole" placeholder="e.g. School counselor, Denver"/></div>
+          </div>
+          <div class="form-actions"><button class="btn-sm btn-navy" onclick="submitPrompt()">Add to bank</button></div>
+        </div>
+      </div>
+      <div class="prompt-cards" id="promptCards"></div>
+    </div>
+
+    <!-- COPY EDITS TAB -->
+    <div class="tab-panel" id="panel-edits">
+      <div class="copyedit-intro">
+        <div class="copyedit-help">
+          <strong>Small wording changes go here.</strong>
+          Use this as a scratchpad for section-level edits. Pick the section, write the replacement wording, and the page will format a clean note you can paste back into the chat. That lets me update just the relevant paragraph or label.
+        </div>
+        <div class="copyedit-box">
+          <div class="prompt-submit-title">Draft a wording note</div>
+          <div class="form-2col">
+            <div class="form-row"><label>Section</label><select id="editSection"><option>About & Context</option><option>Hero</option><option>The Claim</option><option>Framework / Lenses</option><option>Feature Activity</option><option>Community Pulse</option><option>Open Questions</option><option>Pathways</option><option>The Exchange</option><option>Other</option></select></div>
+            <div class="form-row"><label>Short label</label><input id="editTitle" placeholder="e.g. soften the research framing"/></div>
+          </div>
+          <div class="form-row"><label>Current wording or location</label><textarea id="editCurrent" placeholder="Paste the sentence, paragraph, heading, or describe where it appears."></textarea></div>
+          <div class="form-row"><label>Replacement wording</label><textarea id="editReplacement" placeholder="Write the wording you want instead."></textarea></div>
+          <div class="form-actions">
+            <button class="btn-sm btn-navy" onclick="saveEditNote()">Stage note</button>
+            <button class="btn-sm btn-outline" onclick="clearEditDraft()">Clear</button>
+          </div>
+          <div class="copyedit-preview" id="editPreview">Your formatted note will appear here after you stage it.</div>
+        </div>
+      </div>
+      <div class="edit-notes-list" id="editNotesList"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Portraits of <em>Purposeful</em> Youth</div>
+  <div class="footer-sub">Purpose Science &amp; Innovation Exchange · Purpose and Identity Processes Lab</div>
+  <div class="footer-links">
+    <a href="#claim">The Claim</a><a href="#framework">Framework</a>
+    <a href="#pulse">Community Pulse</a><a href="#questions">Open Questions</a>
+    <a href="#exchange">The Exchange</a>
+  </div>
+  <div class="footer-draft">Working draft — the framework is actively evolving. What you contribute shapes what it becomes.</div>
+</footer>
+
+<script>
+// ─── Data ─────────────────────────────────────────────────
+const AP_COLORS=['#7B3D42','#C9A499','#1E2D4A','#C4724A','#5B3D5A','#8B7B6B','#7A7840'];
+const AP_NAMES=['','Sense of Purpose','Scope & Awareness','Orientation','Opportunities for Practice','Recognition & Reflection','Environmental Affordances','Normative Climate'];
+const avatarColors=['#7B3D42','#1E2D4A','#C4724A','#5B3D5A','#3B7A8F','#7A7840','#8B7B6B'];
+
+const defaultFeatures=[
+  {name:'Magnitude of Purpose',def:'How strong, visible, or consequential purpose is in a young person’s current experience.'},
+  {name:'Stability of Purpose',def:'Whether purpose is sustained over time or appears only in isolated moments.'},
+  {name:'Purpose Resonance',def:'Whether purpose feels connected to a young person’s identity, values, and lived reality.'},
+  {name:'Consistency of Purpose',def:'Whether purpose is supported, recognized, and made possible across settings, relationships, and contexts.'}
+];
+let features=defaultFeatures.map(f=>({...f}));
+
+// Pulse votes (seeded)
+let pulseVotes=[0,47,38,29,61,44,52,55];
+let pulseCast=false;
+
+let editNotes=[];
+
+// Discussions
+let posts=[
+  {id:1,author:'Dr. Simone Akande',role:'Youth Development Researcher · Boston University',cat:'research',ap:1,title:'Magnitude vs. Stability: are these empirically separable in adolescent samples?',body:"I've been applying the PPY framework to our longitudinal data and running into a challenge. Magnitude and Stability feel theoretically distinct — strength of signal vs. sustained-ness of signal — but in our data they correlate highly (r=.73). Has anyone thought through measurement designs that could better discriminate between them? Particularly curious about ESM-based approaches.",likes:14,liked:false,time:'2 days ago',comments:[{a:'Prof. J. Rivera',r:'Developmental Psychologist',t:'What helped was distinguishing peak intensity (magnitude) from coefficient of variation across time points (stability). They correlated less once we moved to intra-individual variance.',c:'#1E2D4A'},{a:'Marcus Webb',r:'PhD Candidate, Stanford GSE',t:'The issue may be partly measurement — most purpose scales capture a stable trait, not momentary experience. ESM designed around the PPY lenses might give more leverage.',c:'#3B7A8F'}]},
+  {id:2,author:'Tanya Osei-Mensah',role:'Program Director · YouthBuild Chicago',cat:'practice',ap:7,title:'Using the Normative Climate lens for community asset mapping — what we found',body:"We ran a six-week youth participatory action research project using the seven lenses as an organizing frame. Normative Climate was the most generative — young people immediately started naming the messages they receive about what 'counts' as a meaningful future. It opened conversations we hadn't been able to reach with other frameworks.",likes:33,liked:false,time:'4 days ago',comments:[{a:'Dr. Keisha Nkrumah',r:'Equity Research Lab, Howard',t:"This is exactly the applied documentation I'd love to see. Would you be open to a short interview about the process?",c:'#7A7840'}]},
+  {id:3,author:'Jamie Thornton',role:'School Counselor · Denver Public Schools',cat:'question',ap:2,title:'Scope and Awareness with students navigating constrained futures — how do you hold this?',body:"I work with students whose Scope and Awareness is limited — not because of internal capacity, but because of real structural constraints. I worry that expanding 'what you can imagine' without expanding real access sets kids up for disappointment. How do others navigate this tension?",likes:27,liked:false,time:'1 week ago',comments:[{a:'Dr. Simone Akande',r:'Youth Development Researcher',t:'Expand scope AND affordances together. Working on imagination without working on access is a setup for harm.',c:'#7B3D42'},{a:'Tanya Osei-Mensah',r:'Program Director · YouthBuild',t:'We distinguish "possible futures for people like me" (Normative Climate / representation) from "possible futures for me specifically" (Affordances). Both need to expand — together.',c:'#C4724A'}]},
+  {id:4,author:'Anonymous',role:'Young person, age 19',cat:'experience',ap:5,title:'What recognition actually feels like — and what adults get wrong about it',body:"I've been in a lot of programs where adults tell me I'm 'purposeful' but it doesn't land. Real recognition is when someone sees specifically what you did and names it in a way that only works because they were paying attention. Generic affirmation isn't recognition. It's just noise.",likes:41,liked:false,time:'2 weeks ago',comments:[{a:'Dr. Simone Akande',r:'Youth Development Researcher',t:"This distinction — between generic affirmation and specific recognition — is something the literature gestures at but doesn't capture with this precision. Thank you.",c:'#7B3D42'}]}
+];
+let currentApFilter=0;
+
+// Sparks (seeded)
+let sparks=[
+  {id:1,text:"She stayed two hours after the program ended because she wasn't ready to stop.",ap:4,likes:18,liked:false,time:'3 days ago'},
+  {id:2,text:"He said he didn't care about anything, but he hadn't missed a single session.",ap:1,likes:24,liked:false,time:'5 days ago'},
+  {id:3,text:"The moment she named what she was doing as 'advocacy,' everything changed.",ap:5,likes:31,liked:false,time:'1 week ago'},
+  {id:4,text:"He had purpose — the school just had no category for the kind he had.",ap:7,likes:47,liked:false,time:'1 week ago'},
+  {id:5,text:"She knew exactly what she cared about. She just didn't have anywhere to do it.",ap:6,likes:39,liked:false,time:'2 weeks ago'},
+  {id:6,text:"He'd never been asked what mattered to him before. It took him ten minutes to answer.",ap:2,likes:28,liked:false,time:'2 weeks ago'},
+  {id:7,text:"The curriculum gave her the language. The community gave her the reason.",ap:3,likes:22,liked:false,time:'3 weeks ago'},
+  {id:8,text:"They didn't discover purpose — they were finally given room to practice what they already had.",ap:4,likes:35,liked:false,time:'3 weeks ago'}
+];
+
+// Prompts (seeded)
+let prompts=[
+  {id:1,q:"What's something you've done recently that felt like it mattered — even a little?",ctx:"Works well as an opener with adolescents who are skeptical of 'purpose' language. Low-stakes, grounded in recent experience.",ap:1,role:'After-school program coordinator',uses:44,used:false},
+  {id:2,q:"If you could change one thing about your school / neighborhood / world, what would it be?",ctx:"Opens scope without using purpose language. Particularly useful with young people navigating constrained horizons.",ap:2,role:'School counselor, Denver',uses:61,used:false},
+  {id:3,q:"Who do you know — in your life or in history — who seems to live for something?",ctx:"Activates Scope and Normative Climate together. Works across cultural contexts. Good for group discussion.",ap:2,role:'Youth program researcher',uses:38,used:false},
+  {id:4,q:"When do you feel most like yourself?",ctx:"Gets at Resonance without academic language. Especially effective with older adolescents. Pairs well with follow-up: 'What makes that feel true?'",ap:1,role:'Therapist working with youth',uses:52,used:false},
+  {id:5,q:"What would you keep doing even if no one was watching?",ctx:"Surfaces Orientation clearly. Works across age groups. Often reveals purpose-adjacent engagement young people hadn't labeled as such.",ap:3,role:'Program evaluator',uses:29,used:false}
+];
+
+// Starters
+const starters=[
+  {stem:"In my setting, young people most often have access to",blank:"___"},
+  {stem:"The question that opens purpose up for the young people I work with is",blank:"___"},
+  {stem:"When purpose is constrained, what I most often see instead is",blank:"___"}
+];
+let starterResponses=[
+  ["time and space to just be","mentors who look like them","sports — but not much else"],
+  ["'What do you wish existed in your neighborhood?'","'Who would you be if nothing was expected of you?'"],
+  ["performance anxiety","checking out entirely","compliance without investment"]
+];
+const starterIdx=new Date().getMonth()%starters.length;
+
+// ─── Helpers ──────────────────────────────────────────────
+function initials(n){return n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase()}
+function avatarColor(n){let h=0;for(let c of n)h+=c.charCodeAt(0);return avatarColors[h%avatarColors.length]}
+function apDot(ap){return ap>0?`<span class="ap-dot" style="background:${AP_COLORS[ap-1]};display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px;vertical-align:middle"></span>`:''}
+function apLabel(ap){return ap>0?`<span class="ap-tag">${apDot(ap)}${AP_NAMES[ap]}</span>`:''}
+function catClass(c){return 'cat-'+c}
+function catLabel(c){return{practice:'Practice',research:'Research',question:'Question',policy:'Policy',design:'Design',experience:'Lived Experience'}[c]||c}
+const API_READY=location.protocol!=='file:';
+async function saveRemote(type,payload={}){
+  if(!API_READY)return null;
+  try{
+    const res=await fetch('/api/ppy',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({type,payload})});
+    if(!res.ok)throw new Error(`API ${res.status}`);
+    return await res.json();
+  }catch(err){
+    console.warn('Exchange API write skipped:',err);
+    return null;
+  }
+}
+async function hydrateRemote(){
+  if(!API_READY)return;
+  try{
+    const res=await fetch('/api/ppy');
+    if(!res.ok)return;
+    const data=await res.json();
+    if(Array.isArray(data.posts)&&data.posts.length)posts=data.posts;
+    if(Array.isArray(data.sparks)&&data.sparks.length)sparks=data.sparks;
+    if(Array.isArray(data.prompts)&&data.prompts.length)prompts=data.prompts;
+    if(Array.isArray(data.pulseVotes)&&data.pulseVotes.some(Boolean)){
+      pulseVotes=data.pulseVotes.map((v,i)=>i===0?0:Number(v||0));
+    }
+    renderPulse();renderPosts();renderSparks();renderPrompts();
+  }catch(err){
+    console.warn('Exchange API hydrate skipped:',err);
+  }
+}
+
+// ─── Tabs ─────────────────────────────────────────────────
+function openTab(name,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ex-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  if(btn){btn.classList.add('active')}
+  else{
+    const tabs={discussions:0,sparks:1,prompts:2,edits:3};
+    const idx=tabs[name];
+    if(idx!==undefined)document.querySelectorAll('.ex-tab')[idx]?.classList.add('active');
+  }
+  document.getElementById('exchange').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── Lens cards ───────────────────────────────────────
+function toggleAp(toggle){
+  const card=toggle.closest('.ap-card');
+  const exp=card.querySelector('.ap-expanded');
+  const open=exp.style.display==='block';
+  exp.style.display=open?'none':'block';
+  toggle.textContent=open?'+ What to look for in practice':'− Hide';
+}
+function goToAp(n){
+  openTab('discussions');
+  setTimeout(()=>{filterByAp(n,document.querySelector(`#apFilterList li:nth-child(${n+1}) button`))},300);
+}
+
+// ─── Reactions ────────────────────────────────────────────
+function react(btn,apNum,type){
+  const siblings=btn.closest('.ap-reactions').querySelectorAll('.react-btn');
+  const wasActive=btn.classList.contains('active');
+  siblings.forEach(b=>{
+    if(b.classList.contains('active')&&b!==btn){
+      b.classList.remove('active');
+      const cnt=b.querySelector('.react-count');
+      cnt.textContent=Math.max(0,parseInt(cnt.textContent)-1);
+    }
+  });
+  const cnt=btn.querySelector('.react-count');
+  if(wasActive){btn.classList.remove('active');cnt.textContent=Math.max(0,parseInt(cnt.textContent)-1)}
+  else{
+    btn.classList.add('active');cnt.textContent=parseInt(cnt.textContent)+1;
+    saveRemote('lens_reaction',{target_type:'lens',target_id:String(apNum),lens_id:apNum,reaction:type});
+  }
+}
+
+// ─── Feature activity ─────────────────────────────────────
+function renderFeatures(){
+  const wrap=document.getElementById('featureCards');
+  if(!wrap)return;
+  wrap.innerHTML=features.map((f,i)=>`
+    <div class="feat-card">
+      <div class="feat-top">
+        <div class="feat-rank">${i+1}</div>
+        <div><div class="feat-name">${f.name}</div></div>
+        <div class="feat-actions">
+          <button class="rank-btn" onclick="moveFeature(${i},-1)" aria-label="Move ${f.name} up">↑</button>
+          <button class="rank-btn" onclick="moveFeature(${i},1)" aria-label="Move ${f.name} down">↓</button>
+        </div>
+      </div>
+      <div class="feat-def">${f.def}</div>
+    </div>`).join('');
+  updateFeatureSummary();
+}
+function moveFeature(i,dir){
+  const j=i+dir;
+  if(j<0||j>=features.length)return;
+  [features[i],features[j]]=[features[j],features[i]];
+  renderFeatures();
+}
+function updateFeatureSummary(){
+  const summary=document.getElementById('featureSummary');
+  if(!summary)return;
+  const reflection=(document.getElementById('featureReflect')?.value||'').trim();
+  const order=features.map(f=>f.name).join(' → ');
+  summary.innerHTML=`<strong>Current order:</strong> ${order}${reflection?`<br><br><strong>Question forming:</strong> ${reflection}`:''}`;
+}
+function addFeature(){
+  const input=document.getElementById('newFeatureInput');
+  const name=input.value.trim();
+  if(!name)return;
+  features.push({name,def:'A feature added because the current list may not be complete.'});
+  input.value='';
+  renderFeatures();
+  saveRemote('feature_added',{target_type:'feature_activity',target_id:name,payload:{name}});
+}
+function resetFeatures(){
+  features=defaultFeatures.map(f=>({...f}));
+  const reflect=document.getElementById('featureReflect');
+  if(reflect)reflect.value='';
+  renderFeatures();
+}
+function sendFeatureReflection(){
+  openTab('discussions');
+  openNewPost('design');
+  const title=document.getElementById('fTitle');
+  const body=document.getElementById('fBody');
+  const ap=document.getElementById('fAp');
+  const reflection=(document.getElementById('featureReflect')?.value||'').trim();
+  if(ap)ap.value='0';
+  if(title)title.value='How I would prioritize the four features';
+  if(body)body.value=`Feature order: ${features.map(f=>f.name).join(' → ')}${reflection?`\n\nWhat this suggests we should ask next: ${reflection}`:''}`;
+  saveRemote('feature_reflection',{
+    feature_order:features.map(f=>f.name),
+    reflection,
+    added_features:features.filter(f=>!defaultFeatures.some(d=>d.name===f.name))
+  });
+}
+
+// ─── Community Pulse ──────────────────────────────────────
+function renderPulse(){
+  const total=pulseVotes.slice(1).reduce((a,b)=>a+b,0);
+  const bars=document.getElementById('pulseBars');
+  bars.innerHTML=pulseVotes.slice(1).map((v,i)=>{
+    const pct=total>0?Math.round(v/total*100):Math.round(100/7);
+    return`<div class="pulse-bar-row">
+      <div class="pulse-bar-label">${AP_NAMES[i+1]}</div>
+      <div class="pulse-bar-track"><div class="pulse-bar-fill" style="width:${pct}%;background:${AP_COLORS[i]}"></div></div>
+      <div class="pulse-bar-count">${v}</div>
+    </div>`;
+  }).join('');
+}
+function castPulse(n,btn){
+  if(pulseCast)return;
+  pulseVotes[n]++;pulseCast=true;
+  document.querySelectorAll('.pulse-ap-btn').forEach(b=>{b.disabled=true;b.style.opacity='0.5'});
+  btn.classList.add('voted');btn.style.opacity='1';
+  document.getElementById('pulseVotedNote').style.display='block';
+  renderPulse();
+  saveRemote('pulse_vote',{prompt_key:'current_interest',lens_id:n});
+}
+
+// ─── Discussions ──────────────────────────────────────────
+function updateCounts(){
+  document.getElementById('cnt-0').textContent=posts.length;
+  for(let i=1;i<=7;i++){const el=document.getElementById('cnt-'+i);if(el)el.textContent=posts.filter(p=>p.ap===i).length}
+}
+function renderPosts(){
+  const list=document.getElementById('postsList');
+  const shown=currentApFilter===0?posts:posts.filter(p=>p.ap===currentApFilter);
+  document.getElementById('filterLabel').textContent=currentApFilter===0?`${posts.length} contributions`:`${shown.length} contribution${shown.length!==1?'s':''} about ${AP_NAMES[currentApFilter]}`;
+  if(!shown.length){list.innerHTML=`<div class="empty-state">No contributions about ${AP_NAMES[currentApFilter]} yet — be first.</div>`;updateCounts();return}
+  list.innerHTML=shown.map(p=>`
+    <div class="post-card">
+      <div class="post-meta">
+        <div class="post-avatar" style="background:${avatarColor(p.author)}">${initials(p.author)}</div>
+        <div><div class="post-author">${p.author}</div><div class="post-role">${p.role}</div></div>
+        <span class="cat-tag ${catClass(p.cat)}">${catLabel(p.cat)}</span>
+        ${apLabel(p.ap)}
+        <span class="post-time">${p.time}</span>
+      </div>
+      <div class="post-title">${p.title}</div>
+      <div class="post-body">${p.body}</div>
+      <div class="post-footer">
+        <button class="post-action ${p.liked?'liked':''}" onclick="likePost(${p.id})">${p.liked?'♥':'♡'} ${p.likes}</button>
+        <button class="post-action" onclick="toggleComments(${p.id})">💬 ${p.comments.length} comment${p.comments.length!==1?'s':''}</button>
+      </div>
+      <div class="comments-section" id="cs-${p.id}">
+        ${p.comments.map(c=>`<div class="comment"><div class="c-avatar" style="background:${c.c||avatarColor(c.a)}">${initials(c.a)}</div><div><div class="c-author">${c.a} <span class="c-role">· ${c.r}</span></div><div class="c-text">${c.t}</div></div></div>`).join('')}
+        <div class="comment-input-row">
+          <input class="comment-input" id="ci-${p.id}" placeholder="Reply…" onkeydown="if(event.key==='Enter')submitComment(${p.id})"/>
+          <button class="btn-sm btn-navy" onclick="submitComment(${p.id})">Reply</button>
+        </div>
+      </div>
+    </div>`).join('');
+  updateCounts();
+}
+function likePost(id){
+  const p=posts.find(x=>x.id===id);if(!p)return;
+  p.liked=!p.liked;p.likes+=p.liked?1:-1;renderPosts();
+  if(p.liked)saveRemote('post_like',{target_type:'exchange_posts',target_id:String(p.remoteId||p.id),lens_id:p.ap||0});
+}
+function toggleComments(id){const el=document.getElementById('cs-'+id);if(el)el.classList.toggle('open')}
+function submitComment(pid){
+  const inp=document.getElementById('ci-'+pid);const t=inp.value.trim();if(!t)return;
+  const p=posts.find(x=>x.id===pid);if(!p)return;
+  p.comments.push({a:'You',r:'Exchange participant',t,c:'#3B7A8F'});
+  saveRemote('comment',{post_id:p.remoteId||p.id,target_seed_id:String(p.id),author:'You',role:'Exchange participant',body:t});
+  renderPosts();setTimeout(()=>{const el=document.getElementById('cs-'+pid);if(el)el.classList.add('open')},20);
+}
+function filterByAp(n,btn){
+  currentApFilter=n;
+  document.querySelectorAll('.ap-filter-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderPosts();
+}
+function toggleNewPost(){
+  const p=document.getElementById('newPostPanel');p.classList.toggle('open');
+  document.getElementById('newPostBtn').textContent=p.classList.contains('open')?'✕ Cancel':'+ Start a discussion';
+}
+function openNewPost(cat){
+  const p=document.getElementById('newPostPanel');
+  if(!p.classList.contains('open'))toggleNewPost();
+  const sel=document.getElementById('fCat');if(sel&&cat)sel.value=cat;
+}
+function submitPost(){
+  const author=document.getElementById('fAuthor').value.trim()||'Anonymous';
+  const role=document.getElementById('fRole').value.trim()||'Exchange participant';
+  const cat=document.getElementById('fCat').value;
+  const ap=parseInt(document.getElementById('fAp').value)||0;
+  const title=document.getElementById('fTitle').value.trim();
+  const body=document.getElementById('fBody').value.trim();
+  if(!title||!body){alert('Please add a title and your contribution.');return}
+  posts.unshift({id:Date.now(),author,role,cat,ap,title,body,likes:0,liked:false,time:'just now',comments:[]});
+  saveRemote('discussion_post',{author,role,category:cat,lens_id:ap,title,body});
+  currentApFilter=0;
+  document.querySelectorAll('.ap-filter-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  renderPosts();
+  document.getElementById('newPostPanel').classList.remove('open');
+  document.getElementById('newPostBtn').textContent='+ Start a discussion';
+  ['fAuthor','fRole','fTitle','fBody'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  document.getElementById('postsList').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── Sparks ───────────────────────────────────────────────
+function updateCharCount(el){
+  const rem=200-el.value.length;
+  document.getElementById('sparkCharCount').textContent=rem;
+  document.getElementById('sparkCharCount').style.color=rem<30?'var(--terra)':'var(--g400)';
+}
+function renderSparks(){
+  const stream=document.getElementById('sparksStream');
+  stream.innerHTML=sparks.map(s=>`
+    <div class="spark-card">
+      <button class="spark-like ${s.liked?'liked':''}" onclick="likeSpark(${s.id})">${s.liked?'♥':'♡'} ${s.likes}</button>
+      <div style="font-size:0.68rem;color:var(--g400);margin-bottom:0.35rem">${s.ap>0?`${apDot(s.ap)}<span class="spark-ap-label">${AP_NAMES[s.ap]}</span>`:`<span class="spark-ap-label">General</span>`}</div>
+      <div class="spark-text">"${s.text}"</div>
+      <div class="spark-meta">${s.time}</div>
+    </div>`).join('');
+}
+function likeSpark(id){
+  const s=sparks.find(x=>x.id===id);if(!s)return;
+  s.liked=!s.liked;s.likes+=s.liked?1:-1;renderSparks();
+  if(s.liked)saveRemote('spark_like',{target_type:'sparks',target_id:String(s.remoteId||s.id),lens_id:s.ap||0});
+}
+function submitSpark(){
+  const inp=document.getElementById('sparkInput');
+  const text=inp.value.trim();if(!text)return;
+  const ap=parseInt(document.getElementById('sparkAp').value)||0;
+  sparks.unshift({id:Date.now(),text,ap,likes:0,liked:false,time:'just now'});
+  saveRemote('spark',{text,lens_id:ap});
+  inp.value='';document.getElementById('sparkCharCount').textContent='200';
+  renderSparks();
+}
+
+// ─── Sentence Starter ─────────────────────────────────────
+function initStarter(){
+  const s=starters[starterIdx];
+  document.getElementById('starterPrompt').innerHTML=`${s.stem} <span class="blank">${s.blank}</span>`;
+  renderStarterResponses();
+}
+function renderStarterResponses(){
+  const resps=starterResponses[starterIdx]||[];
+  document.getElementById('starterResponses').innerHTML=resps.map(r=>`<div class="starter-resp">→ ${r}</div>`).join('');
+}
+function submitStarter(){
+  const inp=document.getElementById('starterInput');
+  const val=inp.value.trim();if(!val)return;
+  if(!starterResponses[starterIdx])starterResponses[starterIdx]=[];
+  starterResponses[starterIdx].unshift(val);
+  saveRemote('starter_response',{starter_index:starterIdx,response:val});
+  inp.value='';renderStarterResponses();
+}
+
+// ─── Prompt Bank ──────────────────────────────────────────
+function renderPrompts(){
+  const cards=document.getElementById('promptCards');
+  cards.innerHTML=prompts.map(p=>`
+    <div class="prompt-card">
+      <div class="prompt-q">"${p.q}"</div>
+      <div class="prompt-context">${p.ctx}</div>
+      <div class="prompt-footer">
+        ${p.ap>0?`<div class="prompt-ap-badge">${apDot(p.ap)}${AP_NAMES[p.ap]}</div>`:''}
+        <button class="prompt-used ${p.used?'used':''}" onclick="usePrompt(${p.id})">
+          ${p.used?'✓ I\'ve used this':'👍 I\'ve used this'} (${p.uses})
+        </button>
+        ${p.role?`<div class="prompt-contrib">— ${p.role}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+function usePrompt(id){
+  const p=prompts.find(x=>x.id===id);if(!p)return;
+  p.used=!p.used;p.uses+=p.used?1:-1;renderPrompts();
+  if(p.used)saveRemote('prompt_use',{target_type:'prompt_bank',target_id:String(p.remoteId||p.id),lens_id:p.ap||0});
+}
+function submitPrompt(){
+  const q=document.getElementById('pQ').value.trim();
+  const ctx=document.getElementById('pCtx').value.trim();
+  const ap=parseInt(document.getElementById('pAp').value)||0;
+  const role=document.getElementById('pRole').value.trim();
+  if(!q){alert('Please add a question.');return}
+  prompts.unshift({id:Date.now(),q,ctx:ctx||'No context provided — context helps others know when to use this.',ap,role,uses:0,used:false});
+  saveRemote('prompt',{question:q,context:ctx,lens_id:ap,role});
+  renderPrompts();
+  ['pQ','pCtx','pRole'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  document.getElementById('promptCards').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── Copy edits ───────────────────────────────────────────
+function formattedEditNote(note){
+  return `SECTION: ${note.section}\nLABEL: ${note.title || 'Wording change'}\n\nCURRENT / LOCATION:\n${note.current || '(not specified)'}\n\nREPLACEMENT WORDING:\n${note.replacement}`;
+}
+function renderEditNotes(){
+  const list=document.getElementById('editNotesList');
+  if(!list)return;
+  if(!editNotes.length){
+    list.innerHTML='<div class="empty-state">No copy edit notes staged yet.</div>';
+    return;
+  }
+  list.innerHTML=editNotes.map((note,i)=>`
+    <div class="edit-note-card">
+      <div class="edit-note-meta">
+        <span class="edit-section">${note.section}</span>
+        <span class="edit-note-title">${note.title || 'Wording change'}</span>
+      </div>
+      <div class="edit-note-body">${formattedEditNote(note)}</div>
+      <div class="form-actions" style="margin-top:0.9rem">
+        <button class="btn-sm btn-outline" onclick="loadEditNote(${i})">Load back into form</button>
+        <button class="btn-sm btn-outline" onclick="removeEditNote(${i})">Remove</button>
+      </div>
+    </div>`).join('');
+}
+function saveEditNote(){
+  const section=document.getElementById('editSection').value;
+  const title=document.getElementById('editTitle').value.trim();
+  const current=document.getElementById('editCurrent').value.trim();
+  const replacement=document.getElementById('editReplacement').value.trim();
+  if(!replacement){alert('Please add replacement wording.');return}
+  const note={section,title,current,replacement};
+  editNotes.unshift(note);
+  saveRemote('copy_edit',{section,label:title,current_wording:current,replacement_wording:replacement});
+  document.getElementById('editPreview').textContent=formattedEditNote(note);
+  renderEditNotes();
+  clearEditDraft(false);
+}
+function clearEditDraft(clearPreview=true){
+  ['editTitle','editCurrent','editReplacement'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  if(clearPreview)document.getElementById('editPreview').textContent='Your formatted note will appear here after you stage it.';
+}
+function loadEditNote(i){
+  const note=editNotes[i];
+  if(!note)return;
+  document.getElementById('editSection').value=note.section;
+  document.getElementById('editTitle').value=note.title;
+  document.getElementById('editCurrent').value=note.current;
+  document.getElementById('editReplacement').value=note.replacement;
+  document.getElementById('editPreview').textContent=formattedEditNote(note);
+}
+function removeEditNote(i){
+  editNotes.splice(i,1);
+  renderEditNotes();
+}
+
+// ─── Pathways ─────────────────────────────────────────────
+function selectPw(id,card){
+  document.querySelectorAll('.pw-card').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.pw-detail').forEach(d=>d.classList.remove('active'));
+  card.classList.add('active');
+  const det=document.getElementById('detail-'+id);det.classList.add('active');
+  setTimeout(()=>det.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
+}
+
+// ─── Init ─────────────────────────────────────────────────
+renderFeatures();
+renderPulse();
+renderPosts();
+renderSparks();
+initStarter();
+renderPrompts();
+renderEditNotes();
+hydrateRemote();
+</script>
+</body>
+</html>

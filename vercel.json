@@ -1,9 +1,3 @@
 {
-  "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/ppy_v4.html"
-    }
-  ]
+  "cleanUrls": true
 }

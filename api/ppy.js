@@ -10,6 +10,56 @@ const TABLES = {
   event: 'interaction_events'
 };
 
+const ADMIN_TABLES = {
+  posts: {
+    table: 'exchange_posts',
+    status: true,
+    select: 'id,created_at,status,author,role,category,lens_id,title,body,likes_seed'
+  },
+  comments: {
+    table: 'exchange_comments',
+    status: true,
+    select: 'id,created_at,status,post_id,target_seed_id,author,role,body'
+  },
+  sparks: {
+    table: 'sparks',
+    status: true,
+    select: 'id,created_at,status,text,lens_id,likes_seed'
+  },
+  prompts: {
+    table: 'prompt_bank',
+    status: true,
+    select: 'id,created_at,status,question,context,lens_id,role,uses_seed'
+  },
+  features: {
+    table: 'feature_reflections',
+    status: true,
+    select: 'id,created_at,status,feature_order,reflection,added_features'
+  },
+  copy_edits: {
+    table: 'copy_edit_notes',
+    status: true,
+    select: 'id,created_at,status,section,label,current_wording,replacement_wording'
+  },
+  starters: {
+    table: 'starter_responses',
+    status: true,
+    select: 'id,created_at,status,starter_index,response'
+  },
+  pulse: {
+    table: 'pulse_votes',
+    status: false,
+    select: 'id,created_at,prompt_key,lens_id'
+  },
+  events: {
+    table: 'interaction_events',
+    status: false,
+    select: 'id,created_at,event_type,target_type,target_id,lens_id,payload'
+  }
+};
+
+const MODERATABLE_STATUSES = new Set(['pending', 'approved', 'rejected', 'archived']);
+
 function config() {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -19,6 +69,27 @@ function config() {
     throw err;
   }
   return { url: url.replace(/\/$/, ''), key };
+}
+
+function adminToken() {
+  const token = process.env.ADMIN_TOKEN;
+  if (!token) {
+    const err = new Error('Admin token is not configured.');
+    err.statusCode = 503;
+    throw err;
+  }
+  return token;
+}
+
+function requireAdmin(req) {
+  const expected = adminToken();
+  const header = req.headers.authorization || '';
+  const provided = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
+  if (!provided || provided !== expected) {
+    const err = new Error('Admin authorization required.');
+    err.statusCode = 401;
+    throw err;
+  }
 }
 
 async function supabase(path, options = {}) {
@@ -52,11 +123,26 @@ async function insert(table, row) {
   });
 }
 
+async function update(table, id, row) {
+  return supabase(`${table}?id=eq.${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    headers: { prefer: 'return=representation' },
+    body: JSON.stringify(row)
+  });
+}
+
 function send(res, status, payload) {
   res.statusCode = status;
   res.setHeader('content-type', 'application/json; charset=utf-8');
   res.setHeader('cache-control', 'no-store');
   res.end(JSON.stringify(payload));
+}
+
+function sendText(res, status, text, contentType = 'text/plain; charset=utf-8') {
+  res.statusCode = status;
+  res.setHeader('content-type', contentType);
+  res.setHeader('cache-control', 'no-store');
+  res.end(text);
 }
 
 function cleanText(value, fallback = '') {
@@ -74,8 +160,9 @@ function approvedFilter(limit = 100) {
 }
 
 async function bootstrap() {
-  const [posts, sparks, prompts, pulse] = await Promise.all([
+  const [posts, comments, sparks, prompts, pulse] = await Promise.all([
     supabase(`exchange_posts?select=*&${approvedFilter(100)}`),
+    supabase(`exchange_comments?select=*&${approvedFilter(250)}`),
     supabase(`sparks?select=*&${approvedFilter(100)}`),
     supabase(`prompt_bank?select=*&${approvedFilter(100)}`),
     supabase('pulse_votes?select=lens_id')
@@ -99,7 +186,14 @@ async function bootstrap() {
       likes: p.likes_seed || 0,
       liked: false,
       time: 'from the exchange',
-      comments: []
+      comments: comments
+        .filter((c) => c.post_id === p.id)
+        .map((c) => ({
+          a: c.author,
+          r: c.role,
+          t: c.body,
+          c: '#3B7A8F'
+        }))
     })),
     sparks: sparks.map((s) => ({
       id: s.id,
@@ -122,6 +216,104 @@ async function bootstrap() {
     })),
     pulseVotes
   };
+}
+
+function tableMeta(name) {
+  const meta = ADMIN_TABLES[name];
+  if (!meta) {
+    const err = new Error('Unknown admin table.');
+    err.statusCode = 400;
+    throw err;
+  }
+  return meta;
+}
+
+function parseLimit(value, fallback = 200) {
+  const n = Number.parseInt(value, 10);
+  if (Number.isNaN(n)) return fallback;
+  return Math.max(1, Math.min(1000, n));
+}
+
+function csvEscape(value) {
+  if (value === null || value === undefined) return '';
+  const text = typeof value === 'object' ? JSON.stringify(value) : String(value);
+  return `"${text.replaceAll('"', '""')}"`;
+}
+
+function rowsToCsv(rows) {
+  if (!rows.length) return '';
+  const headers = Object.keys(rows[0]);
+  return [
+    headers.map(csvEscape).join(','),
+    ...rows.map((row) => headers.map((key) => csvEscape(row[key])).join(','))
+  ].join('\n');
+}
+
+async function listAdminRows(query) {
+  const type = cleanText(query.type, 'posts');
+  const status = cleanText(query.status, 'pending');
+  const limit = parseLimit(query.limit);
+  const meta = tableMeta(type);
+  const params = [
+    `select=${meta.select}`,
+    'order=created_at.desc',
+    `limit=${limit}`
+  ];
+
+  if (meta.status && status !== 'all') {
+    if (!MODERATABLE_STATUSES.has(status)) {
+      const err = new Error('Unknown status.');
+      err.statusCode = 400;
+      throw err;
+    }
+    params.push(`status=eq.${encodeURIComponent(status)}`);
+  }
+
+  const rows = await supabase(`${meta.table}?${params.join('&')}`);
+  return { type, status: meta.status ? status : 'all', rows };
+}
+
+async function exportAdminRows(query) {
+  const type = cleanText(query.type, 'posts');
+  const status = cleanText(query.status, 'all');
+  const meta = tableMeta(type);
+  const params = [
+    `select=${meta.select}`,
+    'order=created_at.desc',
+    'limit=1000'
+  ];
+
+  if (meta.status && status !== 'all') {
+    if (!MODERATABLE_STATUSES.has(status)) {
+      const err = new Error('Unknown status.');
+      err.statusCode = 400;
+      throw err;
+    }
+    params.push(`status=eq.${encodeURIComponent(status)}`);
+  }
+
+  const rows = await supabase(`${meta.table}?${params.join('&')}`);
+  return rowsToCsv(rows);
+}
+
+async function moderate(body) {
+  const type = cleanText(body.type);
+  const id = cleanText(body.id);
+  const status = cleanText(body.status);
+  const meta = tableMeta(type);
+
+  if (!meta.status) {
+    const err = new Error('This table does not support moderation status.');
+    err.statusCode = 400;
+    throw err;
+  }
+  if (!id || !MODERATABLE_STATUSES.has(status)) {
+    const err = new Error('A valid id and status are required.');
+    err.statusCode = 400;
+    throw err;
+  }
+
+  return update(meta.table, id, { status });
 }
 
 async function record(body) {
@@ -207,6 +399,31 @@ async function record(body) {
 
 module.exports = async function handler(req, res) {
   try {
+    const url = new URL(req.url, 'http://localhost');
+
+    if (url.searchParams.get('admin') === '1') {
+      requireAdmin(req);
+
+      if (req.method === 'GET') {
+        const query = Object.fromEntries(url.searchParams.entries());
+        if (query.export === '1') {
+          const csv = await exportAdminRows(query);
+          res.setHeader('content-disposition', `attachment; filename="ppy-${query.type || 'posts'}-${query.status || 'all'}.csv"`);
+          return sendText(res, 200, csv, 'text/csv; charset=utf-8');
+        }
+        return send(res, 200, await listAdminRows(query));
+      }
+
+      if (req.method === 'PATCH' || req.method === 'POST') {
+        const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+        const data = await moderate(body || {});
+        return send(res, 200, { ok: true, data });
+      }
+
+      res.setHeader('allow', 'GET, PATCH, POST');
+      return send(res, 405, { ok: false, error: 'Method not allowed' });
+    }
+
     if (req.method === 'GET') {
       return send(res, 200, await bootstrap());
     }
@@ -226,4 +443,4 @@ module.exports = async function handler(req, res) {
       details: error.details
     });
   }
-}
+};

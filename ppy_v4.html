@@ -1037,6 +1037,8 @@ function apDot(ap){return ap>0?`<span class="ap-dot" style="background:${AP_COLO
 function apLabel(ap){return ap>0?`<span class="ap-tag">${apDot(ap)}${AP_NAMES[ap]}</span>`:''}
 function catClass(c){return 'cat-'+c}
 function catLabel(c){return{practice:'Practice',research:'Research',question:'Question',policy:'Policy',design:'Design',experience:'Lived Experience'}[c]||c}
+function idArg(id){return JSON.stringify(String(id))}
+function sameId(a,b){return String(a)===String(b)}
 const API_READY=location.protocol!=='file:';
 async function saveRemote(type,payload={}){
   if(!API_READY)return null;
@@ -1221,28 +1223,28 @@ function renderPosts(){
       <div class="post-title">${p.title}</div>
       <div class="post-body">${p.body}</div>
       <div class="post-footer">
-        <button class="post-action ${p.liked?'liked':''}" onclick="likePost(${p.id})">${p.liked?'♥':'♡'} ${p.likes}</button>
-        <button class="post-action" onclick="toggleComments(${p.id})">💬 ${p.comments.length} comment${p.comments.length!==1?'s':''}</button>
+        <button class="post-action ${p.liked?'liked':''}" onclick="likePost(${idArg(p.id)})">${p.liked?'♥':'♡'} ${p.likes}</button>
+        <button class="post-action" onclick="toggleComments(${idArg(p.id)})">💬 ${p.comments.length} comment${p.comments.length!==1?'s':''}</button>
       </div>
       <div class="comments-section" id="cs-${p.id}">
         ${p.comments.map(c=>`<div class="comment"><div class="c-avatar" style="background:${c.c||avatarColor(c.a)}">${initials(c.a)}</div><div><div class="c-author">${c.a} <span class="c-role">· ${c.r}</span></div><div class="c-text">${c.t}</div></div></div>`).join('')}
         <div class="comment-input-row">
-          <input class="comment-input" id="ci-${p.id}" placeholder="Reply…" onkeydown="if(event.key==='Enter')submitComment(${p.id})"/>
-          <button class="btn-sm btn-navy" onclick="submitComment(${p.id})">Reply</button>
+          <input class="comment-input" id="ci-${p.id}" placeholder="Reply…" onkeydown="if(event.key==='Enter')submitComment(${idArg(p.id)})"/>
+          <button class="btn-sm btn-navy" onclick="submitComment(${idArg(p.id)})">Reply</button>
         </div>
       </div>
     </div>`).join('');
   updateCounts();
 }
 function likePost(id){
-  const p=posts.find(x=>x.id===id);if(!p)return;
+  const p=posts.find(x=>sameId(x.id,id));if(!p)return;
   p.liked=!p.liked;p.likes+=p.liked?1:-1;renderPosts();
   if(p.liked)saveRemote('post_like',{target_type:'exchange_posts',target_id:String(p.remoteId||p.id),lens_id:p.ap||0});
 }
 function toggleComments(id){const el=document.getElementById('cs-'+id);if(el)el.classList.toggle('open')}
 function submitComment(pid){
   const inp=document.getElementById('ci-'+pid);const t=inp.value.trim();if(!t)return;
-  const p=posts.find(x=>x.id===pid);if(!p)return;
+  const p=posts.find(x=>sameId(x.id,pid));if(!p)return;
   p.comments.push({a:'You',r:'Exchange participant',t,c:'#3B7A8F'});
   saveRemote('comment',{post_id:p.remoteId||p.id,target_seed_id:String(p.id),author:'You',role:'Exchange participant',body:t});
   renderPosts();setTimeout(()=>{const el=document.getElementById('cs-'+pid);if(el)el.classList.add('open')},20);
@@ -1291,14 +1293,14 @@ function renderSparks(){
   const stream=document.getElementById('sparksStream');
   stream.innerHTML=sparks.map(s=>`
     <div class="spark-card">
-      <button class="spark-like ${s.liked?'liked':''}" onclick="likeSpark(${s.id})">${s.liked?'♥':'♡'} ${s.likes}</button>
+      <button class="spark-like ${s.liked?'liked':''}" onclick="likeSpark(${idArg(s.id)})">${s.liked?'♥':'♡'} ${s.likes}</button>
       <div style="font-size:0.68rem;color:var(--g400);margin-bottom:0.35rem">${s.ap>0?`${apDot(s.ap)}<span class="spark-ap-label">${AP_NAMES[s.ap]}</span>`:`<span class="spark-ap-label">General</span>`}</div>
       <div class="spark-text">"${s.text}"</div>
       <div class="spark-meta">${s.time}</div>
     </div>`).join('');
 }
 function likeSpark(id){
-  const s=sparks.find(x=>x.id===id);if(!s)return;
+  const s=sparks.find(x=>sameId(x.id,id));if(!s)return;
   s.liked=!s.liked;s.likes+=s.liked?1:-1;renderSparks();
   if(s.liked)saveRemote('spark_like',{target_type:'sparks',target_id:String(s.remoteId||s.id),lens_id:s.ap||0});
 }
@@ -1340,7 +1342,7 @@ function renderPrompts(){
       <div class="prompt-context">${p.ctx}</div>
       <div class="prompt-footer">
         ${p.ap>0?`<div class="prompt-ap-badge">${apDot(p.ap)}${AP_NAMES[p.ap]}</div>`:''}
-        <button class="prompt-used ${p.used?'used':''}" onclick="usePrompt(${p.id})">
+        <button class="prompt-used ${p.used?'used':''}" onclick="usePrompt(${idArg(p.id)})">
           ${p.used?'✓ I\'ve used this':'👍 I\'ve used this'} (${p.uses})
         </button>
         ${p.role?`<div class="prompt-contrib">— ${p.role}</div>`:''}
@@ -1348,7 +1350,7 @@ function renderPrompts(){
     </div>`).join('');
 }
 function usePrompt(id){
-  const p=prompts.find(x=>x.id===id);if(!p)return;
+  const p=prompts.find(x=>sameId(x.id,id));if(!p)return;
   p.used=!p.used;p.uses+=p.used?1:-1;renderPrompts();
   if(p.used)saveRemote('prompt_use',{target_type:'prompt_bank',target_id:String(p.remoteId||p.id),lens_id:p.ap||0});
 }

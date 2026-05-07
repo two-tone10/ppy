@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPY Exchange Admin</title>
+<style>
+:root{
+  --navy:#102036;
+  --ink:#1b2a46;
+  --teal:#3b7f95;
+  --paper:#f7f4ef;
+  --line:#dedbd5;
+  --muted:#6b6760;
+  --good:#1f6f54;
+  --warn:#8d5b10;
+  --bad:#9a3c45;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+}
+header{
+  padding:1.25rem clamp(1rem,4vw,3rem);
+  color:#fff;
+  background:var(--navy);
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  align-items:center;
+  flex-wrap:wrap;
+}
+h1{font-size:1.45rem;margin:0;font-weight:800}
+header a{color:#a8ddeb;text-decoration:none;font-weight:700}
+main{width:min(1180px,calc(100% - 2rem));margin:2rem auto 4rem}
+.panel{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:1rem;
+  box-shadow:0 10px 28px rgba(16,32,54,.06);
+}
+.auth{
+  display:grid;
+  grid-template-columns:minmax(220px,1fr) auto auto;
+  gap:.75rem;
+  align-items:end;
+}
+label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:800;margin-bottom:.35rem}
+input,select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:.78rem .85rem;
+  font:inherit;
+  color:var(--ink);
+  background:#fff;
+}
+button{
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:.78rem 1rem;
+  font:inherit;
+  font-weight:800;
+  cursor:pointer;
+  color:var(--ink);
+  background:#fff;
+}
+button.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+button.good{color:#fff;background:var(--good);border-color:var(--good)}
+button.bad{color:#fff;background:var(--bad);border-color:var(--bad)}
+button.warn{color:#fff;background:var(--warn);border-color:var(--warn)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.toolbar{
+  margin-top:1rem;
+  display:grid;
+  grid-template-columns:1fr 180px 180px auto auto;
+  gap:.75rem;
+  align-items:end;
+}
+.status{
+  margin:1rem 0;
+  color:var(--muted);
+  min-height:1.5rem;
+}
+.cards{display:grid;gap:1rem}
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:1rem;
+}
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  align-items:flex-start;
+  border-bottom:1px solid var(--line);
+  padding-bottom:.75rem;
+  margin-bottom:.75rem;
+}
+.meta{font-size:.85rem;color:var(--muted);line-height:1.5}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:.25rem .55rem;
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:900;
+  color:#fff;
+  background:var(--teal);
+}
+.badge.pending{background:var(--warn)}
+.badge.approved{background:var(--good)}
+.badge.rejected{background:var(--bad)}
+.badge.archived{background:var(--muted)}
+.content{display:grid;gap:.6rem;font-size:.98rem;line-height:1.55}
+.field strong{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.empty{padding:2rem;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:8px;background:#fff}
+.small{font-size:.85rem;color:var(--muted)}
+@media(max-width:760px){
+  .auth,.toolbar{grid-template-columns:1fr}
+  .card-top{display:grid}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>PPY Exchange Admin</h1>
+  <a href="/ppy_v4.html">Return to the exchange</a>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="auth">
+      <div>
+        <label for="token">Admin token</label>
+        <input id="token" type="password" autocomplete="current-password" placeholder="Paste ADMIN_TOKEN">
+      </div>
+      <button class="primary" id="saveTokenBtn">Use token</button>
+      <button id="clearTokenBtn">Clear</button>
+    </div>
+
+    <div class="toolbar">
+      <div>
+        <label for="type">Collection</label>
+        <select id="type">
+          <option value="posts">Discussion posts</option>
+          <option value="comments">Comments</option>
+          <option value="sparks">Sparks</option>
+          <option value="prompts">Prompt bank</option>
+          <option value="features">Feature reflections</option>
+          <option value="copy_edits">Copy edit notes</option>
+          <option value="starters">Starter responses</option>
+          <option value="pulse">Pulse votes</option>
+          <option value="events">Interaction events</option>
+        </select>
+      </div>
+      <div>
+        <label for="statusFilter">Status</label>
+        <select id="statusFilter">
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+          <option value="archived">Archived</option>
+          <option value="all">All</option>
+        </select>
+      </div>
+      <div>
+        <label for="limit">Limit</label>
+        <select id="limit">
+          <option>100</option>
+          <option selected>200</option>
+          <option>500</option>
+          <option>1000</option>
+        </select>
+      </div>
+      <button class="primary" id="loadBtn">Load</button>
+      <button id="exportBtn">Export CSV</button>
+    </div>
+  </section>
+
+  <div id="status" class="status"></div>
+  <section id="cards" class="cards"></section>
+</main>
+
+<script>
+const MODERATABLE = new Set(['posts','comments','sparks','prompts','features','copy_edits','starters']);
+const FIELD_LABELS = {
+  author:'Author',
+  role:'Role',
+  category:'Category',
+  lens_id:'Lens',
+  title:'Title',
+  body:'Body',
+  text:'Text',
+  question:'Question',
+  context:'Context',
+  feature_order:'Feature order',
+  reflection:'Reflection',
+  added_features:'Added features',
+  section:'Section',
+  label:'Label',
+  current_wording:'Current wording',
+  replacement_wording:'Replacement wording',
+  starter_index:'Starter',
+  response:'Response',
+  prompt_key:'Prompt key',
+  event_type:'Event type',
+  target_type:'Target type',
+  target_id:'Target id',
+  payload:'Payload',
+  post_id:'Post id',
+  target_seed_id:'Seed target'
+};
+
+const els = {
+  token: document.getElementById('token'),
+  type: document.getElementById('type'),
+  status: document.getElementById('statusFilter'),
+  limit: document.getElementById('limit'),
+  statusLine: document.getElementById('status'),
+  cards: document.getElementById('cards')
+};
+
+function token(){
+  return sessionStorage.getItem('ppy_admin_token') || '';
+}
+
+function setStatus(message){
+  els.statusLine.textContent = message || '';
+}
+
+function escapeHtml(value){
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[ch]));
+}
+
+function formatValue(value){
+  if(Array.isArray(value)) return value.join(' -> ');
+  if(value && typeof value === 'object') return JSON.stringify(value, null, 2);
+  return String(value ?? '');
+}
+
+function visibleFields(row){
+  return Object.keys(row).filter(key => !['id','created_at','status','likes_seed','uses_seed'].includes(key));
+}
+
+async function api(path, options = {}){
+  const res = await fetch(path, {
+    ...options,
+    headers: {
+      authorization: `Bearer ${token()}`,
+      'content-type': 'application/json',
+      ...(options.headers || {})
+    }
+  });
+  if(!res.ok){
+    let message = `Request failed (${res.status})`;
+    try{
+      const data = await res.json();
+      message = data.error || message;
+    }catch{}
+    throw new Error(message);
+  }
+  return res;
+}
+
+function query(){
+  return new URLSearchParams({
+    admin:'1',
+    type:els.type.value,
+    status:els.status.value,
+    limit:els.limit.value
+  });
+}
+
+async function loadRows(){
+  if(!token()){
+    setStatus('Paste your admin token first.');
+    return;
+  }
+  setStatus('Loading...');
+  els.cards.innerHTML = '';
+  try{
+    const res = await api(`/api/ppy?${query().toString()}`);
+    const data = await res.json();
+    renderRows(data.rows || []);
+    setStatus(`${data.rows?.length || 0} row${data.rows?.length === 1 ? '' : 's'} loaded.`);
+  }catch(err){
+    setStatus(err.message);
+  }
+}
+
+function renderRows(rows){
+  if(!rows.length){
+    els.cards.innerHTML = '<div class="empty">No rows for this view.</div>';
+    return;
+  }
+
+  const type = els.type.value;
+  els.cards.innerHTML = rows.map(row => `
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="meta">${escapeHtml(row.created_at || '')}</div>
+          <div class="small">${escapeHtml(row.id || '')}</div>
+        </div>
+        ${row.status ? `<span class="badge ${escapeHtml(row.status)}">${escapeHtml(row.status)}</span>` : '<span class="badge">captured</span>'}
+      </div>
+      <div class="content">
+        ${visibleFields(row).map(key => `
+          <div class="field">
+            <strong>${escapeHtml(FIELD_LABELS[key] || key)}</strong>
+            <div>${escapeHtml(formatValue(row[key]))}</div>
+          </div>
+        `).join('')}
+      </div>
+      ${MODERATABLE.has(type) ? `
+        <div class="actions">
+          <button class="good" data-id="${escapeHtml(row.id)}" data-status="approved">Approve</button>
+          <button class="bad" data-id="${escapeHtml(row.id)}" data-status="rejected">Reject</button>
+          <button class="warn" data-id="${escapeHtml(row.id)}" data-status="archived">Archive</button>
+          <button data-id="${escapeHtml(row.id)}" data-status="pending">Return to pending</button>
+        </div>
+      ` : ''}
+    </article>
+  `).join('');
+
+  els.cards.querySelectorAll('button[data-id]').forEach(btn => {
+    btn.addEventListener('click', () => moderate(btn.dataset.id, btn.dataset.status));
+  });
+}
+
+async function moderate(id, status){
+  setStatus(`Updating ${id}...`);
+  try{
+    await api('/api/ppy?admin=1', {
+      method:'PATCH',
+      body:JSON.stringify({type:els.type.value,id,status})
+    });
+    await loadRows();
+  }catch(err){
+    setStatus(err.message);
+  }
+}
+
+async function exportCsv(){
+  if(!token()){
+    setStatus('Paste your admin token first.');
+    return;
+  }
+  const params = query();
+  params.set('export','1');
+  setStatus('Preparing CSV...');
+  try{
+    const res = await api(`/api/ppy?${params.toString()}`, {
+      headers:{authorization:`Bearer ${token()}`}
+    });
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ppy-${els.type.value}-${els.status.value}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    setStatus('CSV exported.');
+  }catch(err){
+    setStatus(err.message);
+  }
+}
+
+document.getElementById('saveTokenBtn').addEventListener('click', () => {
+  const value = els.token.value.trim();
+  if(value) sessionStorage.setItem('ppy_admin_token', value);
+  setStatus(value ? 'Token saved for this browser session.' : 'Paste a token first.');
+});
+document.getElementById('clearTokenBtn').addEventListener('click', () => {
+  sessionStorage.removeItem('ppy_admin_token');
+  els.token.value = '';
+  setStatus('Token cleared.');
+});
+document.getElementById('loadBtn').addEventListener('click', loadRows);
+document.getElementById('exportBtn').addEventListener('click', exportCsv);
+els.type.addEventListener('change', () => {
+  const moderatable = MODERATABLE.has(els.type.value);
+  els.status.disabled = !moderatable;
+  if(!moderatable) els.status.value = 'all';
+});
+
+if(token()) setStatus('Admin token is saved for this browser session.');
+</script>
+</body>
+</html>

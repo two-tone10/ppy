@@ -94,6 +94,9 @@ create index if not exists exchange_comments_post_idx on exchange_comments(post_
 create index if not exists sparks_status_created_idx on sparks(status, created_at desc);
 create index if not exists prompt_bank_status_created_idx on prompt_bank(status, created_at desc);
 create index if not exists pulse_votes_prompt_lens_idx on pulse_votes(prompt_key, lens_id);
+create index if not exists feature_reflections_status_created_idx on feature_reflections(status, created_at desc);
+create index if not exists copy_edit_notes_status_created_idx on copy_edit_notes(status, created_at desc);
+create index if not exists starter_responses_status_created_idx on starter_responses(status, created_at desc);
 create index if not exists interaction_events_type_created_idx on interaction_events(event_type, created_at desc);
 
 alter table exchange_posts enable row level security;

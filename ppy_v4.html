@@ -45,10 +45,11 @@ h2 em{color:var(--teal);font-style:italic}
 /* LANDING */
 #landing{background:var(--ink);min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 6rem;position:relative;overflow:hidden}
 #landing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(59,122,143,0.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 70%,rgba(123,61,66,0.08) 0%,transparent 50%)}
-.landing-mark{position:absolute;right:-8vw;top:50%;transform:translateY(-48%);width:min(82vw,980px);height:min(90vh,920px);object-fit:contain;object-position:center right;opacity:0.075;filter:drop-shadow(0 24px 70px rgba(0,0,0,0.12));pointer-events:none;z-index:0}
+.landing-mark{position:absolute;right:-100vw;top:50%;transform:translateY(-48%);width:min(620vw,8000px);height:min(520vh,6500px);object-fit:contain;object-position:center right;opacity:0.34;filter:drop-shadow(0 24px 70px rgba(0,0,0,0.1));pointer-events:none;z-index:0}
 .prov-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
 .prov-overline{font-size:0.7rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3rem}
 .prov-statement{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.15;color:var(--white);font-weight:400;margin-bottom:1.5rem}
+.prov-statement .sentence{display:block;margin-bottom:1.15rem}
 .prov-statement strong{font-weight:700}
 .prov-statement em{color:var(--teal-light);font-style:italic}
 .prov-pause{width:3rem;height:2px;background:var(--teal);margin:2rem 0}
@@ -85,6 +86,7 @@ h2 em{color:var(--teal);font-style:italic}
 .arg-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1.5rem}
 .arg-claim{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.3rem);font-weight:600;line-height:1.25;color:var(--white);margin-bottom:1rem}
 .arg-claim em{color:var(--teal-light);font-style:italic}
+.arg-claim .plain-white{color:var(--white);font-style:normal}
 .arg-body{font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.8;max-width:640px;margin:1.5rem auto 2rem}
 .arg-implication{display:inline-block;background:rgba(59,122,143,0.18);border:1px solid rgba(59,122,143,0.4);border-radius:10px;padding:1.25rem 2rem;font-size:1rem;color:var(--teal-light);font-style:italic;font-family:var(--serif);line-height:1.5}
 
@@ -98,13 +100,14 @@ h2 em{color:var(--teal);font-style:italic}
 .lens-overview{display:flex;align-items:stretch;margin:0 0 2rem;overflow-x:auto;padding:0.2rem 0 0.8rem}
 .lens-tab{min-width:170px;border-radius:12px 12px 8px 8px;padding:1rem 1rem 0.9rem;color:var(--white);box-shadow:0 10px 24px rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.14);position:relative}
 .lens-tab+.lens-tab{margin-left:-1.05rem}
-.lens-tab:nth-child(1){background:var(--burgundy);z-index:7}
-.lens-tab:nth-child(2){background:var(--peach);color:var(--navy);z-index:6}
-.lens-tab:nth-child(3){background:var(--navy);z-index:5}
-.lens-tab:nth-child(4){background:var(--terra);z-index:4}
-.lens-tab:nth-child(5){background:var(--purple);z-index:3}
-.lens-tab:nth-child(6){background:var(--taupe);z-index:2}
-.lens-tab:nth-child(7){background:var(--olive);z-index:1}
+.lens-tab:nth-child(1){background:var(--burgundy);z-index:8}
+.lens-tab:nth-child(2){background:var(--peach);color:var(--navy);z-index:7}
+.lens-tab:nth-child(3){background:var(--navy);z-index:6}
+.lens-tab:nth-child(4){background:var(--teal);z-index:5}
+.lens-tab:nth-child(5){background:var(--terra);z-index:4}
+.lens-tab:nth-child(6){background:var(--purple);z-index:3}
+.lens-tab:nth-child(7){background:var(--taupe);z-index:2}
+.lens-tab:nth-child(8){background:var(--olive);z-index:1}
 .lens-tab-num{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:0.65;margin-bottom:0.5rem}
 .lens-tab-name{font-family:var(--serif);font-size:1rem;font-weight:600;line-height:1.2}
 .lenses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem}
@@ -115,10 +118,11 @@ h2 em{color:var(--teal);font-style:italic}
 .ap-card:nth-child(1){background:var(--burgundy)}
 .ap-card:nth-child(2){background:var(--peach);color:var(--navy)}
 .ap-card:nth-child(3){background:var(--navy)}
-.ap-card:nth-child(4){background:var(--terra)}
-.ap-card:nth-child(5){background:var(--purple)}
-.ap-card:nth-child(6){background:var(--taupe)}
-.ap-card:nth-child(7){background:var(--olive)}
+.ap-card:nth-child(4){background:var(--teal)}
+.ap-card:nth-child(5){background:var(--terra)}
+.ap-card:nth-child(6){background:var(--purple)}
+.ap-card:nth-child(7){background:var(--taupe)}
+.ap-card:nth-child(8){background:var(--olive)}
 .ap-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.6rem}
 .ap-num{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6}
 .ap-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.18rem 0.5rem;border-radius:4px;background:rgba(255,255,255,0.18);white-space:nowrap}
@@ -469,7 +473,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 @media(max-width:900px){
   .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity{grid-template-columns:1fr;gap:2rem}
   .feature-workspace{position:static}
-  .landing-mark{right:-15rem;width:42rem;height:82vh;opacity:0.055}
+  .landing-mark{right:-80rem;width:352rem;height:480vh;opacity:0.26}
   .ap-filter-list{flex-direction:row;flex-wrap:wrap}
   .ap-filter-btn{width:auto}
   .sidebar-label{display:none}
@@ -504,11 +508,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   <div class="prov-inner">
     <div class="prov-overline">Purpose Science &amp; Innovation Exchange · Purpose and Identity Processes Lab</div>
     <div class="prov-statement">
-      We often ask whether young people<br><strong>have</strong> purpose.<br><br>
-      We rarely ask whether the conditions<br>around youth <em>support</em> it.
+      We often ask whether young people <strong>have</strong> purpose. We rarely ask whether the conditions around youth <em>support</em> it.
     </div>
     <div class="prov-pause"></div>
-    <p class="prov-response">This asymmetry can contribute to deficit-thinking about what youth are missing, while letting environments, institutions, and relationships that shape their development off the hook. This exchange is about changing that.</p>
+    <p class="prov-response">This asymmetry can contribute to deficit-thinking about what youth are missing within themselves, while letting environments, institutions, and relationships that shape their development off the hook. This exchange is about changing how we see youth capacities for purposeful experience.</p>
     <div class="prov-name">Portraits of <span>Purposeful</span> Youth</div>
     <div class="prov-actions">
       <a href="#exchange" class="btn btn-teal">Help shape the questions</a>
@@ -526,7 +529,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="eyebrow">About &amp; Context</div>
       <div class="rule"></div>
       <h2>This is a place to <em>learn in public</em></h2>
-      <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is a working exchange hosted by the <a href="https://www.lipurposefe.com" target="_blank" rel="noopener">Purpose and Identity Processes (PIP) Lab</a> at Cornell University. PIP Lab is an academic research lab interested in how young people develop purpose and identity in real contexts.</p>
+      <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is an open exchange hosted by the <a href="https://www.lipurposefe.com" target="_blank" rel="noopener">Purpose and Identity Processes (PIP) Lab</a> at Cornell University. PIP Lab is an academic research lab interested in how young people develop purpose and identity in real contexts.</p>
       <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">The goal of this exchange is not to turn visitors into research participants, but to help improve the quality of our questions. We want our research to stay grounded in the issues, tensions, and solutions that matter to young people and the systems around them.</p>
     </div>
     <div class="about-panel">
@@ -548,7 +551,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div>
       <div class="eyebrow">The Claim</div>
       <div class="rule"></div>
-      <blockquote class="claim-pull">A sense of purpose is not distributed evenly across young people. It is cultivated — or constrained — by the unique set of conditions that surround them.</blockquote>
+      <blockquote class="claim-pull">A sense of purpose is not distributed evenly across young people. It is <em>cultivated or constrained</em> by the unique set of conditions that surround them.</blockquote>
       <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is a claim with evidence behind it. Purpose — a self-organizing and forward-looking aim — is a developmental resource. But it does not emerge by chance. It grows in relation to what young people can see, what they are given the chance to do, who recognizes them, and what their environment makes possible.</p>
     </div>
     <div>
@@ -567,9 +570,9 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 <section id="argument">
   <div class="arg-inner">
     <div class="arg-eyebrow">What makes this an exchange?</div>
-    <div class="arg-claim">If purpose develops in conditions,<br>then knowledge about purpose development<br>must <em>recognize and engage with those conditions.</em></div>
+    <div class="arg-claim">If purpose develops in conditions,<br>then knowledge about purpose development<br>must <em>recognize and engage</em> with <span class="plain-white">those conditions.</span></div>
     <p class="arg-body">A framework that engages only with academic theory is limited in what it can accomplish. It treats knowledge as fixed, delivered from above, and available to too few people. More generative knowledge has to be cultivated through practice, recognition, and conditions that invite many ways of knowing. The academic conversation around purpose has been happening in a closed loop. This is an opportunity to open it.</p>
-    <div class="arg-implication">"The promise of this exchange is realized when the frameworks that emerge are shaped by the people, places, and conditions they are trying to understand."</div>
+    <div class="arg-implication">"The promise of this exchange is realized when the framework that emerges is shaped by the people, places, and conditions it is trying to understand."</div>
   </div>
 </section>
 
@@ -579,17 +582,18 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="framework-intro">
       <div class="eyebrow">The Framework</div>
       <div class="rule"></div>
-      <h2>Seven Lenses of<br><em>Purposeful Experience</em></h2>
-      <p class="lead" style="font-size:0.975rem">The seven lenses are meant to connect academic perspectives on purpose development with the lived experience of young people and the people who know, teach, support, and work alongside them. These seven lenses are a starting place for expanding the collective vocabulary for seeing purpose development. Much of the work on purpose has emphasized what one's purpose is, or how strongly purpose is felt. Those questions matter, but they may not be enough. The lenses help us notice additional conditions, processes, and forms of support that shape purpose development. Use them to tell us what feels useful, what feels off, and where the language still fails to capture what happens in real settings.</p>
+      <h2>Introducing the Portraits of Purposeful Youth Framework:<br><em>Eight Lenses of Purposeful Experience</em></h2>
+      <p class="lead" style="font-size:0.975rem">The eight lenses are meant to connect academic perspectives on purpose development with the lived experience of young people and the people who know, teach, support, and work alongside them. These eight lenses are a starting place for expanding the collective vocabulary for seeing purpose development. Much of the work on purpose has emphasized what one's purpose is, or how strongly purpose is felt. Those questions matter, but they may not be enough. The lenses help us notice additional conditions, processes, and forms of support that shape purpose development. Use them to tell us what feels useful, what feels off, and where the language still fails to capture what happens in real settings.</p>
     </div>
-    <div class="lens-overview" aria-label="Seven lenses overview">
+    <div class="lens-overview" aria-label="Eight lenses overview">
       <div class="lens-tab"><div class="lens-tab-num">01</div><div class="lens-tab-name">Sense of Purpose</div></div>
       <div class="lens-tab"><div class="lens-tab-num">02</div><div class="lens-tab-name">Scope and Awareness</div></div>
       <div class="lens-tab"><div class="lens-tab-num">03</div><div class="lens-tab-name">Orientation</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">04</div><div class="lens-tab-name">Opportunities for Practice</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">05</div><div class="lens-tab-name">Recognition and Reflection</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">06</div><div class="lens-tab-name">Environmental Affordances</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">07</div><div class="lens-tab-name">Normative Climate</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">04</div><div class="lens-tab-name">Content</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">05</div><div class="lens-tab-name">Opportunities for Practice</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">06</div><div class="lens-tab-name">Recognition and Reflection</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">07</div><div class="lens-tab-name">Environmental Affordances</div></div>
+      <div class="lens-tab"><div class="lens-tab-num">08</div><div class="lens-tab-name">Cultural Context</div></div>
     </div>
     <div class="conf-legend">
       <span style="font-size:0.75rem;color:var(--g400);font-weight:500">Epistemic status:</span>
@@ -630,9 +634,9 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="ap-card">
         <div class="ap-header"><div class="ap-num">03 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
         <div class="ap-name">Orientation</div>
-        <div class="ap-def">The topical content that organizes one's attention and behavioral priorities — what a young person cares about, gravitates toward, and consistently returns to. The subject matter of their purposeful engagement.</div>
+        <div class="ap-def">The broad domain or general direction that frames a young person's purpose — whether prosocial, financial, vocational, religious, civic, creative, or otherwise. Orientation names the general category of contribution or becoming that organizes how they see themselves in relation to the world.</div>
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
-        <div class="ap-expanded"><strong>In practice</strong>What themes or domains does this young person gravitate toward without being asked? Do their choices reveal a consistent orientation — toward justice, care, craft, knowledge, community — even across different settings?<div class="ap-exchange-link" onclick="goToAp(3)">→ See exchange discussions</div></div>
+        <div class="ap-expanded"><strong>In practice</strong>Does this young person have a general sense of what kind of contributor or person they want to become — even without a specific aim yet? Is their orientation toward serving others, building something, achieving mastery, or following a calling? Orientation can be present before specific goals form.<div class="ap-exchange-link" onclick="goToAp(3)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="3">
           <button class="react-btn" onclick="react(this,3,'resonates')">✓ <span>Resonates</span> <span class="react-count">31</span></button>
           <button class="react-btn" onclick="react(this,3,'missing')">+ Missing something <span class="react-count">6</span></button>
@@ -642,58 +646,72 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       </div>
 
       <div class="ap-card">
-        <div class="ap-header"><div class="ap-num">04 · Active Engagement</div><div class="ap-badge">Actively developing</div></div>
-        <div class="ap-name">Opportunities for Practice</div>
-        <div class="ap-def">Concrete chances to explore, try, and enact purposeful action. Not just exposure — genuine opportunities to act, contribute, and experience oneself as a capable agent in something that matters beyond the self.</div>
+        <div class="ap-header"><div class="ap-num">04 · Inner Experience</div><div class="ap-badge">Actively developing</div></div>
+        <div class="ap-name">Content</div>
+        <div class="ap-def">The specific aspirational substance of what a young person understands they want to work toward. Not just a broad orientation, but a particular aim: being a great student, helping advance an important issue, mastering a craft, building something that matters. The articulation — even if partial or evolving — of what their purposeful effort is actually directed at.</div>
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
-        <div class="ap-expanded"><strong>In practice</strong>Does this young person have regular, authentic chances to act on what they care about? Are those opportunities real — with stakes and impact — or performative? Who controls access to them?<div class="ap-exchange-link" onclick="goToAp(4)">→ See exchange discussions</div></div>
+        <div class="ap-expanded"><strong>In practice</strong>Can this young person name something specific they want to do, become, or contribute — not just a general domain? Has that aspiration grown more concrete over time? Even a vague but genuine aim ("I want to do something with the environment") is purposeful content worth developing.<div class="ap-exchange-link" onclick="goToAp(4)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="4">
-          <button class="react-btn" onclick="react(this,4,'resonates')">✓ <span>Resonates</span> <span class="react-count">44</span></button>
-          <button class="react-btn" onclick="react(this,4,'missing')">+ Missing something <span class="react-count">7</span></button>
-          <button class="react-btn" onclick="react(this,4,'more')">→ Want more <span class="react-count">18</span></button>
+          <button class="react-btn" onclick="react(this,4,'resonates')">✓ <span>Resonates</span> <span class="react-count">17</span></button>
+          <button class="react-btn" onclick="react(this,4,'missing')">+ Missing something <span class="react-count">5</span></button>
+          <button class="react-btn" onclick="react(this,4,'more')">→ Want more <span class="react-count">21</span></button>
           <button class="react-btn" onclick="react(this,4,'skeptical')">? Skeptical <span class="react-count">2</span></button>
         </div>
       </div>
 
       <div class="ap-card">
-        <div class="ap-header"><div class="ap-num">05 · Active Engagement</div><div class="ap-badge">Research-grounded</div></div>
+        <div class="ap-header"><div class="ap-num">05 · Active Engagement</div><div class="ap-badge">Actively developing</div></div>
+        <div class="ap-name">Opportunities for Practice</div>
+        <div class="ap-def">Concrete chances to explore, try, and enact purposeful action. Not just exposure — genuine opportunities to act, contribute, and experience oneself as a capable agent in something that matters beyond the self.</div>
+        <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+        <div class="ap-expanded"><strong>In practice</strong>Does this young person have regular, authentic chances to act on what they care about? Are those opportunities real — with stakes and impact — or performative? Who controls access to them?<div class="ap-exchange-link" onclick="goToAp(5)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="5">
+          <button class="react-btn" onclick="react(this,5,'resonates')">✓ <span>Resonates</span> <span class="react-count">44</span></button>
+          <button class="react-btn" onclick="react(this,5,'missing')">+ Missing something <span class="react-count">7</span></button>
+          <button class="react-btn" onclick="react(this,5,'more')">→ Want more <span class="react-count">18</span></button>
+          <button class="react-btn" onclick="react(this,5,'skeptical')">? Skeptical <span class="react-count">2</span></button>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-header"><div class="ap-num">06 · Active Engagement</div><div class="ap-badge">Research-grounded</div></div>
         <div class="ap-name">Recognition and Reflection</div>
         <div class="ap-def">Feedback, validation, and structured sense-making from oneself and others. The relational and reflective processes through which purposeful experience becomes visible, interpreted, and integrated into identity.</div>
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
-        <div class="ap-expanded"><strong>In practice</strong>Do adults and peers name and affirm what this young person contributes? Are there structured opportunities to reflect and extract meaning? Is this young person developing a narrative of their own purposeful identity?<div class="ap-exchange-link" onclick="goToAp(5)">→ See exchange discussions</div></div>
-        <div class="ap-reactions" data-ap="5">
-          <button class="react-btn" onclick="react(this,5,'resonates')">✓ <span>Resonates</span> <span class="react-count">37</span></button>
-          <button class="react-btn" onclick="react(this,5,'missing')">+ Missing something <span class="react-count">5</span></button>
-          <button class="react-btn" onclick="react(this,5,'more')">→ Want more <span class="react-count">16</span></button>
-          <button class="react-btn" onclick="react(this,5,'skeptical')">? Skeptical <span class="react-count">1</span></button>
+        <div class="ap-expanded"><strong>In practice</strong>Do adults and peers name and affirm what this young person contributes? Are there structured opportunities to reflect and extract meaning? Is this young person developing a narrative of their own purposeful identity?<div class="ap-exchange-link" onclick="goToAp(6)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="6">
+          <button class="react-btn" onclick="react(this,6,'resonates')">✓ <span>Resonates</span> <span class="react-count">37</span></button>
+          <button class="react-btn" onclick="react(this,6,'missing')">+ Missing something <span class="react-count">5</span></button>
+          <button class="react-btn" onclick="react(this,6,'more')">→ Want more <span class="react-count">16</span></button>
+          <button class="react-btn" onclick="react(this,6,'skeptical')">? Skeptical <span class="react-count">1</span></button>
         </div>
       </div>
 
       <div class="ap-card">
-        <div class="ap-header"><div class="ap-num">06 · Conditions</div><div class="ap-badge">Actively developing</div></div>
+        <div class="ap-header"><div class="ap-num">07 · Conditions</div><div class="ap-badge">Actively developing</div></div>
         <div class="ap-name">Environmental Affordances</div>
         <div class="ap-def">Material, social, and institutional resources that make purposeful action possible. The structures, spaces, and relationships that either enable or foreclose what a young person can do with what they care about.</div>
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
-        <div class="ap-expanded"><strong>In practice</strong>What resources does this young person have access to? Who gatekeeps them? Are the environments this young person inhabits designed with purposeful development in mind — or does it happen despite the design?<div class="ap-exchange-link" onclick="goToAp(6)">→ See exchange discussions</div></div>
-        <div class="ap-reactions" data-ap="6">
-          <button class="react-btn" onclick="react(this,6,'resonates')">✓ <span>Resonates</span> <span class="react-count">41</span></button>
-          <button class="react-btn" onclick="react(this,6,'missing')">+ Missing something <span class="react-count">8</span></button>
-          <button class="react-btn" onclick="react(this,6,'more')">→ Want more <span class="react-count">20</span></button>
-          <button class="react-btn" onclick="react(this,6,'skeptical')">? Skeptical <span class="react-count">4</span></button>
+        <div class="ap-expanded"><strong>In practice</strong>What resources does this young person have access to? Who gatekeeps them? Are the environments this young person inhabits designed with purposeful development in mind — or does it happen despite the design?<div class="ap-exchange-link" onclick="goToAp(7)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="7">
+          <button class="react-btn" onclick="react(this,7,'resonates')">✓ <span>Resonates</span> <span class="react-count">41</span></button>
+          <button class="react-btn" onclick="react(this,7,'missing')">+ Missing something <span class="react-count">8</span></button>
+          <button class="react-btn" onclick="react(this,7,'more')">→ Want more <span class="react-count">20</span></button>
+          <button class="react-btn" onclick="react(this,7,'skeptical')">? Skeptical <span class="react-count">4</span></button>
         </div>
       </div>
 
       <div class="ap-card">
-        <div class="ap-header"><div class="ap-num">07 · Conditions</div><div class="ap-badge">Empirically emerging</div></div>
-        <div class="ap-name">Normative Climate</div>
+        <div class="ap-header"><div class="ap-num">08 · Conditions</div><div class="ap-badge">Empirically emerging</div></div>
+        <div class="ap-name">Cultural Context</div>
         <div class="ap-def">The sociocultural signals — explicit and implicit — about what kinds of purpose are valued, legitimate, and possible in a given context. The messages a young person receives about who gets to pursue purpose, and what kinds count.</div>
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
-        <div class="ap-expanded"><strong>In practice</strong>What does this environment communicate about whose futures matter and which forms of contribution are worth pursuing? Are cultural norms expanding or narrowing what this young person believes is possible for someone like them?<div class="ap-exchange-link" onclick="goToAp(7)">→ See exchange discussions</div></div>
-        <div class="ap-reactions" data-ap="7">
-          <button class="react-btn" onclick="react(this,7,'resonates')">✓ <span>Resonates</span> <span class="react-count">33</span></button>
-          <button class="react-btn" onclick="react(this,7,'missing')">+ Missing something <span class="react-count">12</span></button>
-          <button class="react-btn" onclick="react(this,7,'more')">→ Want more <span class="react-count">25</span></button>
-          <button class="react-btn" onclick="react(this,7,'skeptical')">? Skeptical <span class="react-count">6</span></button>
+        <div class="ap-expanded"><strong>In practice</strong>What does this environment communicate about whose futures matter and which forms of contribution are worth pursuing? Are cultural norms expanding or narrowing what this young person believes is possible for someone like them?<div class="ap-exchange-link" onclick="goToAp(8)">→ See exchange discussions</div></div>
+        <div class="ap-reactions" data-ap="8">
+          <button class="react-btn" onclick="react(this,8,'resonates')">✓ <span>Resonates</span> <span class="react-count">33</span></button>
+          <button class="react-btn" onclick="react(this,8,'missing')">+ Missing something <span class="react-count">12</span></button>
+          <button class="react-btn" onclick="react(this,8,'more')">→ Want more <span class="react-count">25</span></button>
+          <button class="react-btn" onclick="react(this,8,'skeptical')">? Skeptical <span class="react-count">6</span></button>
         </div>
       </div>
 
@@ -747,10 +765,11 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
           <button class="pulse-ap-btn" onclick="castPulse(1,this)"><span class="pulse-dot" style="background:#7B3D42"></span>Sense of Purpose</button>
           <button class="pulse-ap-btn" onclick="castPulse(2,this)"><span class="pulse-dot" style="background:#C9A499"></span>Scope &amp; Awareness</button>
           <button class="pulse-ap-btn" onclick="castPulse(3,this)"><span class="pulse-dot" style="background:#1E2D4A"></span>Orientation</button>
-          <button class="pulse-ap-btn" onclick="castPulse(4,this)"><span class="pulse-dot" style="background:#C4724A"></span>Opportunities for Practice</button>
-          <button class="pulse-ap-btn" onclick="castPulse(5,this)"><span class="pulse-dot" style="background:#5B3D5A"></span>Recognition &amp; Reflection</button>
-          <button class="pulse-ap-btn" onclick="castPulse(6,this)"><span class="pulse-dot" style="background:#8B7B6B"></span>Environmental Affordances</button>
-          <button class="pulse-ap-btn" onclick="castPulse(7,this)"><span class="pulse-dot" style="background:#7A7840"></span>Normative Climate</button>
+          <button class="pulse-ap-btn" onclick="castPulse(4,this)"><span class="pulse-dot" style="background:#3B7A8F"></span>Content</button>
+          <button class="pulse-ap-btn" onclick="castPulse(5,this)"><span class="pulse-dot" style="background:#C4724A"></span>Opportunities for Practice</button>
+          <button class="pulse-ap-btn" onclick="castPulse(6,this)"><span class="pulse-dot" style="background:#5B3D5A"></span>Recognition &amp; Reflection</button>
+          <button class="pulse-ap-btn" onclick="castPulse(7,this)"><span class="pulse-dot" style="background:#8B7B6B"></span>Environmental Affordances</button>
+          <button class="pulse-ap-btn" onclick="castPulse(8,this)"><span class="pulse-dot" style="background:#7A7840"></span>Cultural Context</button>
         </div>
         <div class="pulse-voted-note" id="pulseVotedNote">Thanks — your response is reflected in the pulse.</div>
       </div>
@@ -773,7 +792,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div>
         <div class="q-cat-label">Questions the research community can address</div>
         <div class="q-cards">
-          <div class="q-card"><div class="q-text">How do the seven lenses interact with each other? Is there a developmental sequence, or do they operate in parallel?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('research')">+ Contribute to this question</a></div>
+          <div class="q-card"><div class="q-text">How do the eight lenses interact with each other? Is there a developmental sequence, or do they operate in parallel?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('research')">+ Contribute to this question</a></div>
           <div class="q-card"><div class="q-text">Are Magnitude and Stability empirically separable in adolescent samples? What measurement approaches create enough discrimination?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('research')">+ Contribute to this question</a></div>
         </div>
       </div>
@@ -849,9 +868,9 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
         <div class="form-2col">
           <div class="form-row"><label>Contribution type</label><select id="fCat"><option value="practice">Practice</option><option value="research">Research</option><option value="question">Question</option><option value="policy">Policy</option><option value="design">Design</option><option value="experience">Lived Experience</option></select></div>
-          <div class="form-row"><label>Lens (if relevant)</label><select id="fAp"><option value="0">All / general</option><option value="1">01 · Sense of Purpose</option><option value="2">02 · Scope and Awareness</option><option value="3">03 · Orientation</option><option value="4">04 · Opportunities for Practice</option><option value="5">05 · Recognition and Reflection</option><option value="6">06 · Environmental Affordances</option><option value="7">07 · Normative Climate</option></select></div>
+          <div class="form-row"><label>Lens (if relevant)</label><select id="fAp"><option value="0">All / general</option><option value="1">01 · Sense of Purpose</option><option value="2">02 · Scope and Awareness</option><option value="3">03 · Orientation</option><option value="4">04 · Content</option><option value="5">05 · Opportunities for Practice</option><option value="6">06 · Recognition and Reflection</option><option value="7">07 · Environmental Affordances</option><option value="8">08 · Cultural Context</option></select></div>
         </div>
-        <div class="form-row"><label>Title</label><input type="text" id="fTitle" placeholder="e.g. How Normative Climate showed up in our community assessment"/></div>
+        <div class="form-row"><label>Title</label><input type="text" id="fTitle" placeholder="e.g. How Cultural Context showed up in our community assessment"/></div>
         <div class="form-row"><label>Your contribution</label><textarea id="fBody" placeholder="Share what you're seeing, asking, or thinking. Specific is better — a particular setting, student, or moment is more useful than a general observation."></textarea></div>
         <div class="form-actions"><button class="btn-sm btn-navy" onclick="submitPost()">Publish</button><button class="btn-sm btn-outline" onclick="toggleNewPost()">Cancel</button></div>
       </div>
@@ -863,10 +882,11 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
             <li><button class="ap-filter-btn" onclick="filterByAp(1,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#7B3D42"></span>Sense of Purpose</span><span class="f-count" id="cnt-1">0</span></button></li>
             <li><button class="ap-filter-btn" onclick="filterByAp(2,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#C9A499"></span>Scope &amp; Awareness</span><span class="f-count" id="cnt-2">0</span></button></li>
             <li><button class="ap-filter-btn" onclick="filterByAp(3,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#1E2D4A"></span>Orientation</span><span class="f-count" id="cnt-3">0</span></button></li>
-            <li><button class="ap-filter-btn" onclick="filterByAp(4,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#C4724A"></span>Opps. for Practice</span><span class="f-count" id="cnt-4">0</span></button></li>
-            <li><button class="ap-filter-btn" onclick="filterByAp(5,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#5B3D5A"></span>Recognition &amp; Reflection</span><span class="f-count" id="cnt-5">0</span></button></li>
-            <li><button class="ap-filter-btn" onclick="filterByAp(6,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#8B7B6B"></span>Env. Affordances</span><span class="f-count" id="cnt-6">0</span></button></li>
-            <li><button class="ap-filter-btn" onclick="filterByAp(7,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#7A7840"></span>Normative Climate</span><span class="f-count" id="cnt-7">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(4,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#3B7A8F"></span>Content</span><span class="f-count" id="cnt-4">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(5,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#C4724A"></span>Opps. for Practice</span><span class="f-count" id="cnt-5">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(6,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#5B3D5A"></span>Recognition &amp; Reflection</span><span class="f-count" id="cnt-6">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(7,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#8B7B6B"></span>Env. Affordances</span><span class="f-count" id="cnt-7">0</span></button></li>
+            <li><button class="ap-filter-btn" onclick="filterByAp(8,this)"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#7A7840"></span>Cultural Context</span><span class="f-count" id="cnt-8">0</span></button></li>
           </ul>
         </div>
         <div><div id="filterLabel" style="font-size:0.82rem;color:var(--g600);margin-bottom:1rem"></div><div class="posts-list" id="postsList"></div></div>
@@ -899,10 +919,11 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
             <option value="1">01 Sense of Purpose</option>
             <option value="2">02 Scope &amp; Awareness</option>
             <option value="3">03 Orientation</option>
-            <option value="4">04 Practice</option>
-            <option value="5">05 Recognition</option>
-            <option value="6">06 Affordances</option>
-            <option value="7">07 Normative Climate</option>
+            <option value="4">04 Content</option>
+            <option value="5">05 Practice</option>
+            <option value="6">06 Recognition</option>
+            <option value="7">07 Affordances</option>
+            <option value="8">08 Cultural Context</option>
           </select>
           <button class="btn-sm btn-navy" onclick="submitSpark()">Spark it ⚡</button>
         </div>
@@ -922,7 +943,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
           <div class="form-row"><label>The question</label><input type="text" id="pQ" placeholder="e.g. When do you feel most like yourself?"/></div>
           <div class="form-row"><label>Context — when and with whom does this work?</label><input type="text" id="pCtx" placeholder="e.g. Works well with older adolescents skeptical of 'purpose' language"/></div>
           <div class="form-2col">
-            <div class="form-row"><label>Lens it surfaces (if any)</label><select id="pAp"><option value="0">General / multiple</option><option value="1">Sense of Purpose</option><option value="2">Scope &amp; Awareness</option><option value="3">Orientation</option><option value="4">Practice</option><option value="5">Recognition</option><option value="6">Affordances</option><option value="7">Normative Climate</option></select></div>
+            <div class="form-row"><label>Lens it surfaces (if any)</label><select id="pAp"><option value="0">General / multiple</option><option value="1">Sense of Purpose</option><option value="2">Scope &amp; Awareness</option><option value="3">Orientation</option><option value="4">Content</option><option value="5">Practice</option><option value="6">Recognition</option><option value="7">Affordances</option><option value="8">Cultural Context</option></select></div>
             <div class="form-row"><label>Your role (optional)</label><input type="text" id="pRole" placeholder="e.g. School counselor, Denver"/></div>
           </div>
           <div class="form-actions"><button class="btn-sm btn-navy" onclick="submitPrompt()">Add to bank</button></div>
@@ -973,8 +994,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 
 <script>
 // ─── Data ─────────────────────────────────────────────────
-const AP_COLORS=['#7B3D42','#C9A499','#1E2D4A','#C4724A','#5B3D5A','#8B7B6B','#7A7840'];
-const AP_NAMES=['','Sense of Purpose','Scope & Awareness','Orientation','Opportunities for Practice','Recognition & Reflection','Environmental Affordances','Normative Climate'];
+const AP_COLORS=['#7B3D42','#C9A499','#1E2D4A','#3B7A8F','#C4724A','#5B3D5A','#8B7B6B','#7A7840'];
+const AP_NAMES=['','Sense of Purpose','Scope & Awareness','Orientation','Content','Opportunities for Practice','Recognition & Reflection','Environmental Affordances','Cultural Context'];
 const avatarColors=['#7B3D42','#1E2D4A','#C4724A','#5B3D5A','#3B7A8F','#7A7840','#8B7B6B'];
 
 const defaultFeatures=[
@@ -986,7 +1007,7 @@ const defaultFeatures=[
 let features=defaultFeatures.map(f=>({...f}));
 
 // Pulse votes (seeded)
-let pulseVotes=[0,47,38,29,61,44,52,55];
+let pulseVotes=[0,47,38,29,0,61,44,52,55];
 let pulseCast=false;
 
 let editNotes=[];
@@ -994,29 +1015,29 @@ let editNotes=[];
 // Discussions
 let posts=[
   {id:1,author:'Dr. Simone Akande',role:'Youth Development Researcher · Boston University',cat:'research',ap:1,title:'Magnitude vs. Stability: are these empirically separable in adolescent samples?',body:"I've been applying the PPY framework to our longitudinal data and running into a challenge. Magnitude and Stability feel theoretically distinct — strength of signal vs. sustained-ness of signal — but in our data they correlate highly (r=.73). Has anyone thought through measurement designs that could better discriminate between them? Particularly curious about ESM-based approaches.",likes:14,liked:false,time:'2 days ago',comments:[{a:'Prof. J. Rivera',r:'Developmental Psychologist',t:'What helped was distinguishing peak intensity (magnitude) from coefficient of variation across time points (stability). They correlated less once we moved to intra-individual variance.',c:'#1E2D4A'},{a:'Marcus Webb',r:'PhD Candidate, Stanford GSE',t:'The issue may be partly measurement — most purpose scales capture a stable trait, not momentary experience. ESM designed around the PPY lenses might give more leverage.',c:'#3B7A8F'}]},
-  {id:2,author:'Tanya Osei-Mensah',role:'Program Director · YouthBuild Chicago',cat:'practice',ap:7,title:'Using the Normative Climate lens for community asset mapping — what we found',body:"We ran a six-week youth participatory action research project using the seven lenses as an organizing frame. Normative Climate was the most generative — young people immediately started naming the messages they receive about what 'counts' as a meaningful future. It opened conversations we hadn't been able to reach with other frameworks.",likes:33,liked:false,time:'4 days ago',comments:[{a:'Dr. Keisha Nkrumah',r:'Equity Research Lab, Howard',t:"This is exactly the applied documentation I'd love to see. Would you be open to a short interview about the process?",c:'#7A7840'}]},
-  {id:3,author:'Jamie Thornton',role:'School Counselor · Denver Public Schools',cat:'question',ap:2,title:'Scope and Awareness with students navigating constrained futures — how do you hold this?',body:"I work with students whose Scope and Awareness is limited — not because of internal capacity, but because of real structural constraints. I worry that expanding 'what you can imagine' without expanding real access sets kids up for disappointment. How do others navigate this tension?",likes:27,liked:false,time:'1 week ago',comments:[{a:'Dr. Simone Akande',r:'Youth Development Researcher',t:'Expand scope AND affordances together. Working on imagination without working on access is a setup for harm.',c:'#7B3D42'},{a:'Tanya Osei-Mensah',r:'Program Director · YouthBuild',t:'We distinguish "possible futures for people like me" (Normative Climate / representation) from "possible futures for me specifically" (Affordances). Both need to expand — together.',c:'#C4724A'}]},
-  {id:4,author:'Anonymous',role:'Young person, age 19',cat:'experience',ap:5,title:'What recognition actually feels like — and what adults get wrong about it',body:"I've been in a lot of programs where adults tell me I'm 'purposeful' but it doesn't land. Real recognition is when someone sees specifically what you did and names it in a way that only works because they were paying attention. Generic affirmation isn't recognition. It's just noise.",likes:41,liked:false,time:'2 weeks ago',comments:[{a:'Dr. Simone Akande',r:'Youth Development Researcher',t:"This distinction — between generic affirmation and specific recognition — is something the literature gestures at but doesn't capture with this precision. Thank you.",c:'#7B3D42'}]}
+  {id:2,author:'Tanya Osei-Mensah',role:'Program Director · YouthBuild Chicago',cat:'practice',ap:8,title:'Using the Cultural Context lens for community asset mapping — what we found',body:"We ran a six-week youth participatory action research project using the eight lenses as an organizing frame. Cultural Context was the most generative — young people immediately started naming the messages they receive about what 'counts' as a meaningful future. It opened conversations we hadn't been able to reach with other frameworks.",likes:33,liked:false,time:'4 days ago',comments:[{a:'Dr. Keisha Nkrumah',r:'Equity Research Lab, Howard',t:"This is exactly the applied documentation I'd love to see. Would you be open to a short interview about the process?",c:'#7A7840'}]},
+  {id:3,author:'Jamie Thornton',role:'School Counselor · Denver Public Schools',cat:'question',ap:2,title:'Scope and Awareness with students navigating constrained futures — how do you hold this?',body:"I work with students whose Scope and Awareness is limited — not because of internal capacity, but because of real structural constraints. I worry that expanding 'what you can imagine' without expanding real access sets kids up for disappointment. How do others navigate this tension?",likes:27,liked:false,time:'1 week ago',comments:[{a:'Dr. Simone Akande',r:'Youth Development Researcher',t:'Expand scope AND affordances together. Working on imagination without working on access is a setup for harm.',c:'#7B3D42'},{a:'Tanya Osei-Mensah',r:'Program Director · YouthBuild',t:'We distinguish "possible futures for people like me" (Cultural Context / representation) from "possible futures for me specifically" (Affordances). Both need to expand — together.',c:'#C4724A'}]},
+  {id:4,author:'Anonymous',role:'Young person, age 19',cat:'experience',ap:6,title:'What recognition actually feels like — and what adults get wrong about it',body:"I've been in a lot of programs where adults tell me I'm 'purposeful' but it doesn't land. Real recognition is when someone sees specifically what you did and names it in a way that only works because they were paying attention. Generic affirmation isn't recognition. It's just noise.",likes:41,liked:false,time:'2 weeks ago',comments:[{a:'Dr. Simone Akande',r:'Youth Development Researcher',t:"This distinction — between generic affirmation and specific recognition — is something the literature gestures at but doesn't capture with this precision. Thank you.",c:'#7B3D42'}]}
 ];
 let currentApFilter=0;
 
 // Sparks (seeded)
 let sparks=[
-  {id:1,text:"She stayed two hours after the program ended because she wasn't ready to stop.",ap:4,likes:18,liked:false,time:'3 days ago'},
+  {id:1,text:"She stayed two hours after the program ended because she wasn't ready to stop.",ap:5,likes:18,liked:false,time:'3 days ago'},
   {id:2,text:"He said he didn't care about anything, but he hadn't missed a single session.",ap:1,likes:24,liked:false,time:'5 days ago'},
-  {id:3,text:"The moment she named what she was doing as 'advocacy,' everything changed.",ap:5,likes:31,liked:false,time:'1 week ago'},
-  {id:4,text:"He had purpose — the school just had no category for the kind he had.",ap:7,likes:47,liked:false,time:'1 week ago'},
-  {id:5,text:"She knew exactly what she cared about. She just didn't have anywhere to do it.",ap:6,likes:39,liked:false,time:'2 weeks ago'},
+  {id:3,text:"The moment she named what she was doing as 'advocacy,' everything changed.",ap:6,likes:31,liked:false,time:'1 week ago'},
+  {id:4,text:"He had purpose — the school just had no category for the kind he had.",ap:8,likes:47,liked:false,time:'1 week ago'},
+  {id:5,text:"She knew exactly what she cared about. She just didn't have anywhere to do it.",ap:7,likes:39,liked:false,time:'2 weeks ago'},
   {id:6,text:"He'd never been asked what mattered to him before. It took him ten minutes to answer.",ap:2,likes:28,liked:false,time:'2 weeks ago'},
   {id:7,text:"The curriculum gave her the language. The community gave her the reason.",ap:3,likes:22,liked:false,time:'3 weeks ago'},
-  {id:8,text:"They didn't discover purpose — they were finally given room to practice what they already had.",ap:4,likes:35,liked:false,time:'3 weeks ago'}
+  {id:8,text:"They didn't discover purpose — they were finally given room to practice what they already had.",ap:5,likes:35,liked:false,time:'3 weeks ago'}
 ];
 
 // Prompts (seeded)
 let prompts=[
   {id:1,q:"What's something you've done recently that felt like it mattered — even a little?",ctx:"Works well as an opener with adolescents who are skeptical of 'purpose' language. Low-stakes, grounded in recent experience.",ap:1,role:'After-school program coordinator',uses:44,used:false},
   {id:2,q:"If you could change one thing about your school / neighborhood / world, what would it be?",ctx:"Opens scope without using purpose language. Particularly useful with young people navigating constrained horizons.",ap:2,role:'School counselor, Denver',uses:61,used:false},
-  {id:3,q:"Who do you know — in your life or in history — who seems to live for something?",ctx:"Activates Scope and Normative Climate together. Works across cultural contexts. Good for group discussion.",ap:2,role:'Youth program researcher',uses:38,used:false},
+  {id:3,q:"Who do you know — in your life or in history — who seems to live for something?",ctx:"Activates Scope and Cultural Context together. Works across cultural contexts. Good for group discussion.",ap:2,role:'Youth program researcher',uses:38,used:false},
   {id:4,q:"When do you feel most like yourself?",ctx:"Gets at Resonance without academic language. Especially effective with older adolescents. Pairs well with follow-up: 'What makes that feel true?'",ap:1,role:'Therapist working with youth',uses:52,used:false},
   {id:5,q:"What would you keep doing even if no one was watching?",ctx:"Surfaces Orientation clearly. Works across age groups. Often reveals purpose-adjacent engagement young people hadn't labeled as such.",ap:3,role:'Program evaluator',uses:29,used:false}
 ];
@@ -1208,7 +1229,7 @@ function castPulse(n,btn){
 // ─── Discussions ──────────────────────────────────────────
 function updateCounts(){
   document.getElementById('cnt-0').textContent=posts.length;
-  for(let i=1;i<=7;i++){const el=document.getElementById('cnt-'+i);if(el)el.textContent=posts.filter(p=>p.ap===i).length}
+  for(let i=1;i<=8;i++){const el=document.getElementById('cnt-'+i);if(el)el.textContent=posts.filter(p=>p.ap===i).length}
 }
 function renderPosts(){
   const list=document.getElementById('postsList');

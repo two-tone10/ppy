@@ -5,7 +5,7 @@ create table if not exists exchange_posts (
   author text not null default 'Anonymous',
   role text not null default 'Exchange participant',
   category text not null,
-  lens_id smallint check (lens_id between 0 and 7),
+  lens_id smallint check (lens_id between 0 and 8),
   title text not null,
   body text not null,
   status text not null default 'pending' check (status in ('pending', 'approved', 'rejected', 'archived')),
@@ -27,7 +27,7 @@ create table if not exists exchange_comments (
 create table if not exists sparks (
   id uuid primary key default gen_random_uuid(),
   text text not null,
-  lens_id smallint check (lens_id between 0 and 7),
+  lens_id smallint check (lens_id between 0 and 8),
   status text not null default 'pending' check (status in ('pending', 'approved', 'rejected', 'archived')),
   likes_seed integer not null default 0,
   created_at timestamptz not null default now()
@@ -37,7 +37,7 @@ create table if not exists prompt_bank (
   id uuid primary key default gen_random_uuid(),
   question text not null,
   context text,
-  lens_id smallint check (lens_id between 0 and 7),
+  lens_id smallint check (lens_id between 0 and 8),
   role text,
   status text not null default 'pending' check (status in ('pending', 'approved', 'rejected', 'archived')),
   uses_seed integer not null default 0,
@@ -47,7 +47,7 @@ create table if not exists prompt_bank (
 create table if not exists pulse_votes (
   id uuid primary key default gen_random_uuid(),
   prompt_key text not null default 'current_interest',
-  lens_id smallint not null check (lens_id between 1 and 7),
+  lens_id smallint not null check (lens_id between 1 and 8),
   created_at timestamptz not null default now()
 );
 
@@ -83,7 +83,7 @@ create table if not exists interaction_events (
   event_type text not null,
   target_type text,
   target_id text,
-  lens_id smallint check (lens_id between 0 and 7),
+  lens_id smallint check (lens_id between 0 and 8),
   payload jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now()
 );

@@ -98,7 +98,8 @@ h2 em{color:var(--teal);font-style:italic}
 .conf-dot{width:8px;height:8px;border-radius:50%;background:#1E4D40}
 .conf-dot.d{background:#7A5200}.conf-dot.e{background:var(--purple)}
 .lens-overview{display:flex;align-items:stretch;margin:0 0 2rem;overflow-x:auto;padding:0.2rem 0 0.8rem}
-.lens-tab{min-width:170px;border-radius:12px 12px 8px 8px;padding:1rem 1rem 0.9rem;color:var(--white);box-shadow:0 10px 24px rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.14);position:relative}
+.lens-tab{min-width:170px;border-radius:12px 12px 8px 8px;padding:1rem 1rem 0.9rem;color:var(--white);box-shadow:0 10px 24px rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.14);position:relative;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.lens-tab:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(0,0,0,0.18)}
 .lens-tab+.lens-tab{margin-left:-1.05rem}
 .lens-tab:nth-child(1){background:var(--burgundy);z-index:8}
 .lens-tab:nth-child(2){background:var(--peach);color:var(--navy);z-index:7}
@@ -607,19 +608,19 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="eyebrow">The Framework</div>
       <div class="rule"></div>
       <h2>Introducing the Portraits of Purposeful Youth Framework:<br><em>Eight Lenses of Purposeful Experience</em></h2>
-      <p class="lead" style="font-size:0.975rem">The eight lenses are meant to connect longstanding academic perspectives on purpose with the lived experience of young people and the people who know, teach, support, and work alongside them. They represent our effort to expand the collective vocabulary around purpose, and deepen how we see young people.</p>
+      <div class="lens-overview" aria-label="Eight lenses overview" style="margin:1.75rem 0 2rem">
+        <div class="lens-tab" onclick="scrollToLens(1)"><div class="lens-tab-num">01</div><div class="lens-tab-name">Sense of Purpose</div></div>
+        <div class="lens-tab" onclick="scrollToLens(2)"><div class="lens-tab-num">02</div><div class="lens-tab-name">Scope and Awareness</div></div>
+        <div class="lens-tab" onclick="scrollToLens(3)"><div class="lens-tab-num">03</div><div class="lens-tab-name">Orientation</div></div>
+        <div class="lens-tab" onclick="scrollToLens(4)"><div class="lens-tab-num">04</div><div class="lens-tab-name">Content</div></div>
+        <div class="lens-tab" onclick="scrollToLens(5)"><div class="lens-tab-num">05</div><div class="lens-tab-name">Opportunities for Practice</div></div>
+        <div class="lens-tab" onclick="scrollToLens(6)"><div class="lens-tab-num">06</div><div class="lens-tab-name">Recognition and Reflection</div></div>
+        <div class="lens-tab" onclick="scrollToLens(7)"><div class="lens-tab-num">07</div><div class="lens-tab-name">Environmental Affordances</div></div>
+        <div class="lens-tab" onclick="scrollToLens(8)"><div class="lens-tab-num">08</div><div class="lens-tab-name">Cultural Context</div></div>
+      </div>
+      <p class="lead" style="font-size:0.975rem">These eight lenses bridge longstanding academic perspectives on purpose with the lived experience of young people and the people who know, teach, support, and work alongside them. They represent our effort to expand the collective vocabulary around purpose, and deepen how we see young people.</p>
       <p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Much of the research on purpose, to date, has emphasized what one's purpose is, or how strongly purpose is felt. Those questions matter, but they may not be enough. The lenses help us notice additional conditions, processes, and forms of support that shape purpose development.</p>
       <p class="lead" style="font-size:0.975rem;margin-top:0.85rem">We invite you to tell us what feels useful, what feels off, and where the language still fails to capture what happens in real settings.</p>
-    </div>
-    <div class="lens-overview" aria-label="Eight lenses overview">
-      <div class="lens-tab"><div class="lens-tab-num">01</div><div class="lens-tab-name">Sense of Purpose</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">02</div><div class="lens-tab-name">Scope and Awareness</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">03</div><div class="lens-tab-name">Orientation</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">04</div><div class="lens-tab-name">Content</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">05</div><div class="lens-tab-name">Opportunities for Practice</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">06</div><div class="lens-tab-name">Recognition and Reflection</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">07</div><div class="lens-tab-name">Environmental Affordances</div></div>
-      <div class="lens-tab"><div class="lens-tab-num">08</div><div class="lens-tab-name">Cultural Context</div></div>
     </div>
     <div class="conf-legend">
       <span style="font-size:0.75rem;color:var(--g400);font-weight:500">Epistemic status:</span>
@@ -629,7 +630,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     </div>
     <div class="lenses-grid">
 
-      <div class="ap-card">
+      <div class="ap-card" id="lens-card-1">
         <div class="ap-header"><div class="ap-num">01 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
         <div class="ap-name">Sense of Purpose</div>
         <div class="ap-def">How purposeful one feels. The subjective experience of perceiving that one's actions carry meaning and direction — the felt sense of purpose, distinct from being able to articulate or explain it.</div>
@@ -643,7 +644,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
       </div>
 
-      <div class="ap-card">
+      <div class="ap-card" id="lens-card-2">
         <div class="ap-header"><div class="ap-num">02 · Inner Experience</div><div class="ap-badge">Actively developing</div></div>
         <div class="ap-name">Scope and Awareness</div>
         <div class="ap-def">What a young person can imagine, see, or name as possible targets for purpose. The horizon of possibility — the range of lives, roles, and forms of contribution they can conceive of for someone like themselves.</div>
@@ -657,7 +658,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
       </div>
 
-      <div class="ap-card">
+      <div class="ap-card" id="lens-card-3">
         <div class="ap-header"><div class="ap-num">03 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
         <div class="ap-name">Orientation</div>
         <div class="ap-def">The broad domain or general direction that frames a young person's purpose — whether prosocial, financial, vocational, religious, civic, creative, or otherwise. Orientation names the general category of contribution or becoming that organizes how they see themselves in relation to the world.</div>
@@ -671,7 +672,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
       </div>
 
-      <div class="ap-card">
+      <div class="ap-card" id="lens-card-4">
         <div class="ap-header"><div class="ap-num">04 · Inner Experience</div><div class="ap-badge">Actively developing</div></div>
         <div class="ap-name">Content</div>
         <div class="ap-def">The specific aspirational substance of what a young person understands they want to work toward. Not just a broad orientation, but a particular aim: being a great student, helping advance an important issue, mastering a craft, building something that matters. The articulation — even if partial or evolving — of what their purposeful effort is actually directed at.</div>
@@ -685,7 +686,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
       </div>
 
-      <div class="ap-card">
+      <div class="ap-card" id="lens-card-5">
         <div class="ap-header"><div class="ap-num">05 · Active Engagement</div><div class="ap-badge">Actively developing</div></div>
         <div class="ap-name">Opportunities for Practice</div>
         <div class="ap-def">Concrete chances to explore, try, and enact purposeful action. Not just exposure — genuine opportunities to act, contribute, and experience oneself as a capable agent in something that matters beyond the self.</div>
@@ -699,7 +700,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
       </div>
 
-      <div class="ap-card">
+      <div class="ap-card" id="lens-card-6">
         <div class="ap-header"><div class="ap-num">06 · Active Engagement</div><div class="ap-badge">Research-grounded</div></div>
         <div class="ap-name">Recognition and Reflection</div>
         <div class="ap-def">Feedback, validation, and structured sense-making from oneself and others. The relational and reflective processes through which purposeful experience becomes visible, interpreted, and integrated into identity.</div>
@@ -713,7 +714,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
       </div>
 
-      <div class="ap-card">
+      <div class="ap-card" id="lens-card-7">
         <div class="ap-header"><div class="ap-num">07 · Conditions</div><div class="ap-badge">Actively developing</div></div>
         <div class="ap-name">Environmental Affordances</div>
         <div class="ap-def">Material, social, and institutional resources that make purposeful action possible. The structures, spaces, and relationships that either enable or foreclose what a young person can do with what they care about.</div>
@@ -727,7 +728,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
       </div>
 
-      <div class="ap-card">
+      <div class="ap-card" id="lens-card-8">
         <div class="ap-header"><div class="ap-num">08 · Conditions</div><div class="ap-badge">Empirically emerging</div></div>
         <div class="ap-name">Cultural Context</div>
         <div class="ap-def">The sociocultural signals — explicit and implicit — about what kinds of purpose are valued, legitimate, and possible in a given context. The messages a young person receives about who gets to pursue purpose, and what kinds count.</div>
@@ -1084,6 +1085,7 @@ function catClass(c){return 'cat-'+c}
 function catLabel(c){return{practice:'Practice',research:'Research',question:'Question',policy:'Policy',design:'Design',experience:'Lived Experience'}[c]||c}
 function idArg(id){return "'"+String(id)+"'"}
 function sameId(a,b){return String(a)===String(b)}
+function scrollToLens(n){const el=document.getElementById('lens-card-'+n);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});}
 const API_READY=location.protocol!=='file:';
 async function saveRemote(type,payload={}){
   if(!API_READY)return null;

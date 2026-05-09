@@ -152,7 +152,7 @@ function cleanText(value, fallback = '') {
 function lensId(value, fallback = 0) {
   const n = Number.parseInt(value, 10);
   if (Number.isNaN(n)) return fallback;
-  return Math.max(0, Math.min(7, n));
+  return Math.max(0, Math.min(8, n));
 }
 
 function approvedFilter(limit = 100) {
@@ -160,17 +160,41 @@ function approvedFilter(limit = 100) {
 }
 
 async function bootstrap() {
-  const [posts, comments, sparks, prompts, pulse] = await Promise.all([
+  const [posts, comments, sparks, prompts, pulse, likeEvents, reactionEvents] = await Promise.all([
     supabase(`exchange_posts?select=*&${approvedFilter(100)}`),
     supabase(`exchange_comments?select=*&${approvedFilter(250)}`),
     supabase(`sparks?select=*&${approvedFilter(100)}`),
     supabase(`prompt_bank?select=*&${approvedFilter(100)}`),
-    supabase('pulse_votes?select=lens_id')
+    supabase('pulse_votes?select=lens_id'),
+    supabase('interaction_events?select=event_type,target_id&event_type=in.(post_like,spark_like)&limit=5000'),
+    supabase('interaction_events?select=target_id,payload&event_type=eq.lens_reaction&limit=10000')
   ]);
 
-  const pulseVotes = [0, 0, 0, 0, 0, 0, 0, 0];
+  const pulseVotes = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   for (const vote of pulse || []) {
-    if (vote.lens_id >= 1 && vote.lens_id <= 7) pulseVotes[vote.lens_id] += 1;
+    if (vote.lens_id >= 1 && vote.lens_id <= 8) pulseVotes[vote.lens_id] += 1;
+  }
+
+  // Tally accumulated likes from interaction_events
+  const postLikes = {};
+  const sparkLikes = {};
+  for (const ev of likeEvents || []) {
+    if (ev.event_type === 'post_like' && ev.target_id) {
+      postLikes[ev.target_id] = (postLikes[ev.target_id] || 0) + 1;
+    } else if (ev.event_type === 'spark_like' && ev.target_id) {
+      sparkLikes[ev.target_id] = (sparkLikes[ev.target_id] || 0) + 1;
+    }
+  }
+
+  // Tally lens reactions: { '1': { resonates: 5, missing: 2 }, ... }
+  const lensReactions = {};
+  for (const ev of reactionEvents || []) {
+    const lens = ev.target_id;
+    const reaction = ev.payload && ev.payload.reaction;
+    if (lens && reaction) {
+      if (!lensReactions[lens]) lensReactions[lens] = {};
+      lensReactions[lens][reaction] = (lensReactions[lens][reaction] || 0) + 1;
+    }
   }
 
   return {
@@ -183,7 +207,7 @@ async function bootstrap() {
       ap: p.lens_id || 0,
       title: p.title,
       body: p.body,
-      likes: p.likes_seed || 0,
+      likes: (p.likes_seed || 0) + (postLikes[p.id] || 0),
       liked: false,
       time: 'from the exchange',
       comments: comments
@@ -200,7 +224,7 @@ async function bootstrap() {
       remoteId: s.id,
       text: s.text,
       ap: s.lens_id || 0,
-      likes: s.likes_seed || 0,
+      likes: (s.likes_seed || 0) + (sparkLikes[s.id] || 0),
       liked: false,
       time: 'from the exchange'
     })),
@@ -214,7 +238,8 @@ async function bootstrap() {
       uses: p.uses_seed || 0,
       used: false
     })),
-    pulseVotes
+    pulseVotes,
+    lensReactions
   };
 }
 

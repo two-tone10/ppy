@@ -1039,7 +1039,7 @@ function apDot(ap){return ap>0?`<span class="ap-dot" style="background:${AP_COLO
 function apLabel(ap){return ap>0?`<span class="ap-tag">${apDot(ap)}${AP_NAMES[ap]}</span>`:''}
 function catClass(c){return 'cat-'+c}
 function catLabel(c){return{practice:'Practice',research:'Research',question:'Question',policy:'Policy',design:'Design',experience:'Lived Experience'}[c]||c}
-function idArg(id){return JSON.stringify(String(id))}
+function idArg(id){return "'"+String(id)+"'"}
 function sameId(a,b){return String(a)===String(b)}
 const API_READY=location.protocol!=='file:';
 async function saveRemote(type,payload={}){
@@ -1064,6 +1064,23 @@ async function hydrateRemote(){
     if(Array.isArray(data.prompts)&&data.prompts.length)prompts=data.prompts;
     if(Array.isArray(data.pulseVotes)&&data.pulseVotes.some(Boolean)){
       pulseVotes=data.pulseVotes.map((v,i)=>i===0?0:Number(v||0));
+    }
+    // Load cumulative lens reaction counts from the server
+    if(data.lensReactions&&typeof data.lensReactions==='object'){
+      for(const[lensNum,reactions]of Object.entries(data.lensReactions)){
+        const container=document.querySelector(`.ap-reactions[data-ap="${lensNum}"]`);
+        if(!container)continue;
+        for(const[rtype,count]of Object.entries(reactions)){
+          // Match each react-btn by its onclick reaction type argument
+          container.querySelectorAll('.react-btn').forEach(btn=>{
+            const oc=btn.getAttribute('onclick')||'';
+            if(oc.includes(`'${rtype}'`)){
+              const cnt=btn.querySelector('.react-count');
+              if(cnt)cnt.textContent=count;
+            }
+          });
+        }
+      }
     }
     renderPulse();renderPosts();renderSparks();renderPrompts();
   }catch(err){
@@ -1185,7 +1202,7 @@ function renderPulse(){
   const total=pulseVotes.slice(1).reduce((a,b)=>a+b,0);
   const bars=document.getElementById('pulseBars');
   bars.innerHTML=pulseVotes.slice(1).map((v,i)=>{
-    const pct=total>0?Math.round(v/total*100):Math.round(100/7);
+    const pct=total>0?Math.round(v/total*100):Math.round(100/8);
     return`<div class="pulse-bar-row">
       <div class="pulse-bar-label">${AP_NAMES[i+1]}</div>
       <div class="pulse-bar-track"><div class="pulse-bar-fill" style="width:${pct}%;background:${AP_COLORS[i]}"></div></div>

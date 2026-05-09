@@ -45,7 +45,7 @@ h2 em{color:var(--teal);font-style:italic}
 /* LANDING */
 #landing{background:var(--ink);min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 6rem;position:relative;overflow:hidden}
 #landing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(59,122,143,0.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 70%,rgba(123,61,66,0.08) 0%,transparent 50%)}
-.landing-mark{position:absolute;right:-100vw;top:50%;transform:translateY(-48%);width:min(620vw,8000px);height:min(520vh,6500px);object-fit:contain;object-position:center right;opacity:0.34;filter:drop-shadow(0 24px 70px rgba(0,0,0,0.1));pointer-events:none;z-index:0}
+.landing-mark{position:absolute;right:-5vw;top:50%;transform:translateY(-48%);width:min(163vw,2100px);height:min(137vh,1706px);object-fit:contain;object-position:center center;opacity:0.34;filter:drop-shadow(0 24px 70px rgba(0,0,0,0.1));pointer-events:none;z-index:0}
 .prov-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
 .prov-overline{font-size:0.7rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3rem}
 .prov-statement{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.15;color:var(--white);font-weight:400;margin-bottom:1.5rem}
@@ -136,6 +136,11 @@ h2 em{color:var(--teal);font-style:italic}
 .ap-expanded strong{display:block;margin-bottom:0.35rem;font-size:0.7rem;letter-spacing:0.07em;text-transform:uppercase;opacity:0.7}
 .ap-exchange-link{display:inline-flex;align-items:center;gap:0.3rem;margin-top:0.75rem;font-size:0.75rem;font-weight:600;opacity:0.6;text-decoration:underline;cursor:pointer;transition:opacity .2s}
 .ap-exchange-link:hover{opacity:1}
+.nominate-card{background:transparent!important;border:2px dashed rgba(255,255,255,0.22)!important;color:var(--white)!important;box-shadow:none!important}
+.nominate-card:hover{border-color:rgba(255,255,255,0.4)!important;transform:translateY(-3px)}
+.nominate-card input,.nominate-card textarea{outline:none}
+.nominate-card input:focus,.nominate-card textarea:focus{border-color:rgba(255,255,255,0.5)!important}
+.nominate-card input::placeholder,.nominate-card textarea::placeholder{color:rgba(255,255,255,0.35)}
 
 /* Lens reactions */
 .ap-reactions{display:flex;gap:0.4rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid rgba(255,255,255,0.12);flex-wrap:wrap}
@@ -473,7 +478,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 @media(max-width:900px){
   .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity{grid-template-columns:1fr;gap:2rem}
   .feature-workspace{position:static}
-  .landing-mark{right:-80rem;width:352rem;height:480vh;opacity:0.26}
+  .landing-mark{right:-5rem;width:92rem;height:126vh;opacity:0.26}
   .ap-filter-list{flex-direction:row;flex-wrap:wrap}
   .ap-filter-btn{width:auto}
   .sidebar-label{display:none}
@@ -583,7 +588,9 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="eyebrow">The Framework</div>
       <div class="rule"></div>
       <h2>Introducing the Portraits of Purposeful Youth Framework:<br><em>Eight Lenses of Purposeful Experience</em></h2>
-      <p class="lead" style="font-size:0.975rem">The eight lenses are meant to connect academic perspectives on purpose development with the lived experience of young people and the people who know, teach, support, and work alongside them. These eight lenses are a starting place for expanding the collective vocabulary for seeing purpose development. Much of the work on purpose has emphasized what one's purpose is, or how strongly purpose is felt. Those questions matter, but they may not be enough. The lenses help us notice additional conditions, processes, and forms of support that shape purpose development. Use them to tell us what feels useful, what feels off, and where the language still fails to capture what happens in real settings.</p>
+      <p class="lead" style="font-size:0.975rem">The eight lenses are meant to connect longstanding academic perspectives on purpose with the lived experience of young people and the people who know, teach, support, and work alongside them. They represent our effort to expand the collective vocabulary around purpose, and deepen how we see young people.</p>
+      <p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Much of the research on purpose, to date, has emphasized what one's purpose is, or how strongly purpose is felt. Those questions matter, but they may not be enough. The lenses help us notice additional conditions, processes, and forms of support that shape purpose development.</p>
+      <p class="lead" style="font-size:0.975rem;margin-top:0.85rem">We invite you to tell us what feels useful, what feels off, and where the language still fails to capture what happens in real settings.</p>
     </div>
     <div class="lens-overview" aria-label="Eight lenses overview">
       <div class="lens-tab"><div class="lens-tab-num">01</div><div class="lens-tab-name">Sense of Purpose</div></div>
@@ -610,10 +617,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>Does this young person report that what they do matters? Do they express a sense of drive or direction — even without words for it? Is there something they return to, even when it's hard?<div class="ap-exchange-link" onclick="goToAp(1)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="1">
-          <button class="react-btn" onclick="react(this,1,'resonates')">✓ <span>Resonates</span> <span class="react-count">28</span></button>
-          <button class="react-btn" onclick="react(this,1,'missing')">+ Missing something <span class="react-count">4</span></button>
-          <button class="react-btn" onclick="react(this,1,'more')">→ Want more <span class="react-count">11</span></button>
-          <button class="react-btn" onclick="react(this,1,'skeptical')">? Skeptical <span class="react-count">2</span></button>
+          <button class="react-btn" onclick="react(this,1,'resonates')">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,1,'missing')">+ Missing something <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,1,'more')">→ Want more <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,1,'skeptical')">? Skeptical <span class="react-count">0</span></button>
         </div>
       </div>
 
@@ -624,10 +631,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>Can this young person name roles, causes, or futures they care about? Has their horizon expanded over time, or stayed fixed? Constrained scope often reflects constrained exposure — not constrained capacity.<div class="ap-exchange-link" onclick="goToAp(2)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="2">
-          <button class="react-btn" onclick="react(this,2,'resonates')">✓ <span>Resonates</span> <span class="react-count">19</span></button>
-          <button class="react-btn" onclick="react(this,2,'missing')">+ Missing something <span class="react-count">9</span></button>
-          <button class="react-btn" onclick="react(this,2,'more')">→ Want more <span class="react-count">22</span></button>
-          <button class="react-btn" onclick="react(this,2,'skeptical')">? Skeptical <span class="react-count">1</span></button>
+          <button class="react-btn" onclick="react(this,2,'resonates')">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,2,'missing')">+ Missing something <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,2,'more')">→ Want more <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,2,'skeptical')">? Skeptical <span class="react-count">0</span></button>
         </div>
       </div>
 
@@ -638,10 +645,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>Does this young person have a general sense of what kind of contributor or person they want to become — even without a specific aim yet? Is their orientation toward serving others, building something, achieving mastery, or following a calling? Orientation can be present before specific goals form.<div class="ap-exchange-link" onclick="goToAp(3)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="3">
-          <button class="react-btn" onclick="react(this,3,'resonates')">✓ <span>Resonates</span> <span class="react-count">31</span></button>
-          <button class="react-btn" onclick="react(this,3,'missing')">+ Missing something <span class="react-count">6</span></button>
-          <button class="react-btn" onclick="react(this,3,'more')">→ Want more <span class="react-count">14</span></button>
-          <button class="react-btn" onclick="react(this,3,'skeptical')">? Skeptical <span class="react-count">3</span></button>
+          <button class="react-btn" onclick="react(this,3,'resonates')">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,3,'missing')">+ Missing something <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,3,'more')">→ Want more <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,3,'skeptical')">? Skeptical <span class="react-count">0</span></button>
         </div>
       </div>
 
@@ -652,10 +659,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>Can this young person name something specific they want to do, become, or contribute — not just a general domain? Has that aspiration grown more concrete over time? Even a vague but genuine aim ("I want to do something with the environment") is purposeful content worth developing.<div class="ap-exchange-link" onclick="goToAp(4)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="4">
-          <button class="react-btn" onclick="react(this,4,'resonates')">✓ <span>Resonates</span> <span class="react-count">17</span></button>
-          <button class="react-btn" onclick="react(this,4,'missing')">+ Missing something <span class="react-count">5</span></button>
-          <button class="react-btn" onclick="react(this,4,'more')">→ Want more <span class="react-count">21</span></button>
-          <button class="react-btn" onclick="react(this,4,'skeptical')">? Skeptical <span class="react-count">2</span></button>
+          <button class="react-btn" onclick="react(this,4,'resonates')">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,4,'missing')">+ Missing something <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,4,'more')">→ Want more <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,4,'skeptical')">? Skeptical <span class="react-count">0</span></button>
         </div>
       </div>
 
@@ -666,10 +673,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>Does this young person have regular, authentic chances to act on what they care about? Are those opportunities real — with stakes and impact — or performative? Who controls access to them?<div class="ap-exchange-link" onclick="goToAp(5)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="5">
-          <button class="react-btn" onclick="react(this,5,'resonates')">✓ <span>Resonates</span> <span class="react-count">44</span></button>
-          <button class="react-btn" onclick="react(this,5,'missing')">+ Missing something <span class="react-count">7</span></button>
-          <button class="react-btn" onclick="react(this,5,'more')">→ Want more <span class="react-count">18</span></button>
-          <button class="react-btn" onclick="react(this,5,'skeptical')">? Skeptical <span class="react-count">2</span></button>
+          <button class="react-btn" onclick="react(this,5,'resonates')">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,5,'missing')">+ Missing something <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,5,'more')">→ Want more <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,5,'skeptical')">? Skeptical <span class="react-count">0</span></button>
         </div>
       </div>
 
@@ -680,10 +687,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>Do adults and peers name and affirm what this young person contributes? Are there structured opportunities to reflect and extract meaning? Is this young person developing a narrative of their own purposeful identity?<div class="ap-exchange-link" onclick="goToAp(6)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="6">
-          <button class="react-btn" onclick="react(this,6,'resonates')">✓ <span>Resonates</span> <span class="react-count">37</span></button>
-          <button class="react-btn" onclick="react(this,6,'missing')">+ Missing something <span class="react-count">5</span></button>
-          <button class="react-btn" onclick="react(this,6,'more')">→ Want more <span class="react-count">16</span></button>
-          <button class="react-btn" onclick="react(this,6,'skeptical')">? Skeptical <span class="react-count">1</span></button>
+          <button class="react-btn" onclick="react(this,6,'resonates')">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,6,'missing')">+ Missing something <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,6,'more')">→ Want more <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,6,'skeptical')">? Skeptical <span class="react-count">0</span></button>
         </div>
       </div>
 
@@ -694,10 +701,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>What resources does this young person have access to? Who gatekeeps them? Are the environments this young person inhabits designed with purposeful development in mind — or does it happen despite the design?<div class="ap-exchange-link" onclick="goToAp(7)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="7">
-          <button class="react-btn" onclick="react(this,7,'resonates')">✓ <span>Resonates</span> <span class="react-count">41</span></button>
-          <button class="react-btn" onclick="react(this,7,'missing')">+ Missing something <span class="react-count">8</span></button>
-          <button class="react-btn" onclick="react(this,7,'more')">→ Want more <span class="react-count">20</span></button>
-          <button class="react-btn" onclick="react(this,7,'skeptical')">? Skeptical <span class="react-count">4</span></button>
+          <button class="react-btn" onclick="react(this,7,'resonates')">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,7,'missing')">+ Missing something <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,7,'more')">→ Want more <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,7,'skeptical')">? Skeptical <span class="react-count">0</span></button>
         </div>
       </div>
 
@@ -708,10 +715,27 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>What does this environment communicate about whose futures matter and which forms of contribution are worth pursuing? Are cultural norms expanding or narrowing what this young person believes is possible for someone like them?<div class="ap-exchange-link" onclick="goToAp(8)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="8">
-          <button class="react-btn" onclick="react(this,8,'resonates')">✓ <span>Resonates</span> <span class="react-count">33</span></button>
-          <button class="react-btn" onclick="react(this,8,'missing')">+ Missing something <span class="react-count">12</span></button>
-          <button class="react-btn" onclick="react(this,8,'more')">→ Want more <span class="react-count">25</span></button>
-          <button class="react-btn" onclick="react(this,8,'skeptical')">? Skeptical <span class="react-count">6</span></button>
+          <button class="react-btn" onclick="react(this,8,'resonates')">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,8,'missing')">+ Missing something <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,8,'more')">→ Want more <span class="react-count">0</span></button>
+          <button class="react-btn" onclick="react(this,8,'skeptical')">? Skeptical <span class="react-count">0</span></button>
+        </div>
+      </div>
+
+      <!-- NOMINATE A LENS CARD -->
+      <div class="ap-card nominate-card">
+        <div class="ap-header">
+          <div class="ap-num" style="opacity:0.5">?? · Your nomination</div>
+          <div class="ap-badge" style="background:rgba(255,255,255,0.12)">Community proposal</div>
+        </div>
+        <div class="ap-name">Nominate a Lens</div>
+        <div class="ap-def">Is there a dimension of purposeful experience that the eight lenses above don't capture? Name it here. Strong nominations will be considered for inclusion in future iterations of this framework — and posted here for community feedback.</div>
+        <div id="nominateForm" style="margin-top:1rem">
+          <input id="nominateName" placeholder="Name your lens (e.g. 'Belonging')" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:var(--white);font-family:var(--sans);font-size:0.85rem;margin-bottom:0.55rem"/>
+          <textarea id="nominateDef" placeholder="Describe it briefly — what does it mean, and why does it matter for understanding purpose in young people?" rows="3" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:var(--white);font-family:var(--sans);font-size:0.85rem;resize:vertical;margin-bottom:0.55rem"></textarea>
+          <input id="nominateRole" placeholder="Your role or context (optional)" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:var(--white);font-family:var(--sans);font-size:0.85rem;margin-bottom:0.75rem"/>
+          <button onclick="submitNomination()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:7px;padding:0.45rem 1.1rem;color:var(--white);font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:background .18s" onmouseover="this.style.background='rgba(255,255,255,0.28)'" onmouseout="this.style.background='rgba(255,255,255,0.18)'">Submit nomination →</button>
+          <div id="nominateConfirm" style="display:none;margin-top:0.75rem;font-size:0.82rem;opacity:0.75;font-style:italic">Thank you — your nomination has been received. If it resonates with the community, it may appear here in a future iteration.</div>
         </div>
       </div>
 
@@ -854,7 +878,6 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <button class="ex-tab active" onclick="openTab('discussions',this)">💬 Discussions</button>
       <button class="ex-tab" onclick="openTab('sparks',this)">⚡ Sparks</button>
       <button class="ex-tab" onclick="openTab('prompts',this)">💡 Prompt Bank</button>
-      <button class="ex-tab" onclick="openTab('edits',this)">✎ Copy Edits</button>
     </div>
 
     <!-- DISCUSSIONS TAB -->
@@ -952,31 +975,6 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="prompt-cards" id="promptCards"></div>
     </div>
 
-    <!-- COPY EDITS TAB -->
-    <div class="tab-panel" id="panel-edits">
-      <div class="copyedit-intro">
-        <div class="copyedit-help">
-          <strong>Small wording changes go here.</strong>
-          Use this as a scratchpad for section-level edits. Pick the section, write the replacement wording, and the page will format a clean note you can paste back into the chat. That lets me update just the relevant paragraph or label.
-        </div>
-        <div class="copyedit-box">
-          <div class="prompt-submit-title">Draft a wording note</div>
-          <div class="form-2col">
-            <div class="form-row"><label>Section</label><select id="editSection"><option>About & Context</option><option>Hero</option><option>The Claim</option><option>Framework / Lenses</option><option>Feature Activity</option><option>Community Pulse</option><option>Open Questions</option><option>Pathways</option><option>The Exchange</option><option>Other</option></select></div>
-            <div class="form-row"><label>Short label</label><input id="editTitle" placeholder="e.g. soften the research framing"/></div>
-          </div>
-          <div class="form-row"><label>Current wording or location</label><textarea id="editCurrent" placeholder="Paste the sentence, paragraph, heading, or describe where it appears."></textarea></div>
-          <div class="form-row"><label>Replacement wording</label><textarea id="editReplacement" placeholder="Write the wording you want instead."></textarea></div>
-          <div class="form-actions">
-            <button class="btn-sm btn-navy" onclick="saveEditNote()">Stage note</button>
-            <button class="btn-sm btn-outline" onclick="clearEditDraft()">Clear</button>
-          </div>
-          <div class="copyedit-preview" id="editPreview">Your formatted note will appear here after you stage it.</div>
-        </div>
-      </div>
-      <div class="edit-notes-list" id="editNotesList"></div>
-    </div>
-
   </div>
 </section>
 
@@ -1006,41 +1004,19 @@ const defaultFeatures=[
 ];
 let features=defaultFeatures.map(f=>({...f}));
 
-// Pulse votes (seeded)
-let pulseVotes=[0,47,38,29,0,61,44,52,55];
+// Pulse votes
+let pulseVotes=[0,0,0,0,0,0,0,0,0];
 let pulseCast=false;
 
-let editNotes=[];
-
 // Discussions
-let posts=[
-  {id:1,author:'Dr. Simone Akande',role:'Youth Development Researcher · Boston University',cat:'research',ap:1,title:'Magnitude vs. Stability: are these empirically separable in adolescent samples?',body:"I've been applying the PPY framework to our longitudinal data and running into a challenge. Magnitude and Stability feel theoretically distinct — strength of signal vs. sustained-ness of signal — but in our data they correlate highly (r=.73). Has anyone thought through measurement designs that could better discriminate between them? Particularly curious about ESM-based approaches.",likes:14,liked:false,time:'2 days ago',comments:[{a:'Prof. J. Rivera',r:'Developmental Psychologist',t:'What helped was distinguishing peak intensity (magnitude) from coefficient of variation across time points (stability). They correlated less once we moved to intra-individual variance.',c:'#1E2D4A'},{a:'Marcus Webb',r:'PhD Candidate, Stanford GSE',t:'The issue may be partly measurement — most purpose scales capture a stable trait, not momentary experience. ESM designed around the PPY lenses might give more leverage.',c:'#3B7A8F'}]},
-  {id:2,author:'Tanya Osei-Mensah',role:'Program Director · YouthBuild Chicago',cat:'practice',ap:8,title:'Using the Cultural Context lens for community asset mapping — what we found',body:"We ran a six-week youth participatory action research project using the eight lenses as an organizing frame. Cultural Context was the most generative — young people immediately started naming the messages they receive about what 'counts' as a meaningful future. It opened conversations we hadn't been able to reach with other frameworks.",likes:33,liked:false,time:'4 days ago',comments:[{a:'Dr. Keisha Nkrumah',r:'Equity Research Lab, Howard',t:"This is exactly the applied documentation I'd love to see. Would you be open to a short interview about the process?",c:'#7A7840'}]},
-  {id:3,author:'Jamie Thornton',role:'School Counselor · Denver Public Schools',cat:'question',ap:2,title:'Scope and Awareness with students navigating constrained futures — how do you hold this?',body:"I work with students whose Scope and Awareness is limited — not because of internal capacity, but because of real structural constraints. I worry that expanding 'what you can imagine' without expanding real access sets kids up for disappointment. How do others navigate this tension?",likes:27,liked:false,time:'1 week ago',comments:[{a:'Dr. Simone Akande',r:'Youth Development Researcher',t:'Expand scope AND affordances together. Working on imagination without working on access is a setup for harm.',c:'#7B3D42'},{a:'Tanya Osei-Mensah',r:'Program Director · YouthBuild',t:'We distinguish "possible futures for people like me" (Cultural Context / representation) from "possible futures for me specifically" (Affordances). Both need to expand — together.',c:'#C4724A'}]},
-  {id:4,author:'Anonymous',role:'Young person, age 19',cat:'experience',ap:6,title:'What recognition actually feels like — and what adults get wrong about it',body:"I've been in a lot of programs where adults tell me I'm 'purposeful' but it doesn't land. Real recognition is when someone sees specifically what you did and names it in a way that only works because they were paying attention. Generic affirmation isn't recognition. It's just noise.",likes:41,liked:false,time:'2 weeks ago',comments:[{a:'Dr. Simone Akande',r:'Youth Development Researcher',t:"This distinction — between generic affirmation and specific recognition — is something the literature gestures at but doesn't capture with this precision. Thank you.",c:'#7B3D42'}]}
-];
+let posts=[];
 let currentApFilter=0;
 
-// Sparks (seeded)
-let sparks=[
-  {id:1,text:"She stayed two hours after the program ended because she wasn't ready to stop.",ap:5,likes:18,liked:false,time:'3 days ago'},
-  {id:2,text:"He said he didn't care about anything, but he hadn't missed a single session.",ap:1,likes:24,liked:false,time:'5 days ago'},
-  {id:3,text:"The moment she named what she was doing as 'advocacy,' everything changed.",ap:6,likes:31,liked:false,time:'1 week ago'},
-  {id:4,text:"He had purpose — the school just had no category for the kind he had.",ap:8,likes:47,liked:false,time:'1 week ago'},
-  {id:5,text:"She knew exactly what she cared about. She just didn't have anywhere to do it.",ap:7,likes:39,liked:false,time:'2 weeks ago'},
-  {id:6,text:"He'd never been asked what mattered to him before. It took him ten minutes to answer.",ap:2,likes:28,liked:false,time:'2 weeks ago'},
-  {id:7,text:"The curriculum gave her the language. The community gave her the reason.",ap:3,likes:22,liked:false,time:'3 weeks ago'},
-  {id:8,text:"They didn't discover purpose — they were finally given room to practice what they already had.",ap:5,likes:35,liked:false,time:'3 weeks ago'}
-];
+// Sparks
+let sparks=[];
 
-// Prompts (seeded)
-let prompts=[
-  {id:1,q:"What's something you've done recently that felt like it mattered — even a little?",ctx:"Works well as an opener with adolescents who are skeptical of 'purpose' language. Low-stakes, grounded in recent experience.",ap:1,role:'After-school program coordinator',uses:44,used:false},
-  {id:2,q:"If you could change one thing about your school / neighborhood / world, what would it be?",ctx:"Opens scope without using purpose language. Particularly useful with young people navigating constrained horizons.",ap:2,role:'School counselor, Denver',uses:61,used:false},
-  {id:3,q:"Who do you know — in your life or in history — who seems to live for something?",ctx:"Activates Scope and Cultural Context together. Works across cultural contexts. Good for group discussion.",ap:2,role:'Youth program researcher',uses:38,used:false},
-  {id:4,q:"When do you feel most like yourself?",ctx:"Gets at Resonance without academic language. Especially effective with older adolescents. Pairs well with follow-up: 'What makes that feel true?'",ap:1,role:'Therapist working with youth',uses:52,used:false},
-  {id:5,q:"What would you keep doing even if no one was watching?",ctx:"Surfaces Orientation clearly. Works across age groups. Often reveals purpose-adjacent engagement young people hadn't labeled as such.",ap:3,role:'Program evaluator',uses:29,used:false}
-];
+// Prompts
+let prompts=[];
 
 // Starters
 const starters=[
@@ -1048,11 +1024,7 @@ const starters=[
   {stem:"The question that opens purpose up for the young people I work with is",blank:"___"},
   {stem:"When purpose is constrained, what I most often see instead is",blank:"___"}
 ];
-let starterResponses=[
-  ["time and space to just be","mentors who look like them","sports — but not much else"],
-  ["'What do you wish existed in your neighborhood?'","'Who would you be if nothing was expected of you?'"],
-  ["performance anxiety","checking out entirely","compliance without investment"]
-];
+let starterResponses=[[],[],[]];
 const starterIdx=new Date().getMonth()%starters.length;
 
 // ─── Helpers ──────────────────────────────────────────────
@@ -1101,7 +1073,7 @@ function openTab(name,btn){
   document.getElementById('panel-'+name).classList.add('active');
   if(btn){btn.classList.add('active')}
   else{
-    const tabs={discussions:0,sparks:1,prompts:2,edits:3};
+    const tabs={discussions:0,sparks:1,prompts:2};
     const idx=tabs[name];
     if(idx!==undefined)document.querySelectorAll('.ex-tab')[idx]?.classList.add('active');
   }
@@ -1392,61 +1364,6 @@ function submitPrompt(){
   document.getElementById('promptCards').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// ─── Copy edits ───────────────────────────────────────────
-function formattedEditNote(note){
-  return `SECTION: ${note.section}\nLABEL: ${note.title || 'Wording change'}\n\nCURRENT / LOCATION:\n${note.current || '(not specified)'}\n\nREPLACEMENT WORDING:\n${note.replacement}`;
-}
-function renderEditNotes(){
-  const list=document.getElementById('editNotesList');
-  if(!list)return;
-  if(!editNotes.length){
-    list.innerHTML='<div class="empty-state">No copy edit notes staged yet.</div>';
-    return;
-  }
-  list.innerHTML=editNotes.map((note,i)=>`
-    <div class="edit-note-card">
-      <div class="edit-note-meta">
-        <span class="edit-section">${note.section}</span>
-        <span class="edit-note-title">${note.title || 'Wording change'}</span>
-      </div>
-      <div class="edit-note-body">${formattedEditNote(note)}</div>
-      <div class="form-actions" style="margin-top:0.9rem">
-        <button class="btn-sm btn-outline" onclick="loadEditNote(${i})">Load back into form</button>
-        <button class="btn-sm btn-outline" onclick="removeEditNote(${i})">Remove</button>
-      </div>
-    </div>`).join('');
-}
-function saveEditNote(){
-  const section=document.getElementById('editSection').value;
-  const title=document.getElementById('editTitle').value.trim();
-  const current=document.getElementById('editCurrent').value.trim();
-  const replacement=document.getElementById('editReplacement').value.trim();
-  if(!replacement){alert('Please add replacement wording.');return}
-  const note={section,title,current,replacement};
-  editNotes.unshift(note);
-  saveRemote('copy_edit',{section,label:title,current_wording:current,replacement_wording:replacement});
-  document.getElementById('editPreview').textContent=formattedEditNote(note);
-  renderEditNotes();
-  clearEditDraft(false);
-}
-function clearEditDraft(clearPreview=true){
-  ['editTitle','editCurrent','editReplacement'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
-  if(clearPreview)document.getElementById('editPreview').textContent='Your formatted note will appear here after you stage it.';
-}
-function loadEditNote(i){
-  const note=editNotes[i];
-  if(!note)return;
-  document.getElementById('editSection').value=note.section;
-  document.getElementById('editTitle').value=note.title;
-  document.getElementById('editCurrent').value=note.current;
-  document.getElementById('editReplacement').value=note.replacement;
-  document.getElementById('editPreview').textContent=formattedEditNote(note);
-}
-function removeEditNote(i){
-  editNotes.splice(i,1);
-  renderEditNotes();
-}
-
 // ─── Pathways ─────────────────────────────────────────────
 function selectPw(id,card){
   document.querySelectorAll('.pw-card').forEach(c=>c.classList.remove('active'));
@@ -1456,6 +1373,17 @@ function selectPw(id,card){
   setTimeout(()=>det.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
 }
 
+// ─── Lens Nominations ─────────────────────────────────────
+function submitNomination(){
+  const name=document.getElementById('nominateName').value.trim();
+  const def=document.getElementById('nominateDef').value.trim();
+  const role=document.getElementById('nominateRole').value.trim();
+  if(!name||!def){alert('Please add a name and description for your lens.');return}
+  saveRemote('lens_nomination',{target_type:'lens_nominations',target_id:name,payload:{name,definition:def,role}});
+  ['nominateName','nominateDef','nominateRole'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('nominateConfirm').style.display='block';
+}
+
 // ─── Init ─────────────────────────────────────────────────
 renderFeatures();
 renderPulse();
@@ -1463,7 +1391,6 @@ renderPosts();
 renderSparks();
 initStarter();
 renderPrompts();
-renderEditNotes();
 hydrateRemote();
 </script>
 </body>

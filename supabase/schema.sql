@@ -88,6 +88,15 @@ create table if not exists interaction_events (
   created_at timestamptz not null default now()
 );
 
+create table if not exists lens_nominations (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  definition text not null,
+  role text,
+  status text not null default 'pending' check (status in ('pending', 'approved', 'rejected', 'archived')),
+  created_at timestamptz not null default now()
+);
+
 create index if not exists exchange_posts_status_created_idx on exchange_posts(status, created_at desc);
 create index if not exists exchange_posts_lens_idx on exchange_posts(lens_id);
 create index if not exists exchange_comments_post_idx on exchange_comments(post_id);
@@ -108,3 +117,4 @@ alter table feature_reflections enable row level security;
 alter table copy_edit_notes enable row level security;
 alter table starter_responses enable row level security;
 alter table interaction_events enable row level security;
+alter table lens_nominations enable row level security;

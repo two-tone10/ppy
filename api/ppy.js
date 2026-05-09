@@ -352,7 +352,8 @@ async function record(body) {
       category: cleanText(payload.category, 'question'),
       lens_id: lensId(payload.lens_id),
       title: cleanText(payload.title),
-      body: cleanText(payload.body)
+      body: cleanText(payload.body),
+      status: 'approved'
     });
   }
 
@@ -362,14 +363,16 @@ async function record(body) {
       target_seed_id: cleanText(payload.target_seed_id || payload.post_id),
       author: cleanText(payload.author, 'Anonymous'),
       role: cleanText(payload.role, 'Exchange participant'),
-      body: cleanText(payload.body)
+      body: cleanText(payload.body),
+      status: 'approved'
     });
   }
 
   if (type === 'spark') {
     return insert(TABLES.spark, {
       text: cleanText(payload.text),
-      lens_id: lensId(payload.lens_id)
+      lens_id: lensId(payload.lens_id),
+      status: 'approved'
     });
   }
 
@@ -378,7 +381,8 @@ async function record(body) {
       question: cleanText(payload.question),
       context: cleanText(payload.context),
       lens_id: lensId(payload.lens_id),
-      role: cleanText(payload.role)
+      role: cleanText(payload.role),
+      status: 'approved'
     });
   }
 
@@ -393,7 +397,8 @@ async function record(body) {
     return insert(TABLES.feature_reflection, {
       feature_order: Array.isArray(payload.feature_order) ? payload.feature_order.map(String) : [],
       reflection: cleanText(payload.reflection),
-      added_features: Array.isArray(payload.added_features) ? payload.added_features : []
+      added_features: Array.isArray(payload.added_features) ? payload.added_features : [],
+      status: 'approved'
     });
   }
 
@@ -402,14 +407,16 @@ async function record(body) {
       section: cleanText(payload.section, 'Other'),
       label: cleanText(payload.label),
       current_wording: cleanText(payload.current_wording),
-      replacement_wording: cleanText(payload.replacement_wording)
+      replacement_wording: cleanText(payload.replacement_wording),
+      status: 'approved'
     });
   }
 
   if (type === 'starter_response') {
     return insert(TABLES.starter_response, {
       starter_index: Number.parseInt(payload.starter_index, 10) || 0,
-      response: cleanText(payload.response)
+      response: cleanText(payload.response),
+      status: 'approved'
     });
   }
 

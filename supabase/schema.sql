@@ -78,6 +78,22 @@ create table if not exists starter_responses (
   created_at timestamptz not null default now()
 );
 
+create table if not exists onboarding_responses (
+  id uuid primary key default gen_random_uuid(),
+  roles text[] not null default '{}',
+  youth_groups text[] not null default '{}',
+  purpose_response text,
+  status text not null default 'pending' check (status in ('pending', 'approved', 'rejected', 'archived')),
+  created_at timestamptz not null default now()
+);
+
+create table if not exists purpose_definitions (
+  id uuid primary key default gen_random_uuid(),
+  definition text not null,
+  status text not null default 'pending' check (status in ('pending', 'approved', 'rejected', 'archived')),
+  created_at timestamptz not null default now()
+);
+
 create table if not exists interaction_events (
   id uuid primary key default gen_random_uuid(),
   event_type text not null,
@@ -106,6 +122,8 @@ create index if not exists pulse_votes_prompt_lens_idx on pulse_votes(prompt_key
 create index if not exists feature_reflections_status_created_idx on feature_reflections(status, created_at desc);
 create index if not exists copy_edit_notes_status_created_idx on copy_edit_notes(status, created_at desc);
 create index if not exists starter_responses_status_created_idx on starter_responses(status, created_at desc);
+create index if not exists onboarding_responses_status_created_idx on onboarding_responses(status, created_at desc);
+create index if not exists purpose_definitions_status_created_idx on purpose_definitions(status, created_at desc);
 create index if not exists interaction_events_type_created_idx on interaction_events(event_type, created_at desc);
 
 alter table exchange_posts enable row level security;
@@ -116,5 +134,7 @@ alter table pulse_votes enable row level security;
 alter table feature_reflections enable row level security;
 alter table copy_edit_notes enable row level security;
 alter table starter_responses enable row level security;
+alter table onboarding_responses enable row level security;
+alter table purpose_definitions enable row level security;
 alter table interaction_events enable row level security;
 alter table lens_nominations enable row level security;

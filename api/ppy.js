@@ -1,7 +1,6 @@
 const TABLES = {
   discussion_post: 'exchange_posts',
   comment: 'exchange_comments',
-  spark: 'sparks',
   prompt: 'prompt_bank',
   pulse_vote: 'pulse_votes',
   feature_reflection: 'feature_reflections',
@@ -23,11 +22,6 @@ const ADMIN_TABLES = {
     table: 'exchange_comments',
     status: true,
     select: 'id,created_at,status,post_id,target_seed_id,author,role,body'
-  },
-  sparks: {
-    table: 'sparks',
-    status: true,
-    select: 'id,created_at,status,text,lens_id,likes_seed'
   },
   prompts: {
     table: 'prompt_bank',
@@ -178,13 +172,12 @@ function approvedFilter(limit = 100) {
 }
 
 async function bootstrap() {
-  const [posts, comments, sparks, prompts, pulse, likeEvents, reactionEvents] = await Promise.all([
+  const [posts, comments, prompts, pulse, likeEvents, reactionEvents] = await Promise.all([
     supabase(`exchange_posts?select=*&${approvedFilter(100)}`),
     supabase(`exchange_comments?select=*&${approvedFilter(250)}`),
-    supabase(`sparks?select=*&${approvedFilter(100)}`),
     supabase(`prompt_bank?select=*&${approvedFilter(100)}`),
     supabase('pulse_votes?select=lens_id'),
-    supabase('interaction_events?select=event_type,target_id&event_type=in.(post_like,spark_like)&limit=5000'),
+    supabase('interaction_events?select=event_type,target_id&event_type=eq.post_like&limit=5000'),
     supabase('interaction_events?select=target_id,payload&event_type=eq.lens_reaction&limit=10000')
   ]);
 
@@ -195,12 +188,9 @@ async function bootstrap() {
 
   // Tally accumulated likes from interaction_events
   const postLikes = {};
-  const sparkLikes = {};
   for (const ev of likeEvents || []) {
     if (ev.event_type === 'post_like' && ev.target_id) {
       postLikes[ev.target_id] = (postLikes[ev.target_id] || 0) + 1;
-    } else if (ev.event_type === 'spark_like' && ev.target_id) {
-      sparkLikes[ev.target_id] = (sparkLikes[ev.target_id] || 0) + 1;
     }
   }
 
@@ -236,15 +226,6 @@ async function bootstrap() {
           t: c.body,
           c: '#3B7A8F'
         }))
-    })),
-    sparks: sparks.map((s) => ({
-      id: s.id,
-      remoteId: s.id,
-      text: s.text,
-      ap: s.lens_id || 0,
-      likes: (s.likes_seed || 0) + (sparkLikes[s.id] || 0),
-      liked: false,
-      time: 'from the exchange'
     })),
     prompts: prompts.map((p) => ({
       id: p.id,
@@ -382,14 +363,6 @@ async function record(body) {
       author: cleanText(payload.author, 'Anonymous'),
       role: cleanText(payload.role, 'Exchange participant'),
       body: cleanText(payload.body),
-      status: 'approved'
-    });
-  }
-
-  if (type === 'spark') {
-    return insert(TABLES.spark, {
-      text: cleanText(payload.text),
-      lens_id: lensId(payload.lens_id),
       status: 'approved'
     });
   }

@@ -340,7 +340,7 @@ h2 em{color:var(--teal);font-style:italic}
 .pulse-inner{max-width:1080px;margin:0 auto}
 .pulse-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:3rem}
 .pulse-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.75rem}
-.pulse-title{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:var(--white);line-height:1.2;margin-bottom:0.75rem}
+.pulse-title{font-family:var(--serif);font-size:clamp(1.35rem,2.2vw,1.85rem);font-weight:600;color:var(--white);line-height:1.2;margin-bottom:0.75rem;white-space:nowrap}
 .pulse-title em{color:var(--teal-light);font-style:italic}
 .pulse-sub{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.7}
 .pulse-prompt-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:1.5rem}
@@ -699,13 +699,9 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div>
           <div class="eyebrow">About This Project</div>
           <h2 style="margin-bottom:0.85rem">Learn in public. <em>Respond in small moves.</em></h2>
-          <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is an open exchange hosted by the <a href="https://www.lipurposefe.com" target="_blank" rel="noopener">Purpose and Identity Processes Lab</a> at Cornell University.</p>
-          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is an emerging initiative dedicated to understanding how young people experience, express, and develop purpose in their lives. Rather than treating purpose as a single trait, score, or outcome, Portraits invites a considering purposeful experience through a broader view that honors the many ways it may manifest and be supported in their lives. The project tries to explore the variety forms purpose can take across different contexts, opportunities, and lived experiences.</p>
-          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">At the heart of the initiative is a simple belief: purpose holds more than a person's ability to articulate it or even the degree they feel it from time to time. Thus, our task is not to solely on those aspects of purpose, but to better notice, support, and learn more about wider ways purpose shows up in their lives.</p>
-          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">The project seeks to bring together insights from developmental science, education, community practice, and lived experience to create richer and more thoughtful conversations about youth purpose, and the environments that help it emerge and grow.</p>
-          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">The term portrait is intentional. No single measure, moment, or characteristic can fully capture the complexity of a young person’s purposeful life. Portraits of Purposeful Youth instead seeks to illuminate multiple dimensions of development, experience, and context that together shape how purpose is understood and lived.</p>
-          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">We hope this space feels both rigorous and generative: a place for inquiry, reflection, dialogue, and possibility.</p>
-          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">Your responses shared here are not treated as survey findings. Instead, they can help sharpen future research questions, reveal where the framework feels incomplete, and produce <strong>two takeaways</strong> we hope are useful for you: a role-based field view and a personalized summary of your own responses.</p>
+          <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is an open exchange hosted by the <a href="https://www.lipurposefe.com" target="_blank" rel="noopener">Purpose and Identity Processes Lab</a> at Cornell University. It explores how young people experience, express, and develop purpose across the relationships, opportunities, and settings that shape their lives.</p>
+          <div style="font-size:1.04rem;color:var(--navy);line-height:1.65;margin:1.5rem 0;font-family:var(--serif)">No single measure, moment, or characteristic can fully capture the complexity of a young person's purposeful life.</div>
+          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin-top:1.1rem">Your responses shared here are not treated as survey findings. Instead, they help sharpen future questions, reveal where the framework feels incomplete, and produce <strong>two takeaways</strong>: a role-based field view and a personalized summary of your own responses.</p>
           <div class="mini-artifact-grid">
             <div class="mini-artifact"><strong>Takeaway 1: An integrative view</strong><p>Receive a visual synthesis of what others are seeing in youth purpose.</p></div>
             <div class="mini-artifact"><strong>Takeaway 2: Your personal recap</strong><p>A downloadable summary of your perspective to email yourself or share with collaborators.</p></div>
@@ -717,6 +713,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div class="journey-panel" id="journey-roles">
       <div class="role-layout">
         <div>
+          <div class="role-form-title">Choose one or more roles</div>
+          <p class="role-form-copy">The exchange needs different things from different people. Pick the vantage points that feel true for you.</p>
           <div class="role-picks">
             <button class="role-chip" data-role="researcher" onclick="toggleRole(this)"><span>Research</span><strong>Researcher or Scholar</strong></button>
             <button class="role-chip" data-role="practitioner" onclick="toggleRole(this)"><span>Practice</span><strong>Practitioner or Educator</strong></button>
@@ -727,8 +725,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
           </div>
         </div>
         <div class="role-workspace">
-          <div class="role-form-title">Choose one or more roles</div>
-          <p class="role-form-copy">The exchange needs different things from different people. Pick the vantage points that feel true for you, then answer two quick questions.</p>
+          <div class="role-form-title">Add two quick notes</div>
+          <p class="role-form-copy">These notes travel with your portrait and help shape the summary you receive at the end.</p>
           <label class="form-row">
             <span>What brings you to thinking about youth purpose right now?</span>
             <textarea id="purposeQuickAnswer" placeholder="A short answer is enough..." oninput="refreshArtifacts()"></textarea>
@@ -743,8 +741,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
             </div>
           </div>
           <div class="artifact-actions">
-            <button class="btn-sm btn-navy" onclick="saveOnboardingResponse()">Save &amp; see takeaways</button>
-            <button class="btn-sm btn-outline" onclick="openTab('discussions')">Continue to the exchange</button>
+            <button class="btn-sm btn-navy" onclick="saveOnboardingResponse()">Add to portrait →</button>
             <span class="save-note" id="onboardingSaveNote">Saved to the exchange.</span>
           </div>
         </div>
@@ -787,7 +784,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is a claim with evidence behind it. Purpose — a self-organizing and forward-looking aim — is a developmental resource. But it does not emerge by chance. It grows in relation to what young people can see, what they are given the chance to do, who recognizes them, and what their environment makes possible.</p>
     </div>
     <div>
-      <h2><em>Tuning how you see purpose</em> <span style="display:block;color:var(--teal);font-family:var(--sans);font-size:1rem;font-style:normal;font-weight:700;margin-top:0.35rem">What your perspective can impact:</span></h2>
+      <h2><em>Tuning how purpose is seen</em> <span style="display:block;color:var(--teal);font-family:var(--sans);font-size:1rem;font-style:normal;font-weight:700;margin-top:0.35rem">What sharing your perspective can impact:</span></h2>
       <ul class="consequence-list">
         <li>What researchers study — shifting from traits and scores to mechanisms and conditions</li>
         <li>What practitioners build — designing environments that actively cultivate purpose</li>
@@ -858,11 +855,11 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div class="arg-implication">"The exchange matters when better seeing leads to better questions and better choices."</div>
     <div class="seeing-response">
       <div class="artifact-kicker" style="color:var(--teal-light)">Takeaway · From seeing to action</div>
-      <h3>When you notice purpose differently, what are you most ready to do?</h3>
+      <h3>When you see purpose arise for a young person, what are you most inclined to do?</h3>
       <p>Pick the next move you would most likely make after seeing a young person's purpose more clearly.</p>
       <div class="seeing-grid">
         <button class="seeing-card active" data-stance="Notice and name what is already there" onclick="chooseSightAction(this)">Notice and name it<span>Point out the purpose, effort, or direction that may already be present.</span></button>
-        <button class="seeing-card" data-stance="Look for the supports that make it possible" onclick="chooseSightAction(this)">Look for supports<span>Ask what relationships, opportunities, or settings help purpose show up.</span></button>
+        <button class="seeing-card" data-stance="Look for the supports that make it possible" onclick="chooseSightAction(this)">Look for supports<span>Ask what relationships, opportunities, or settings might help amplify purpose.</span></button>
         <button class="seeing-card" data-stance="Change the setting" onclick="chooseSightAction(this)">Change the setting<span>Adjust the program, classroom, or relationship so purpose has more room to grow.</span></button>
         <button class="seeing-card" data-stance="Ask someone else to look with me" onclick="chooseSightAction(this)">Ask someone else to look<span>Bring the question to a colleague, young person, family member, or team.</span></button>
       </div>
@@ -1023,7 +1020,6 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div id="nominateForm" style="margin-top:1rem">
           <input id="nominateName" placeholder="Name your lens (e.g. 'Belonging')" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;font-family:var(--sans);font-size:0.85rem;margin-bottom:0.55rem"/>
           <textarea id="nominateDef" placeholder="Describe it briefly — what does it mean, and why does it matter for understanding purpose in young people?" rows="3" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;font-family:var(--sans);font-size:0.85rem;resize:vertical;margin-bottom:0.55rem"></textarea>
-          <input id="nominateRole" placeholder="Your role or context (optional)" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;font-family:var(--sans);font-size:0.85rem;margin-bottom:0.75rem"/>
           <button onclick="submitNomination()" style="border-radius:7px;padding:0.45rem 1.1rem;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .18s">Submit nomination →</button>
           <div id="nominateConfirm" style="display:none;margin-top:0.75rem;font-size:0.82rem;color:var(--g600);font-style:italic">Thank you — your nomination has been received. If it resonates with the community, it may appear here in a future iteration.</div>
         </div>
@@ -1038,7 +1034,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   <div class="container">
     <div class="eyebrow">Reading a purposeful experience</div>
     <div class="rule"></div>
-    <h2>Which cue would help you <em>read purpose first?</em></h2>
+    <h2>Which cue would help you <em>detect purpose first?</em></h2>
     <p class="lead" style="font-size:0.975rem">Purpose can show up in different ways. Put these cues in the order you would use when trying to understand a young person’s purposeful experience. There is no right order; the point is to show how you look.</p>
     <div class="feature-activity">
       <div class="feature-cards" id="featureCards"></div>
@@ -1056,7 +1052,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
         <div class="activity-actions">
           <button class="btn-sm btn-outline" onclick="resetFeatures()">Reset order</button>
-          <button class="btn-sm btn-navy" onclick="sendFeatureReflection()">Bring this to the Exchange</button>
+          <button class="btn-sm btn-navy" onclick="sendFeatureReflection()">Add this to your portrait</button>
         </div>
       </div>
     </div>
@@ -1069,8 +1065,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div class="pulse-header">
       <div>
         <div class="pulse-eyebrow">Community Pulse</div>
-        <div class="pulse-title">What does the field<br><em>want to understand next?</em></div>
-        <p class="pulse-sub">This is merely a signal of your curiosity, not a poll with scientific claims. Choose the lenses below that you most want the exchange to develop next; your response helps us see where future prompts, examples, and conversations may need to go.</p>
+        <div class="pulse-title">What does the field <em>want to understand next?</em></div>
+        <p class="pulse-sub">This is merely a signal of your curiosity, not a poll attempting to draw scientific inference. Choose the lenses below that you think are most important to learn more about. Your responses can help us invest in learning more in areas of greatest interest.</p>
       </div>
       <div class="pulse-prompt-box">
         <div class="pulse-prompt-label">This month's question</div>
@@ -1098,7 +1094,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div style="margin-bottom:2.5rem">
       <div class="eyebrow">Open Questions</div>
       <div class="rule"></div>
-      <h2>What we <em>still want to know</em></h2>
+      <h2>What you <em>still want to know</em></h2>
       <p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add the question that should have been here from the start.</p>
     </div>
     <div class="q-meta">This section will grow as the exchange develops. The questions below are starting points; the most useful contribution may be naming the better question.</div>
@@ -1146,7 +1142,6 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
           <option value="experience">Young people / lived experience</option>
           <option value="general">General</option>
         </select>
-        <input type="text" id="qSubmitRole" placeholder="Your role (optional)" style="flex:1;min-width:160px"/>
       </div>
       <div class="q-submit-actions">
         <button class="btn-sm btn-navy" onclick="submitOpenQuestion()">Submit question →</button>
@@ -1180,10 +1175,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <button class="btn btn-teal btn-sm" onclick="toggleNewPost()" id="newPostBtn" style="margin-bottom:1.25rem">+ Start a discussion</button>
       <div class="new-post-panel" id="newPostPanel">
         <div class="form-title">Add your contribution</div>
-        <div class="form-2col">
-          <div class="form-row"><label>Your name</label><input type="text" id="fAuthor" placeholder="Dr. Maya Ortega"/></div>
-          <div class="form-row"><label>Role / affiliation</label><input type="text" id="fRole" placeholder="Program Director · Chicago"/></div>
-        </div>
+        <div class="form-row"><label>Your name</label><input type="text" id="fAuthor" placeholder="Dr. Maya Ortega"/></div>
         <div class="form-2col">
           <div class="form-row"><label>Contribution type</label><select id="fCat"><option value="practice">Practice</option><option value="research">Research</option><option value="question">Question</option><option value="policy">Policy</option><option value="design">Design</option><option value="experience">Lived Experience</option></select></div>
           <div class="form-row"><label>Lens (if relevant)</label><select id="fAp"><option value="0">All / general</option><option value="1">01 · Sense of Purpose</option><option value="2">02 · Scope and Awareness</option><option value="3">03 · Orientation</option><option value="4">04 · Content</option><option value="5">05 · Opportunities for Practice</option><option value="6">06 · Recognition and Reflection</option><option value="7">07 · Environmental Affordances</option><option value="8">08 · Cultural Context</option></select></div>
@@ -1270,10 +1262,10 @@ const AP_NAMES=['','Sense of Purpose','Scope & Awareness','Orientation','Content
 const avatarColors=['#7B3D42','#1E2D4A','#C4724A','#5B3D5A','#3B7A8F','#7A7840','#8B7B6B'];
 
 const defaultFeatures=[
-  {name:'Strength',def:'How visible or consequential purposeful direction feels in the moment.'},
-  {name:'Durability',def:'Whether that direction seems sustained over time or only briefly present.'},
-  {name:'Fit',def:'Whether it feels connected to the young person’s identity, values, and lived reality.'},
-  {name:'Resonance',def:'Whether any aspect of purpose actually matters to a young person, and aligns with how they see themselves in the world.'}
+  {name:"It's Strength",def:'How visible or consequential purposeful direction feels in the moment.'},
+  {name:"It's Durability",def:'Whether that direction seems sustained over time or only briefly present.'},
+  {name:"It's Fit within a context",def:'Whether it feels connected to the young person’s identity, values, and lived reality.'},
+  {name:"It's Resonance for the young person",def:'Whether any aspect of purpose actually matters to a young person, and aligns with how they see themselves in the world.'}
 ];
 let features=defaultFeatures.map(f=>({...f}));
 
@@ -1313,7 +1305,7 @@ const roleThemeWeights={
 };
 const stanceNotes={
   'Notice and name what is already there':'You would point out purpose, effort, or direction that may already be present.',
-  'Look for the supports that make it possible':'You would look beyond the individual toward relationships, opportunities, and settings.',
+  'Look for the supports that make it possible':'You would look beyond the individual toward relationships, opportunities, and settings that might help amplify purpose.',
   'Change the setting':'You would adjust the program, classroom, or relationship so purpose has more room to grow.',
   'Ask someone else to look with me':'You would bring the question to another person or team so the picture gets wider.'
 };
@@ -1475,6 +1467,9 @@ function roleSentence(){
   if(!roles.length)return 'a mixed field view';
   if(roles.length===1)return roles[0];
   return `${roles.slice(0,-1).join(', ')} and ${roles.at(-1)}`;
+}
+function participantRole(){
+  return selectedRoles.size?roleSentence():'Exchange participant';
 }
 function conditionValues(){
   return {
@@ -1729,6 +1724,7 @@ function summaryHtml(){
   const conditionScore=Math.round((values.opportunity+values.recognition+values.practice)/3);
   const contributions=userContributionSummary();
   const compassSrc=new URL('assets/role-compass.png',location.href).href;
+  const labLogoSrc=new URL('assets/pip-lab-download-logo.png',location.href).href;
   const contributionCount=Object.values(contributions).reduce((sum,items)=>sum+items.length,0);
   const narrative=`Seen through ${roles}, this portrait centers ${topConditionLabel(values)} for ${groups}. Your working definition of purpose is: "${purposeDefinition}" Your first reading cue is ${features[0]?.name||'still forming'}, and your next action is: ${currentStance}. Across ${contributionCount} contribution${contributionCount===1?'':'s'}, your responses suggest that seeing youth purpose means noticing both young people's direction and the conditions that make that direction easier to practice.`;
   return `<!DOCTYPE html>
@@ -1743,6 +1739,9 @@ function summaryHtml(){
 .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch;padding:30px;border-radius:24px;background:#1E2D4A;color:#fff;margin-bottom:22px;overflow:hidden}
 .hero-art{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08)}
 .hero-art img{width:100%;height:100%;min-height:260px;object-fit:cover;display:block}
+.brand-strip{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:14px 18px;border:1px solid #E0DEDB;border-radius:16px;background:#fff}
+.brand-strip img{width:174px;max-width:44%;height:auto;display:block}
+.brand-strip span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6B6864;font-weight:700;text-align:right}
 .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;margin-bottom:10px}
 h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
 .sub{font-size:16px;opacity:.82;margin:0}
@@ -1754,11 +1753,15 @@ h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
 .text{font-size:16px;color:#4f4c48;white-space:pre-wrap}
 .wide{grid-column:1/-1}
 .note{padding:18px 20px;border-left:4px solid #3B7A8F;background:#F0EFED;border-radius:12px;color:#4f4c48}
-@media(max-width:720px){.hero,.grid{grid-template-columns:1fr}.sheet{padding:28px 16px}h1{font-size:32px}}
+@media(max-width:720px){.hero,.grid{grid-template-columns:1fr}.sheet{padding:28px 16px}h1{font-size:32px}.brand-strip{align-items:flex-start;flex-direction:column}.brand-strip img{max-width:220px;width:70%}.brand-strip span{text-align:left}}
 </style>
 </head>
 <body>
   <main class="sheet">
+    <section class="brand-strip">
+      <img src="${escapeHtml(labLogoSrc)}" alt="Purpose and Identity Processes Lab logo">
+      <span>Purpose and Identity Processes Lab</span>
+    </section>
     <section class="hero">
       <div>
         <div class="eyebrow">Portrait of Seeing</div>
@@ -1993,20 +1996,15 @@ function resetFeatures(){
   renderFeatures();
 }
 function sendFeatureReflection(){
-  openTab('discussions');
-  openNewPost('design');
-  const title=document.getElementById('fTitle');
-  const body=document.getElementById('fBody');
-  const ap=document.getElementById('fAp');
   const reflection=(document.getElementById('featureReflect')?.value||'').trim();
-  if(ap)ap.value='0';
-  if(title)title.value='How I would read a purposeful experience';
-  if(body)body.value=`Reading order: ${features.map(f=>f.name).join(' → ')}${reflection?`\n\nWhat this helps me see: ${reflection}`:''}`;
+  if(reflection)portraitContributions.reflections.unshift(`Reading order: ${features.map(f=>f.name).join(' → ')}. ${reflection}`);
   saveRemote('feature_reflection',{
     feature_order:features.map(f=>f.name),
     reflection,
     added_features:features.filter(f=>!defaultFeatures.some(d=>d.name===f.name))
   });
+  renderKnapsack();
+  flashBuilderToast();
 }
 
 // ─── Community Pulse ──────────────────────────────────────
@@ -2099,7 +2097,7 @@ function openNewPost(cat){
 }
 function submitPost(){
   const author=document.getElementById('fAuthor').value.trim()||'Anonymous';
-  const role=document.getElementById('fRole').value.trim()||'Exchange participant';
+  const role=participantRole();
   const cat=document.getElementById('fCat').value;
   const ap=parseInt(document.getElementById('fAp').value)||0;
   const title=document.getElementById('fTitle').value.trim();
@@ -2113,7 +2111,7 @@ function submitPost(){
   renderPosts();
   document.getElementById('newPostPanel').classList.remove('open');
   document.getElementById('newPostBtn').textContent='+ Start a discussion';
-  ['fAuthor','fRole','fTitle','fBody'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  ['fAuthor','fTitle','fBody'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
   document.getElementById('postsList').scrollIntoView({behavior:'smooth',block:'start'});
   renderKnapsack();
 }
@@ -2165,13 +2163,13 @@ function submitPrompt(){
   const q=(document.getElementById('pQ')?.value||'').trim();
   const ctx=(document.getElementById('pCtx')?.value||'').trim();
   const ap=parseInt(document.getElementById('pAp')?.value)||0;
-  const role=(document.getElementById('pRole')?.value||'').trim();
+  const role=participantRole();
   if(!q){alert('Please add a question.');return}
   prompts.unshift({id:Date.now(),q,ctx:ctx||'No context provided — context helps others know when to use this.',ap,role,uses:0,used:false});
   portraitContributions.prompts.unshift(q);
   saveRemote('prompt',{question:q,context:ctx,lens_id:ap,role});
   renderPrompts();
-  ['pQ','pCtx','pRole'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  ['pQ','pCtx'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
   document.getElementById('promptCards')?.scrollIntoView({behavior:'smooth',block:'start'});
   renderKnapsack();
 }
@@ -2189,10 +2187,10 @@ function selectPw(id,card){
 function submitNomination(){
   const name=document.getElementById('nominateName').value.trim();
   const def=document.getElementById('nominateDef').value.trim();
-  const role=document.getElementById('nominateRole').value.trim();
+  const role=participantRole();
   if(!name||!def){alert('Please add a name and description for your lens.');return}
   saveRemote('lens_nomination',{target_type:'lens_nominations',target_id:name,payload:{name,definition:def,role}});
-  ['nominateName','nominateDef','nominateRole'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['nominateName','nominateDef'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('nominateConfirm').style.display='block';
 }
 
@@ -2201,12 +2199,11 @@ function submitOpenQuestion(){
   const q=document.getElementById('qSubmitText').value.trim();
   if(!q){alert('Please write a question first.');return}
   const cat=document.getElementById('qSubmitCat').value;
-  const role=document.getElementById('qSubmitRole').value.trim();
+  const role=participantRole();
   prompts.unshift({id:Date.now(),q,ctx:'open_question:'+cat,ap:0,role,uses:0,used:false});
   portraitContributions.questions.unshift(q);
   saveRemote('prompt',{question:q,context:'open_question:'+cat,lens_id:0,role});
   document.getElementById('qSubmitText').value='';
-  document.getElementById('qSubmitRole').value='';
   document.getElementById('qSubmitConfirm').style.display='block';
   setTimeout(()=>{document.getElementById('qSubmitConfirm').style.display='none'},5000);
   renderOpenQuestions();

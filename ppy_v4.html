@@ -139,6 +139,8 @@ h2 em{color:var(--teal);font-style:italic}
 .knapsack-card p{font-size:0.86rem;color:var(--g600);line-height:1.65}
 .knapsack-meta{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem}
 .knapsack-pill{background:rgba(59,122,143,0.1);color:var(--teal);border-radius:999px;padding:0.32rem 0.7rem;font-size:0.76rem;font-weight:700}
+.knapsack-head{display:flex;justify-content:space-between;gap:1.5rem;align-items:flex-start}
+.knapsack-logo{width:154px;max-width:28%;height:auto;object-fit:contain;margin-top:-0.25rem}
 .portrait-builder{
   position:fixed;right:1rem;bottom:1rem;z-index:190;width:min(340px,calc(100vw - 2rem));
   background:rgba(255,255,255,0.96);border:1.5px solid var(--g200);border-radius:14px;
@@ -602,6 +604,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 /* Responsive */
 @media(max-width:900px){
   .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity,.journey-grid,.journey-preview-grid,.role-layout,.artifact-stage,.condition-grid,.seeing-grid,.knapsack-grid,.reveal-grid,.reveal-layout,.portrait-thread{grid-template-columns:1fr;gap:2rem}
+  .knapsack-head{display:block}
+  .knapsack-logo{max-width:190px;width:50%;margin:0 0 1.25rem}
   .feature-workspace{position:static}
   .landing-mark{right:0;width:64rem;height:88vh;opacity:0.2;object-position:center right}
   .ap-filter-list{flex-direction:row;flex-wrap:wrap}
@@ -640,9 +644,9 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   </ul>
 </nav>
 
-<aside class="portrait-builder collapsed" id="portraitBuilder" aria-label="Create your portrait">
+<aside class="portrait-builder collapsed" id="portraitBuilder" aria-label="Building your portrait">
   <div class="builder-top">
-    <button class="builder-toggle" onclick="togglePortraitBuilder(true)" aria-expanded="false" id="builderToggle"><span class="builder-title">Create your portrait</span></button>
+    <button class="builder-toggle" onclick="togglePortraitBuilder(true)" aria-expanded="false" id="builderToggle"><span class="builder-title">Building your portrait</span></button>
     <div class="builder-count" id="builderCount">0/7</div>
   </div>
   <div class="builder-body">
@@ -1094,7 +1098,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div style="margin-bottom:2.5rem">
       <div class="eyebrow">Open Questions</div>
       <div class="rule"></div>
-      <h2>What you <em>still want to know</em></h2>
+      <h2>What do you <em>still want to know?</em></h2>
       <p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add the question that should have been here from the start.</p>
     </div>
     <div class="q-meta">This section will grow as the exchange develops. The questions below are starting points; the most useful contribution may be naming the better question.</div>
@@ -1228,10 +1232,15 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 <!-- PORTRAIT REVEAL -->
 <section id="knapsack">
   <div class="container knapsack-shell">
-    <div class="eyebrow">Your Portrait Reveal</div>
-    <div class="rule"></div>
-    <h2>Produce your <em>Portrait of Seeing</em></h2>
-    <p class="lead" style="font-size:0.975rem">This is the portrait you have been building. It pulls together your role, definition, lens settings, reading order, questions, reflections, and seeing prompts into one shareable view of how you are seeing youth purpose.</p>
+    <div class="knapsack-head">
+      <div>
+        <div class="eyebrow">Your Portrait Reveal</div>
+        <div class="rule"></div>
+        <h2>Produce your <em>Portrait of Purposeful Youth</em></h2>
+        <p class="lead" style="font-size:0.975rem">This is the portrait you have been building. It pulls together your role, definition, lens settings, reading order, questions, reflections, and seeing prompts into one shareable view of how you are seeing youth purpose.</p>
+      </div>
+      <img class="knapsack-logo" src="assets/pip-lab-download-logo.png" alt="Purpose and Identity Processes Lab logo"/>
+    </div>
     <div class="reveal-panel" id="portraitReveal"></div>
     <div class="portrait-thread" id="portraitThread"></div>
     <div class="knapsack-meta" id="knapsackMeta"></div>
@@ -1737,11 +1746,10 @@ function summaryHtml(){
 *{box-sizing:border-box}body{margin:0;background:#FAF7F4;color:#0D1A2E;font-family:Inter,Arial,sans-serif;line-height:1.65}
 .sheet{max-width:920px;margin:0 auto;padding:56px 28px}
 .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch;padding:30px;border-radius:24px;background:#1E2D4A;color:#fff;margin-bottom:22px;overflow:hidden}
+.hero-media{display:grid;gap:14px;align-content:start}
+.hero-logo{justify-self:end;width:178px;max-width:80%;height:auto;display:block}
 .hero-art{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08)}
 .hero-art img{width:100%;height:100%;min-height:260px;object-fit:cover;display:block}
-.brand-strip{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:14px 18px;border:1px solid #E0DEDB;border-radius:16px;background:#fff}
-.brand-strip img{width:174px;max-width:44%;height:auto;display:block}
-.brand-strip span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6B6864;font-weight:700;text-align:right}
 .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;margin-bottom:10px}
 h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
 .sub{font-size:16px;opacity:.82;margin:0}
@@ -1753,23 +1761,22 @@ h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
 .text{font-size:16px;color:#4f4c48;white-space:pre-wrap}
 .wide{grid-column:1/-1}
 .note{padding:18px 20px;border-left:4px solid #3B7A8F;background:#F0EFED;border-radius:12px;color:#4f4c48}
-@media(max-width:720px){.hero,.grid{grid-template-columns:1fr}.sheet{padding:28px 16px}h1{font-size:32px}.brand-strip{align-items:flex-start;flex-direction:column}.brand-strip img{max-width:220px;width:70%}.brand-strip span{text-align:left}}
+@media(max-width:720px){.hero,.grid{grid-template-columns:1fr}.sheet{padding:28px 16px}h1{font-size:32px}.hero-logo{justify-self:start;width:160px}}
 </style>
 </head>
 <body>
   <main class="sheet">
-    <section class="brand-strip">
-      <img src="${escapeHtml(labLogoSrc)}" alt="Purpose and Identity Processes Lab logo">
-      <span>Purpose and Identity Processes Lab</span>
-    </section>
     <section class="hero">
       <div>
-        <div class="eyebrow">Portrait of Seeing</div>
+        <div class="eyebrow">Portrait of Purposeful Youth</div>
         <h1>Portraits of Purposeful Youth</h1>
         <p class="sub">A personal recap of the perspective you built across the exchange.</p>
         <div class="narrative">${escapeHtml(narrative)}</div>
       </div>
-      <div class="hero-art"><img src="${escapeHtml(compassSrc)}" alt="Illustrated compass and paths representing the portrait journey"></div>
+      <div class="hero-media">
+        <img class="hero-logo" src="${escapeHtml(labLogoSrc)}" alt="Purpose and Identity Processes Lab logo">
+        <div class="hero-art"><img src="${escapeHtml(compassSrc)}" alt="Illustrated compass and paths representing the portrait journey"></div>
+      </div>
     </section>
     <section class="grid">
       <article class="card">

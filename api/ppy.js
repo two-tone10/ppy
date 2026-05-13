@@ -7,6 +7,9 @@ const TABLES = {
   feature_reflection: 'feature_reflections',
   copy_edit: 'copy_edit_notes',
   starter_response: 'starter_responses',
+  onboarding_response: 'onboarding_responses',
+  purpose_definition: 'purpose_definitions',
+  lens_nomination: 'lens_nominations',
   event: 'interaction_events'
 };
 
@@ -45,6 +48,21 @@ const ADMIN_TABLES = {
     table: 'starter_responses',
     status: true,
     select: 'id,created_at,status,starter_index,response'
+  },
+  onboarding: {
+    table: 'onboarding_responses',
+    status: true,
+    select: 'id,created_at,status,roles,youth_groups,purpose_response'
+  },
+  purpose_definitions: {
+    table: 'purpose_definitions',
+    status: true,
+    select: 'id,created_at,status,definition'
+  },
+  nominations: {
+    table: 'lens_nominations',
+    status: true,
+    select: 'id,created_at,status,name,definition,role'
   },
   pulse: {
     table: 'pulse_votes',
@@ -416,6 +434,32 @@ async function record(body) {
     return insert(TABLES.starter_response, {
       starter_index: Number.parseInt(payload.starter_index, 10) || 0,
       response: cleanText(payload.response),
+      status: 'approved'
+    });
+  }
+
+  if (type === 'onboarding_response') {
+    return insert(TABLES.onboarding_response, {
+      roles: Array.isArray(payload.roles) ? payload.roles.map((role) => cleanText(role)).filter(Boolean) : [],
+      youth_groups: Array.isArray(payload.youth_groups) ? payload.youth_groups.map((group) => cleanText(group)).filter(Boolean) : [],
+      purpose_response: cleanText(payload.purpose_response),
+      status: 'approved'
+    });
+  }
+
+  if (type === 'purpose_definition') {
+    return insert(TABLES.purpose_definition, {
+      definition: cleanText(payload.definition),
+      status: 'approved'
+    });
+  }
+
+  if (type === 'lens_nomination') {
+    const nomination = payload.payload || payload;
+    return insert(TABLES.lens_nomination, {
+      name: cleanText(nomination.name || payload.target_id),
+      definition: cleanText(nomination.definition),
+      role: cleanText(nomination.role),
       status: 'approved'
     });
   }

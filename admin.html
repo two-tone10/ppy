@@ -158,6 +158,9 @@ button:disabled{opacity:.55;cursor:not-allowed}
           <option value="features">Feature reflections</option>
           <option value="copy_edits">Copy edit notes</option>
           <option value="starters">Starter responses</option>
+          <option value="onboarding">Onboarding responses</option>
+          <option value="purpose_definitions">Purpose definitions</option>
+          <option value="nominations">Lens nominations</option>
           <option value="pulse">Pulse votes</option>
           <option value="events">Interaction events</option>
         </select>
@@ -191,7 +194,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 </main>
 
 <script>
-const MODERATABLE = new Set(['posts','comments','sparks','prompts','features','copy_edits','starters']);
+const MODERATABLE = new Set(['posts','comments','sparks','prompts','features','copy_edits','starters','onboarding','purpose_definitions','nominations']);
 const FIELD_LABELS = {
   author:'Author',
   role:'Role',
@@ -211,6 +214,11 @@ const FIELD_LABELS = {
   replacement_wording:'Replacement wording',
   starter_index:'Starter',
   response:'Response',
+  roles:'Roles',
+  youth_groups:'Youth groups',
+  purpose_response:'Purpose response',
+  name:'Name',
+  definition:'Definition',
   prompt_key:'Prompt key',
   event_type:'Event type',
   target_type:'Target type',

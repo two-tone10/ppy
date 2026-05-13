@@ -42,6 +42,103 @@ h2 em{color:var(--teal);font-style:italic}
 .btn-ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.18)}
 .btn-ghost:hover{background:rgba(255,255,255,0.13)}
 
+/* GUIDED START */
+#journey{background:var(--white);border-top:1px solid var(--g100);border-bottom:1px solid var(--g100)}
+.journey-shell{display:grid;gap:2rem}
+.journey-tabs{display:flex;gap:0.45rem;flex-wrap:wrap;background:var(--g100);padding:0.35rem;border-radius:10px;width:fit-content}
+.journey-tab{border:none;background:transparent;color:var(--g600);font:600 0.86rem var(--sans);padding:0.65rem 1rem;border-radius:7px;cursor:pointer;transition:all .18s}
+.journey-tab:hover{color:var(--navy)}
+.journey-tab.active{background:var(--white);color:var(--navy);box-shadow:0 1px 6px rgba(0,0,0,0.1)}
+.journey-panel{display:none}
+.journey-panel.active{display:block}
+.journey-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:2rem;align-items:start}
+.artifact-preview,.role-art{background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1rem}
+.artifact-preview img,.role-art img{display:block;width:100%;border-radius:8px}
+.mini-artifact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.15rem}
+.mini-artifact{padding:1rem;border-radius:10px;border:1.5px solid var(--g200);background:var(--cream)}
+.mini-artifact strong{display:block;font-family:var(--serif);font-size:1rem;color:var(--navy);margin-bottom:0.35rem}
+.mini-artifact p{font-size:0.86rem;color:var(--g600);line-height:1.65}
+#journey-about a{color:var(--teal);font-weight:600;text-decoration-thickness:1.5px;text-underline-offset:3px}
+.role-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.role-picks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.8rem}
+.role-chip{
+  min-height:96px;border-radius:10px;border:1.5px solid var(--g200);
+  background:var(--white);padding:0.9rem;text-align:left;cursor:pointer;
+  transition:border-color .18s,box-shadow .18s,transform .18s;font-family:var(--sans);
+}
+.role-chip:hover{border-color:var(--teal);box-shadow:0 6px 18px rgba(59,122,143,0.08);transform:translateY(-1px)}
+.role-chip.active{border-color:var(--teal);background:rgba(59,122,143,0.08)}
+.role-chip span{display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:0.3rem}
+.role-chip strong{display:block;font-family:var(--serif);font-size:1rem;color:var(--navy);line-height:1.25}
+.role-workspace{background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1.35rem}
+.role-form-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--navy);margin-bottom:0.45rem}
+.role-form-copy{font-size:0.88rem;color:var(--g600);line-height:1.65;margin-bottom:1rem}
+.role-workspace .form-row>span{display:block;font-size:0.75rem;font-weight:600;color:var(--navy);margin-bottom:0.28rem;letter-spacing:0.04em}
+.choice-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.55rem}
+.choice-pill{border:1.5px solid var(--g200);background:var(--white);color:var(--g600);border-radius:999px;padding:0.38rem 0.75rem;font:600 0.78rem var(--sans);cursor:pointer}
+.choice-pill.active{border-color:var(--teal);background:var(--teal);color:var(--white)}
+.artifact-stage{display:grid;grid-template-columns:0.9fr 1.1fr;gap:1.25rem;margin-top:1.4rem}
+.viz-card,.report-card,.summary-card{border:1.5px solid var(--g200);border-radius:12px;background:var(--white);padding:1.15rem}
+.artifact-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:0.35rem}
+.artifact-copy{font-size:0.85rem;color:var(--g600);line-height:1.65;margin-bottom:0.9rem}
+.viz-list{display:flex;flex-direction:column;gap:0.7rem}
+.viz-row{display:grid;grid-template-columns:120px 1fr auto;gap:0.65rem;align-items:center}
+.viz-label{font-size:0.78rem;color:var(--g600)}
+.viz-track{height:10px;background:var(--g100);border-radius:999px;overflow:hidden}
+.viz-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--burgundy))}
+.viz-score{font-size:0.76rem;font-weight:700;color:var(--navy)}
+.report-body{font-size:0.9rem;color:var(--g600);line-height:1.75}
+.artifact-actions{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem}
+.summary-card{margin-top:1.25rem;background:var(--cream)}
+.summary-lines{display:grid;gap:0.55rem;font-size:0.86rem;color:var(--g600)}
+.summary-lines strong{color:var(--navy)}
+.save-note{display:none;font-size:0.83rem;color:var(--teal);font-style:italic;align-self:center}
+
+/* COLLECTIBLE ACTIVITIES */
+.artifact-kicker{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.55rem}
+.condition-lab,.seeing-response,.knapsack-shell,.purpose-definition-card{border:1.5px solid var(--g200);border-radius:14px;background:var(--white);padding:1.35rem}
+.condition-lab{margin-top:1.5rem}
+.purpose-definition-card{max-width:880px;margin:1.5rem auto 0;background:linear-gradient(180deg,#fff 0%,#fbf7f2 100%)}
+.purpose-definition-card .form-row textarea{min-height:180px;font-size:1rem;line-height:1.7}
+.purpose-definition-card .definition-label{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--navy);margin-bottom:0.85rem}
+.purpose-definition-note{max-width:760px}
+.condition-grid{display:grid;grid-template-columns:190px 1fr;gap:1.25rem;align-items:center}
+.purpose-dial{
+  width:170px;height:170px;border-radius:50%;margin:0 auto;position:relative;
+  background:conic-gradient(var(--teal) calc(var(--dial,55) * 1%),var(--g100) 0);
+  display:grid;place-items:center;
+}
+.purpose-dial::before{content:'';position:absolute;inset:18px;background:var(--white);border-radius:50%;border:1px solid var(--g200)}
+.dial-core{position:relative;z-index:1;text-align:center;width:110px}
+.dial-core strong{display:block;font-family:var(--serif);font-size:1.4rem;color:var(--navy);line-height:1}
+.dial-core span{display:block;font-size:0.72rem;color:var(--g600);line-height:1.35;margin-top:0.35rem}
+.condition-controls{display:grid;gap:0.9rem}
+.slider-row label{display:flex;justify-content:space-between;gap:1rem;font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
+.slider-row input{width:100%;accent-color:var(--teal)}
+.condition-summary,.seeing-summary{margin-top:0.9rem;padding:0.85rem 0.95rem;border-radius:10px;background:var(--cream);font-size:0.88rem;color:var(--g600);line-height:1.65}
+.vote-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.85rem}
+.vote-chip{border:1.5px solid var(--g200);background:var(--white);color:var(--g600);border-radius:999px;padding:0.42rem 0.8rem;font:600 0.78rem var(--sans);cursor:pointer}
+.vote-chip.active{border-color:var(--teal);background:var(--teal);color:var(--white)}
+.seeing-response{margin:2rem auto 0;max-width:760px;text-align:left;background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.14)}
+.seeing-response h3{font-family:var(--serif);font-size:1.15rem;color:var(--white);margin-bottom:0.35rem}
+.seeing-response p{font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.7}
+.seeing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem;margin-top:1rem}
+.seeing-card{
+  border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.88);border-radius:10px;padding:0.85rem;text-align:left;cursor:pointer;
+  font:600 0.86rem var(--sans);line-height:1.45;transition:all .18s;
+}
+.seeing-card span{display:block;font-size:0.73rem;font-weight:500;color:rgba(255,255,255,0.58);margin-top:0.3rem}
+.seeing-card.active{border-color:var(--teal-light);background:rgba(123,191,212,0.16);color:var(--white)}
+.seeing-summary{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.72)}
+#knapsack{background:var(--cream)}
+.knapsack-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.25rem}
+.knapsack-card{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1rem}
+.knapsack-card strong{display:block;font-family:var(--serif);font-size:1rem;color:var(--navy);margin-bottom:0.35rem}
+.knapsack-card p{font-size:0.86rem;color:var(--g600);line-height:1.65}
+.knapsack-meta{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem}
+.knapsack-pill{background:rgba(59,122,143,0.1);color:var(--teal);border-radius:999px;padding:0.32rem 0.7rem;font-size:0.76rem;font-weight:700}
+
 /* LANDING */
 #landing{background:var(--ink);min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 6rem;position:relative;overflow:hidden}
 #landing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(59,122,143,0.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 70%,rgba(123,61,66,0.08) 0%,transparent 50%)}
@@ -57,8 +154,6 @@ h2 em{color:var(--teal);font-style:italic}
 .prov-name{font-family:var(--serif);font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--white);font-weight:600;margin-bottom:2rem}
 .prov-name span{color:var(--teal-light);font-style:italic}
 .prov-actions{display:flex;gap:1rem;flex-wrap:wrap}
-.prov-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.2);font-size:0.72rem;letter-spacing:0.08em;text-align:center}
-.prov-scroll::after{content:'↓';display:block;margin-top:0.3rem;font-size:1rem}
 
 /* CLAIM */
 #claim{background:var(--cream)}
@@ -69,7 +164,6 @@ h2 em{color:var(--teal);font-style:italic}
 .consequence-list li::before{content:'→';color:var(--teal);font-weight:700;margin-top:.1rem;flex-shrink:0}
 
 /* ABOUT */
-#about{background:var(--white);border-top:1px solid var(--g100);border-bottom:1px solid var(--g100)}
 .about-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:4rem;align-items:start}
 .about-panel{background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1.6rem}
 .about-panel-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--navy);margin-bottom:0.8rem}
@@ -137,11 +231,16 @@ h2 em{color:var(--teal);font-style:italic}
 .ap-expanded strong{display:block;margin-bottom:0.35rem;font-size:0.7rem;letter-spacing:0.07em;text-transform:uppercase;opacity:0.7}
 .ap-exchange-link{display:inline-flex;align-items:center;gap:0.3rem;margin-top:0.75rem;font-size:0.75rem;font-weight:600;opacity:0.6;text-decoration:underline;cursor:pointer;transition:opacity .2s}
 .ap-exchange-link:hover{opacity:1}
-.nominate-card{background:var(--navy)!important;border:2px dashed rgba(255,255,255,0.32)!important;color:var(--white)!important;box-shadow:0 4px 20px rgba(30,45,74,0.18)!important}
-.nominate-card:hover{border-color:rgba(255,255,255,0.6)!important;transform:translateY(-3px);box-shadow:0 10px 32px rgba(30,45,74,0.25)!important}
-.nominate-card input,.nominate-card textarea{outline:none}
-.nominate-card input:focus,.nominate-card textarea:focus{border-color:rgba(255,255,255,0.55)!important}
-.nominate-card input::placeholder,.nominate-card textarea::placeholder{color:rgba(255,255,255,0.38)}
+.nominate-card{background:#F5F5F4!important;border:2px dashed var(--g400)!important;color:var(--navy)!important;box-shadow:none!important}
+.nominate-card:hover{border-color:var(--teal)!important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(30,45,74,0.08)!important}
+.nominate-card .ap-num{opacity:0.62!important}
+.nominate-card .ap-badge{background:rgba(30,45,74,0.08)!important;color:var(--navy)!important}
+.nominate-card .ap-def{color:var(--g600);opacity:1}
+.nominate-card input,.nominate-card textarea{outline:none;color:var(--ink)!important;background:var(--white)!important;border:1.5px solid var(--g200)!important}
+.nominate-card input:focus,.nominate-card textarea:focus{border-color:var(--teal)!important}
+.nominate-card input::placeholder,.nominate-card textarea::placeholder{color:var(--g400)!important}
+.nominate-card button{background:var(--white)!important;border:1.5px solid var(--g200)!important;color:var(--navy)!important}
+.nominate-card button:hover{border-color:var(--teal)!important;color:var(--teal)!important}
 
 /* Lens reactions */
 .ap-reactions{display:flex;gap:0.4rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid rgba(255,255,255,0.12);flex-wrap:wrap}
@@ -491,7 +590,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 
 /* Responsive */
 @media(max-width:900px){
-  .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity{grid-template-columns:1fr;gap:2rem}
+  .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity,.journey-grid,.role-layout,.artifact-stage,.condition-grid,.seeing-grid,.knapsack-grid{grid-template-columns:1fr;gap:2rem}
   .feature-workspace{position:static}
   .landing-mark{right:0;width:64rem;height:88vh;opacity:0.2;object-position:center right}
   .ap-filter-list{flex-direction:row;flex-wrap:wrap}
@@ -503,6 +602,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   .nav-links{display:none}
   section{padding:4rem 1.25rem}
   .form-2col{grid-template-columns:1fr}
+  .role-picks,.mini-artifact-grid{grid-template-columns:1fr}
+  .viz-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -513,10 +614,12 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   <div class="nav-logo">Portraits of <em>Purposeful</em> Youth</div>
   <ul class="nav-links">
     <li><a href="#landing">Home</a></li>
+    <li><a href="#journey">Start Here</a></li>
     <li><a href="#claim">The Claim</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#purpose-definition">Define Purpose</a></li>
     <li><a href="#framework">Framework</a></li>
     <li><a href="#pulse">Community Pulse</a></li>
+    <li><a href="#knapsack">Your Knapsack</a></li>
     <li><a href="#questions">Open Questions</a></li>
     <li><a href="#exchange" class="nav-cta">The Exchange</a></li>
   </ul>
@@ -536,36 +639,110 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <span class="sentence">We rarely ask whether the conditions around youth <em>support</em> it.</span>
     </div>
     <div class="prov-pause"></div>
-    <p class="prov-response">This asymmetry can contribute to deficit-thinking about what youth are missing within themselves, while letting environments, institutions, and relationships that shape their development off the hook. This exchange is about changing how we see youth capacities for purposeful experience.</p>
+    <p class="prov-response">This asymmetry can impose a deficit framing of young people as missing something, while letting programs, institutions, and relationships that shape their development off the hook. This exchange invites seeing youth differently.</p>
     <div class="prov-name">Portraits of <span>Purposeful</span> Youth</div>
     <div class="prov-actions">
-      <a href="#exchange" class="btn btn-teal">Help shape the questions</a>
-      <a href="#claim" class="btn btn-teal">What changes when you see it this way</a>
-      <a href="#about" class="btn btn-ghost">How this works →</a>
+      <a href="#journey" class="btn btn-teal">Welcome</a>
     </div>
   </div>
-  <div class="prov-scroll">scroll</div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container about-wrap">
+<!-- GUIDED START -->
+<section id="journey">
+  <div class="container journey-shell">
     <div>
-      <div class="eyebrow">About &amp; Context</div>
+      <div class="eyebrow">Start Here</div>
       <div class="rule"></div>
-      <h2>This is a place to <em>learn in public</em></h2>
-      <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is an open exchange hosted by the <a href="https://www.lipurposefe.com" target="_blank" rel="noopener">Purpose and Identity Processes (PIP) Lab</a> at Cornell University. PIP Lab is an academic research lab interested in how young people develop purpose and identity in real contexts.</p>
-      <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">The goal of this exchange is not to turn visitors into research participants, but to help improve the quality of our questions. We want our research to stay grounded in the issues, tensions, and solutions that matter to young people and the systems around them.</p>
+      <h2>Step into the <em>exchange</em></h2>
+      <p class="lead" style="font-size:0.975rem">Take things in, tell us a little about you and your perspective, before heading into this experience.</p>
     </div>
-    <div class="about-panel">
-      <div class="about-panel-title">How to engage with this exchange</div>
-      <p>Information shared here is meant to guide inquiry through interaction. Responses are not treated as survey data, counted as findings, or used as a substitute for ethical research design.</p>
-      <p>What people share helps us notice where the framework is clear, where it misses lived experience, and what questions future research might ask more usefully and responsibly.</p>
-      <ul class="about-list">
-        <li><span>1</span><div><strong>Ground the work.</strong> Keep our questions connected to real settings, not just academic silos.</div></li>
-        <li><span>2</span><div><strong>Surface better questions.</strong> Help us see what actually needs inquiry before we design studies around it.</div></li>
-        <li><span>3</span><div><strong>Respect different kinds of knowing.</strong> Treat practice, lived experience, and scholarship as distinguishable and equally beneficial sources of guidance.</div></li>
-      </ul>
+    <div class="journey-tabs" aria-label="Start here tabs">
+      <button class="journey-tab active" data-journey="about" onclick="openJourney('about',this)">About</button>
+      <button class="journey-tab" data-journey="roles" onclick="openJourney('roles',this)">Your Role</button>
+      <button class="journey-tab" data-journey="artifacts" onclick="openJourney('artifacts',this)">Gives &amp; Gets</button>
+    </div>
+
+    <div class="journey-panel active" id="journey-about">
+      <div class="journey-grid">
+        <div>
+          <div class="eyebrow">About This Project</div>
+          <h2 style="margin-bottom:0.85rem">Learn in public. <em>Respond in small moves.</em></h2>
+          <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is an open exchange hosted by the <a href="https://www.lipurposefe.com" target="_blank" rel="noopener">Purpose and Identity Processes Lab</a> at Cornell University.</p>
+          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is an emerging initiative dedicated to understanding how young people experience, express, and develop purpose in their lives. Rather than treating purpose as a single trait, score, or outcome, Portraits invites a considering purposeful experience through a broader view that honors the many ways it may manifest and be supported in their lives. The project tries to explore the variety forms purpose can take across different contexts, opportunities, and lived experiences.</p>
+          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">At the heart of the initiative is a simple belief: purpose holds more than a person's ability to articulate it or even the degree they feel it from time to time. Thus, our task is not to solely on those aspects of purpose, but to better notice, support, and learn more about wider ways purpose shows up in their lives.</p>
+          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">The project seeks to bring together insights from developmental science, education, community practice, and lived experience to create richer and more thoughtful conversations about youth purpose, and the environments that help it emerge and grow.</p>
+          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">The term portrait is intentional. No single measure, moment, or characteristic can fully capture the complexity of a young person’s purposeful life. Portraits of Purposeful Youth instead seeks to illuminate multiple dimensions of development, experience, and context that together shape how purpose is understood and lived.</p>
+          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">We hope this space feels both rigorous and generative: a place for inquiry, reflection, dialogue, and possibility.</p>
+          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">Your responses shared here are not treated as survey findings. Instead, they can help sharpen future research questions, reveal where the framework feels incomplete, and produce <strong>two takeaways</strong> we hope are useful for you: a role-based field view and a personalized summary of your own responses.</p>
+          <div class="mini-artifact-grid">
+            <div class="mini-artifact"><strong>Artifact 1: An integrative view</strong><p>Receive a visual synthesis of what others are seeing in youth purpose.</p></div>
+            <div class="mini-artifact"><strong>Artifact 2: Your personal recap</strong><p>A downloadable summary of your perspective to email yourself or share with collaborators.</p></div>
+          </div>
+        </div>
+        <div class="artifact-preview"><img src="assets/artifact-preview.png" alt="Illustrated preview of a role-based visualization and a personal reflection summary"/></div>
+      </div>
+    </div>
+
+    <div class="journey-panel" id="journey-roles">
+      <div class="role-layout">
+        <div>
+          <div class="role-art"><img src="assets/role-compass.png" alt="Illustrated compass and branching paths suggesting direction and youth development"/></div>
+          <div class="role-picks" style="margin-top:1rem">
+            <button class="role-chip" data-role="researcher" onclick="toggleRole(this)"><span>Research</span><strong>Researcher or Scholar</strong></button>
+            <button class="role-chip" data-role="practitioner" onclick="toggleRole(this)"><span>Practice</span><strong>Practitioner or Educator</strong></button>
+            <button class="role-chip" data-role="policy" onclick="toggleRole(this)"><span>Systems</span><strong>Policymaker or Funder</strong></button>
+            <button class="role-chip" data-role="youth" onclick="toggleRole(this)"><span>Lived view</span><strong>Young Person</strong></button>
+            <button class="role-chip" data-role="parent" onclick="toggleRole(this)"><span>Family</span><strong>Parent or Guardian</strong></button>
+            <button class="role-chip" data-role="mentor" onclick="toggleRole(this)"><span>Support</span><strong>Mentor or Champion</strong></button>
+          </div>
+        </div>
+        <div class="role-workspace">
+          <div class="role-form-title">Choose one or more roles</div>
+          <p class="role-form-copy">The exchange needs different things from different people. Pick the vantage points that feel true for you, then answer two quick questions.</p>
+          <label class="form-row">
+            <span>What brings you to thinking about youth purpose right now?</span>
+            <textarea id="purposeQuickAnswer" placeholder="A short answer is enough..." oninput="refreshArtifacts()"></textarea>
+          </label>
+          <div class="form-row">
+            <label>When you think of "youth," who comes to mind?</label>
+            <div class="choice-row" id="youthChoices">
+              <button class="choice-pill" data-group="children" onclick="toggleYouthGroup(this)">Children</button>
+              <button class="choice-pill" data-group="early adolescents" onclick="toggleYouthGroup(this)">Early adolescents</button>
+              <button class="choice-pill" data-group="late adolescents" onclick="toggleYouthGroup(this)">Late adolescents</button>
+              <button class="choice-pill" data-group="college students" onclick="toggleYouthGroup(this)">College students</button>
+            </div>
+          </div>
+          <div class="artifact-actions">
+            <button class="btn-sm btn-navy" onclick="saveOnboardingResponse()">Save &amp; see artifacts</button>
+            <button class="btn-sm btn-outline" onclick="openTab('discussions')">Continue to the exchange</button>
+            <span class="save-note" id="onboardingSaveNote">Saved to the exchange.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-panel" id="journey-artifacts">
+      <div class="artifact-stage">
+        <div class="viz-card">
+          <div class="artifact-title">How selected roles frame youth</div>
+          <p class="artifact-copy">A lightweight role-based visualization generated from the role lens you selected at the start.</p>
+          <div class="viz-list" id="roleViz"></div>
+        </div>
+        <div class="report-card">
+          <div class="artifact-title">Gentle synthesis</div>
+          <p class="artifact-copy">This is an on-page narrative prototype: concise, interpretive, and designed to become AI-assisted later if you choose to connect a text-generation service.</p>
+          <div class="report-body" id="gentleReport"></div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="artifact-title">Your private response summary</div>
+        <p class="artifact-copy">Download a clean recap of what you entered here, or open an email draft to yourself.</p>
+        <div class="summary-lines" id="personalSummary"></div>
+        <div class="artifact-actions">
+          <button class="btn-sm btn-navy" onclick="downloadResponseSummary()">Download your responses</button>
+          <button class="btn-sm btn-outline" onclick="emailResponseSummary()">Email them to yourself</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -580,13 +757,62 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is a claim with evidence behind it. Purpose — a self-organizing and forward-looking aim — is a developmental resource. But it does not emerge by chance. It grows in relation to what young people can see, what they are given the chance to do, who recognizes them, and what their environment makes possible.</p>
     </div>
     <div>
-      <h2>What your perspective informs</h2>
+      <h2><em>Tune the way you see purpose.</em> <span style="display:block;color:var(--teal);font-family:var(--sans);font-size:1rem;font-style:normal;font-weight:700;margin-top:0.35rem">What your perspective can impact:</span></h2>
       <ul class="consequence-list">
         <li>What researchers study — shifting from traits and scores to mechanisms and conditions</li>
         <li>What practitioners build — designing environments that actively cultivate purpose</li>
         <li>What policymakers fund — holding institutions accountable for creating conditions that support purposeful development</li>
         <li>Who is seen as purposeful — recognizing that constrained purpose often reflects constrained conditions, not constrained potential</li>
       </ul>
+      <div class="condition-lab">
+        <div class="artifact-kicker">Artifact · Set your lens</div>
+        <div class="condition-grid">
+          <div class="purpose-dial" id="conditionDial">
+            <div class="dial-core"><strong id="conditionDialScore">55</strong><span>field of view</span></div>
+          </div>
+          <div class="condition-controls">
+            <div class="slider-row">
+              <label><span>I notice young people's direction</span><span id="opportunityValue">55</span></label>
+              <input type="range" min="0" max="100" value="55" id="opportunitySlider" oninput="updateConditionPortrait()"/>
+            </div>
+            <div class="slider-row">
+              <label><span>I notice the supports that surround young people</span><span id="recognitionValue">55</span></label>
+              <input type="range" min="0" max="100" value="55" id="recognitionSlider" oninput="updateConditionPortrait()"/>
+            </div>
+            <div class="slider-row">
+              <label><span>I notice blocked pathways for young people</span><span id="practiceValue">55</span></label>
+              <input type="range" min="0" max="100" value="55" id="practiceSlider" oninput="updateConditionPortrait()"/>
+            </div>
+          </div>
+        </div>
+        <div class="condition-summary" id="conditionSummary"></div>
+        <div class="vote-row" aria-label="Where do you expect to look first">
+          <button class="vote-chip" data-overlooked="the young person" onclick="chooseOverlooked(this)">The young person</button>
+          <button class="vote-chip" data-overlooked="their relationships" onclick="chooseOverlooked(this)">Relationships</button>
+          <button class="vote-chip" data-overlooked="their setting" onclick="chooseOverlooked(this)">Programs &amp; setting</button>
+          <button class="vote-chip" data-overlooked="the wider culture" onclick="chooseOverlooked(this)">Wider culture</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PURPOSE DEFINITION -->
+<section id="purpose-definition">
+  <div class="container">
+    <div class="eyebrow">Your Working Definition</div>
+    <div class="rule"></div>
+    <h2>Define <em>purpose</em> before the portraits define it for you.</h2>
+    <p class="lead purpose-definition-note" style="font-size:0.975rem">Carry a working definition into the rest of the exchange. It does not need to be polished. We are interested in the words you are operating with right now.</p>
+    <div class="purpose-definition-card">
+      <label class="definition-label" for="purposeDefinitionInput">I would define purpose as:</label>
+      <div class="form-row">
+        <textarea id="purposeDefinitionInput" placeholder="Write in your own terms..." oninput="refreshArtifacts()"></textarea>
+      </div>
+      <div class="artifact-actions">
+        <button class="btn-sm btn-navy" onclick="savePurposeDefinition()">Save definition</button>
+        <span class="save-note" id="purposeDefinitionSaveNote">Saved to the exchange.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -595,9 +821,21 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 <section id="argument">
   <div class="arg-inner">
     <div class="arg-eyebrow">What makes this an exchange?</div>
-    <div class="arg-claim">If purpose develops in conditions,<br>then knowledge about purpose development<br>must <em>recognize and engage</em> with <span class="plain-white">those conditions.</span></div>
-    <p class="arg-body">A framework that engages only with academic theory is limited in what it can accomplish. It treats knowledge as fixed, delivered from above, and available to too few people. More generative knowledge has to be cultivated through practice, recognition, and conditions that invite many ways of knowing. The academic conversation around purpose has been happening in a closed loop. This is an opportunity to open it.</p>
-    <div class="arg-implication">"The promise of this exchange is realized when the framework that emerges is shaped by the people, places, and conditions it is trying to understand."</div>
+    <div class="arg-claim">If purpose develops in conditions,<br>then knowledge about purpose development<br>must <em>engage</em> with <span class="plain-white">those conditions.</span></div>
+    <p class="arg-body">Seeing youth purpose more clearly should change what we ask, what we build, and what we stop overlooking. This exchange is designed to collect those shifts in perspective from people who meet youth in different roles and settings.</p>
+    <div class="arg-implication">"The exchange matters when better seeing leads to better questions and better choices."</div>
+    <div class="seeing-response">
+      <div class="artifact-kicker" style="color:var(--teal-light)">Artifact · From seeing to action</div>
+      <h3>When you notice purpose differently, what are you most ready to do?</h3>
+      <p>Choose the action that best matches how you want to engage what you see in young people.</p>
+      <div class="seeing-grid">
+        <button class="seeing-card active" data-stance="Name what is already there" onclick="chooseSightAction(this)">Name what is already there<span>Recognize purposeful experience before labeling youth as lacking it.</span></button>
+        <button class="seeing-card" data-stance="Ask what conditions make it possible" onclick="chooseSightAction(this)">Ask what conditions make it possible<span>Look beyond the individual toward supports, constraints, and access.</span></button>
+        <button class="seeing-card" data-stance="Change the setting" onclick="chooseSightAction(this)">Change the setting<span>Act on what programs, institutions, or relationships could do differently.</span></button>
+        <button class="seeing-card" data-stance="Bring this question to others" onclick="chooseSightAction(this)">Bring this question to others<span>Use the exchange to widen how colleagues see youth purpose.</span></button>
+      </div>
+      <div class="seeing-summary" id="stanceSummary"></div>
+    </div>
   </div>
 </section>
 
@@ -618,9 +856,9 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="lens-tab" onclick="scrollToLens(7)"><div class="lens-tab-num">07</div><div class="lens-tab-name">Environmental Affordances</div></div>
         <div class="lens-tab" onclick="scrollToLens(8)"><div class="lens-tab-num">08</div><div class="lens-tab-name">Cultural Context</div></div>
       </div>
-      <p class="lead" style="font-size:0.975rem">These eight lenses bridge longstanding academic perspectives on purpose with the lived experience of young people and the people who know, teach, support, and work alongside them. They represent our effort to expand the collective vocabulary around purpose, and deepen how we see young people.</p>
-      <p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Much of the research on purpose, to date, has emphasized what one's purpose is, or how strongly purpose is felt. Those questions matter, but they may not be enough. The lenses help us notice additional conditions, processes, and forms of support that shape purpose development.</p>
-      <p class="lead" style="font-size:0.975rem;margin-top:0.85rem">We invite you to tell us what feels useful, what feels off, and where the language still fails to capture what happens in real settings.</p>
+      <p class="lead" style="font-size:0.975rem">The Portraits framework is organized around a series of eight interconnected “lenses” designed to examine purposeful development from multiple vantage points. These lenses span personal, experiential, relational, and contextual domains, thus recognizing that purpose is shaped not only by individual beliefs and motivations, but also by opportunities, environments, relationships, and cultural signals.</p>
+      <p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Each lens is grounded in existing developmental and psychological research while remaining open to revision, critique, and expansion. Rather than offering a single definition of purposeful youth, the framework seeks to create a more flexible and integrative array of portraits, each capable of capturing the complexity, variability, and situated nature of how young people experience meaning, direction, contribution, and possibility in their lives. There may be no single way to see a purposeful youth; instead, there may be numerous ways by adjusting and combining the lenses through which <strong>we chose to view them.</strong></p>
+      <p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Explore the lenses actively.</p>
     </div>
     <div class="conf-legend">
       <span style="font-size:0.75rem;color:var(--g400);font-weight:500">Epistemic status:</span>
@@ -633,7 +871,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="ap-card" id="lens-card-1">
         <div class="ap-header"><div class="ap-num">01 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
         <div class="ap-name">Sense of Purpose</div>
-        <div class="ap-def">How purposeful one feels. The subjective experience of perceiving that one's actions carry meaning and direction — the felt sense of purpose, distinct from being able to articulate or explain it.</div>
+        <div class="ap-def">How purposeful one feels. The subjective experience of perceiving that one's actions carry meaning and direction, the felt sense of purpose, distinct from being able to articulate or explain it.</div>
         <div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
         <div class="ap-expanded"><strong>In practice</strong>Does this young person report that what they do matters? Do they express a sense of drive or direction — even without words for it? Is there something they return to, even when it's hard?<div class="ap-exchange-link" onclick="goToAp(1)">→ See exchange discussions</div></div>
         <div class="ap-reactions" data-ap="1">
@@ -745,17 +983,17 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <!-- NOMINATE A LENS CARD -->
       <div class="ap-card nominate-card">
         <div class="ap-header">
-          <div class="ap-num" style="opacity:0.5">?? · Your nomination</div>
-          <div class="ap-badge" style="background:rgba(255,255,255,0.12)">Community proposal</div>
+          <div class="ap-num">?? · Your nomination</div>
+          <div class="ap-badge">Community proposal</div>
         </div>
         <div class="ap-name">Nominate a Lens</div>
         <div class="ap-def">Is there a dimension of purposeful experience that the eight lenses above don't capture? Name it here. Strong nominations will be considered for inclusion in future iterations of this framework — and posted here for community feedback.</div>
         <div id="nominateForm" style="margin-top:1rem">
-          <input id="nominateName" placeholder="Name your lens (e.g. 'Belonging')" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:var(--white);font-family:var(--sans);font-size:0.85rem;margin-bottom:0.55rem"/>
-          <textarea id="nominateDef" placeholder="Describe it briefly — what does it mean, and why does it matter for understanding purpose in young people?" rows="3" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:var(--white);font-family:var(--sans);font-size:0.85rem;resize:vertical;margin-bottom:0.55rem"></textarea>
-          <input id="nominateRole" placeholder="Your role or context (optional)" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:var(--white);font-family:var(--sans);font-size:0.85rem;margin-bottom:0.75rem"/>
-          <button onclick="submitNomination()" style="background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:7px;padding:0.45rem 1.1rem;color:var(--white);font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:background .18s" onmouseover="this.style.background='rgba(255,255,255,0.28)'" onmouseout="this.style.background='rgba(255,255,255,0.18)'">Submit nomination →</button>
-          <div id="nominateConfirm" style="display:none;margin-top:0.75rem;font-size:0.82rem;opacity:0.75;font-style:italic">Thank you — your nomination has been received. If it resonates with the community, it may appear here in a future iteration.</div>
+          <input id="nominateName" placeholder="Name your lens (e.g. 'Belonging')" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;font-family:var(--sans);font-size:0.85rem;margin-bottom:0.55rem"/>
+          <textarea id="nominateDef" placeholder="Describe it briefly — what does it mean, and why does it matter for understanding purpose in young people?" rows="3" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;font-family:var(--sans);font-size:0.85rem;resize:vertical;margin-bottom:0.55rem"></textarea>
+          <input id="nominateRole" placeholder="Your role or context (optional)" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;font-family:var(--sans);font-size:0.85rem;margin-bottom:0.75rem"/>
+          <button onclick="submitNomination()" style="border-radius:7px;padding:0.45rem 1.1rem;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .18s">Submit nomination →</button>
+          <div id="nominateConfirm" style="display:none;margin-top:0.75rem;font-size:0.82rem;color:var(--g600);font-style:italic">Thank you — your nomination has been received. If it resonates with the community, it may appear here in a future iteration.</div>
         </div>
       </div>
 
@@ -766,19 +1004,19 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 <!-- GOVERNING FEATURES -->
 <section id="features">
   <div class="container">
-    <div class="eyebrow">Features that guide how purpose functions</div>
+    <div class="eyebrow">A simpler read on purposeful experience</div>
     <div class="rule"></div>
-    <h2>Put the Features <em>to Work</em></h2>
-    <p class="lead" style="font-size:0.975rem">By features, we mean academic concepts that can be applied to purpose as opportunities for study, investigation, and real-world evaluation. They help us ask not only whether purpose is present, but how purpose becomes more or less visible in particular settings. These features are not unique to purpose. They are attributes that might shape what we see through the various lenses of purpose, informing how purpose becomes visible, durable, meaningful, and supported across settings. We think they may be functional ingredients that bring the lenses to light, but that remains an open area of inquiry. If you were looking at one young person, program, classroom, or community, which feature would matter most first, and what would that priority help us ask?</p>
+    <h2>What would you notice <em>first?</em></h2>
+    <p class="lead" style="font-size:0.975rem">These four features are practical cues for reading a purposeful experience. Reorder them based on what you would look for first in a young person, program, classroom, or community. Your order becomes part of your recap.</p>
     <div class="feature-activity">
       <div class="feature-cards" id="featureCards"></div>
       <div class="feature-workspace">
-        <div class="activity-title">Your working order</div>
-        <p class="activity-copy">Move a feature up or down based on what feels most consequential in the setting you have in mind. There is no correct order; the point is to make your reasoning visible.</p>
+        <div class="activity-title">Build your reading order</div>
+        <p class="activity-copy">Move the cues up or down in the order you would use them to read a purposeful experience. The top item is what you would notice first.</p>
         <div class="feature-summary" id="featureSummary"></div>
         <label class="form-row" style="display:block">
-          <span style="display:block;font-size:0.75rem;font-weight:600;color:var(--navy);margin-bottom:0.28rem;letter-spacing:0.04em">What does your order suggest we should ask next?</span>
-          <textarea class="feature-reflect" id="featureReflect" placeholder="e.g. In our setting, Purpose Resonance comes first because young people disengage when an opportunity does not feel connected to who they are..." oninput="updateFeatureSummary()"></textarea>
+          <span style="display:block;font-size:0.75rem;font-weight:600;color:var(--navy);margin-bottom:0.28rem;letter-spacing:0.04em">What does this order help you see?</span>
+          <textarea class="feature-reflect" id="featureReflect" placeholder="e.g. I would look for Fit first, because a direction that does not connect to the young person's lived reality may not hold." oninput="updateFeatureSummary()"></textarea>
         </label>
         <div class="add-feature-row">
           <input id="newFeatureInput" placeholder="Add a missing feature..." onkeydown="if(event.key==='Enter')addFeature()"/>
@@ -822,13 +1060,29 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   </div>
 </section>
 
+<!-- ARTIFACT KNAPSACK -->
+<section id="knapsack">
+  <div class="container knapsack-shell">
+    <div class="eyebrow">Your Artifact Knapsack</div>
+    <div class="rule"></div>
+    <h2>What you have <em>assembled so far</em></h2>
+    <p class="lead" style="font-size:0.975rem">As you move through the exchange, your choices form a compact portfolio of how you are thinking about youth purpose: the role you entered from, the viewing lens you set, the action your seeing points toward, and the questions or reflections you contributed.</p>
+    <div class="knapsack-meta" id="knapsackMeta"></div>
+    <div class="knapsack-grid" id="knapsackGrid"></div>
+    <div class="artifact-actions">
+      <button class="btn-sm btn-navy" onclick="downloadResponseSummary()">Download the full knapsack</button>
+      <button class="btn-sm btn-outline" onclick="emailResponseSummary()">Email the knapsack to yourself</button>
+    </div>
+  </div>
+</section>
+
 <!-- OPEN QUESTIONS -->
 <section id="questions">
   <div class="container">
     <div style="margin-bottom:2.5rem">
       <div class="eyebrow">Open Questions</div>
       <div class="rule"></div>
-      <h2>What we <em>don't know yet</em></h2>
+      <h2>What we <em>still do not know yet</em></h2>
       <p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add the question that should have been here from the start.</p>
     </div>
     <div class="q-meta">This section will grow as the exchange develops. The questions below are starting points; the most useful contribution may be naming the better question.</div>
@@ -837,7 +1091,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <div class="q-cat-label">Questions the research community can address</div>
         <div class="q-cards">
           <div class="q-card"><div class="q-text">How do the eight lenses interact with each other? Is there a developmental sequence, or do they operate in parallel?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('research')">+ Contribute to this question</a></div>
-          <div class="q-card"><div class="q-text">Are Magnitude and Stability empirically separable in adolescent samples? What measurement approaches create enough discrimination?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('research')">+ Contribute to this question</a></div>
+          <div class="q-card"><div class="q-text">When adults say a young person “lacks purpose,” what are they actually failing to notice?</div><a class="q-contribute" href="#exchange" onclick="openTab('discussions');openNewPost('research')">+ Contribute to this question</a></div>
         </div>
       </div>
       <div>
@@ -865,7 +1119,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <!-- Submit a question -->
     <div class="q-submit-panel">
       <div class="q-submit-title">Add a question to this board</div>
-      <div class="q-submit-sub">Have a question the field needs to sit with? Submit it here. Questions are reviewed and the strongest ones are added to this section and to the Prompt Bank.</div>
+      <div class="q-submit-sub">Have a question that would help others see youth purpose more clearly? Submit it here. Strong questions can inform this board and the Seeing Prompts collection.</div>
       <div class="q-submit-row">
         <textarea id="qSubmitText" rows="3" placeholder="Write your question here…"></textarea>
       </div>
@@ -887,29 +1141,6 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   </div>
 </section>
 
-<!-- PATHWAYS -->
-<section id="pathways">
-  <div class="pathways-inner container">
-    <div class="eyebrow" style="color:rgba(255,255,255,0.35)">Who Are You?</div>
-    <div class="pathways-q">The exchange needs different things from different people.</div>
-    <div class="pathways-sub">Start here if you are wondering what kind of contribution would actually be useful. Different vantage points can strengthen different parts of the inquiry.</div>
-    <div class="pathway-grid">
-      <div class="pw-card" onclick="selectPw('researcher',this)"><div class="pw-icon">🔬</div><div class="pw-title">Researcher or Scholar</div><div class="pw-desc">You study purpose, youth development, motivation, identity, or related fields.</div></div>
-      <div class="pw-card" onclick="selectPw('practitioner',this)"><div class="pw-icon">🏫</div><div class="pw-title">Practitioner or Educator</div><div class="pw-desc">You work directly with young people — in schools, programs, or community settings.</div></div>
-      <div class="pw-card" onclick="selectPw('policy',this)"><div class="pw-icon">🏛️</div><div class="pw-title">Policymaker or Funder</div><div class="pw-desc">You make decisions about what systems invest in and what gets built at scale.</div></div>
-      <div class="pw-card" onclick="selectPw('youth',this)"><div class="pw-icon">🌱</div><div class="pw-title">Young Person</div><div class="pw-desc">The research is trying to describe something you already know from the inside.</div></div>
-      <div class="pw-card" onclick="selectPw('parent',this)"><div class="pw-icon">🤝</div><div class="pw-title">Parent or Guardian</div><div class="pw-desc">You see how purpose is supported, stretched, or constrained in daily life.</div></div>
-      <div class="pw-card" onclick="selectPw('mentor',this)"><div class="pw-icon">✨</div><div class="pw-title">Mentor or Champion</div><div class="pw-desc">You help young people name, practice, and protect what matters to them.</div></div>
-    </div>
-    <div class="pw-detail" id="detail-researcher"><div class="pw-detail-title">For researchers and scholars</div><div class="pw-detail-body">The framework carries an open epistemic status — different lenses have different evidentiary foundations, stated explicitly. What we need is honest engagement with those differences: where you see convergence with existing literature, where you see tension, what empirical approaches you'd propose, and what the open questions board is missing. The exchange is designed for sustained dialogue, not just single posts.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('discussions');openNewPost('research')">Start a research discussion</a></div>
-    <div class="pw-detail" id="detail-practitioner"><div class="pw-detail-title">For practitioners and educators</div><div class="pw-detail-body">Usability is tested in practice, not in theory. We need honest description: what these lenses look like in your setting, which ones feel accurate and which feel off, where the framework gives you useful language and where it lets you down. The most valuable contributions are specific — a particular program, student, or moment where something clicked or didn't. Bring those. The Prompt Bank is also yours: if you've found a question that opens things up, share it.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('prompts')">Browse &amp; add to the Prompt Bank</a></div>
-    <div class="pw-detail" id="detail-policy"><div class="pw-detail-title">For policymakers and funders</div><div class="pw-detail-body">The framework is designed to be actionable at the systems level. What we need is pressure-testing: Does this framework give you useful language for accountability decisions? Does it surface the right questions for investment? Where does it fall short of what you need to actually change institutional practice? The goal is a framework that can inform policy — but that requires the policy community to tell us where it needs to go further.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('discussions');openNewPost('policy')">Raise a policy question</a></div>
-    <div class="pw-detail" id="detail-youth"><div class="pw-detail-title">For young people</div><div class="pw-detail-body">This framework was built by researchers trying to describe something you live. That means it's probably right about some things and wrong or incomplete about others — and only you can tell us which is which. Sparks is the easiest place to start: one sentence, something real you've experienced. That's it. The inside view doesn't exist in academic literature. It exists in you, and it belongs in this exchange.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('sparkInput').focus(),400)">Drop a Spark</a></div>
-    <div class="pw-detail" id="detail-parent"><div class="pw-detail-title">For parents and guardians</div><div class="pw-detail-body">You may see purpose forming before it has a name. You notice what young people return to, what drains them, what opens them up, and what support they actually use. The exchange needs those grounded observations because they help us ask questions that begin closer to family life and everyday conditions.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('discussions');openNewPost('experience')">Share what you notice</a></div>
-    <div class="pw-detail" id="detail-mentor"><div class="pw-detail-title">For mentors and champions</div><div class="pw-detail-body">You often stand at the edge of opportunity: naming strengths, opening doors, helping young people connect what they care about to what they can do. We need examples of what recognition, practice, and support look like when they work, and where they break down.</div><a class="pw-detail-cta" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('sparkInput').focus(),400)">Share a moment</a></div>
-  </div>
-</section>
-
 <!-- THE EXCHANGE -->
 <section id="exchange">
   <div class="container">
@@ -917,16 +1148,16 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div>
         <div class="eyebrow">The Exchange</div>
         <div class="rule"></div>
-        <h2>Where the framework <em>grows</em></h2>
-        <p class="lead" style="font-size:0.95rem">Choose the lightest useful way to respond. A sentence, a prompt, a question, or a longer reflection can all help us see what the next version of this work needs to ask.</p>
+        <h2>Share what your <em>seeing</em> reveals</h2>
+        <p class="lead" style="font-size:0.95rem">Share a fuller reflection, leave one sharp sighting, or contribute a prompt that helps others see youth purpose more clearly. Their presence is tracked in your knapsack recap here, and the public-facing pieces can also inform aggregate exchange views after review.</p>
       </div>
     </div>
 
     <!-- Tab nav -->
     <div class="exchange-tabs">
-      <button class="ex-tab active" onclick="openTab('discussions',this)">💬 Discussions</button>
-      <button class="ex-tab" onclick="openTab('sparks',this)">⚡ Sparks</button>
-      <button class="ex-tab" onclick="openTab('prompts',this)">💡 Prompt Bank</button>
+      <button class="ex-tab active" onclick="openTab('discussions',this)">💬 Reflections</button>
+      <button class="ex-tab" onclick="openTab('sparks',this)">⚡ Quick sightings</button>
+      <button class="ex-tab" onclick="openTab('prompts',this)">💡 Seeing prompts</button>
     </div>
 
     <!-- DISCUSSIONS TAB -->
@@ -969,8 +1200,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div class="tab-panel" id="panel-sparks">
       <div class="sparks-intro">
         <div class="sparks-what">
-          <strong>Sparks — one sentence, something real</strong>
-          A moment you witnessed purpose — or its absence — in a young person. Not an analysis. Not a case study. A flash of something true. These accumulate into something that no survey or interview can capture. Tag the lens if one fits. Everything else is optional.
+          <strong>Quick sightings — one sentence, something real</strong>
+          Name one moment that changed how you saw a young person’s purpose, possibility, or constraints. Keep it concrete. Tag a lens if one fits.
         </div>
         <div class="starter-widget">
           <div class="starter-tag">This month's sentence starter</div>
@@ -1007,8 +1238,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div class="tab-panel" id="panel-prompts">
       <div class="prompts-intro">
         <div class="prompts-what">
-          <strong>What opens up purpose?</strong>
-          A living library of questions that practitioners, researchers, and young people have found genuinely useful for exploring purpose — in programs, classrooms, research interviews, and conversations. Browse, use, and add your own. This library will inform how any purpose-exploration tools in this space are designed, so that they carry community wisdom rather than just researcher assumptions.
+          <strong>What helps people see more clearly?</strong>
+          This bank collects prompts that open better observation, reflection, and conversation about youth purpose. Browse what is useful and add one of your own.
         </div>
         <div class="prompt-submit-box">
           <div class="prompt-submit-title">Add a prompt to the bank</div>
@@ -1032,8 +1263,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   <div class="footer-logo">Portraits of <em>Purposeful</em> Youth</div>
   <div class="footer-sub">Purpose Science &amp; Innovation Exchange · Purpose and Identity Processes Lab</div>
   <div class="footer-links">
-    <a href="#claim">The Claim</a><a href="#framework">Framework</a>
-    <a href="#pulse">Community Pulse</a><a href="#questions">Open Questions</a>
+    <a href="#journey">Start Here</a><a href="#claim">The Claim</a><a href="#purpose-definition">Define Purpose</a><a href="#framework">Framework</a>
+    <a href="#pulse">Community Pulse</a><a href="#knapsack">Your Knapsack</a><a href="#questions">Open Questions</a>
     <a href="#exchange">The Exchange</a>
   </div>
   <div class="footer-draft">Working draft — the framework is actively evolving. What you contribute shapes what it becomes.</div>
@@ -1046,10 +1277,10 @@ const AP_NAMES=['','Sense of Purpose','Scope & Awareness','Orientation','Content
 const avatarColors=['#7B3D42','#1E2D4A','#C4724A','#5B3D5A','#3B7A8F','#7A7840','#8B7B6B'];
 
 const defaultFeatures=[
-  {name:'Magnitude of Purpose',def:'How strong, visible, or consequential purpose is in a young person’s current experience.'},
-  {name:'Stability of Purpose',def:'Whether purpose is sustained over time or appears only in isolated moments.'},
-  {name:'Purpose Resonance',def:'Whether purpose feels connected to a young person’s identity, values, and lived reality.'},
-  {name:'Consistency of Purpose',def:'Whether purpose is supported, recognized, and made possible across settings, relationships, and contexts.'}
+  {name:'Strength',def:'How visible or consequential purposeful direction feels in the moment.'},
+  {name:'Durability',def:'Whether that direction seems sustained over time or only briefly present.'},
+  {name:'Fit',def:'Whether it feels connected to the young person’s identity, values, and lived reality.'},
+  {name:'Resonance',def:'Whether any aspect of purpose actually matters to a young person, and aligns with how they see themselves in the world.'}
 ];
 let features=defaultFeatures.map(f=>({...f}));
 
@@ -1066,6 +1297,34 @@ let sparks=[];
 
 // Prompts
 let prompts=[];
+
+// Guided start
+const selectedRoles=new Set();
+const selectedYouthGroups=new Set();
+let selectedOverlooked='';
+let currentStance='Name what is already there';
+const roleLabels={
+  researcher:'researchers',
+  practitioner:'practitioners',
+  policy:'policy leaders',
+  youth:'young people',
+  parent:'parents and guardians',
+  mentor:'mentors and champions'
+};
+const roleThemeWeights={
+  researcher:{Direction:84,Supports:76,Possibility:88,Voice:58},
+  practitioner:{Direction:62,Supports:91,Possibility:54,Voice:79},
+  policy:{Direction:68,Supports:87,Possibility:71,Voice:61},
+  youth:{Direction:44,Supports:74,Possibility:38,Voice:96},
+  parent:{Direction:48,Supports:82,Possibility:41,Voice:88},
+  mentor:{Direction:51,Supports:85,Possibility:46,Voice:90}
+};
+const stanceNotes={
+  'Name what is already there':'You want to recognize purposeful experience before youth are framed as lacking it.',
+  'Ask what conditions make it possible':'You want to look beyond the individual toward supports, constraints, and access.',
+  'Change the setting':'You want to act on what programs, institutions, or relationships could do differently.',
+  'Bring this question to others':'You want to widen how colleagues see youth purpose.'
+};
 
 // Starters
 const starters=[
@@ -1127,24 +1386,385 @@ async function hydrateRemote(){
         }
       }
     }
-    renderPulse();renderPosts();renderSparks();renderPrompts();renderOpenQuestions();
+    renderPulse();renderPosts();renderSparks();renderPrompts();renderOpenQuestions();renderKnapsack();
   }catch(err){
     console.warn('Exchange API hydrate skipped:',err);
   }
 }
 
 // ─── Tabs ─────────────────────────────────────────────────
-function openTab(name,btn){
+function activateTab(name,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.ex-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
+  const panel=document.getElementById('panel-'+name)||document.getElementById('panel-discussions');
+  panel.classList.add('active');
+  const activeName=panel.id.replace('panel-','');
   if(btn){btn.classList.add('active')}
   else{
     const tabs={discussions:0,sparks:1,prompts:2};
-    const idx=tabs[name];
+    const idx=tabs[activeName];
     if(idx!==undefined)document.querySelectorAll('.ex-tab')[idx]?.classList.add('active');
   }
-  document.getElementById('exchange').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function openTab(name,btn){
+  activateTab(name,btn);
+  if(location.hash!==`#exchange-${name}`)history.pushState(null,'',`#exchange-${name}`);
+  document.getElementById('exchange')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── Guided Start ─────────────────────────────────────────
+function activateJourney(name,btn){
+  document.querySelectorAll('.journey-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.journey-tab').forEach(t=>t.classList.remove('active'));
+  const panel=document.getElementById('journey-'+name)||document.getElementById('journey-about');
+  panel.classList.add('active');
+  const activeName=panel.id.replace('journey-','');
+  const tab=btn||document.querySelector(`.journey-tab[data-journey="${activeName}"]`);
+  if(tab)tab.classList.add('active');
+  refreshArtifacts();
+}
+function openJourney(name,btn){
+  activateJourney(name,btn);
+  if(location.hash!==`#journey-${name}`)history.pushState(null,'',`#journey-${name}`);
+  document.getElementById('journey')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function toggleRole(btn){
+  const role=btn.dataset.role;
+  if(selectedRoles.has(role)){selectedRoles.delete(role);btn.classList.remove('active')}
+  else{selectedRoles.add(role);btn.classList.add('active')}
+  refreshArtifacts();
+}
+function toggleYouthGroup(btn){
+  const group=btn.dataset.group;
+  if(selectedYouthGroups.has(group)){selectedYouthGroups.delete(group);btn.classList.remove('active')}
+  else{selectedYouthGroups.add(group);btn.classList.add('active')}
+  refreshArtifacts();
+}
+async function saveOnboardingResponse(){
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const roles=[...selectedRoles];
+  const youthGroups=[...selectedYouthGroups];
+  if(!roles.length&&!youthGroups.length&&!purpose){
+    alert('Please choose a role, select who comes to mind, or add a quick response first.');
+    return;
+  }
+  await saveRemote('onboarding_response',{
+    roles,
+    youth_groups:youthGroups,
+    purpose_response:purpose
+  });
+  const note=document.getElementById('onboardingSaveNote');
+  if(note){
+    note.style.display='inline';
+    setTimeout(()=>{note.style.display='none'},4000);
+  }
+  openJourney('artifacts');
+}
+function syncTabsFromHash(){
+  const hash=location.hash.replace(/^#/,'');
+  if(hash.startsWith('journey-')){
+    activateJourney(hash.replace('journey-',''));
+    setTimeout(()=>document.getElementById('journey')?.scrollIntoView({block:'start'}),0);
+  }
+  if(hash.startsWith('exchange-')){
+    activateTab(hash.replace('exchange-',''));
+    setTimeout(()=>document.getElementById('exchange')?.scrollIntoView({block:'start'}),0);
+  }
+}
+window.addEventListener('hashchange',syncTabsFromHash);
+function averageThemeScores(){
+  const roles=[...selectedRoles];
+  const basis=roles.length?roles:['researcher','practitioner'];
+  const totals={Direction:0,Supports:0,Possibility:0,Voice:0};
+  basis.forEach(role=>Object.entries(roleThemeWeights[role]).forEach(([k,v])=>totals[k]+=v));
+  return Object.fromEntries(Object.entries(totals).map(([k,v])=>[k,Math.round(v/basis.length)]));
+}
+function roleSentence(){
+  const roles=[...selectedRoles].map(r=>roleLabels[r]);
+  if(!roles.length)return 'a mixed field view';
+  if(roles.length===1)return roles[0];
+  return `${roles.slice(0,-1).join(', ')} and ${roles.at(-1)}`;
+}
+function conditionValues(){
+  return {
+    opportunity:Number(document.getElementById('opportunitySlider')?.value||55),
+    recognition:Number(document.getElementById('recognitionSlider')?.value||55),
+    practice:Number(document.getElementById('practiceSlider')?.value||55)
+  };
+}
+function updateConditionPortrait(){
+  const values=conditionValues();
+  const score=Math.round((values.opportunity+values.recognition+values.practice)/3);
+  document.getElementById('conditionDial')?.style.setProperty('--dial',score);
+  const scoreEl=document.getElementById('conditionDialScore');
+  if(scoreEl)scoreEl.textContent=score;
+  const fields=[
+    ['opportunityValue',values.opportunity],
+    ['recognitionValue',values.recognition],
+    ['practiceValue',values.practice]
+  ];
+  fields.forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.textContent=value});
+  const summary=document.getElementById('conditionSummary');
+  if(summary){
+    const strongestKey=Object.entries(values).sort((a,b)=>b[1]-a[1])[0][0];
+    const strongestLabels={opportunity:'young people’s direction',recognition:'surrounding supports',practice:'blocked pathways'};
+    const overlooked=selectedOverlooked?` You expect to look first toward ${selectedOverlooked}.`:'';
+    summary.textContent=`Your viewing lens is widest around ${strongestLabels[strongestKey]}, with an overall field-of-view score of ${score}/100.${overlooked}`;
+  }
+  refreshArtifacts();
+}
+function chooseOverlooked(btn){
+  document.querySelectorAll('.vote-chip').forEach(chip=>chip.classList.remove('active'));
+  btn.classList.add('active');
+  selectedOverlooked=btn.dataset.overlooked||'';
+  updateConditionPortrait();
+}
+function chooseSightAction(btn){
+  document.querySelectorAll('.seeing-card').forEach(card=>card.classList.remove('active'));
+  btn.classList.add('active');
+  currentStance=btn.dataset.stance||currentStance;
+  updateExchangeStance();
+}
+function updateExchangeStance(){
+  const active=document.querySelector('.seeing-card.active');
+  if(active)currentStance=active.dataset.stance||currentStance;
+  const summary=document.getElementById('stanceSummary');
+  if(summary)summary.textContent=`${currentStance}: ${stanceNotes[currentStance]||''}`;
+  refreshArtifacts();
+}
+function refreshArtifacts(){
+  const scores=averageThemeScores();
+  const viz=document.getElementById('roleViz');
+  if(viz){
+    viz.innerHTML=Object.entries(scores).map(([label,value])=>`
+      <div class="viz-row">
+        <div class="viz-label">${label}</div>
+        <div class="viz-track"><div class="viz-fill" style="width:${value}%"></div></div>
+        <div class="viz-score">${value}</div>
+      </div>`).join('');
+  }
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const groups=[...selectedYouthGroups];
+  const report=document.getElementById('gentleReport');
+  if(report){
+    const groupCopy=groups.length?groups.join(', '):'a broad range of young people';
+    const purposeCopy=purpose?` Your note about "${purpose}" suggests the entry point is practical rather than abstract.`:'';
+    report.textContent=`Seen through ${roleSentence()}, youth purpose is framed most strongly through ${topThemes(scores)}. The implied picture is not simply whether young people possess purpose, but whether adults and settings make direction visible, actionable, and worth sustaining for ${groupCopy}.${purposeCopy}`;
+  }
+  const summary=document.getElementById('personalSummary');
+  if(summary){
+    summary.innerHTML=`
+      <div><strong>Roles:</strong> ${[...selectedRoles].map(r=>roleLabels[r]).join(', ')||'No role selected yet'}</div>
+      <div><strong>Who comes to mind:</strong> ${groups.join(', ')||'No youth group selected yet'}</div>
+      <div><strong>Your purpose note:</strong> ${purpose||'No quick response entered yet'}</div>
+      <div><strong>Your working definition:</strong> ${purposeDefinition||'No purpose definition entered yet'}</div>
+      <div><strong>Feature reflection:</strong> ${(document.getElementById('featureReflect')?.value||'No feature reflection entered yet').trim()}</div>`;
+  }
+  renderKnapsack();
+}
+function topThemes(scores){
+  return Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k])=>k.toLowerCase()).join(' and ');
+}
+function summaryText(){
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const feature=(document.getElementById('featureReflect')?.value||'').trim();
+  const roles=[...selectedRoles].map(r=>roleLabels[r]).join(', ')||'No role selected';
+  const groups=[...selectedYouthGroups].join(', ')||'No youth group selected';
+  const values=conditionValues();
+  const score=Math.round((values.opportunity+values.recognition+values.practice)/3);
+  return `Portraits of Purposeful Youth - Personal Response Summary
+
+Roles:
+${roles}
+
+Who comes to mind when I think of youth:
+${groups}
+
+What brings me to thinking about youth purpose right now:
+${purpose||'No quick response entered'}
+
+I would define purpose as:
+${purposeDefinition||'No purpose definition entered'}
+
+Viewing lens:
+Young people's direction ${values.opportunity}/100; Surrounding supports ${values.recognition}/100; Blocked pathways ${values.practice}/100; Field of view ${score}/100${selectedOverlooked?`; First place I expect to look: ${selectedOverlooked}`:''}
+
+Seeing-to-action choice:
+${currentStance}
+
+Feature reflection:
+${feature||'No feature reflection entered'}
+`;
+}
+function escapeHtml(value){
+  return String(value).replace(/[&<>"']/g,char=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[char]));
+}
+function summaryHtml(){
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim()||'No quick response entered';
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim()||'No purpose definition entered';
+  const feature=(document.getElementById('featureReflect')?.value||'').trim()||'No feature reflection entered';
+  const roles=[...selectedRoles].map(r=>roleLabels[r]).join(', ')||'No role selected';
+  const groups=[...selectedYouthGroups].join(', ')||'No youth group selected';
+  const values=conditionValues();
+  const conditionScore=Math.round((values.opportunity+values.recognition+values.practice)/3);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portraits of Purposeful Youth - Response Summary</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#FAF7F4;color:#0D1A2E;font-family:Inter,Arial,sans-serif;line-height:1.65}
+.sheet{max-width:860px;margin:0 auto;padding:56px 28px}
+.hero{padding:28px;border-radius:18px;background:#1E2D4A;color:#fff;margin-bottom:22px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;margin-bottom:10px}
+h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
+.sub{font-size:16px;opacity:.82;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:18px}
+.card{padding:20px;border:1px solid #E0DEDB;border-radius:14px;background:#fff}
+.card h2{font-family:Georgia,serif;font-size:20px;line-height:1.25;margin:0 0 10px;color:#1E2D4A}
+.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3B7A8F;font-weight:700;margin-bottom:8px}
+.text{font-size:16px;color:#4f4c48;white-space:pre-wrap}
+.wide{grid-column:1/-1}
+.note{padding:18px 20px;border-left:4px solid #3B7A8F;background:#F0EFED;border-radius:12px;color:#4f4c48}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.sheet{padding:28px 16px}h1{font-size:32px}}
+</style>
+</head>
+<body>
+  <main class="sheet">
+    <section class="hero">
+      <div class="eyebrow">Personal Reflection Summary</div>
+      <h1>Portraits of Purposeful Youth</h1>
+      <p class="sub">A quiet recap of the perspective you brought into the exchange.</p>
+    </section>
+    <section class="grid">
+      <article class="card">
+        <div class="label">Roles</div>
+        <h2>Your vantage point</h2>
+        <div class="text">${escapeHtml(roles)}</div>
+      </article>
+      <article class="card">
+        <div class="label">Youth</div>
+        <h2>Who came to mind</h2>
+        <div class="text">${escapeHtml(groups)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Purpose</div>
+        <h2>What brought you here</h2>
+        <div class="text">${escapeHtml(purpose)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Working definition</div>
+        <h2>I would define purpose as</h2>
+        <div class="text">${escapeHtml(purposeDefinition)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Viewing lens</div>
+        <h2>How you prepared to see</h2>
+        <div class="text">Young people's direction ${values.opportunity}/100
+Surrounding supports ${values.recognition}/100
+Blocked pathways ${values.practice}/100
+Field of view ${conditionScore}/100${selectedOverlooked?`
+First place I expect to look: ${escapeHtml(selectedOverlooked)}`:''}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Seeing to action</div>
+        <h2>What your seeing asks of you</h2>
+        <div class="text">${escapeHtml(currentStance)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Reflection</div>
+        <h2>Feature-order note</h2>
+        <div class="text">${escapeHtml(feature)}</div>
+      </article>
+    </section>
+    <section class="note">
+      This summary is meant for your own reflection or for sharing with teammates and colleagues as a conversation starter.
+    </section>
+  </main>
+</body>
+</html>`;
+}
+function renderKnapsack(){
+  const grid=document.getElementById('knapsackGrid');
+  const meta=document.getElementById('knapsackMeta');
+  if(!grid||!meta)return;
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const feature=(document.getElementById('featureReflect')?.value||'').trim();
+  const values=conditionValues();
+  const conditionScore=Math.round((values.opportunity+values.recognition+values.practice)/3);
+  const cards=[
+    {
+      title:'Role portrait',
+      body:`${[...selectedRoles].map(r=>roleLabels[r]).join(', ')||'No role chosen yet'}${selectedYouthGroups.size?` · focused on ${[...selectedYouthGroups].join(', ')}`:''}.`
+    },
+    {
+      title:'Purpose entry point',
+      body:purpose||'Add your quick response in the role step to capture what pulled you into the exchange.'
+    },
+    {
+      title:'Working definition',
+      body:purposeDefinition||'Add your own definition of purpose before moving deeper into the portraits.'
+    },
+    {
+      title:'Viewing lens',
+      body:`Field of view ${conditionScore}/100. Youth direction ${values.opportunity}, surrounding supports ${values.recognition}, blocked pathways ${values.practice}.${selectedOverlooked?` First place you expect to look: ${selectedOverlooked}.`:''}`
+    },
+    {
+      title:'Seeing to action',
+      body:currentStance
+    },
+    {
+      title:'Feature ordering',
+      body:`${features.map(f=>f.name).join(' -> ')}${feature?` Reflection: ${feature}`:''}`
+    },
+    {
+      title:'Question-building momentum',
+      body:`${starterResponses[starterIdx]?.length||0} starter response(s), ${sparks.length} spark(s), ${prompts.length} prompt(s), and ${posts.length} discussion contribution(s) visible in this session.`
+    }
+  ];
+  meta.innerHTML=[
+    `${selectedRoles.size} role${selectedRoles.size===1?'':'s'}`,
+    `${selectedYouthGroups.size} youth group${selectedYouthGroups.size===1?'':'s'}`,
+    `action: ${currentStance}`,
+    `field of view: ${conditionScore}/100`
+  ].map(text=>`<span class="knapsack-pill">${escapeHtml(text)}</span>`).join('');
+  grid.innerHTML=cards.map(card=>`<div class="knapsack-card"><strong>${escapeHtml(card.title)}</strong><p>${escapeHtml(card.body)}</p></div>`).join('');
+}
+async function savePurposeDefinition(){
+  const definition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  if(!definition){
+    alert('Please add your current definition of purpose first.');
+    return;
+  }
+  await saveRemote('purpose_definition',{definition});
+  const note=document.getElementById('purposeDefinitionSaveNote');
+  if(note){
+    note.style.display='inline';
+    setTimeout(()=>{note.style.display='none'},4000);
+  }
+  refreshArtifacts();
+}
+function downloadResponseSummary(){
+  const blob=new Blob([summaryHtml()],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='purposeful-youth-response-summary.html';a.click();
+  URL.revokeObjectURL(url);
+}
+function emailResponseSummary(){
+  const subject=encodeURIComponent('My Portraits of Purposeful Youth responses');
+  const body=encodeURIComponent(summaryText());
+  location.href=`mailto:?subject=${subject}&body=${body}`;
 }
 
 // ─── Lens cards ───────────────────────────────────────
@@ -1157,7 +1777,7 @@ function toggleAp(toggle){
 }
 function goToAp(n){
   openTab('discussions');
-  setTimeout(()=>{filterByAp(n,document.querySelector(`#apFilterList li:nth-child(${n+1}) button`))},300);
+  setTimeout(()=>{filterByAp(n,document.querySelector(`#apFilterList li:nth-child(${n+1}) button`))},120);
 }
 
 // ─── Reactions ────────────────────────────────────────────
@@ -1209,6 +1829,7 @@ function updateFeatureSummary(){
   const reflection=(document.getElementById('featureReflect')?.value||'').trim();
   const order=features.map(f=>f.name).join(' → ');
   summary.innerHTML=`<strong>Current order:</strong> ${order}${reflection?`<br><br><strong>Question forming:</strong> ${reflection}`:''}`;
+  refreshArtifacts();
 }
 function addFeature(){
   const input=document.getElementById('newFeatureInput');
@@ -1233,8 +1854,8 @@ function sendFeatureReflection(){
   const ap=document.getElementById('fAp');
   const reflection=(document.getElementById('featureReflect')?.value||'').trim();
   if(ap)ap.value='0';
-  if(title)title.value='How I would prioritize the four features';
-  if(body)body.value=`Feature order: ${features.map(f=>f.name).join(' → ')}${reflection?`\n\nWhat this suggests we should ask next: ${reflection}`:''}`;
+  if(title)title.value='How I would read a purposeful experience';
+  if(body)body.value=`Reading order: ${features.map(f=>f.name).join(' → ')}${reflection?`\n\nWhat this helps me see: ${reflection}`:''}`;
   saveRemote('feature_reflection',{
     feature_order:features.map(f=>f.name),
     reflection,
@@ -1262,6 +1883,7 @@ function castPulse(n,btn){
   btn.classList.add('voted');btn.style.opacity='1';
   document.getElementById('pulseVotedNote').style.display='block';
   renderPulse();
+  renderKnapsack();
   saveRemote('pulse_vote',{prompt_key:'current_interest',lens_id:n});
 }
 
@@ -1345,6 +1967,7 @@ function submitPost(){
   document.getElementById('newPostBtn').textContent='+ Start a discussion';
   ['fAuthor','fRole','fTitle','fBody'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
   document.getElementById('postsList').scrollIntoView({behavior:'smooth',block:'start'});
+  renderKnapsack();
 }
 
 // ─── Sparks ───────────────────────────────────────────────
@@ -1376,6 +1999,7 @@ function submitSpark(){
   saveRemote('spark',{text,lens_id:ap});
   inp.value='';document.getElementById('sparkCharCount').textContent='200';
   renderSparks();
+  renderKnapsack();
 }
 
 // ─── Sentence Starter ─────────────────────────────────────
@@ -1395,6 +2019,7 @@ function submitStarter(){
   starterResponses[starterIdx].unshift(val);
   saveRemote('starter_response',{starter_index:starterIdx,response:val});
   inp.value='';renderStarterResponses();
+  renderKnapsack();
 }
 
 // ─── Prompt Bank ──────────────────────────────────────────
@@ -1429,6 +2054,7 @@ function submitPrompt(){
   renderPrompts();
   ['pQ','pCtx','pRole'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
   document.getElementById('promptCards').scrollIntoView({behavior:'smooth',block:'start'});
+  renderKnapsack();
 }
 
 // ─── Pathways ─────────────────────────────────────────────
@@ -1462,6 +2088,7 @@ function submitOpenQuestion(){
   document.getElementById('qSubmitRole').value='';
   document.getElementById('qSubmitConfirm').style.display='block';
   setTimeout(()=>{document.getElementById('qSubmitConfirm').style.display='none'},5000);
+  renderKnapsack();
 }
 
 function renderOpenQuestions(){
@@ -1492,7 +2119,11 @@ renderSparks();
 initStarter();
 renderPrompts();
 renderOpenQuestions();
+updateConditionPortrait();
+updateExchangeStance();
+refreshArtifacts();
 hydrateRemote();
+syncTabsFromHash();
 </script>
 </body>
 </html>

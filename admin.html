@@ -153,7 +153,6 @@ button:disabled{opacity:.55;cursor:not-allowed}
         <select id="type">
           <option value="posts">Discussion posts</option>
           <option value="comments">Comments</option>
-          <option value="sparks">Sparks</option>
           <option value="prompts">Prompt bank</option>
           <option value="features">Feature reflections</option>
           <option value="copy_edits">Copy edit notes</option>
@@ -194,7 +193,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 </main>
 
 <script>
-const MODERATABLE = new Set(['posts','comments','sparks','prompts','features','copy_edits','starters','onboarding','purpose_definitions','nominations']);
+const MODERATABLE = new Set(['posts','comments','prompts','features','copy_edits','starters','onboarding','purpose_definitions','nominations']);
 const FIELD_LABELS = {
   author:'Author',
   role:'Role',

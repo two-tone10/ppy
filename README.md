@@ -20,12 +20,14 @@ Run `supabase/schema.sql` in the Supabase SQL editor before deploying the API. T
 
 - Discussion posts
 - Comments and interaction events
-- Sparks
+- Quick-sighting starter responses
 - Prompt-bank submissions and use events
 - Community pulse votes
 - Feature-prioritization reflections
 - Copy-edit notes
 - Lens reaction events
+- Guided-start onboarding responses: selected roles, selected youth groups, and the quick purpose-response prompt
+- Lens nominations
 
 Most public-facing contributions default to `pending` so they can be reviewed before being shown in future versions.
 
@@ -35,8 +37,8 @@ Open `/admin.html` on the deployed site. Paste the `ADMIN_TOKEN` value to review
 
 Public rendering rules:
 
-- Discussion posts, comments, sparks, and prompt-bank submissions only appear on the public page after their `status` is `approved`.
-- Feature reflections, copy-edit notes, and starter responses are captured for research iteration and can be exported, but they are not rendered publicly.
+- Discussion posts, comments, and prompt-bank submissions only appear on the public page after their `status` is `approved`.
+- Feature reflections, copy-edit notes, and quick-sighting starter responses are captured for research iteration and can be exported, but they are not rendered publicly.
 - Pulse votes are aggregated immediately because they do not contain open text.
 - Interaction events are logged for product learning and are not rendered publicly.
 

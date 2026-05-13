@@ -51,7 +51,8 @@ h2 em{color:var(--teal);font-style:italic}
 .journey-tab.active{background:var(--white);color:var(--navy);box-shadow:0 1px 6px rgba(0,0,0,0.1)}
 .journey-panel{display:none}
 .journey-panel.active{display:block}
-.journey-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:2rem;align-items:start}
+.journey-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:start}
+.journey-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.25rem}
 .artifact-preview,.role-art{background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1rem}
 .artifact-preview img,.role-art img{display:block;width:100%;border-radius:8px}
 .mini-artifact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.15rem}
@@ -138,6 +139,44 @@ h2 em{color:var(--teal);font-style:italic}
 .knapsack-card p{font-size:0.86rem;color:var(--g600);line-height:1.65}
 .knapsack-meta{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem}
 .knapsack-pill{background:rgba(59,122,143,0.1);color:var(--teal);border-radius:999px;padding:0.32rem 0.7rem;font-size:0.76rem;font-weight:700}
+.portrait-builder{
+  position:fixed;right:1rem;bottom:1rem;z-index:190;width:min(340px,calc(100vw - 2rem));
+  background:rgba(255,255,255,0.96);border:1.5px solid var(--g200);border-radius:14px;
+  box-shadow:0 18px 48px rgba(13,26,46,0.18);padding:0.9rem;backdrop-filter:blur(12px)
+}
+.builder-top{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:0.65rem}
+.builder-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--navy);line-height:1.2}
+.builder-count{font-size:0.72rem;font-weight:800;color:var(--teal);background:rgba(59,122,143,0.1);border-radius:999px;padding:0.2rem 0.5rem;white-space:nowrap}
+.builder-track{height:7px;background:var(--g100);border-radius:999px;overflow:hidden;margin-bottom:0.75rem}
+.builder-fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--burgundy));border-radius:999px;transition:width .28s ease}
+.builder-list{display:grid;gap:0.38rem;margin-bottom:0.75rem}
+.builder-item{display:flex;align-items:center;gap:0.45rem;font-size:0.76rem;color:var(--g600);line-height:1.3}
+.builder-dot{width:0.62rem;height:0.62rem;border-radius:50%;border:1.5px solid var(--g400);background:var(--white);flex-shrink:0}
+.builder-item.done{color:var(--navy);font-weight:700}
+.builder-item.done .builder-dot{background:var(--teal);border-color:var(--teal)}
+.builder-reveal{display:flex;justify-content:space-between;align-items:center;gap:0.65rem}
+.builder-reveal a{font-size:0.76rem;font-weight:800;color:var(--teal);text-decoration:none}
+.builder-hint{font-size:0.72rem;color:var(--g400)}
+.builder-toast{
+  position:fixed;right:1.2rem;bottom:12.25rem;z-index:191;background:var(--navy);color:var(--white);
+  border-radius:999px;padding:0.55rem 0.8rem;font-size:0.78rem;font-weight:700;
+  box-shadow:0 12px 32px rgba(13,26,46,0.25);opacity:0;transform:translateY(8px);
+  pointer-events:none;transition:opacity .22s,transform .22s
+}
+.builder-toast.show{opacity:1;transform:translateY(0)}
+.reveal-panel{margin:1.25rem 0;padding:1.5rem;border-radius:16px;background:var(--navy);color:var(--white);position:relative;overflow:hidden}
+.reveal-panel::after{content:'';position:absolute;right:-5rem;top:-7rem;width:18rem;height:18rem;border-radius:50%;background:rgba(123,191,212,0.12)}
+.reveal-kicker{font-size:0.7rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:800;color:var(--teal-light);margin-bottom:0.55rem}
+.reveal-panel h3{font-family:var(--serif);font-size:1.45rem;line-height:1.25;margin-bottom:0.7rem;position:relative;z-index:1}
+.reveal-text{font-size:0.95rem;line-height:1.75;color:rgba(255,255,255,0.76);position:relative;z-index:1;max-width:760px}
+.reveal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.75rem;margin-top:1rem;position:relative;z-index:1}
+.reveal-chip{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:0.8rem}
+.reveal-chip span{display:block;font-size:0.68rem;letter-spacing:0.09em;text-transform:uppercase;color:rgba(255,255,255,0.42);font-weight:800;margin-bottom:0.25rem}
+.reveal-chip strong{font-family:var(--serif);font-size:1rem;line-height:1.25;color:var(--white)}
+.reveal-actions{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem;position:relative;z-index:1}
+.reveal-actions .btn-sm{border-color:rgba(255,255,255,0.18)}
+.reveal-actions .btn-navy{background:var(--teal);border-color:var(--teal)}
+.reveal-actions .btn-outline{color:var(--white);background:rgba(255,255,255,0.08)}
 
 /* LANDING */
 #landing{background:var(--ink);min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 6rem;position:relative;overflow:hidden}
@@ -444,7 +483,7 @@ h2 em{color:var(--teal);font-style:italic}
 
 /* ── SPARKS ── */
 .sparks-panel{}
-.sparks-intro{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-bottom:2.5rem}
+.sparks-intro{display:grid;grid-template-columns:minmax(0,0.82fr) minmax(360px,1.18fr);gap:2rem;align-items:start;margin-bottom:2.5rem}
 .sparks-what{font-size:0.9rem;color:var(--g600);line-height:1.75}
 .sparks-what strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:0.4rem}
 
@@ -481,46 +520,6 @@ h2 em{color:var(--teal);font-style:italic}
 .starter-responses{margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;max-height:120px;overflow-y:auto}
 .starter-resp{font-size:0.82rem;color:rgba(255,255,255,0.65);padding:0.3rem 0;border-bottom:1px solid rgba(255,255,255,0.08);line-height:1.5}
 .starter-resp:last-child{border-bottom:none}
-
-/* Sparks stream */
-.sparks-submit-row{display:flex;gap:0.6rem;align-items:flex-start;margin-bottom:2rem;padding:1rem 1.25rem;background:var(--g100);border-radius:10px}
-.sparks-submit-input{
-  flex:1;padding:0.55rem 0.8rem;
-  border:1.5px solid var(--g200);border-radius:7px;
-  font-family:var(--sans);font-size:0.875rem;color:var(--ink);
-  background:var(--white);resize:none;min-height:52px;
-}
-.sparks-submit-input:focus{outline:none;border-color:var(--teal)}
-.sparks-submit-col{display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end}
-.char-count{font-size:0.72rem;color:var(--g400)}
-.sparks-ap-sel{padding:0.4rem 0.6rem;border:1.5px solid var(--g200);border-radius:6px;font-size:0.78rem;background:var(--white);color:var(--ink);font-family:var(--sans)}
-.sparks-ap-sel:focus{outline:none;border-color:var(--teal)}
-.sparks-stream{columns:2;gap:1rem}
-@media(max-width:640px){.sparks-stream{columns:1}}
-.spark-card{
-  break-inside:avoid;
-  margin-bottom:1rem;
-  background:var(--white);
-  border:1.5px solid var(--g200);
-  border-radius:10px;padding:1rem 1.1rem;
-  position:relative;
-  transition:border-color .2s,box-shadow .2s;
-}
-.spark-card:hover{border-color:var(--g400);box-shadow:0 3px 12px rgba(0,0,0,0.06)}
-.spark-ap-dot{
-  display:inline-block;width:8px;height:8px;
-  border-radius:50%;margin-right:0.4rem;
-  vertical-align:middle;
-}
-.spark-ap-label{font-size:0.65rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--g400)}
-.spark-text{font-family:var(--serif);font-size:0.95rem;color:var(--navy);line-height:1.55;margin:0.5rem 0 0.75rem;font-style:italic}
-.spark-meta{font-size:0.72rem;color:var(--g400)}
-.spark-like{
-  background:none;border:none;cursor:pointer;
-  font-size:0.75rem;color:var(--g400);padding:0;
-  float:right;transition:color .2s;font-family:var(--sans);
-}
-.spark-like:hover,.spark-like.liked{color:var(--burgundy)}
 
 /* ── PROMPT BANK ── */
 .prompts-panel{}
@@ -590,7 +589,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 
 /* Responsive */
 @media(max-width:900px){
-  .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity,.journey-grid,.role-layout,.artifact-stage,.condition-grid,.seeing-grid,.knapsack-grid{grid-template-columns:1fr;gap:2rem}
+  .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity,.journey-grid,.journey-preview-grid,.role-layout,.artifact-stage,.condition-grid,.seeing-grid,.knapsack-grid,.reveal-grid{grid-template-columns:1fr;gap:2rem}
   .feature-workspace{position:static}
   .landing-mark{right:0;width:64rem;height:88vh;opacity:0.2;object-position:center right}
   .ap-filter-list{flex-direction:row;flex-wrap:wrap}
@@ -604,6 +603,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   .form-2col{grid-template-columns:1fr}
   .role-picks,.mini-artifact-grid{grid-template-columns:1fr}
   .viz-row{grid-template-columns:1fr}
+  .portrait-builder{left:0.75rem;right:0.75rem;bottom:0.75rem;width:auto}
+  .builder-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:0.4rem 0.6rem}
+  .builder-toast{right:1rem;bottom:11rem}
+  footer{padding-bottom:10rem}
 }
 </style>
 </head>
@@ -619,11 +622,25 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <li><a href="#purpose-definition">Define Purpose</a></li>
     <li><a href="#framework">Framework</a></li>
     <li><a href="#pulse">Community Pulse</a></li>
-    <li><a href="#knapsack">Your Knapsack</a></li>
+    <li><a href="#knapsack">Your Portrait</a></li>
     <li><a href="#questions">Open Questions</a></li>
     <li><a href="#exchange" class="nav-cta">The Exchange</a></li>
   </ul>
 </nav>
+
+<aside class="portrait-builder" aria-label="Your portrait so far">
+  <div class="builder-top">
+    <div class="builder-title">Your portrait so far</div>
+    <div class="builder-count" id="builderCount">0/7</div>
+  </div>
+  <div class="builder-track"><div class="builder-fill" id="builderFill"></div></div>
+  <div class="builder-list" id="builderList"></div>
+  <div class="builder-reveal">
+    <span class="builder-hint" id="builderHint">Start by adding your role.</span>
+    <a href="#knapsack">Reveal portrait</a>
+  </div>
+</aside>
+<div class="builder-toast" id="builderToast">Added to your portrait</div>
 
 <!-- LANDING -->
 <section id="landing">
@@ -654,7 +671,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="eyebrow">Start Here</div>
       <div class="rule"></div>
       <h2>Step into the <em>exchange</em></h2>
-      <p class="lead" style="font-size:0.975rem">Welcome. Take things in, learn about this initiative, and tell us about what brings you here.</p>
+      <p class="lead" style="font-size:0.975rem">Take things in, tell us a little about you and your perspective, before heading into this experience.</p>
     </div>
     <div class="journey-tabs" aria-label="Start here tabs">
       <button class="journey-tab active" data-journey="about" onclick="openJourney('about',this)">About</button>
@@ -666,7 +683,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="journey-grid">
         <div>
           <div class="eyebrow">About This Project</div>
-          <h2 style="margin-bottom:0.85rem">Learn outloud <em>Respond in small steps that add up</em></h2>
+          <h2 style="margin-bottom:0.85rem">Learn in public. <em>Respond in small moves.</em></h2>
           <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is an open exchange hosted by the <a href="https://www.lipurposefe.com" target="_blank" rel="noopener">Purpose and Identity Processes Lab</a> at Cornell University.</p>
           <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is an emerging initiative dedicated to understanding how young people experience, express, and develop purpose in their lives. Rather than treating purpose as a single trait, score, or outcome, Portraits invites a considering purposeful experience through a broader view that honors the many ways it may manifest and be supported in their lives. The project tries to explore the variety forms purpose can take across different contexts, opportunities, and lived experiences.</p>
           <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">At the heart of the initiative is a simple belief: purpose holds more than a person's ability to articulate it or even the degree they feel it from time to time. Thus, our task is not to solely on those aspects of purpose, but to better notice, support, and learn more about wider ways purpose shows up in their lives.</p>
@@ -674,20 +691,22 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
           <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">The term portrait is intentional. No single measure, moment, or characteristic can fully capture the complexity of a young person’s purposeful life. Portraits of Purposeful Youth instead seeks to illuminate multiple dimensions of development, experience, and context that together shape how purpose is understood and lived.</p>
           <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">We hope this space feels both rigorous and generative: a place for inquiry, reflection, dialogue, and possibility.</p>
           <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">Your responses shared here are not treated as survey findings. Instead, they can help sharpen future research questions, reveal where the framework feels incomplete, and produce <strong>two takeaways</strong> we hope are useful for you: a role-based field view and a personalized summary of your own responses.</p>
+          <div class="journey-preview-grid">
+            <div class="role-art"><img src="assets/role-compass.png" alt="Illustrated compass and branching paths suggesting direction and youth development"/></div>
+            <div class="artifact-preview"><img src="assets/artifact-preview.png" alt="Illustrated preview of a role-based visualization and a personal reflection summary"/></div>
+          </div>
           <div class="mini-artifact-grid">
             <div class="mini-artifact"><strong>Artifact 1: An integrative view</strong><p>Receive a visual synthesis of what others are seeing in youth purpose.</p></div>
             <div class="mini-artifact"><strong>Artifact 2: Your personal recap</strong><p>A downloadable summary of your perspective to email yourself or share with collaborators.</p></div>
           </div>
         </div>
-        <div class="artifact-preview"><img src="assets/artifact-preview.png" alt="Illustrated preview of a role-based visualization and a personal reflection summary"/></div>
       </div>
     </div>
 
     <div class="journey-panel" id="journey-roles">
       <div class="role-layout">
         <div>
-          <div class="role-art"><img src="assets/role-compass.png" alt="Illustrated compass and branching paths suggesting direction and youth development"/></div>
-          <div class="role-picks" style="margin-top:1rem">
+          <div class="role-picks">
             <button class="role-chip" data-role="researcher" onclick="toggleRole(this)"><span>Research</span><strong>Researcher or Scholar</strong></button>
             <button class="role-chip" data-role="practitioner" onclick="toggleRole(this)"><span>Practice</span><strong>Practitioner or Educator</strong></button>
             <button class="role-chip" data-role="policy" onclick="toggleRole(this)"><span>Systems</span><strong>Policymaker or Funder</strong></button>
@@ -765,7 +784,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         <li>Who is seen as purposeful — recognizing that constrained purpose often reflects constrained conditions, not constrained potential</li>
       </ul>
       <div class="condition-lab">
-        <div class="artifact-kicker">Set your lens</div>
+        <div class="artifact-kicker">Artifact · Set your lens</div>
         <div class="condition-grid">
           <div class="purpose-dial" id="conditionDial">
             <div class="dial-core"><strong id="conditionDialScore">55</strong><span>field of view</span></div>
@@ -802,8 +821,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   <div class="container">
     <div class="eyebrow">Your Working Definition</div>
     <div class="rule"></div>
-    <h2>Define <em>purpose</em> before the portraits define it for you.</h2>
-    <p class="lead purpose-definition-note" style="font-size:0.975rem">Carry a working definition into the rest of the exchange. It does not need to be polished. We are interested in how you see and understand this term.</p>
+    <h2>Define <em>purpose</em> here to inform what to look for in the portraits.</h2>
+    <p class="lead purpose-definition-note" style="font-size:0.975rem">Carry a working definition into the rest of the exchange. It does not need to be polished. We are interested in the words you are operating with right now.</p>
     <div class="purpose-definition-card">
       <label class="definition-label" for="purposeDefinitionInput">I would define purpose as:</label>
       <div class="form-row">
@@ -1063,15 +1082,16 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 <!-- ARTIFACT KNAPSACK -->
 <section id="knapsack">
   <div class="container knapsack-shell">
-    <div class="eyebrow">Your Artifact Knapsack</div>
+    <div class="eyebrow">Your Portrait Reveal</div>
     <div class="rule"></div>
-    <h2>What you have <em>assembled so far</em></h2>
-    <p class="lead" style="font-size:0.975rem">As you move through the exchange, your choices form a compact portfolio of how you are thinking about youth purpose: the role you entered from, the viewing lens you set, the action your seeing points toward, and the questions or reflections you contributed.</p>
+    <h2>Generate your <em>Portrait of Seeing</em></h2>
+    <p class="lead" style="font-size:0.975rem">As you move through the exchange, your choices form a compact portrait of how you are thinking about youth purpose: the role you entered from, the definition you carried, the viewing lens you set, and what your seeing asks you to do next.</p>
+    <div class="reveal-panel" id="portraitReveal"></div>
     <div class="knapsack-meta" id="knapsackMeta"></div>
     <div class="knapsack-grid" id="knapsackGrid"></div>
     <div class="artifact-actions">
-      <button class="btn-sm btn-navy" onclick="downloadResponseSummary()">Download the full knapsack</button>
-      <button class="btn-sm btn-outline" onclick="emailResponseSummary()">Email the knapsack to yourself</button>
+      <button class="btn-sm btn-navy" onclick="downloadResponseSummary()">Download the full portrait</button>
+      <button class="btn-sm btn-outline" onclick="emailResponseSummary()">Email the portrait to yourself</button>
     </div>
   </div>
 </section>
@@ -1082,7 +1102,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div style="margin-bottom:2.5rem">
       <div class="eyebrow">Open Questions</div>
       <div class="rule"></div>
-      <h2>What we <em>still do not know yet</em></h2>
+      <h2>What we <em>still want to know</em></h2>
       <p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add the question that should have been here from the start.</p>
     </div>
     <div class="q-meta">This section will grow as the exchange develops. The questions below are starting points; the most useful contribution may be naming the better question.</div>
@@ -1104,8 +1124,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div>
         <div class="q-cat-label">Questions only young people can answer from the inside</div>
         <div class="q-cards">
-          <div class="q-card"><div class="q-text">What does Resonance actually feel like when it's present — and what does its absence feel like, from the inside?</div><a class="q-contribute" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('sparkInput').focus(),400)">+ Share a spark</a></div>
-          <div class="q-card"><div class="q-text">When purpose feels constrained, what do the adults and institutions around you most get wrong?</div><a class="q-contribute" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('sparkInput').focus(),400)">+ Share a spark</a></div>
+          <div class="q-card"><div class="q-text">What does Resonance actually feel like when it's present — and what does its absence feel like, from the inside?</div><a class="q-contribute" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('starterInput').focus(),400)">+ Add a quick sighting</a></div>
+          <div class="q-card"><div class="q-text">When purpose feels constrained, what do the adults and institutions around you most get wrong?</div><a class="q-contribute" href="#exchange" onclick="openTab('sparks');setTimeout(()=>document.getElementById('starterInput').focus(),400)">+ Add a quick sighting</a></div>
         </div>
       </div>
     </div>
@@ -1148,8 +1168,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div>
         <div class="eyebrow">The Exchange</div>
         <div class="rule"></div>
-        <h2>Share what your <em>seeing</em> reveals</h2>
-        <p class="lead" style="font-size:0.95rem">Share a fuller reflection, leave one sharp sighting, or contribute a prompt that helps others see youth purpose more clearly. Their presence is tracked in your knapsack recap here, and the public-facing pieces can also inform aggregate exchange views after review.</p>
+        <h2>Share what you're <em>seeing</em></h2>
+        <p class="lead" style="font-size:0.95rem">Share a fuller reflection, leave one sharp sighting, or contribute a prompt that helps others see youth purpose more clearly. Their presence is tracked in your portrait recap here, and the public-facing pieces can also inform aggregate exchange views after review.</p>
       </div>
     </div>
 
@@ -1200,11 +1220,11 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div class="tab-panel" id="panel-sparks">
       <div class="sparks-intro">
         <div class="sparks-what">
-          <strong>Quick sightings — one sentence, something real</strong>
-          Name one moment that changed how you saw a young person’s purpose, possibility, or constraints. Keep it concrete. Tag a lens if one fits.
+          <strong>Quick sightings — one prompt, one useful response</strong>
+          Use the sentence starter at right to name a question that opens purpose up for young people in your setting. Keep it practical enough that someone else could try it.
         </div>
         <div class="starter-widget">
-          <div class="starter-tag">This month's sentence starter</div>
+          <div class="starter-tag">Quick sighting prompt</div>
           <div class="starter-prompt" id="starterPrompt"></div>
           <div class="starter-input-row">
             <input class="starter-input" id="starterInput" placeholder="finish the sentence…" onkeydown="if(event.key==='Enter')submitStarter()"/>
@@ -1213,38 +1233,19 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
           <div class="starter-responses" id="starterResponses"></div>
         </div>
       </div>
-      <div class="sparks-submit-row">
-        <textarea class="sparks-submit-input" id="sparkInput" placeholder="Drop a spark — one sentence, something real you observed or experienced…" oninput="updateCharCount(this)" maxlength="200" rows="2"></textarea>
-        <div class="sparks-submit-col">
-          <span class="char-count" id="sparkCharCount">200</span>
-          <select class="sparks-ap-sel" id="sparkAp">
-            <option value="0">any lens</option>
-            <option value="1">01 Sense of Purpose</option>
-            <option value="2">02 Scope &amp; Awareness</option>
-            <option value="3">03 Orientation</option>
-            <option value="4">04 Content</option>
-            <option value="5">05 Practice</option>
-            <option value="6">06 Recognition</option>
-            <option value="7">07 Affordances</option>
-            <option value="8">08 Cultural Context</option>
-          </select>
-          <button class="btn-sm btn-navy" onclick="submitSpark()">Spark it ⚡</button>
-        </div>
-      </div>
-      <div class="sparks-stream" id="sparksStream"></div>
     </div>
 
     <!-- PROMPT BANK TAB -->
     <div class="tab-panel" id="panel-prompts">
       <div class="prompts-intro">
         <div class="prompts-what">
-          <strong>What helps people see more clearly?</strong>
-          This bank collects prompts that open better observation, reflection, and conversation about youth purpose. Browse what is useful and add one of your own.
+          <strong>Prompts for using the lenses well</strong>
+          This bank is for questions that help someone notice, test, or discuss one of the Portraits lenses more clearly. Unlike your earlier personal reflections, these are reusable prompts other people could bring into a conversation, workshop, interview, or program setting.
         </div>
         <div class="prompt-submit-box">
           <div class="prompt-submit-title">Add a prompt to the bank</div>
-          <div class="form-row"><label>The question</label><input type="text" id="pQ" placeholder="e.g. When do you feel most like yourself?"/></div>
-          <div class="form-row"><label>Context — when and with whom does this work?</label><input type="text" id="pCtx" placeholder="e.g. Works well with older adolescents skeptical of 'purpose' language"/></div>
+          <div class="form-row"><label>The lens-oriented question</label><input type="text" id="pQ" placeholder="e.g. What helps a young person notice that their effort matters to others?"/></div>
+          <div class="form-row"><label>Where would this prompt be useful?</label><input type="text" id="pCtx" placeholder="e.g. Youth advisory group, educator reflection, community partner interview"/></div>
           <div class="form-2col">
             <div class="form-row"><label>Lens it surfaces (if any)</label><select id="pAp"><option value="0">General / multiple</option><option value="1">Sense of Purpose</option><option value="2">Scope &amp; Awareness</option><option value="3">Orientation</option><option value="4">Content</option><option value="5">Practice</option><option value="6">Recognition</option><option value="7">Affordances</option><option value="8">Cultural Context</option></select></div>
             <div class="form-row"><label>Your role (optional)</label><input type="text" id="pRole" placeholder="e.g. School counselor, Denver"/></div>
@@ -1264,7 +1265,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   <div class="footer-sub">Purpose Science &amp; Innovation Exchange · Purpose and Identity Processes Lab</div>
   <div class="footer-links">
     <a href="#journey">Start Here</a><a href="#claim">The Claim</a><a href="#purpose-definition">Define Purpose</a><a href="#framework">Framework</a>
-    <a href="#pulse">Community Pulse</a><a href="#knapsack">Your Knapsack</a><a href="#questions">Open Questions</a>
+    <a href="#pulse">Community Pulse</a><a href="#knapsack">Your Portrait</a><a href="#questions">Open Questions</a>
     <a href="#exchange">The Exchange</a>
   </div>
   <div class="footer-draft">Working draft — the framework is actively evolving. What you contribute shapes what it becomes.</div>
@@ -1292,9 +1293,6 @@ let pulseCast=false;
 let posts=[];
 let currentApFilter=0;
 
-// Sparks
-let sparks=[];
-
 // Prompts
 let prompts=[];
 
@@ -1303,6 +1301,7 @@ const selectedRoles=new Set();
 const selectedYouthGroups=new Set();
 let selectedOverlooked='';
 let currentStance='Name what is already there';
+let stanceChosen=false;
 const roleLabels={
   researcher:'researchers',
   practitioner:'practitioners',
@@ -1328,12 +1327,12 @@ const stanceNotes={
 
 // Starters
 const starters=[
-  {stem:"In my setting, young people most often have access to",blank:"___"},
-  {stem:"The question that opens purpose up for the young people I work with is",blank:"___"},
-  {stem:"When purpose is constrained, what I most often see instead is",blank:"___"}
+  {stem:"The question that opens purpose up for the young people I work with is",blank:"___"}
 ];
-let starterResponses=[[],[],[]];
-const starterIdx=new Date().getMonth()%starters.length;
+let starterResponses=[[]];
+const starterIdx=0;
+let lastPortraitCount=0;
+let builderInitialized=false;
 
 // ─── Helpers ──────────────────────────────────────────────
 function initials(n){return n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase()}
@@ -1364,7 +1363,6 @@ async function hydrateRemote(){
     if(!res.ok)return;
     const data=await res.json();
     if(Array.isArray(data.posts)&&data.posts.length)posts=data.posts;
-    if(Array.isArray(data.sparks)&&data.sparks.length)sparks=data.sparks;
     if(Array.isArray(data.prompts)&&data.prompts.length)prompts=data.prompts;
     if(Array.isArray(data.pulseVotes)&&data.pulseVotes.some(Boolean)){
       pulseVotes=data.pulseVotes.map((v,i)=>i===0?0:Number(v||0));
@@ -1386,7 +1384,7 @@ async function hydrateRemote(){
         }
       }
     }
-    renderPulse();renderPosts();renderSparks();renderPrompts();renderOpenQuestions();renderKnapsack();
+    renderPulse();renderPosts();renderPrompts();renderOpenQuestions();renderKnapsack();
   }catch(err){
     console.warn('Exchange API hydrate skipped:',err);
   }
@@ -1523,6 +1521,7 @@ function chooseSightAction(btn){
   document.querySelectorAll('.seeing-card').forEach(card=>card.classList.remove('active'));
   btn.classList.add('active');
   currentStance=btn.dataset.stance||currentStance;
+  stanceChosen=true;
   updateExchangeStance();
 }
 function updateExchangeStance(){
@@ -1606,6 +1605,75 @@ function escapeHtml(value){
     '"':'&quot;',
     "'":'&#39;'
   }[char]));
+}
+function topConditionLabel(values){
+  const key=Object.entries(values).sort((a,b)=>b[1]-a[1])[0]?.[0]||'opportunity';
+  return {opportunity:'young people’s direction',recognition:'surrounding supports',practice:'blocked pathways'}[key];
+}
+function portraitMilestones(){
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const feature=(document.getElementById('featureReflect')?.value||'').trim();
+  return [
+    {key:'role',label:'Role selected',done:selectedRoles.size>0},
+    {key:'youth',label:'Youth named',done:selectedYouthGroups.size>0},
+    {key:'definition',label:'Purpose defined',done:purposeDefinition.length>0},
+    {key:'lens',label:'Lens tuned',done:conditionValues().opportunity!==55||conditionValues().recognition!==55||conditionValues().practice!==55||!!selectedOverlooked},
+    {key:'action',label:'Action chosen',done:stanceChosen},
+    {key:'features',label:'Reading order built',done:feature.length>0||features.map(f=>f.name).join('|')!==defaultFeatures.map(f=>f.name).join('|')},
+    {key:'exchange',label:'Contribution added',done:(starterResponses[starterIdx]?.length||0)>0||prompts.length>0||posts.length>0||purpose.length>0}
+  ];
+}
+function renderPortraitBuilder(){
+  const list=document.getElementById('builderList');
+  const count=document.getElementById('builderCount');
+  const fill=document.getElementById('builderFill');
+  const hint=document.getElementById('builderHint');
+  if(!list||!count||!fill||!hint)return;
+  const items=portraitMilestones();
+  const completed=items.filter(i=>i.done).length;
+  count.textContent=`${completed}/${items.length}`;
+  fill.style.width=`${Math.round(completed/items.length*100)}%`;
+  list.innerHTML=items.map(item=>`<div class="builder-item ${item.done?'done':''}"><span class="builder-dot"></span><span>${escapeHtml(item.label)}</span></div>`).join('');
+  const next=items.find(i=>!i.done);
+  const nextHints={role:'select a role',youth:'name who comes to mind',definition:'define purpose',lens:'tune your lens',action:'choose an action',features:'build your reading order',exchange:'add a contribution'};
+  hint.textContent=next?`Next: ${nextHints[next.key]||next.label.toLowerCase()}`:'Ready to reveal';
+  if(builderInitialized&&completed>lastPortraitCount)flashBuilderToast();
+  lastPortraitCount=completed;
+  builderInitialized=true;
+}
+function flashBuilderToast(){
+  const toast=document.getElementById('builderToast');
+  if(!toast)return;
+  toast.classList.add('show');
+  clearTimeout(flashBuilderToast.timer);
+  flashBuilderToast.timer=setTimeout(()=>toast.classList.remove('show'),1800);
+}
+function renderPortraitReveal(){
+  const wrap=document.getElementById('portraitReveal');
+  if(!wrap)return;
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const values=conditionValues();
+  const conditionScore=Math.round((values.opportunity+values.recognition+values.practice)/3);
+  const featureTop=features[0]?.name||'your first cue';
+  const roles=[...selectedRoles].map(r=>roleLabels[r]);
+  const roleCopy=roles.length?roles.join(', '):'a still-forming vantage point';
+  const youthCopy=selectedYouthGroups.size?[...selectedYouthGroups].join(', '):'young people broadly';
+  const definitionCopy=purposeDefinition?`Your working definition is: "${purposeDefinition}" `:'Your working definition is still open. ';
+  const text=`Seen through ${roleCopy}, your portrait centers ${topConditionLabel(values)} for ${youthCopy}. ${definitionCopy}Your first reading cue is ${featureTop.toLowerCase()}, and the action your seeing currently points toward is: ${currentStance}.`;
+  wrap.innerHTML=`
+    <div class="reveal-kicker">Generated from your responses</div>
+    <h3>How you are seeing youth purpose</h3>
+    <div class="reveal-text">${escapeHtml(text)}</div>
+    <div class="reveal-grid">
+      <div class="reveal-chip"><span>You notice first</span><strong>${escapeHtml(topConditionLabel(values))}</strong></div>
+      <div class="reveal-chip"><span>Your reading cue</span><strong>${escapeHtml(featureTop)}</strong></div>
+      <div class="reveal-chip"><span>Field of view</span><strong>${conditionScore}/100</strong></div>
+    </div>
+    <div class="reveal-actions">
+      <button class="btn-sm btn-navy" onclick="downloadResponseSummary()">Download portrait</button>
+      <button class="btn-sm btn-outline" onclick="emailResponseSummary()">Email portrait</button>
+    </div>`;
 }
 function summaryHtml(){
   const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim()||'No quick response entered';
@@ -1696,6 +1764,8 @@ First place I expect to look: ${escapeHtml(selectedOverlooked)}`:''}</div>
 function renderKnapsack(){
   const grid=document.getElementById('knapsackGrid');
   const meta=document.getElementById('knapsackMeta');
+  renderPortraitBuilder();
+  renderPortraitReveal();
   if(!grid||!meta)return;
   const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
   const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
@@ -1729,7 +1799,7 @@ function renderKnapsack(){
     },
     {
       title:'Question-building momentum',
-      body:`${starterResponses[starterIdx]?.length||0} starter response(s), ${sparks.length} spark(s), ${prompts.length} prompt(s), and ${posts.length} discussion contribution(s) visible in this session.`
+      body:`${starterResponses[starterIdx]?.length||0} quick sighting response(s), ${prompts.length} prompt(s), and ${posts.length} discussion contribution(s) visible in this session.`
     }
   ];
   meta.innerHTML=[
@@ -1970,38 +2040,6 @@ function submitPost(){
   renderKnapsack();
 }
 
-// ─── Sparks ───────────────────────────────────────────────
-function updateCharCount(el){
-  const rem=200-el.value.length;
-  document.getElementById('sparkCharCount').textContent=rem;
-  document.getElementById('sparkCharCount').style.color=rem<30?'var(--terra)':'var(--g400)';
-}
-function renderSparks(){
-  const stream=document.getElementById('sparksStream');
-  stream.innerHTML=sparks.map(s=>`
-    <div class="spark-card">
-      <button class="spark-like ${s.liked?'liked':''}" onclick="likeSpark(${idArg(s.id)})">${s.liked?'♥':'♡'} ${s.likes}</button>
-      <div style="font-size:0.68rem;color:var(--g400);margin-bottom:0.35rem">${s.ap>0?`${apDot(s.ap)}<span class="spark-ap-label">${AP_NAMES[s.ap]}</span>`:`<span class="spark-ap-label">General</span>`}</div>
-      <div class="spark-text">"${s.text}"</div>
-      <div class="spark-meta">${s.time}</div>
-    </div>`).join('');
-}
-function likeSpark(id){
-  const s=sparks.find(x=>sameId(x.id,id));if(!s)return;
-  s.liked=!s.liked;s.likes+=s.liked?1:-1;renderSparks();
-  if(s.liked)saveRemote('spark_like',{target_type:'sparks',target_id:String(s.remoteId||s.id),lens_id:s.ap||0});
-}
-function submitSpark(){
-  const inp=document.getElementById('sparkInput');
-  const text=inp.value.trim();if(!text)return;
-  const ap=parseInt(document.getElementById('sparkAp').value)||0;
-  sparks.unshift({id:Date.now(),text,ap,likes:0,liked:false,time:'just now'});
-  saveRemote('spark',{text,lens_id:ap});
-  inp.value='';document.getElementById('sparkCharCount').textContent='200';
-  renderSparks();
-  renderKnapsack();
-}
-
 // ─── Sentence Starter ─────────────────────────────────────
 function initStarter(){
   const s=starters[starterIdx];
@@ -2115,7 +2153,6 @@ function renderOpenQuestions(){
 renderFeatures();
 renderPulse();
 renderPosts();
-renderSparks();
 initStarter();
 renderPrompts();
 renderOpenQuestions();

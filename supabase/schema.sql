@@ -24,15 +24,6 @@ create table if not exists exchange_comments (
   created_at timestamptz not null default now()
 );
 
-create table if not exists sparks (
-  id uuid primary key default gen_random_uuid(),
-  text text not null,
-  lens_id smallint check (lens_id between 0 and 8),
-  status text not null default 'pending' check (status in ('pending', 'approved', 'rejected', 'archived')),
-  likes_seed integer not null default 0,
-  created_at timestamptz not null default now()
-);
-
 create table if not exists prompt_bank (
   id uuid primary key default gen_random_uuid(),
   question text not null,
@@ -116,7 +107,6 @@ create table if not exists lens_nominations (
 create index if not exists exchange_posts_status_created_idx on exchange_posts(status, created_at desc);
 create index if not exists exchange_posts_lens_idx on exchange_posts(lens_id);
 create index if not exists exchange_comments_post_idx on exchange_comments(post_id);
-create index if not exists sparks_status_created_idx on sparks(status, created_at desc);
 create index if not exists prompt_bank_status_created_idx on prompt_bank(status, created_at desc);
 create index if not exists pulse_votes_prompt_lens_idx on pulse_votes(prompt_key, lens_id);
 create index if not exists feature_reflections_status_created_idx on feature_reflections(status, created_at desc);
@@ -128,7 +118,6 @@ create index if not exists interaction_events_type_created_idx on interaction_ev
 
 alter table exchange_posts enable row level security;
 alter table exchange_comments enable row level security;
-alter table sparks enable row level security;
 alter table prompt_bank enable row level security;
 alter table pulse_votes enable row level security;
 alter table feature_reflections enable row level security;

@@ -139,8 +139,8 @@ h2 em{color:var(--teal);font-style:italic}
 .knapsack-card p{font-size:0.86rem;color:var(--g600);line-height:1.65}
 .knapsack-meta{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem}
 .knapsack-pill{background:rgba(59,122,143,0.1);color:var(--teal);border-radius:999px;padding:0.32rem 0.7rem;font-size:0.76rem;font-weight:700}
-.knapsack-head{display:flex;justify-content:space-between;gap:1.5rem;align-items:flex-start}
-.knapsack-logo{width:154px;max-width:28%;height:auto;object-fit:contain;margin-top:-0.25rem}
+.knapsack-head{display:block}
+.knapsack-logo{display:block;width:min(360px,70%);height:auto;object-fit:contain;margin:0 auto 2rem}
 .portrait-builder{
   position:fixed;right:1rem;bottom:1rem;z-index:190;width:min(340px,calc(100vw - 2rem));
   background:rgba(255,255,255,0.96);border:1.5px solid var(--g200);border-radius:14px;
@@ -604,8 +604,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 /* Responsive */
 @media(max-width:900px){
   .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity,.journey-grid,.journey-preview-grid,.role-layout,.artifact-stage,.condition-grid,.seeing-grid,.knapsack-grid,.reveal-grid,.reveal-layout,.portrait-thread{grid-template-columns:1fr;gap:2rem}
-  .knapsack-head{display:block}
-  .knapsack-logo{max-width:190px;width:50%;margin:0 0 1.25rem}
+  .knapsack-logo{width:min(300px,82%);margin-bottom:1.5rem}
   .feature-workspace{position:static}
   .landing-mark{right:0;width:64rem;height:88vh;opacity:0.2;object-position:center right}
   .ap-filter-list{flex-direction:row;flex-wrap:wrap}
@@ -704,8 +703,8 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
           <div class="eyebrow">About This Project</div>
           <h2 style="margin-bottom:0.85rem">Learn in public. <em>Respond in small moves.</em></h2>
           <p class="lead" style="font-size:0.975rem">Portraits of Purposeful Youth is an open exchange hosted by the <a href="https://www.lipurposefe.com" target="_blank" rel="noopener">Purpose and Identity Processes Lab</a> at Cornell University. It explores how young people experience, express, and develop purpose across the relationships, opportunities, and settings that shape their lives.</p>
-          <div style="font-size:1.04rem;color:var(--navy);line-height:1.65;margin:1.5rem 0;font-family:var(--serif)">No single measure, moment, or characteristic can fully capture the complexity of a young person's purposeful life.</div>
-          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin-top:1.1rem">Your responses shared here are not treated as survey findings. Instead, they help sharpen future questions, reveal where the framework feels incomplete, and produce <strong>two takeaways</strong>: a role-based field view and a personalized summary of your own responses.</p>
+          <div style="font-size:1.04rem;color:var(--navy);line-height:1.65;margin:1.5rem 0;font-family:var(--serif)">No single measure, moment, or characteristic can fully capture the complexity of a young person's purposeful life. This initiative is informed by developmental science and by a desire to bring lived experience more fully into how purpose is understood. It honors the variety of ways purpose can manifest across people's lives, contexts, relationships, and opportunities.</div>
+          <p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin-top:1.1rem">Your responses here matter to us. They help sharpen future questions, reveal where the framework feels incomplete, and produce <strong>two takeaways</strong>: a role-based field view and a personalized summary of your own responses.</p>
           <div class="mini-artifact-grid">
             <div class="mini-artifact"><strong>Takeaway 1: An integrative view</strong><p>Receive a visual synthesis of what others are seeing in youth purpose.</p></div>
             <div class="mini-artifact"><strong>Takeaway 2: Your personal recap</strong><p>A downloadable summary of your perspective to email yourself or share with collaborators.</p></div>
@@ -785,7 +784,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
       <div class="eyebrow">The Claim</div>
       <div class="rule"></div>
       <blockquote class="claim-pull">A sense of purpose is not distributed evenly across young people. It is <em>cultivated or constrained</em> by the unique set of conditions that surround them.</blockquote>
-      <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is a claim with evidence behind it. Purpose — a self-organizing and forward-looking aim — is a developmental resource. But it does not emerge by chance. It grows in relation to what young people can see, what they are given the chance to do, who recognizes them, and what their environment makes possible.</p>
+      <p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is a claim with evidence behind it. Purpose — a <strong>self-organizing and forward-looking life aim</strong> — is a developmental resource. Substantial research links it with a host of health and well-being benefits for those who cultivate it. But it does not emerge by chance. It grows in relation to what young people can see, what they are given the chance to do, who recognizes them, and what their environment makes possible.</p>
     </div>
     <div>
       <h2><em>Tuning how purpose is seen</em> <span style="display:block;color:var(--teal);font-family:var(--sans);font-size:1rem;font-style:normal;font-weight:700;margin-top:0.35rem">What sharing your perspective can impact:</span></h2>
@@ -819,10 +818,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
         </div>
         <p class="activity-copy" style="margin-top:0.9rem">Now choose where you would look first if a young person’s purpose seemed hard to see. This becomes part of your portrait.</p>
         <div class="vote-row" aria-label="Where do you expect to look first">
-          <button class="vote-chip" data-overlooked="young people" onclick="chooseOverlooked(this)">Young people</button>
-          <button class="vote-chip" data-overlooked="their relationships" onclick="chooseOverlooked(this)">Relationships</button>
-          <button class="vote-chip" data-overlooked="their setting" onclick="chooseOverlooked(this)">Programs &amp; setting</button>
-          <button class="vote-chip" data-overlooked="the wider culture" onclick="chooseOverlooked(this)">Wider culture</button>
+          <button class="vote-chip" data-overlooked="the young person" onclick="chooseOverlooked(this)">At the young person</button>
+          <button class="vote-chip" data-overlooked="their relationships" onclick="chooseOverlooked(this)">At their relationships</button>
+          <button class="vote-chip" data-overlooked="their programs or settings" onclick="chooseOverlooked(this)">At their programs or settings</button>
+          <button class="vote-chip" data-overlooked="the wider culture" onclick="chooseOverlooked(this)">At the wider culture</button>
         </div>
         <div class="condition-summary" id="conditionSummary"></div>
       </div>
@@ -854,7 +853,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 <section id="argument">
   <div class="arg-inner">
     <div class="arg-eyebrow">What makes this an exchange?</div>
-    <div class="arg-claim">If purpose develops in conditions,<br>then knowledge about purpose development<br>must <em>engage</em> with <span class="plain-white">those conditions.</span></div>
+    <div class="arg-claim">If purpose <em>develops</em> in conditions,<br>then knowledge about purpose development<br>must <em>engage</em> with <span class="plain-white">those conditions.</span></div>
     <p class="arg-body">Seeing youth purpose more clearly should change what we ask, what we build, and what we stop overlooking. This exchange is designed to collect those shifts in perspective from people who meet youth in different roles and settings.</p>
     <div class="arg-implication">"The exchange matters when better seeing leads to better questions and better choices."</div>
     <div class="seeing-response">
@@ -1043,7 +1042,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
     <div class="feature-activity">
       <div class="feature-cards" id="featureCards"></div>
       <div class="feature-workspace">
-        <div class="activity-title">Build your reading order</div>
+        <div class="activity-title">Build your detection order</div>
         <p class="activity-copy">Move the cues up or down. The top cue is what you would look for first; the note below explains what that order helps you notice.</p>
         <div class="feature-summary" id="featureSummary"></div>
         <label class="form-row" style="display:block">
@@ -1233,13 +1232,13 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 <section id="knapsack">
   <div class="container knapsack-shell">
     <div class="knapsack-head">
+      <img class="knapsack-logo" src="assets/pip-lab-download-logo.png" alt="Purpose and Identity Processes Lab logo"/>
       <div>
         <div class="eyebrow">Your Portrait Reveal</div>
         <div class="rule"></div>
         <h2>Produce your <em>Portrait of Purposeful Youth</em></h2>
         <p class="lead" style="font-size:0.975rem">This is the portrait you have been building. It pulls together your role, definition, lens settings, reading order, questions, reflections, and seeing prompts into one shareable view of how you are seeing youth purpose.</p>
       </div>
-      <img class="knapsack-logo" src="assets/pip-lab-download-logo.png" alt="Purpose and Identity Processes Lab logo"/>
     </div>
     <div class="reveal-panel" id="portraitReveal"></div>
     <div class="portrait-thread" id="portraitThread"></div>
@@ -1271,10 +1270,10 @@ const AP_NAMES=['','Sense of Purpose','Scope & Awareness','Orientation','Content
 const avatarColors=['#7B3D42','#1E2D4A','#C4724A','#5B3D5A','#3B7A8F','#7A7840','#8B7B6B'];
 
 const defaultFeatures=[
-  {name:"It's Strength",def:'How visible or consequential purposeful direction feels in the moment.'},
-  {name:"It's Durability",def:'Whether that direction seems sustained over time or only briefly present.'},
-  {name:"It's Fit within a context",def:'Whether it feels connected to the young person’s identity, values, and lived reality.'},
-  {name:"It's Resonance for the young person",def:'Whether any aspect of purpose actually matters to a young person, and aligns with how they see themselves in the world.'}
+  {name:'Strength',def:'How visible or consequential purposeful direction feels in the moment.'},
+  {name:'Durability',def:'Whether that direction seems sustained over time or only briefly present.'},
+  {name:'Fit',def:'Whether it feels connected to the young person’s identity, values, and lived reality.'},
+  {name:'Resonance',def:'Whether any aspect of purpose actually matters to a young person, and aligns with how they see themselves in the world.'}
 ];
 let features=defaultFeatures.map(f=>({...f}));
 

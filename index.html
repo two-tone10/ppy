@@ -145,7 +145,7 @@ h2 em{color:var(--teal);font-style:italic}
 /* COLLECTIBLE ACTIVITIES */
 .artifact-kicker{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.55rem}
 .condition-lab,.seeing-response,.knapsack-shell,.purpose-definition-card{border:1.5px solid var(--g200);border-radius:14px;background:var(--white);padding:1.35rem}
-.condition-lab{margin-top:1.5rem}.condition-lab-wide{max-width:940px;margin:2.4rem auto 0;width:100%;box-shadow:0 12px 34px rgba(13,26,46,0.06)}.condition-lab-wide .condition-grid{grid-template-columns:210px minmax(0,1fr);gap:1.75rem}.condition-lab-wide .vote-row{justify-content:center}
+.condition-lab{margin-top:1.5rem}.condition-lab-wide{max-width:1040px;margin:2.4rem auto 0;width:100%;box-shadow:0 12px 34px rgba(13,26,46,0.06)}.condition-lab-wide .condition-grid{grid-template-columns:260px minmax(0,1fr);gap:2rem}.condition-lab-wide .vote-row{justify-content:center}
 .purpose-definition-card{max-width:880px;margin:1.5rem auto 0;background:linear-gradient(180deg,#fff 0%,#fbf7f2 100%)}
 .purpose-definition-card .form-row textarea{min-height:110px;font-size:1rem;line-height:1.7}
 .purpose-definition-card .definition-label{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--navy);margin-bottom:0.85rem}
@@ -225,7 +225,7 @@ h2 em{color:var(--teal);font-style:italic}
 .reveal-art img{width:100%;height:100%;min-height:260px;object-fit:cover;display:block;opacity:0.92}
 .reveal-kicker{font-size:0.7rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:800;color:var(--teal-light);margin-bottom:0.55rem}
 .reveal-panel h3{font-family:var(--serif);font-size:1.45rem;line-height:1.25;margin-bottom:0.7rem;position:relative;z-index:1}
-.reveal-text{font-size:0.95rem;line-height:1.75;color:rgba(255,255,255,0.76);position:relative;z-index:1;max-width:760px}.reveal-list{margin:0;padding-left:1.1rem;display:grid;gap:0.62rem}.reveal-list li{padding-left:0.15rem}
+.reveal-text{font-size:0.95rem;line-height:1.75;color:rgba(255,255,255,0.76);position:relative;z-index:1;max-width:760px}.reveal-list{margin:0;padding-left:1.1rem;display:grid;gap:0.7rem}.reveal-list li{padding-left:0.15rem}.lens-frame-stack{gap:1rem}.frame-stage{margin-bottom:0.55rem}.frame-caption-list{margin:0.35rem 0 0;padding-left:1.1rem;display:grid;gap:0.35rem;line-height:1.45}
 .reveal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.75rem;margin-top:1rem;position:relative;z-index:1}
 .reveal-chip{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:0.8rem}
 .reveal-chip span{display:block;font-size:0.68rem;letter-spacing:0.09em;text-transform:uppercase;color:rgba(255,255,255,0.42);font-weight:800;margin-bottom:0.25rem}
@@ -696,10 +696,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
 /* --- PPY refreshed logo + youth-wall landing --- */
 nav{gap:1.25rem}
 .nav-logo{display:flex;align-items:center;gap:0.7rem;text-decoration:none;min-width:220px;color:var(--white)}
-.nav-logo img{width:54px;height:auto;display:block;object-fit:contain;filter:brightness(1.55) saturate(1.75) drop-shadow(0 0 12px rgba(123,191,212,0.48)) drop-shadow(0 2px 10px rgba(0,0,0,0.18))}
+.nav-logo img{width:86px;height:auto;display:block;object-fit:contain;filter:brightness(1.85) saturate(2.25) drop-shadow(0 0 16px rgba(123,191,212,0.72)) drop-shadow(0 2px 12px rgba(0,0,0,0.22))}
 .nav-logo-text{display:flex;flex-direction:column;line-height:1.08}
-.nav-logo-text strong{font-family:var(--serif);font-size:0.9rem;font-weight:600;color:var(--white)}
-.nav-logo-text span{font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:700;margin-top:0.16rem}
+.nav-logo-text strong{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--white)}
+.nav-logo-text span{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.74);font-weight:700;margin-top:0.16rem}
 #landing{background:linear-gradient(90deg,var(--cream) 0%,#fbf8f3 52%,#f2eee7 100%);min-height:calc(100vh - 60px);display:flex;align-items:center;padding:5.25rem 2.5rem 4.25rem;position:relative;overflow:hidden;border-bottom:1px solid var(--g200)}
 #landing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 25%,rgba(59,122,143,0.08) 0%,transparent 54%),radial-gradient(ellipse at 16% 82%,rgba(196,114,74,0.06) 0%,transparent 50%);pointer-events:none}
 .landing-layout{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(330px,0.74fr) minmax(560px,1.26fr);gap:2.5rem;align-items:center;position:relative;z-index:1;width:100%}
@@ -710,7 +710,7 @@ nav{gap:1.25rem}
 #landing .prov-statement{font-family:var(--serif);font-size:clamp(1.45rem,2.35vw,2.35rem);line-height:1.22;color:var(--navy);font-weight:400;margin-bottom:1.45rem;letter-spacing:-0.012em}
 #landing .prov-statement .sentence{display:block;margin-bottom:0.65rem}
 #landing .prov-statement strong{font-weight:700;color:var(--navy)}
-#landing .prov-statement em{color:var(--teal);font-style:italic}
+#landing .prov-statement em{color:var(--teal);font-style:italic;font-weight:500}
 #landing .prov-pause{width:3rem;height:2px;background:var(--teal);margin:1.65rem 0}
 #landing .prov-response{font-size:1.02rem;color:var(--g600);line-height:1.8;margin-bottom:2rem;max-width:500px}
 #landing .prov-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
@@ -720,7 +720,7 @@ nav{gap:1.25rem}
 .landing-youth-wrap::before{content:none}
 .landing-youth-wall{position:relative;z-index:1;width:min(112%,950px);max-width:none;height:auto;display:block;object-fit:contain;filter:drop-shadow(0 18px 32px rgba(13,26,46,0.08))}
 @media(max-width:1000px){
-  nav{padding:0 1.25rem}.nav-links{display:none}.nav-logo{min-width:0}.nav-logo img{width:44px}.nav-logo-text span{display:none}
+  nav{padding:0 1.25rem}.nav-links{display:none}.nav-logo{min-width:0}.nav-logo img{width:64px}.nav-logo-text span{display:none}
   .landing-layout{grid-template-columns:1fr;gap:1.5rem}.landing-copy{max-width:680px}.hero-lab-logo{display:none}.landing-youth-wrap{min-height:360px;justify-content:flex-start}.landing-youth-wall{width:min(100%,780px);max-width:100%}
 }
 @media(max-width:640px){
@@ -803,9 +803,9 @@ nav{gap:1.25rem}
   <div class="landing-layout">
     <div class="landing-copy">
       <div class="prov-overline">
-        <a href="https://www.psix.bctr.cornell.edu" onmouseout="this.style.borderColor='rgba(59,122,143,0.28)'" onmouseover="this.style.borderColor='rgba(59,122,143,0.65)'" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(59,122,143,0.28);padding-bottom:1px;transition:border-color .2s" target="_blank">Purpose Science &amp; Innovation Exchange</a>
-         · 
         <a href="https://www.lipurposefe.com" onmouseout="this.style.borderColor='rgba(59,122,143,0.28)'" onmouseover="this.style.borderColor='rgba(59,122,143,0.65)'" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(59,122,143,0.28);padding-bottom:1px;transition:border-color .2s" target="_blank">Purpose and Identity Processes Lab</a>
+        <span style="opacity:.55"> · in collaboration with </span>
+        <a href="https://www.psix.bctr.cornell.edu" onmouseout="this.style.borderColor='rgba(59,122,143,0.28)'" onmouseover="this.style.borderColor='rgba(59,122,143,0.65)'" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(59,122,143,0.28);padding-bottom:1px;transition:border-color .2s" target="_blank">Purpose Science &amp; Innovation Exchange</a>
       </div>
       <div class="prov-statement">
         <span class="sentence">We often ask whether young people <em>have</em> purpose.</span>
@@ -828,20 +828,19 @@ nav{gap:1.25rem}
 <div class="eyebrow">Start Here</div>
 <div class="rule"></div>
 <h2>Build a clearer <em>portrait</em> of youth purpose</h2>
-<p class="lead" style="font-size:0.975rem">Move through a few focused studios. Each one asks for a small response and adds something to your final portrait, while selected public contributions can inform an aggregate view of what the field is seeing.</p>
+<p class="lead" style="font-size:0.975rem">Move through a small set of reflective studios. Each contribution adds to your own portrait while helping surface broader patterns in how young people experience purpose across contexts and communities.</p>
 </div>
 <div aria-label="Start here tabs" class="journey-tabs">
-<button aria-controls="journey-about" aria-selected="true" class="journey-tab active" data-journey="about" onclick="openJourney('about',this)" role="tab" type="button">About</button>
-<button aria-controls="journey-roles" aria-selected="false" class="journey-tab" data-journey="roles" onclick="openJourney('roles',this)" role="tab" type="button">Your Role</button>
-<button aria-controls="journey-artifacts" aria-selected="false" class="journey-tab" data-journey="artifacts" onclick="openJourney('artifacts',this)" role="tab" type="button">What You Get</button>
+<button aria-controls="journey-about" aria-selected="true" class="journey-tab active" data-journey="about" onclick="openJourney('about',this)" role="tab" type="button">Why This Exists</button>
+<button aria-controls="journey-roles" aria-selected="false" class="journey-tab" data-journey="roles" onclick="openJourney('roles',this)" role="tab" type="button">How It Works</button>
+<button aria-controls="journey-artifacts" aria-selected="false" class="journey-tab" data-journey="artifacts" onclick="openJourney('artifacts',this)" role="tab" type="button">Your Portrait</button>
 </div>
 <div class="journey-panel active" id="journey-about" role="tabpanel">
 <div class="journey-grid">
 <div>
-<div class="eyebrow">About This Project</div>
-<h2 style="margin-bottom:0.85rem">See more clearly. <em>Contribute what you notice.</em></h2>
-<p class="lead" style="font-size:0.975rem;margin-bottom:1.25rem">Portraits of Purposeful You is an open and collaborative project created by the <a href="https://www.lipurposefe.com" rel="noopener" target="_blank">Purpose and Identity Processes Lab</a> and hosted in partnership with the <a href="https://psix.bctr.cornell.edu" rel="noopener" target="_blank">Purpose Science and Innovation Exchange (PSiX)</a> at Cornell University.</p>
-<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0 0 1.25rem">No single measure, moment, or characteristic can fully capture the complexity of a young person's purposeful life. Informed by developmental science and lived experience, this initiative honors the variety of ways purpose can manifest across people's lives and contexts.</p>
+<p class="lead" style="font-size:0.975rem;margin-bottom:1.25rem">Portraits of Purposeful Youth is an open and collaborative project created by the <a href="https://www.lipurposefe.com" rel="noopener" target="_blank">Purpose and Identity Processes Lab</a> and hosted in partnership with the <a href="https://psix.bctr.cornell.edu" rel="noopener" target="_blank">Purpose Science and Innovation Exchange (PSiX)</a> at Cornell University.</p>
+<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0 0 1.25rem">No single measure, moment, or characteristic can fully capture the complexity of a young person’s purposeful life.</p>
+<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0 0 1.25rem">Portraits of Purposeful Youth explores how purpose takes shape across identities, experiences, relationships, and environments. Inspired by developmental science, lived experience, and collective “portrait” initiatives in education and youth development, the project invites a broader and more human view of how purpose is expressed, supported, and understood.</p>
 <p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0">Your responses here matter because they do three things: they build a private portrait you can keep, they surface public-facing contributions for review, and they help create an aggregate view of what different people notice about youth purpose.</p>
 <div class="outcome-grid">
 <a class="outcome-card" href="#knapsack">
@@ -1380,7 +1379,7 @@ nav{gap:1.25rem}
 </div>
 </section></main><footer>
 <div class="footer-logo">Portraits of <em>Purposeful</em> Youth</div>
-<div class="footer-sub">Purpose Science &amp; Innovation Exchange · Purpose and Identity Processes Lab</div>
+<div class="footer-sub">Purpose and Identity Processes Lab · in collaboration with Purpose Science &amp; Innovation Exchange</div>
 <div class="footer-links">
 <a href="#journey">Start Here</a><a href="#claim">The Claim</a><a href="#purpose-definition">Define Purpose</a><a href="#framework">Framework</a>
 <a href="#pulse">Community Pulse</a><a href="#questions">Open Questions</a><a href="#exchange">The Exchange</a>

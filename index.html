@@ -956,6 +956,124 @@ nav{gap:1.25rem}
   }
 }
 
+
+
+/* --- MOBILE HAMBURGER MENU + SMALL-SCREEN NAV REFINEMENTS --- */
+.mobile-menu{display:none;position:relative}
+.mobile-menu-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.5rem;
+  min-height:44px;
+  min-width:44px;
+  border:1px solid rgba(255,255,255,0.22);
+  border-radius:10px;
+  background:rgba(255,255,255,0.08);
+  color:var(--white);
+  font:700 0.78rem var(--sans);
+  padding:0.48rem 0.62rem;
+  cursor:pointer;
+}
+.mobile-menu-button:hover,
+.mobile-menu-button[aria-expanded="true"]{background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.34)}
+.hamburger-icon{display:inline-grid;gap:4px;width:19px}
+.hamburger-icon span{display:block;height:2px;border-radius:99px;background:var(--white)}
+.mobile-menu-panel{
+  display:none;
+  position:absolute;
+  right:0;
+  top:calc(100% + 0.55rem);
+  width:min(78vw,310px);
+  max-height:calc(100vh - 86px);
+  overflow:auto;
+  background:rgba(13,26,46,0.98);
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:14px;
+  box-shadow:0 18px 46px rgba(0,0,0,0.28);
+  padding:0.45rem;
+}
+.mobile-menu.open .mobile-menu-panel{display:grid}
+.mobile-menu-panel a{
+  display:flex;
+  align-items:center;
+  min-height:46px;
+  border-radius:10px;
+  padding:0.62rem 0.8rem;
+  color:rgba(255,255,255,0.86);
+  text-decoration:none;
+  font:700 0.86rem var(--sans);
+}
+.mobile-menu-panel a:hover,
+.mobile-menu-panel a:focus-visible{background:rgba(255,255,255,0.1);color:var(--white)}
+.mobile-menu-panel a:last-child{background:rgba(59,122,143,0.24);color:var(--white);margin-top:0.25rem}
+
+@media(max-width:900px){
+  .mobile-jump{display:none!important}
+  .mobile-menu{display:block}
+  nav{height:64px;padding:0 1rem}
+  .nav-links{display:none}
+  .nav-logo{max-width:calc(100vw - 92px)}
+  .nav-logo img{width:58px;flex:0 0 auto}
+  .nav-logo-text strong{font-size:0.78rem;line-height:1.15}
+}
+
+@media(max-width:520px){
+  .mobile-menu-label{display:none}
+  .mobile-menu-button{padding:0.48rem}
+  .nav-logo img{width:52px}
+  .nav-logo-text strong{font-size:0.72rem}
+}
+
+/* --- ADDITIONAL MOBILE FLOW + READABILITY POLISH --- */
+@media(max-width:760px){
+  section{padding:3.6rem 1.15rem}
+  .container{width:100%;max-width:100%}
+
+  /* Keep sticky app navigation from dominating the viewport */
+  .app-shell{top:64px}
+  .app-shell-inner{gap:0.25rem}
+
+  /* Make horizontal tab groups look intentionally swipeable */
+  .journey-tabs,
+  .exchange-tabs,
+  .app-tabs{
+    border-radius:999px;
+    background:rgba(240,239,237,0.88);
+    box-shadow:inset 0 0 0 1px rgba(224,222,219,0.75);
+  }
+  .journey-tabs::after,
+  .exchange-tabs::after,
+  .app-tabs::after{
+    content:'';
+    flex:0 0 0.75rem;
+  }
+
+  /* Avoid sticky side panels inside the narrow viewport */
+  .feature-workspace{position:static;top:auto}
+
+  /* Form actions read better as stacked choices on very narrow layouts */
+  .form-2col{grid-template-columns:1fr!important}
+  .post-card,
+  .new-post-panel,
+  .prompt-submit-box,
+  .q-submit-panel,
+  .condition-lab,
+  .condition-lab-wide{
+    border-radius:14px;
+  }
+
+  /* Mobile exchange filters should feel like chips, not a sidebar list */
+  .ex-sidebar{width:100%}
+  .ap-filter-list{flex-direction:row!important}
+  .ap-filter-btn{border:1px solid var(--g200);background:var(--white)}
+
+  /* More forgiving mobile text rhythm */
+  .lead{font-size:1rem;line-height:1.72}
+  h2{font-size:clamp(1.55rem,7vw,2.1rem)}
+  .eyebrow{line-height:1.4}
+}
+
 </style>
 </head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
@@ -976,19 +1094,24 @@ nav{gap:1.25rem}
 <li><a href="#exchange">Contribute</a></li>
 <li><a class="nav-cta" href="#knapsack">Your Portrait</a></li>
 </ul>
-<select aria-label="Jump to a section" class="mobile-jump" id="mobileSectionJump" onchange="navigateMobile(this.value)">
-<option value="">Open section…</option>
-<option value="#landing">Home</option>
-<option value="#journey">Start</option>
-<option value="#claim">Claim</option>
-<option value="#purpose-definition">Define Purpose</option>
-<option value="#framework">Eight Lenses</option>
-<option value="#features">Read a Portrait</option>
-<option value="#pulse">Community Pulse</option>
-<option value="#questions">Open Questions</option>
-<option value="#exchange">Contribute</option>
-<option value="#knapsack">Your Portrait</option>
-</select></nav>
+<div aria-label="Mobile section menu" class="mobile-menu" id="mobileMenu">
+  <button aria-controls="mobileMenuPanel" aria-expanded="false" aria-label="Open section menu" class="mobile-menu-button" onclick="toggleMobileMenu()" type="button">
+    <span class="hamburger-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    <span class="mobile-menu-label">Menu</span>
+  </button>
+  <div class="mobile-menu-panel" id="mobileMenuPanel" role="menu">
+    <a href="#landing" onclick="navigateMobileMenu('#landing')" role="menuitem">Home</a>
+    <a href="#journey" onclick="navigateMobileMenu('#journey')" role="menuitem">Start</a>
+    <a href="#claim" onclick="navigateMobileMenu('#claim')" role="menuitem">Claim</a>
+    <a href="#purpose-definition" onclick="navigateMobileMenu('#purpose-definition')" role="menuitem">Define Purpose</a>
+    <a href="#framework" onclick="navigateMobileMenu('#framework')" role="menuitem">Eight Lenses</a>
+    <a href="#features" onclick="navigateMobileMenu('#features')" role="menuitem">Read a Portrait</a>
+    <a href="#pulse" onclick="navigateMobileMenu('#pulse')" role="menuitem">Community Pulse</a>
+    <a href="#questions" onclick="navigateMobileMenu('#questions')" role="menuitem">Open Questions</a>
+    <a href="#exchange" onclick="navigateMobileMenu('#exchange')" role="menuitem">Contribute</a>
+    <a href="#knapsack" onclick="navigateMobileMenu('#knapsack')" role="menuitem">Your Portrait</a>
+  </div>
+</div></nav>
 <aside aria-label="Building your portrait" class="portrait-builder collapsed" id="portraitBuilder">
 <div class="builder-top">
 <button aria-expanded="false" class="builder-toggle" id="builderToggle" onclick="togglePortraitBuilder(true)" type="button"><span class="builder-title">Building your portrait</span></button>
@@ -1694,6 +1817,25 @@ function idArg(id){return "'"+String(id)+"'"}
 function sameId(a,b){return String(a)===String(b)}
 function scrollToLens(n){const el=document.getElementById('lens-card-'+n);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});}
 function navigateMobile(value){if(!value)return;const id=value.replace('#','');if(appPanelIds.includes(id)){history.pushState(null,'',value);showAppPanel(id,{scroll:true});}else{const el=document.querySelector(value);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}const jump=document.getElementById('mobileSectionJump');if(jump)jump.value='';}
+function toggleMobileMenu(force){
+  const menu=document.getElementById('mobileMenu');
+  const btn=menu?.querySelector('.mobile-menu-button');
+  if(!menu||!btn)return;
+  const open=force!==undefined?force:!menu.classList.contains('open');
+  menu.classList.toggle('open',open);
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+function navigateMobileMenu(value){
+  navigateMobile(value);
+  toggleMobileMenu(false);
+}
+document.addEventListener('click',(event)=>{
+  const menu=document.getElementById('mobileMenu');
+  if(menu&&menu.classList.contains('open')&&!menu.contains(event.target))toggleMobileMenu(false);
+});
+document.addEventListener('keydown',(event)=>{
+  if(event.key==='Escape')toggleMobileMenu(false);
+});
 function setPressed(btn,isActive){if(btn)btn.setAttribute('aria-pressed',isActive?'true':'false')}
 function setTabA11y(groupSelector,activeSelector){document.querySelectorAll(groupSelector).forEach(el=>el.setAttribute('aria-selected',el.matches(activeSelector)?'true':'false'));}
 const API_READY=location.protocol!=='file:';
@@ -2252,6 +2394,124 @@ h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
   }
   #landing .prov-overline{margin-bottom:0.95rem;}
   #landing .prov-statement{font-size:clamp(1.45rem,6.4vw,2.02rem);}
+}
+
+
+
+/* --- MOBILE HAMBURGER MENU + SMALL-SCREEN NAV REFINEMENTS --- */
+.mobile-menu{display:none;position:relative}
+.mobile-menu-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.5rem;
+  min-height:44px;
+  min-width:44px;
+  border:1px solid rgba(255,255,255,0.22);
+  border-radius:10px;
+  background:rgba(255,255,255,0.08);
+  color:var(--white);
+  font:700 0.78rem var(--sans);
+  padding:0.48rem 0.62rem;
+  cursor:pointer;
+}
+.mobile-menu-button:hover,
+.mobile-menu-button[aria-expanded="true"]{background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.34)}
+.hamburger-icon{display:inline-grid;gap:4px;width:19px}
+.hamburger-icon span{display:block;height:2px;border-radius:99px;background:var(--white)}
+.mobile-menu-panel{
+  display:none;
+  position:absolute;
+  right:0;
+  top:calc(100% + 0.55rem);
+  width:min(78vw,310px);
+  max-height:calc(100vh - 86px);
+  overflow:auto;
+  background:rgba(13,26,46,0.98);
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:14px;
+  box-shadow:0 18px 46px rgba(0,0,0,0.28);
+  padding:0.45rem;
+}
+.mobile-menu.open .mobile-menu-panel{display:grid}
+.mobile-menu-panel a{
+  display:flex;
+  align-items:center;
+  min-height:46px;
+  border-radius:10px;
+  padding:0.62rem 0.8rem;
+  color:rgba(255,255,255,0.86);
+  text-decoration:none;
+  font:700 0.86rem var(--sans);
+}
+.mobile-menu-panel a:hover,
+.mobile-menu-panel a:focus-visible{background:rgba(255,255,255,0.1);color:var(--white)}
+.mobile-menu-panel a:last-child{background:rgba(59,122,143,0.24);color:var(--white);margin-top:0.25rem}
+
+@media(max-width:900px){
+  .mobile-jump{display:none!important}
+  .mobile-menu{display:block}
+  nav{height:64px;padding:0 1rem}
+  .nav-links{display:none}
+  .nav-logo{max-width:calc(100vw - 92px)}
+  .nav-logo img{width:58px;flex:0 0 auto}
+  .nav-logo-text strong{font-size:0.78rem;line-height:1.15}
+}
+
+@media(max-width:520px){
+  .mobile-menu-label{display:none}
+  .mobile-menu-button{padding:0.48rem}
+  .nav-logo img{width:52px}
+  .nav-logo-text strong{font-size:0.72rem}
+}
+
+/* --- ADDITIONAL MOBILE FLOW + READABILITY POLISH --- */
+@media(max-width:760px){
+  section{padding:3.6rem 1.15rem}
+  .container{width:100%;max-width:100%}
+
+  /* Keep sticky app navigation from dominating the viewport */
+  .app-shell{top:64px}
+  .app-shell-inner{gap:0.25rem}
+
+  /* Make horizontal tab groups look intentionally swipeable */
+  .journey-tabs,
+  .exchange-tabs,
+  .app-tabs{
+    border-radius:999px;
+    background:rgba(240,239,237,0.88);
+    box-shadow:inset 0 0 0 1px rgba(224,222,219,0.75);
+  }
+  .journey-tabs::after,
+  .exchange-tabs::after,
+  .app-tabs::after{
+    content:'';
+    flex:0 0 0.75rem;
+  }
+
+  /* Avoid sticky side panels inside the narrow viewport */
+  .feature-workspace{position:static;top:auto}
+
+  /* Form actions read better as stacked choices on very narrow layouts */
+  .form-2col{grid-template-columns:1fr!important}
+  .post-card,
+  .new-post-panel,
+  .prompt-submit-box,
+  .q-submit-panel,
+  .condition-lab,
+  .condition-lab-wide{
+    border-radius:14px;
+  }
+
+  /* Mobile exchange filters should feel like chips, not a sidebar list */
+  .ex-sidebar{width:100%}
+  .ap-filter-list{flex-direction:row!important}
+  .ap-filter-btn{border:1px solid var(--g200);background:var(--white)}
+
+  /* More forgiving mobile text rhythm */
+  .lead{font-size:1rem;line-height:1.72}
+  h2{font-size:clamp(1.55rem,7vw,2.1rem)}
+  .eyebrow{line-height:1.4}
 }
 
 </style>

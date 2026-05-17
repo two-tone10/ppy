@@ -727,6 +727,35 @@ nav{gap:1.25rem}
   #landing{padding:4.2rem 1.15rem 3rem}.hero-lab-logo{display:none}#landing .prov-statement{font-size:clamp(1.55rem,7.4vw,2.18rem)}.landing-youth-wrap{min-height:260px}.landing-youth-wrap::before{content:none}
 }
 
+/* --- MOBILE HERO REORDER: youth wall first, text second --- */
+@media(max-width:760px){
+  #landing{padding-top:3.6rem;}
+  .landing-layout{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+  }
+  .landing-youth-wrap{
+    order:1;
+    width:100%;
+    min-height:0;
+    justify-content:center;
+    margin:0 0 0.6rem;
+  }
+  .landing-youth-wall{
+    width:min(126%,760px);
+    max-width:none;
+    margin-left:-8%;
+    margin-right:-8%;
+  }
+  .landing-copy{
+    order:2;
+    max-width:100%;
+  }
+  #landing .prov-overline{margin-bottom:0.95rem;}
+  #landing .prov-statement{font-size:clamp(1.45rem,6.4vw,2.02rem);}
+}
+
 </style>
 </head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
@@ -812,7 +841,7 @@ nav{gap:1.25rem}
         <span class="sentence">We rarely ask whether the conditions around youth <em>support</em> it.</span>
       </div>
       <div class="prov-pause"></div>
-      <p class="prov-response">This asymmetry can impose a deficit framing of young people as missing something, while letting programs, institutions, and relationships that shape their development unexamined. This initiative invites seeing youth purpose more fully</p>
+      <p class="prov-response">This asymmetry can impose a deficit framing of young people as missing something, while letting programs, institutions, and relationships that shape their development off the hook. This exchange invites seeing youth differently.</p>
       <div class="prov-actions">
         <a class="btn btn-teal" href="#journey">Create a portrait</a>
         <a class="btn btn-ghost" href="#framework">Explore the lenses</a>
@@ -841,7 +870,7 @@ nav{gap:1.25rem}
 <p class="lead" style="font-size:0.975rem;margin-bottom:1.25rem">Portraits of Purposeful Youth is an open and collaborative project created by the <a href="https://www.lipurposefe.com" rel="noopener" target="_blank">Purpose and Identity Processes Lab</a> and hosted in partnership with the <a href="https://psix.bctr.cornell.edu" rel="noopener" target="_blank">Purpose Science and Innovation Exchange (PSiX)</a> at Cornell University.</p>
 <p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0 0 1.25rem">No single measure, moment, or characteristic can fully capture the complexity of a young person’s purposeful life.</p>
 <p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0 0 1.25rem">Portraits of Purposeful Youth explores how purpose takes shape across identities, experiences, relationships, and environments. Inspired by developmental science, lived experience, and collective “portrait” initiatives in education and youth development, the project invites a broader and more human view of how purpose is expressed, supported, and understood.</p>
-<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0">Your responses here matter because they do three things: they build a private portrait you can keep, they surface public-facing ideas for broader engagement, and they help inform an aggregate view of what people notice about youth purpose.</p>
+<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0">Your responses here matter because they do three things: they build a private portrait you can keep, they surface public-facing contributions for review, and they help create an aggregate view of what different people notice about youth purpose.</p>
 <div class="outcome-grid">
 <a class="outcome-card" href="#knapsack">
 <span class="mini-example">You leave with</span>
@@ -866,7 +895,7 @@ nav{gap:1.25rem}
 <div class="role-layout">
 <div>
 <div class="role-form-title">Choose one or more roles</div>
-<p class="role-form-copy">The exchange needs different things from different people. Pick the vantage point(s) true for you.</p>
+<p class="role-form-copy">The exchange needs different things from different people. Pick the vantage points that feel true for you.</p>
 <div class="role-picks">
 <button class="role-chip" data-role="researcher" onclick="toggleRole(this)" type="button"><span>Research</span><strong>Researcher or Scholar</strong></button>
 <button class="role-chip" data-role="practitioner" onclick="toggleRole(this)" type="button"><span>Practice</span><strong>Practitioner or Educator</strong></button>
@@ -1006,7 +1035,7 @@ nav{gap:1.25rem}
 <div class="eyebrow">Your Working Definition</div>
 <div class="rule"></div>
 <h2>Define <em>purpose</em> here to inform what to look for in the portraits.</h2>
-<p class="lead purpose-definition-note" style="font-size:0.975rem">Carry a working definition into the rest of the exchange. It does not need to be polished. We are interested in the ideas you are operating with right now.</p>
+<p class="lead purpose-definition-note" style="font-size:0.975rem">Carry a working definition into the rest of the exchange. It does not need to be polished. We are interested in the words you are operating with right now.</p>
 <div class="purpose-definition-card">
 <label class="definition-label" for="purposeDefinitionInput">I would define purpose as:</label>
 <div class="form-row">
@@ -1219,7 +1248,7 @@ nav{gap:1.25rem}
 <div>
 <div class="pulse-eyebrow">Community Pulse</div>
 <div class="pulse-title">Which lenses should be <em>focal?</em></div>
-<p class="pulse-sub">This is merely a signal of your curiosity, not a commitment of investment. Choose the lense(s) that you think are most important to focus on in research or practice. Your responses can help guide approaches in our work going forward.</p>
+<p class="pulse-sub">This is merely a signal of your curiosity, not a poll attempting to draw scientific inference. Choose the lenses below that you think are most important to learn more about. Your responses can help us invest in learning more in areas of greatest interest.</p>
 </div>
 <div class="pulse-prompt-box">
 <div class="pulse-prompt-label">This month's question</div>
@@ -1245,7 +1274,7 @@ nav{gap:1.25rem}
 <div class="eyebrow">Open Questions</div>
 <div class="rule"></div>
 <h2>What do you <em>still want to know?</em></h2>
-<p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add a question that should have been here from the start.</p>
+<p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add the question that should have been here from the start.</p>
 </div>
 <div class="q-meta">This section will grow as the exchange develops. The questions below are starting points; the most useful contribution may be naming the better question.</div>
 <div class="q-categories">
@@ -1994,6 +2023,35 @@ h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
 .note{padding:18px 20px;border-left:4px solid #3B7A8F;background:#F0EFED;border-radius:12px;color:#4f4c48}
 .lens-frame-stack{position:relative;min-height:330px;width:100%;display:flex;flex-direction:column;align-items:stretch;justify-content:center;background:rgba(255,255,255,.06);border-radius:18px;overflow:visible;padding:16px;gap:14px}.lens-frame-stack.empty{display:grid;place-items:center;overflow:hidden}.lens-frame-stack.empty::before{content:"Flag lenses that resonate to build this frame.";font-size:14px;color:rgba(255,255,255,.58);text-align:center;max-width:210px;line-height:1.5}.frame-stage{position:relative;min-height:220px;width:100%;flex:0 0 auto}.frame-rect{position:absolute;top:16%;left:21%;width:58%;height:68%;border:4px solid currentColor;border-radius:12px;background:transparent;box-shadow:0 12px 30px rgba(0,0,0,.12);opacity:.84}.frame-rect::after{content:"";position:absolute;inset:10px;border:1.5px solid currentColor;border-radius:7px;opacity:.28}.frame-caption-list{margin:0;padding-left:20px;display:grid;gap:3px;text-align:left;font-size:13px;font-weight:700;color:rgba(255,255,255,.78);line-height:1.35}
 @media(max-width:720px){.hero,.grid{grid-template-columns:1fr}.sheet{padding:28px 16px}h1{font-size:32px}.hero-logo{justify-self:start;width:160px}}
+/* --- MOBILE HERO REORDER: youth wall first, text second --- */
+@media(max-width:760px){
+  #landing{padding-top:3.6rem;}
+  .landing-layout{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+  }
+  .landing-youth-wrap{
+    order:1;
+    width:100%;
+    min-height:0;
+    justify-content:center;
+    margin:0 0 0.6rem;
+  }
+  .landing-youth-wall{
+    width:min(126%,760px);
+    max-width:none;
+    margin-left:-8%;
+    margin-right:-8%;
+  }
+  .landing-copy{
+    order:2;
+    max-width:100%;
+  }
+  #landing .prov-overline{margin-bottom:0.95rem;}
+  #landing .prov-statement{font-size:clamp(1.45rem,6.4vw,2.02rem);}
+}
+
 </style>
 </head>
 <body>

@@ -1,13 +1,2482 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=/ppy_v4.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portraits of Purposeful Youth</title>
-  <script>location.replace('/ppy_v4.html');</script>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Portraits of Purposeful Youth is an interactive exchange for seeing, discussing, and supporting youth purpose across personal, experiential, and contextual lenses." name="description"/><meta content="#0D1A2E" name="theme-color"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<title>Portraits of Purposeful Youth — Interactive Portrait Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1A2E; --navy:#1E2D4A; --navy-mid:#2E4268;
+  --teal:#3B7A8F; --teal-light:#7BBFD4;
+  --burgundy:#7B3D42; --peach:#C9A499; --terra:#C4724A;
+  --purple:#5B3D5A; --taupe:#8B7B6B; --olive:#7A7840;
+  --cream:#FAF7F4; --parchment:#F5F1EB;
+  --white:#FFFFFF; --g100:#F0EFED; --g200:#E0DEDB; --g400:#B0ADA8; --g600:#6B6864;
+  --serif:'Playfair Display',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.7;font-size:16px}
+
+
+/* ACCESSIBILITY + POLISH */
+.skip-link{position:absolute;left:1rem;top:-4rem;z-index:1000;background:var(--white);color:var(--navy);padding:0.65rem 1rem;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.16);font-weight:700;text-decoration:none;transition:top .18s}
+.skip-link:focus{top:1rem}
+:focus-visible{outline:3px solid var(--teal-light);outline-offset:3px;border-radius:6px}
+section{scroll-margin-top:78px}
+main{background:var(--white)}
+.mobile-jump{display:none;background:rgba(255,255,255,0.08);color:var(--white);border:1px solid rgba(255,255,255,0.22);border-radius:8px;padding:0.42rem 0.65rem;font:600 0.82rem var(--sans);max-width:185px}
+.mobile-jump option{color:var(--ink);background:var(--white)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media (max-width:900px){.mobile-jump{display:block}.nav-logo{max-width:48vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media (max-width:640px){.mobile-jump{max-width:44vw}.portrait-builder.collapsed{min-width:0;width:auto;max-width:calc(100vw - 1.5rem)}.portrait-builder:not(.collapsed){max-height:54vh;overflow:auto}.builder-title{font-size:.92rem}.builder-count{font-size:.68rem}#landing{padding-top:5.5rem}.prov-overline{margin-bottom:2rem}.prov-actions .btn{width:100%;justify-content:center}.lens-tab{min-width:150px}.exchange-tabs,.journey-tabs{width:100%;overflow-x:auto;flex-wrap:nowrap}.ex-tab,.journey-tab{white-space:nowrap}}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(13,26,46,0.97);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:60px}
+.nav-logo{font-family:var(--serif);font-size:1rem;color:var(--white);font-weight:600}
+.nav-logo em{color:var(--teal-light);font-style:italic}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.5);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--teal);color:var(--white)!important;padding:0.35rem 1rem;border-radius:6px;font-weight:600!important}
+.nav-cta:hover{background:#4a94ab!important}
+
+/* SHARED */
+section{padding:5.5rem 2.5rem}
+.container{max-width:1080px;margin:0 auto}
+.eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem}
+.rule{width:2.5rem;height:3px;background:var(--teal);border-radius:2px;margin-bottom:2rem}
+h2{font-family:var(--serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:1.25rem}
+h2 em{color:var(--teal);font-style:italic}
+.lead{font-size:1.05rem;color:var(--g600);line-height:1.75;margin-bottom:1rem}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.875rem;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.btn-teal{background:var(--teal);color:var(--white);box-shadow:0 4px 16px rgba(59,122,143,0.3)}
+.btn-teal:hover{background:#4a94ab;transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.18)}
+.btn-ghost:hover{background:rgba(255,255,255,0.13)}
+
+
+/* APP SHELL */
+.app-shell{
+  position:sticky;top:60px;z-index:160;background:rgba(250,247,244,0.96);
+  border-top:1px solid var(--g200);border-bottom:1px solid var(--g200);
+  backdrop-filter:blur(12px);padding:0.65rem 2.5rem;
+}
+.app-shell-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.app-shell-copy{display:flex;flex-direction:column;gap:0.05rem;min-width:190px}
+.app-shell-copy span{font-size:0.64rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--teal);font-weight:800}
+.app-shell-copy strong{font-family:var(--serif);font-size:0.92rem;color:var(--navy);font-weight:600}
+.app-tabs{display:flex;gap:0.35rem;overflow-x:auto;padding:0.15rem 0}
+.app-tab{white-space:nowrap;text-decoration:none;border:1px solid transparent;border-radius:999px;padding:0.42rem 0.78rem;font:700 0.76rem var(--sans);color:var(--g600);transition:all .18s}
+.app-tab:hover{color:var(--navy);background:var(--white);border-color:var(--g200)}
+.app-tab.active{background:var(--navy);color:var(--white);border-color:var(--navy);box-shadow:0 4px 14px rgba(13,26,46,0.14)}
+.app-tab-strong{background:rgba(59,122,143,0.1);color:var(--teal)}
+.app-panel{display:none}
+.app-panel.active,.app-panel-support.active{display:block}
+.outcome-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.35rem}
+.outcome-card{display:block;text-decoration:none;background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1.05rem;transition:border-color .18s,box-shadow .18s,transform .18s}
+.outcome-card:hover{border-color:var(--teal);box-shadow:0 10px 24px rgba(59,122,143,0.11);transform:translateY(-1px)}
+.outcome-card strong{display:block;font-family:var(--serif);font-size:1.05rem;color:var(--navy);margin-bottom:0.35rem}
+.outcome-card p{font-size:0.85rem;color:var(--g600);line-height:1.62}
+@media(max-width:900px){
+  .app-shell{top:60px;padding:0.55rem 1.25rem}
+  .app-shell-inner{align-items:flex-start;flex-direction:column;gap:0.45rem}
+  .app-shell-copy{display:none}
+  .app-tabs{width:100%}
+  .outcome-grid{grid-template-columns:1fr}
+}
+
+/* GUIDED START */
+#journey{background:var(--white);border-top:1px solid var(--g100);border-bottom:1px solid var(--g100)}
+.journey-shell{display:grid;gap:2rem}
+.journey-tabs{display:flex;gap:0.45rem;flex-wrap:wrap;background:var(--g100);padding:0.35rem;border-radius:10px;width:fit-content}
+.journey-tab{border:none;background:transparent;color:var(--g600);font:600 0.86rem var(--sans);padding:0.65rem 1rem;border-radius:7px;cursor:pointer;transition:all .18s}
+.journey-tab:hover{color:var(--navy)}
+.journey-tab.active{background:var(--white);color:var(--navy);box-shadow:0 1px 6px rgba(0,0,0,0.1)}
+.journey-panel{display:none}
+.journey-panel.active{display:block}
+.journey-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:start}
+.journey-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.25rem}
+.artifact-preview,.role-art{background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1rem}
+.artifact-preview img,.role-art img{display:block;width:100%;border-radius:8px}
+.mini-artifact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.15rem}
+.mini-artifact{display:block;text-decoration:none;padding:1rem;border-radius:10px;border:1.5px solid var(--g200);background:var(--cream);transition:border-color .18s,box-shadow .18s,transform .18s}
+.mini-artifact:hover{border-color:var(--teal);box-shadow:0 8px 22px rgba(59,122,143,0.1);transform:translateY(-1px)}
+.mini-artifact strong{display:block;font-family:var(--serif);font-size:1rem;color:var(--navy);margin-bottom:0.35rem}
+.mini-artifact p{font-size:0.86rem;color:var(--g600);line-height:1.65}
+.mini-example{display:block;font-size:0.68rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.45rem}
+#journey-about a{color:var(--teal);font-weight:600;text-decoration-thickness:1.5px;text-underline-offset:3px}
+.role-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.role-picks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.8rem}
+.role-chip{
+  min-height:96px;border-radius:10px;border:1.5px solid var(--g200);
+  background:var(--white);padding:0.9rem;text-align:left;cursor:pointer;
+  transition:border-color .18s,box-shadow .18s,transform .18s;font-family:var(--sans);
+}
+.role-chip:hover{border-color:var(--teal);box-shadow:0 6px 18px rgba(59,122,143,0.08);transform:translateY(-1px)}
+.role-chip.active{border-color:var(--teal);background:rgba(59,122,143,0.08)}
+.role-chip span{display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:0.3rem}
+.role-chip strong{display:block;font-family:var(--serif);font-size:1rem;color:var(--navy);line-height:1.25}
+.role-workspace{background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1.35rem}
+.role-form-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--navy);margin-bottom:0.45rem}
+.role-form-copy{font-size:0.88rem;color:var(--g600);line-height:1.65;margin-bottom:1rem}
+.role-workspace .form-row>span{display:block;font-size:0.75rem;font-weight:600;color:var(--navy);margin-bottom:0.28rem;letter-spacing:0.04em}
+.choice-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.55rem}
+.choice-pill{border:1.5px solid var(--g200);background:var(--white);color:var(--g600);border-radius:999px;padding:0.38rem 0.75rem;font:600 0.78rem var(--sans);cursor:pointer}
+.choice-pill.active{border-color:var(--teal);background:var(--teal);color:var(--white)}
+.artifact-stage{display:grid;grid-template-columns:0.9fr 1.1fr;gap:1.25rem;margin-top:1.4rem}
+.viz-card,.report-card,.summary-card{border:1.5px solid var(--g200);border-radius:12px;background:var(--white);padding:1.15rem}
+.artifact-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:0.35rem}
+.artifact-copy{font-size:0.85rem;color:var(--g600);line-height:1.65;margin-bottom:0.9rem}
+.viz-list{display:flex;flex-direction:column;gap:0.7rem}
+.viz-row{display:grid;grid-template-columns:120px 1fr auto;gap:0.65rem;align-items:center}
+.viz-label{font-size:0.78rem;color:var(--g600)}
+.viz-track{height:10px;background:var(--g100);border-radius:999px;overflow:hidden}
+.viz-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--burgundy))}
+.viz-score{font-size:0.76rem;font-weight:700;color:var(--navy)}
+.report-body{font-size:0.9rem;color:var(--g600);line-height:1.75}
+.artifact-actions{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem}
+.summary-card{margin-top:1.25rem;background:var(--cream)}
+.summary-lines{display:grid;gap:0.55rem;font-size:0.86rem;color:var(--g600)}
+.summary-lines strong{color:var(--navy)}
+.save-note{display:none;font-size:0.83rem;color:var(--teal);font-style:italic;align-self:center}
+
+/* COLLECTIBLE ACTIVITIES */
+.artifact-kicker{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.55rem}
+.condition-lab,.seeing-response,.knapsack-shell,.purpose-definition-card{border:1.5px solid var(--g200);border-radius:14px;background:var(--white);padding:1.35rem}
+.condition-lab{margin-top:1.5rem}
+.purpose-definition-card{max-width:880px;margin:1.5rem auto 0;background:linear-gradient(180deg,#fff 0%,#fbf7f2 100%)}
+.purpose-definition-card .form-row textarea{min-height:110px;font-size:1rem;line-height:1.7}
+.purpose-definition-card .definition-label{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--navy);margin-bottom:0.85rem}
+.purpose-definition-note{max-width:760px}
+.condition-grid{display:grid;grid-template-columns:190px 1fr;gap:1.25rem;align-items:center}
+.purpose-dial{
+  width:170px;height:170px;border-radius:50%;margin:0 auto;position:relative;
+  background:conic-gradient(var(--teal) calc(var(--dial,55) * 1%),var(--g100) 0);
+  display:grid;place-items:center;
+}
+.purpose-dial::before{content:'';position:absolute;inset:18px;background:var(--white);border-radius:50%;border:1px solid var(--g200)}
+.dial-core{position:relative;z-index:1;text-align:center;width:110px}
+.dial-core strong{display:block;font-family:var(--serif);font-size:1.4rem;color:var(--navy);line-height:1}
+.dial-core span{display:block;font-size:0.72rem;color:var(--g600);line-height:1.35;margin-top:0.35rem}
+.condition-controls{display:grid;gap:0.9rem}
+.slider-row label{display:flex;justify-content:space-between;gap:1rem;font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
+.slider-row input{width:100%;accent-color:var(--teal)}
+.condition-summary,.seeing-summary{margin-top:0.9rem;padding:0.85rem 0.95rem;border-radius:10px;background:var(--cream);font-size:0.88rem;color:var(--g600);line-height:1.65}
+.vote-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.85rem}
+.vote-chip{border:1.5px solid var(--g200);background:var(--white);color:var(--g600);border-radius:999px;padding:0.42rem 0.8rem;font:600 0.78rem var(--sans);cursor:pointer}
+.vote-chip.active{border-color:var(--teal);background:var(--teal);color:var(--white)}
+.seeing-response{margin:2rem auto 0;max-width:760px;text-align:left;background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.14)}
+.seeing-response h3{font-family:var(--serif);font-size:1.15rem;color:var(--white);margin-bottom:0.35rem}
+.seeing-response p{font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.7}
+.seeing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem;margin-top:1rem}
+.seeing-card{
+  border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.88);border-radius:10px;padding:0.85rem;text-align:left;cursor:pointer;
+  font:600 0.86rem var(--sans);line-height:1.45;transition:all .18s;
+}
+.seeing-card span{display:block;font-size:0.73rem;font-weight:500;color:rgba(255,255,255,0.58);margin-top:0.3rem}
+.seeing-card.active{border-color:var(--teal-light);background:rgba(123,191,212,0.16);color:var(--white)}
+.seeing-summary{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.72)}
+#knapsack{background:var(--cream)}
+.knapsack-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.25rem}
+.knapsack-card{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1rem}
+.knapsack-card strong{display:block;font-family:var(--serif);font-size:1rem;color:var(--navy);margin-bottom:0.35rem}
+.knapsack-card p{font-size:0.86rem;color:var(--g600);line-height:1.65}
+.knapsack-meta{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem}
+.knapsack-pill{background:rgba(59,122,143,0.1);color:var(--teal);border-radius:999px;padding:0.32rem 0.7rem;font-size:0.76rem;font-weight:700}
+.knapsack-head{display:block}
+.knapsack-logo{display:block;width:min(430px,78%);height:auto;object-fit:contain;margin:0 auto 0.85rem}
+.portrait-builder{
+  position:fixed;right:1rem;bottom:1rem;z-index:190;width:min(340px,calc(100vw - 2rem));
+  background:rgba(255,255,255,0.96);border:1.5px solid var(--g200);border-radius:14px;
+  box-shadow:0 18px 48px rgba(13,26,46,0.18);padding:0.9rem;backdrop-filter:blur(12px)
+}
+.portrait-builder.collapsed{width:auto;min-width:190px;padding:0.75rem 0.85rem;cursor:pointer}
+.builder-top{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:0.65rem}
+.portrait-builder.collapsed .builder-top{margin-bottom:0}
+.builder-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--navy);line-height:1.2}
+.builder-count{font-size:0.72rem;font-weight:800;color:var(--teal);background:rgba(59,122,143,0.1);border-radius:999px;padding:0.2rem 0.5rem;white-space:nowrap}
+.builder-toggle{border:none;background:transparent;text-align:left;font:inherit;cursor:pointer;padding:0;color:inherit}
+.builder-track{height:7px;background:var(--g100);border-radius:999px;overflow:hidden;margin-bottom:0.75rem}
+.builder-fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--burgundy));border-radius:999px;transition:width .28s ease}
+.builder-list{display:grid;gap:0.38rem;margin-bottom:0.75rem}
+.builder-item{display:flex;align-items:center;gap:0.45rem;font-size:0.76rem;color:var(--g600);line-height:1.3}
+.builder-dot{width:0.62rem;height:0.62rem;border-radius:50%;border:1.5px solid var(--g400);background:var(--white);flex-shrink:0}
+.builder-item.done{color:var(--navy);font-weight:700}
+.builder-item.done .builder-dot{background:var(--teal);border-color:var(--teal)}
+.builder-reveal{display:flex;justify-content:space-between;align-items:center;gap:0.65rem}
+.builder-reveal a,.builder-reveal button{font-size:0.76rem;font-weight:800;color:var(--teal);text-decoration:none;border:none;background:transparent;padding:0;cursor:pointer;font-family:var(--sans)}
+.builder-hint{font-size:0.72rem;color:var(--g400)}
+.builder-body{display:block}
+.portrait-builder.collapsed .builder-body{display:none}
+.builder-toast{
+  position:fixed;right:1.2rem;bottom:12.25rem;z-index:191;background:var(--navy);color:var(--white);
+  border-radius:999px;padding:0.55rem 0.8rem;font-size:0.78rem;font-weight:700;
+  box-shadow:0 12px 32px rgba(13,26,46,0.25);opacity:0;transform:translateY(8px);
+  pointer-events:none;transition:opacity .22s,transform .22s
+}
+.builder-toast.show{opacity:1;transform:translateY(0)}
+.reveal-panel{margin:1.25rem 0;padding:0;border-radius:18px;background:var(--navy);color:var(--white);position:relative;overflow:hidden;box-shadow:0 22px 55px rgba(13,26,46,0.18)}
+.reveal-panel::after{content:'';position:absolute;right:-5rem;top:-7rem;width:18rem;height:18rem;border-radius:50%;background:rgba(123,191,212,0.12)}
+.reveal-layout{display:grid;grid-template-columns:minmax(0,0.78fr) minmax(240px,0.42fr);gap:1.25rem;padding:1.5rem;position:relative;z-index:1}
+.reveal-art{align-self:stretch;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06)}
+.reveal-art img{width:100%;height:100%;min-height:260px;object-fit:cover;display:block;opacity:0.92}
+.reveal-kicker{font-size:0.7rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:800;color:var(--teal-light);margin-bottom:0.55rem}
+.reveal-panel h3{font-family:var(--serif);font-size:1.45rem;line-height:1.25;margin-bottom:0.7rem;position:relative;z-index:1}
+.reveal-text{font-size:0.95rem;line-height:1.75;color:rgba(255,255,255,0.76);position:relative;z-index:1;max-width:760px}
+.reveal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.75rem;margin-top:1rem;position:relative;z-index:1}
+.reveal-chip{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:0.8rem}
+.reveal-chip span{display:block;font-size:0.68rem;letter-spacing:0.09em;text-transform:uppercase;color:rgba(255,255,255,0.42);font-weight:800;margin-bottom:0.25rem}
+.reveal-chip strong{font-family:var(--serif);font-size:1rem;line-height:1.25;color:var(--white)}
+.reveal-actions{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1rem;position:relative;z-index:1}
+.reveal-actions .btn-sm{border-color:rgba(255,255,255,0.18)}
+.reveal-actions .btn-navy{background:var(--teal);border-color:var(--teal)}
+.reveal-actions .btn-outline{color:var(--white);background:rgba(255,255,255,0.08)}
+.portrait-thread{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.75rem;margin-top:1rem}
+.thread-card{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:0.9rem}
+.thread-card strong{display:block;font-family:var(--serif);font-size:0.98rem;color:var(--navy);margin-bottom:0.3rem}
+.thread-card p{font-size:0.82rem;color:var(--g600);line-height:1.55;white-space:pre-line}
+
+/* LANDING */
+#landing{background:var(--ink);min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 6rem;position:relative;overflow:hidden}
+#landing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(59,122,143,0.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 70%,rgba(123,61,66,0.08) 0%,transparent 50%)}
+.landing-mark{position:absolute;right:-5vw;top:5%;transform:translateY(0);width:min(114vw,1470px);height:min(96vh,1194px);object-fit:contain;object-position:top right;opacity:0.26;filter:drop-shadow(0 24px 70px rgba(0,0,0,0.1));pointer-events:none;z-index:0}
+.prov-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.prov-overline{font-size:0.7rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:3rem}
+.prov-statement{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.15;color:var(--white);font-weight:400;margin-bottom:1.5rem}
+.prov-statement .sentence{display:block;margin-bottom:1.15rem}
+.prov-statement strong{font-weight:700}
+.prov-statement em{color:var(--teal-light);font-style:italic}
+.prov-pause{width:3rem;height:2px;background:var(--teal);margin:2rem 0}
+.prov-response{font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:2.5rem}
+.prov-name{font-family:var(--serif);font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--white);font-weight:600;margin-bottom:2rem}
+.prov-name span{color:var(--teal-light);font-style:italic}
+.prov-actions{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* CLAIM */
+#claim{background:var(--cream)}
+.claim-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.claim-pull{font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.6rem);line-height:1.4;color:var(--navy);border-left:4px solid var(--teal);padding-left:1.5rem;margin-bottom:2rem}
+.consequence-list{list-style:none;display:flex;flex-direction:column;gap:1.25rem}
+.consequence-list li{display:flex;gap:1rem;align-items:flex-start;font-size:0.95rem;color:var(--g600);line-height:1.65}
+.consequence-list li::before{content:'→';color:var(--teal);font-weight:700;margin-top:.1rem;flex-shrink:0}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:4rem;align-items:start}
+.about-panel{background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1.6rem}
+.about-panel-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--navy);margin-bottom:0.8rem}
+.about-panel p{font-size:0.9rem;color:var(--g600);line-height:1.75;margin-bottom:0.85rem}
+.about-wrap a{color:var(--teal);font-weight:600;text-decoration-thickness:1.5px;text-underline-offset:3px}
+.about-note{margin-top:1.1rem;padding:0.9rem 1rem;background:rgba(59,122,143,0.09);border-left:3px solid var(--teal);border-radius:8px;font-size:0.84rem;color:var(--g600);line-height:1.65}
+.about-list{list-style:none;display:flex;flex-direction:column;gap:0.95rem;margin-top:1.5rem}
+.about-list li{display:grid;grid-template-columns:1.7rem 1fr;gap:0.8rem;font-size:0.92rem;color:var(--g600);line-height:1.65}
+.about-list span{width:1.7rem;height:1.7rem;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700}
+
+/* ARGUMENT */
+#argument{background:var(--navy);color:var(--white);text-align:center;padding:6rem 2.5rem}
+.arg-inner{max-width:780px;margin:0 auto}
+.arg-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1.5rem}
+.arg-claim{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.3rem);font-weight:600;line-height:1.25;color:var(--white);margin-bottom:1rem}
+.arg-claim em{color:var(--teal-light);font-style:italic}
+.arg-claim .plain-white{color:var(--white);font-style:normal}
+.arg-body{font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.8;max-width:640px;margin:1.5rem auto 2rem}
+.arg-implication{display:inline-block;background:rgba(59,122,143,0.18);border:1px solid rgba(59,122,143,0.4);border-radius:10px;padding:1.25rem 2rem;font-size:1rem;color:var(--teal-light);font-style:italic;font-family:var(--serif);line-height:1.5}
+
+/* FRAMEWORK */
+#framework{background:var(--white)}
+.framework-intro{margin-bottom:2.5rem}
+.conf-legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem;font-size:0.78rem;color:var(--g600);align-items:center}
+.conf-item{display:flex;align-items:center;gap:0.4rem}
+.conf-dot{width:8px;height:8px;border-radius:50%;background:#1E4D40}
+.conf-dot.d{background:#7A5200}.conf-dot.e{background:var(--purple)}
+.lens-overview{display:flex;align-items:stretch;margin:0 0 2rem;overflow-x:auto;padding:0.2rem 0 0.8rem}
+.lens-tab{min-width:170px;border-radius:12px 12px 8px 8px;padding:1rem 1rem 0.9rem;color:var(--white);box-shadow:0 10px 24px rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.14);position:relative;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.lens-tab:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(0,0,0,0.18)}
+.lens-tab+.lens-tab{margin-left:-1.05rem}
+.lens-tab:nth-child(1){background:var(--burgundy);z-index:8}
+.lens-tab:nth-child(2){background:var(--peach);color:var(--navy);z-index:7}
+.lens-tab:nth-child(3){background:var(--navy);z-index:6}
+.lens-tab:nth-child(4){background:var(--teal);z-index:5}
+.lens-tab:nth-child(5){background:var(--terra);z-index:4}
+.lens-tab:nth-child(6){background:var(--purple);z-index:3}
+.lens-tab:nth-child(7){background:var(--taupe);z-index:2}
+.lens-tab:nth-child(8){background:var(--olive);z-index:1}
+.lens-tab-num{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:0.65;margin-bottom:0.5rem}
+.lens-tab-name{font-family:var(--serif);font-size:1rem;font-weight:600;line-height:1.2}
+.lenses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem}
+
+/* Lens cards */
+.ap-card{border-radius:14px;padding:1.75rem 1.75rem 1.25rem;color:var(--white);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.ap-card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,0.2)}
+.ap-card:nth-child(1){background:var(--burgundy)}
+.ap-card:nth-child(2){background:var(--peach);color:var(--navy)}
+.ap-card:nth-child(3){background:var(--navy)}
+.ap-card:nth-child(4){background:var(--teal)}
+.ap-card:nth-child(5){background:var(--terra)}
+.ap-card:nth-child(6){background:var(--purple)}
+.ap-card:nth-child(7){background:var(--taupe)}
+.ap-card:nth-child(8){background:var(--olive)}
+.ap-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.6rem}
+.ap-num{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6}
+.ap-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.18rem 0.5rem;border-radius:4px;background:rgba(255,255,255,0.18);white-space:nowrap}
+.ap-card:nth-child(2) .ap-badge{background:rgba(30,45,74,0.12)}
+.ap-name{font-family:var(--serif);font-size:1.15rem;font-weight:600;line-height:1.2;margin-bottom:0.65rem}
+.ap-def{font-size:0.855rem;line-height:1.65;opacity:0.85}
+.ap-toggle{margin-top:1rem;padding-top:0.85rem;border-top:1px solid rgba(255,255,255,0.18);font-size:0.78rem;font-weight:600;opacity:0.6;cursor:pointer;transition:opacity .2s}
+.ap-card:nth-child(2) .ap-toggle{border-color:rgba(30,45,74,0.15)}
+.ap-toggle:hover{opacity:1}
+.ap-expanded{display:none;margin-top:0.75rem;font-size:0.82rem;line-height:1.65;opacity:0.85}
+.ap-expanded strong{display:block;margin-bottom:0.35rem;font-size:0.7rem;letter-spacing:0.07em;text-transform:uppercase;opacity:0.7}
+.ap-exchange-link{display:inline-flex;align-items:center;gap:0.3rem;margin-top:0.75rem;font-size:0.75rem;font-weight:600;opacity:0.6;text-decoration:underline;cursor:pointer;transition:opacity .2s}
+.ap-exchange-link:hover{opacity:1}
+.nominate-card{background:#F5F5F4!important;border:2px dashed var(--g400)!important;color:var(--navy)!important;box-shadow:none!important}
+.nominate-card:hover{border-color:var(--teal)!important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(30,45,74,0.08)!important}
+.nominate-card .ap-num{opacity:0.62!important}
+.nominate-card .ap-badge{background:rgba(30,45,74,0.08)!important;color:var(--navy)!important}
+.nominate-card .ap-def{color:var(--g600);opacity:1}
+.nominate-card input,.nominate-card textarea{outline:none;color:var(--ink)!important;background:var(--white)!important;border:1.5px solid var(--g200)!important}
+.nominate-card input:focus,.nominate-card textarea:focus{border-color:var(--teal)!important}
+.nominate-card input::placeholder,.nominate-card textarea::placeholder{color:var(--g400)!important}
+.nominate-card button{background:var(--white)!important;border:1.5px solid var(--g200)!important;color:var(--navy)!important}
+.nominate-card button:hover{border-color:var(--teal)!important;color:var(--teal)!important}
+
+/* Lens reactions */
+.ap-reactions{display:flex;gap:0.4rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid rgba(255,255,255,0.12);flex-wrap:wrap}
+.ap-card:nth-child(2) .ap-reactions{border-color:rgba(30,45,74,0.12)}
+.react-btn{
+  display:flex;align-items:center;gap:0.3rem;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:20px;padding:0.22rem 0.6rem;
+  font-size:0.72rem;font-weight:500;
+  color:inherit;cursor:pointer;
+  transition:all .18s;white-space:nowrap;
+  opacity:0.75;
+}
+.ap-card:nth-child(2) .react-btn{background:rgba(30,45,74,0.08);border-color:rgba(30,45,74,0.18)}
+.react-btn:hover{opacity:1;transform:scale(1.04)}
+.react-btn.active{opacity:1;background:rgba(255,255,255,0.28);font-weight:700}
+.ap-card:nth-child(2) .react-btn.active{background:rgba(30,45,74,0.2)}
+.react-count{font-weight:700}
+
+/* FEATURES */
+#features{background:var(--parchment)}
+.feature-activity{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.2rem;align-items:start}
+.feature-cards{display:flex;flex-direction:column;gap:0.75rem}
+.feat-card{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1rem;transition:border-color .2s,box-shadow .2s,transform .2s}
+.feat-card:hover{border-color:var(--teal);box-shadow:0 6px 18px rgba(59,122,143,0.08);transform:translateY(-1px)}
+.feat-top{display:flex;align-items:flex-start;gap:0.8rem;margin-bottom:0.35rem}
+.feat-rank{width:1.8rem;height:1.8rem;border-radius:50%;background:var(--g100);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;flex-shrink:0}
+.feat-name{font-family:var(--serif);font-size:1.08rem;font-weight:600;color:var(--navy);line-height:1.25}
+.feat-def{font-size:0.86rem;color:var(--g600);line-height:1.6;margin-left:2.6rem}
+.feat-actions{display:flex;gap:0.35rem;margin-left:auto}
+.rank-btn{width:1.75rem;height:1.75rem;border-radius:7px;border:1px solid var(--g200);background:var(--white);color:var(--g600);cursor:pointer;font-size:0.78rem;font-weight:700}
+.rank-btn:hover{border-color:var(--teal);color:var(--teal)}
+.feature-workspace{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.4rem;position:sticky;top:80px}
+.activity-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:0.6rem}
+.activity-copy{font-size:0.9rem;color:var(--g600);line-height:1.7;margin-bottom:1rem}
+.feature-summary{background:var(--g100);border-left:3px solid var(--teal);border-radius:8px;padding:0.9rem 1rem;font-size:0.86rem;color:var(--g600);line-height:1.65;margin:1rem 0}
+.add-feature-row{display:flex;gap:0.5rem;margin-top:1rem}
+.add-feature-row input{flex:1;padding:0.58rem 0.75rem;border:1.5px solid var(--g200);border-radius:7px;font-family:var(--sans);font-size:0.86rem}
+.feature-reflect{width:100%;min-height:86px;resize:vertical;padding:0.7rem 0.8rem;border:1.5px solid var(--g200);border-radius:8px;font-family:var(--sans);font-size:0.9rem;color:var(--ink);margin-top:0.65rem}
+.feature-reflect:focus,.add-feature-row input:focus{outline:none;border-color:var(--teal)}
+.activity-actions{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:0.85rem}
+
+/* PULSE */
+#pulse{background:var(--ink);padding:5rem 2.5rem}
+.pulse-inner{max-width:1080px;margin:0 auto}
+.pulse-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:3rem}
+.pulse-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.75rem}
+.pulse-title{font-family:var(--serif);font-size:clamp(1.35rem,2.2vw,1.85rem);font-weight:600;color:var(--white);line-height:1.2;margin-bottom:0.75rem;white-space:nowrap}
+.pulse-title em{color:var(--teal-light);font-style:italic}
+.pulse-sub{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.7}
+.pulse-prompt-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:1.5rem}
+.pulse-prompt-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.85rem}
+.pulse-prompt-q{font-family:var(--serif);font-size:1.05rem;color:var(--white);line-height:1.4;margin-bottom:1.25rem}
+.pulse-ap-btns{display:flex;flex-direction:column;gap:0.5rem}
+.pulse-ap-btn{
+  display:flex;align-items:center;gap:0.6rem;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:0.55rem 0.85rem;
+  font-size:0.82rem;color:rgba(255,255,255,0.75);
+  cursor:pointer;transition:all .18s;text-align:left;
+  font-family:var(--sans);
+}
+.pulse-ap-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:var(--white)}
+.pulse-ap-btn.voted{border-color:var(--teal);background:rgba(59,122,143,0.18);color:var(--white)}
+.pulse-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pulse-bars{display:flex;flex-direction:column;gap:0.85rem}
+.pulse-bar-row{display:flex;align-items:center;gap:0.85rem}
+.pulse-bar-label{font-size:0.78rem;color:rgba(255,255,255,0.55);width:170px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pulse-bar-track{flex:1;background:rgba(255,255,255,0.07);border-radius:20px;height:10px;overflow:hidden}
+.pulse-bar-fill{height:100%;border-radius:20px;transition:width 0.6s cubic-bezier(0.4,0,0.2,1)}
+.pulse-bar-count{font-size:0.75rem;color:rgba(255,255,255,0.4);width:28px;text-align:right;flex-shrink:0}
+.pulse-voted-note{display:none;text-align:center;margin-top:1rem;font-size:0.8rem;color:rgba(255,255,255,0.4);font-style:italic}
+
+/* OPEN QUESTIONS */
+#questions{background:var(--parchment);border-top:1px solid var(--g200)}
+.q-meta{font-size:0.82rem;color:var(--g600);margin-bottom:2.5rem;padding:1rem 1.25rem;background:rgba(59,122,143,0.08);border-radius:8px;border-left:3px solid var(--teal);line-height:1.65}
+.q-categories{display:flex;flex-direction:column;gap:2.5rem}
+.q-cat-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+.q-cat-label::after{content:'';flex:1;height:1px;background:var(--g200)}
+.q-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.q-card{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.5rem;position:relative;transition:border-color .2s,box-shadow .2s}
+.q-card:hover{border-color:var(--teal);box-shadow:0 4px 16px rgba(59,122,143,0.08)}
+.q-card::before{content:'?';position:absolute;top:0.85rem;right:1.25rem;font-family:var(--serif);font-size:2.5rem;font-weight:700;color:var(--g100);line-height:1}
+.q-text{font-size:0.95rem;color:var(--navy);line-height:1.6;font-style:italic;font-family:var(--serif);margin-bottom:1rem}
+.q-contribute{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.78rem;font-weight:600;color:var(--teal);cursor:pointer;border:1.5px solid rgba(59,122,143,0.3);border-radius:6px;padding:0.3rem 0.7rem;transition:all .2s;text-decoration:none}
+.q-contribute:hover{background:var(--teal);color:var(--white);border-color:var(--teal)}
+.q-submit-panel{margin-top:3rem;padding:2rem;background:var(--white);border:1.5px solid var(--g200);border-radius:14px}
+.q-submit-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:0.4rem}
+.q-submit-sub{font-size:0.85rem;color:var(--g600);margin-bottom:1.25rem;line-height:1.6}
+.q-submit-row{display:flex;gap:0.75rem;align-items:flex-start;flex-wrap:wrap;margin-bottom:0.75rem}
+.q-submit-row textarea{flex:1;min-width:220px;padding:0.6rem 0.8rem;border:1.5px solid var(--g200);border-radius:8px;font-family:var(--sans);font-size:0.9rem;color:var(--ink);resize:vertical;line-height:1.55}
+.q-submit-row textarea:focus{outline:none;border-color:var(--teal)}
+.q-submit-row select,.q-submit-row input[type=text]{padding:0.55rem 0.8rem;border:1.5px solid var(--g200);border-radius:8px;font-family:var(--sans);font-size:0.85rem;color:var(--ink);background:var(--white)}
+.q-submit-row select:focus,.q-submit-row input[type=text]:focus{outline:none;border-color:var(--teal)}
+.q-submit-actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.q-submit-confirm{display:none;font-size:0.83rem;color:var(--teal);font-style:italic}
+.q-community-section{margin-top:2.5rem}
+.q-community-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g400);margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+.q-community-label::after{content:'';flex:1;height:1px;background:var(--g200)}
+.q-card.community-q::before{content:'?';color:rgba(59,122,143,0.12)}
+
+/* PATHWAYS */
+#pathways{background:var(--ink);color:var(--white);text-align:center}
+.pathways-inner{max-width:960px;margin:0 auto}
+.pathways-q{font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:600;color:var(--white);margin-bottom:0.5rem}
+.pathways-sub{font-size:0.9rem;color:rgba(255,255,255,0.45);margin-bottom:3rem}
+.pathway-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;text-align:left}
+.pw-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.75rem 1.5rem;cursor:pointer;transition:all .2s}
+.pw-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(59,122,143,0.4);transform:translateY(-2px)}
+.pw-card.active{background:rgba(59,122,143,0.18);border-color:var(--teal)}
+.pw-icon{font-size:1.6rem;margin-bottom:0.75rem}
+.pw-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.4rem}
+.pw-desc{font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.6}
+.pw-detail{margin-top:2rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:2rem;text-align:left;display:none}
+.pw-detail.active{display:block}
+.pw-detail-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--teal-light);margin-bottom:0.75rem}
+.pw-detail-body{font-size:0.9rem;color:rgba(255,255,255,0.6);line-height:1.75;max-width:680px}
+.pw-detail-cta{display:inline-block;margin-top:1.25rem;background:var(--teal);color:var(--white);padding:0.55rem 1.25rem;border-radius:7px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:background .2s;text-decoration:none}
+.pw-detail-cta:hover{background:#4a94ab}
+
+/* EXCHANGE */
+#exchange{background:var(--white)}
+.exchange-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem}
+
+/* Exchange tabs */
+.exchange-tabs{display:flex;gap:0.35rem;margin-bottom:2rem;background:var(--g100);border-radius:10px;padding:0.3rem;width:fit-content}
+.ex-tab{
+  padding:0.5rem 1.2rem;border-radius:7px;border:none;
+  font-size:0.85rem;font-weight:600;cursor:pointer;
+  background:transparent;color:var(--g600);
+  transition:all .18s;display:flex;align-items:center;gap:0.4rem;
+  font-family:var(--sans);
+}
+.ex-tab:hover{color:var(--navy)}
+.ex-tab.active{background:var(--white);color:var(--navy);box-shadow:0 1px 6px rgba(0,0,0,0.1)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* Discussions panel */
+.exchange-layout{display:grid;grid-template-columns:210px 1fr;gap:2.5rem;align-items:start}
+.ex-sidebar{}
+.sidebar-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g400);margin-bottom:0.6rem}
+.ap-filter-list{list-style:none;display:flex;flex-direction:column;gap:0.2rem}
+.ap-filter-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0.45rem 0.7rem;border-radius:7px;border:none;background:transparent;cursor:pointer;font-size:0.8rem;color:var(--g600);font-family:var(--sans);transition:all .2s;text-align:left}
+.ap-filter-btn:hover{background:var(--g100);color:var(--navy)}
+.ap-filter-btn.active{background:var(--navy);color:var(--white)}
+.ap-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-right:0.4rem}
+.f-count{font-size:0.7rem;font-weight:600;background:rgba(0,0,0,0.1);border-radius:10px;padding:0.1rem 0.4rem}
+.ap-filter-btn.active .f-count{background:rgba(255,255,255,0.2)}
+
+/* Post form */
+.new-post-panel{background:var(--g100);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;display:none;border:1.5px dashed var(--g400)}
+.new-post-panel.open{display:block}
+.form-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:1rem}
+.form-row{margin-bottom:0.85rem}
+.form-row label{display:block;font-size:0.75rem;font-weight:600;color:var(--navy);margin-bottom:0.28rem;letter-spacing:0.04em}
+.form-row input,.form-row textarea,.form-row select{width:100%;padding:0.55rem 0.8rem;border:1.5px solid var(--g200);border-radius:7px;font-family:var(--sans);font-size:0.875rem;color:var(--ink);background:var(--white);transition:border-color .2s}
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus{outline:none;border-color:var(--teal)}
+.form-row textarea{min-height:90px;resize:vertical}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem}
+.form-actions{display:flex;gap:0.75rem;margin-top:0.5rem}
+.btn-sm{padding:0.5rem 1.1rem;border-radius:7px;font-weight:600;font-size:0.85rem;cursor:pointer;border:none;font-family:var(--sans)}
+.btn-navy{background:var(--navy);color:var(--white)}.btn-navy:hover{background:var(--navy-mid)}
+.btn-outline{background:transparent;color:var(--g600);border:1.5px solid var(--g200)}.btn-outline:hover{border-color:var(--navy);color:var(--navy)}
+
+/* Post cards */
+.posts-list{display:flex;flex-direction:column;gap:1.1rem}
+.post-card{border:1.5px solid var(--g200);border-radius:12px;padding:1.5rem;background:var(--white);transition:border-color .2s,box-shadow .2s}
+.post-card:hover{border-color:var(--g400);box-shadow:0 4px 16px rgba(0,0,0,0.06)}
+.post-meta{display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;margin-bottom:0.85rem}
+.post-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--white);flex-shrink:0}
+.post-author{font-weight:600;font-size:0.875rem;color:var(--navy)}
+.post-role{font-size:0.72rem;color:var(--g600)}
+.post-time{font-size:0.72rem;color:var(--g400);margin-left:auto}
+.ap-tag{display:inline-flex;align-items:center;gap:0.3rem;padding:0.18rem 0.55rem;border-radius:4px;font-size:0.65rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;background:rgba(30,45,74,0.07);color:var(--navy)}
+.cat-tag{padding:0.18rem 0.55rem;border-radius:4px;font-size:0.65rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+.cat-practice{background:rgba(59,122,143,0.1);color:var(--teal)}
+.cat-research{background:rgba(30,45,74,0.08);color:var(--navy)}
+.cat-question{background:rgba(196,114,74,0.1);color:var(--terra)}
+.cat-policy{background:rgba(91,61,90,0.1);color:var(--purple)}
+.cat-design{background:rgba(122,120,64,0.1);color:var(--olive)}
+.cat-experience{background:rgba(123,61,66,0.1);color:var(--burgundy)}
+.cat-prompt{background:rgba(59,122,143,0.1);color:var(--teal)}
+.cat-open_question{background:rgba(196,114,74,0.1);color:var(--terra)}
+.context-note{margin:0.65rem 0 0.85rem;padding:0.7rem 0.85rem;border-radius:8px;background:rgba(59,122,143,0.08);border-left:3px solid var(--teal);font-size:0.82rem;color:var(--g600);line-height:1.55}
+.source-question{margin:0.75rem 0;padding:0.7rem 0.85rem;border-radius:8px;background:var(--cream);border-left:3px solid var(--terra);font-size:0.83rem;color:var(--g600);line-height:1.55}
+.source-question strong{color:var(--navy);font-weight:700}
+.post-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:0.45rem;line-height:1.3}
+.post-body{font-size:0.875rem;color:var(--g600);line-height:1.7}
+.post-footer{display:flex;align-items:center;gap:1rem;margin-top:1rem;padding-top:0.85rem;border-top:1px solid var(--g100)}
+.post-action{background:none;border:none;cursor:pointer;font-size:0.8rem;color:var(--g600);display:flex;align-items:center;gap:0.3rem;transition:color .2s;padding:0;font-family:var(--sans)}
+.post-action:hover{color:var(--navy)}.post-action.liked{color:var(--burgundy)}
+.comments-section{display:none;margin-top:1rem}
+.comments-section.open{display:block}
+.comment{display:flex;gap:0.65rem;padding:0.65rem 0;border-bottom:1px solid var(--g100)}
+.comment:last-of-type{border-bottom:none}
+.c-avatar{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:700;color:var(--white)}
+.c-author{font-weight:600;font-size:0.8rem;color:var(--navy)}
+.c-role{font-size:0.7rem;color:var(--g400);font-weight:400}
+.c-text{font-size:0.83rem;color:var(--g600);line-height:1.6;margin-top:0.15rem}
+.comment-input-row{display:flex;gap:0.65rem;align-items:center;margin-top:0.75rem}
+.comment-input{flex:1;padding:0.45rem 0.7rem;border:1.5px solid var(--g200);border-radius:7px;font-family:var(--sans);font-size:0.83rem;color:var(--ink)}
+.comment-input:focus{outline:none;border-color:var(--teal)}
+.empty-state{text-align:center;padding:3.5rem 2rem;color:var(--g400);font-style:italic;font-size:0.9rem}
+
+/* ── SPARKS ── */
+.sparks-panel{}
+.sparks-intro{display:grid;grid-template-columns:minmax(0,0.82fr) minmax(360px,1.18fr);gap:2rem;align-items:start;margin-bottom:2.5rem}
+.sparks-what{font-size:0.9rem;color:var(--g600);line-height:1.75}
+.sparks-what strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:0.4rem}
+
+/* Sentence starter */
+.starter-widget{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);
+  border-radius:12px;padding:1.5rem;color:var(--white);
+}
+.starter-tag{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.6rem}
+.starter-prompt{font-family:var(--serif);font-size:1rem;color:var(--white);line-height:1.4;margin-bottom:1rem}
+.starter-prompt .blank{
+  display:inline-block;
+  border-bottom:2px solid var(--teal-light);
+  min-width:80px;color:var(--teal-light);
+  font-style:italic;padding:0 0.2rem;
+}
+.starter-input-row{display:flex;gap:0.6rem;align-items:center}
+.starter-input{
+  flex:1;padding:0.5rem 0.8rem;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:7px;color:var(--white);
+  font-family:var(--sans);font-size:0.875rem;
+}
+.starter-input::placeholder{color:rgba(255,255,255,0.35)}
+.starter-input:focus{outline:none;border-color:var(--teal-light)}
+.starter-submit{
+  background:var(--teal);color:var(--white);
+  border:none;border-radius:7px;padding:0.5rem 1rem;
+  font-size:0.82rem;font-weight:600;cursor:pointer;
+  transition:background .18s;white-space:nowrap;font-family:var(--sans);
+}
+.starter-submit:hover{background:#4a94ab}
+.starter-responses{margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;max-height:120px;overflow-y:auto}
+.starter-resp{font-size:0.82rem;color:rgba(255,255,255,0.65);padding:0.3rem 0;border-bottom:1px solid rgba(255,255,255,0.08);line-height:1.5}
+.starter-resp:last-child{border-bottom:none}
+
+/* ── PROMPT BANK ── */
+.prompts-panel{}
+.prompts-intro{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:2.5rem;align-items:start}
+.prompts-what{font-size:0.9rem;color:var(--g600);line-height:1.75}
+.prompts-what strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:0.4rem}
+
+/* Submit prompt form */
+.prompt-submit-box{background:var(--g100);border-radius:12px;padding:1.5rem;border:1.5px dashed var(--g400)}
+.prompt-submit-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:0.85rem}
+.prompt-cards{display:flex;flex-direction:column;gap:1rem}
+.prompt-card{
+  background:var(--white);border:1.5px solid var(--g200);
+  border-radius:12px;padding:1.4rem;
+  transition:border-color .2s,box-shadow .2s;
+}
+.prompt-card:hover{border-color:var(--teal);box-shadow:0 4px 14px rgba(59,122,143,0.08)}
+.prompt-q{
+  font-family:var(--serif);font-size:1.05rem;
+  color:var(--navy);line-height:1.45;margin-bottom:0.85rem;
+}
+.prompt-context{
+  font-size:0.82rem;color:var(--g600);line-height:1.6;
+  padding:0.65rem 0.85rem;background:var(--g100);
+  border-radius:7px;margin-bottom:0.85rem;
+  border-left:3px solid var(--g400);font-style:italic;
+}
+.prompt-footer{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
+.prompt-ap-badge{
+  font-size:0.65rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.2rem 0.5rem;border-radius:4px;
+  background:rgba(30,45,74,0.07);color:var(--navy);
+  display:flex;align-items:center;gap:0.3rem;
+}
+.prompt-used{
+  display:flex;align-items:center;gap:0.3rem;
+  font-size:0.78rem;color:var(--g400);cursor:pointer;
+  background:none;border:none;padding:0;
+  transition:color .2s;font-family:var(--sans);
+}
+.prompt-used:hover,.prompt-used.used{color:var(--teal)}
+.prompt-used.used{font-weight:600}
+.prompt-contrib{font-size:0.72rem;color:var(--g400);margin-left:auto}
+
+/* Copy edits */
+.copyedit-intro{display:grid;grid-template-columns:0.9fr 1.1fr;gap:2.5rem;margin-bottom:2rem;align-items:start}
+.copyedit-help{font-size:0.9rem;color:var(--g600);line-height:1.75}
+.copyedit-help strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:0.4rem}
+.copyedit-box{background:var(--g100);border-radius:12px;padding:1.5rem;border:1.5px dashed var(--g400)}
+.copyedit-preview{margin-top:1rem;background:var(--white);border:1.5px solid var(--g200);border-radius:10px;padding:1rem;font-family:var(--sans);font-size:0.84rem;color:var(--g600);line-height:1.6;white-space:pre-wrap}
+.edit-notes-list{display:flex;flex-direction:column;gap:1rem}
+.edit-note-card{border:1.5px solid var(--g200);border-radius:12px;background:var(--white);padding:1.25rem}
+.edit-note-meta{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;margin-bottom:0.65rem}
+.edit-section{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);background:rgba(59,122,143,0.1);padding:0.18rem 0.5rem;border-radius:4px}
+.edit-note-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy)}
+.edit-note-body{font-size:0.86rem;color:var(--g600);line-height:1.65;white-space:pre-wrap}
+
+
+/* Lens portrait frame */
+.lens-frame-card{margin-top:1.5rem;border:1.5px solid var(--g200);border-radius:14px;background:var(--cream);padding:1.2rem}
+.lens-frame-card strong{display:block;font-family:var(--serif);font-size:1.05rem;color:var(--navy);margin-bottom:0.35rem}
+.lens-frame-card p{font-size:0.88rem;color:var(--g600);line-height:1.65;margin-bottom:0.85rem}
+.lens-frame-mini{display:flex;flex-wrap:wrap;gap:0.45rem}
+.lens-frame-pill{border:1.5px solid var(--g200);background:var(--white);border-radius:999px;padding:0.32rem 0.7rem;font-size:0.76rem;font-weight:700;color:var(--navy)}
+.lens-frame-stack{position:relative;min-height:260px;width:100%;display:grid;place-items:center;background:rgba(255,255,255,0.06);border-radius:14px;overflow:hidden}
+.lens-frame-stack.empty::before{content:'Flag lenses that resonate to build this frame.';font-size:0.86rem;color:rgba(255,255,255,0.52);text-align:center;max-width:210px;line-height:1.5}
+.frame-rect{position:absolute;width:58%;height:68%;border:4px solid currentColor;border-radius:12px;background:transparent;box-shadow:0 12px 30px rgba(0,0,0,0.12);opacity:0.84}
+.frame-rect::after{content:'';position:absolute;inset:10px;border:1.5px solid currentColor;border-radius:7px;opacity:0.28}
+.frame-caption{position:absolute;bottom:1rem;left:1rem;right:1rem;text-align:center;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.72);line-height:1.35}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;text-align:center;font-size:0.82rem}
+.footer-logo{font-family:var(--serif);font-size:1.15rem;color:var(--white);margin-bottom:0.35rem}
+.footer-logo em{color:var(--teal-light);font-style:italic}
+.footer-sub{color:rgba(255,255,255,0.3);font-size:0.75rem;margin-bottom:1.5rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.8rem;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+.footer-draft{margin-top:1.5rem;font-size:0.72rem;color:rgba(255,255,255,0.2)}
+
+/* Responsive */
+@media(max-width:900px){
+  .exchange-layout,.sparks-intro,.prompts-intro,.copyedit-intro,.pulse-header,.claim-grid,.about-wrap,.feature-activity,.journey-grid,.journey-preview-grid,.role-layout,.artifact-stage,.condition-grid,.seeing-grid,.knapsack-grid,.reveal-grid,.reveal-layout,.portrait-thread{grid-template-columns:1fr;gap:2rem}
+  .knapsack-logo{width:min(330px,86%);margin-bottom:0.85rem}
+  .feature-workspace{position:static}
+  .landing-mark{right:0;width:64rem;height:88vh;opacity:0.2;object-position:center right}
+  .ap-filter-list{flex-direction:row;flex-wrap:wrap}
+  .ap-filter-btn{width:auto}
+  .sidebar-label{display:none}
+}
+@media(max-width:640px){
+  nav{padding:0 1.25rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.25rem}
+  .form-2col{grid-template-columns:1fr}
+  .role-picks,.mini-artifact-grid{grid-template-columns:1fr}
+  .viz-row{grid-template-columns:1fr}
+  .portrait-builder{left:0.75rem;right:0.75rem;bottom:0.75rem;width:auto}
+  .builder-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:0.4rem 0.6rem}
+  .builder-toast{right:1rem;bottom:11rem}
+  footer{padding-bottom:10rem}
+}
+</style>
+</head>
+<body><a class="skip-link" href="#main-content">Skip to main content</a>
+<!-- NAV -->
+<nav aria-label="Primary navigation">
+<div class="nav-logo">Portraits of <em>Purposeful</em> Youth</div>
+<ul class="nav-links">
+<li><a href="#landing">Home</a></li>
+<li><a href="#journey">Start</a></li>
+<li><a href="#claim">Claim</a></li>
+<li><a href="#purpose-definition">Define</a></li>
+<li><a href="#framework">Lenses</a></li>
+<li><a href="#features">Read</a></li>
+<li><a href="#pulse">Pulse</a></li>
+<li><a href="#exchange">Contribute</a></li>
+<li><a class="nav-cta" href="#knapsack">Your Portrait</a></li>
+</ul>
+<select aria-label="Jump to a section" class="mobile-jump" id="mobileSectionJump" onchange="navigateMobile(this.value)">
+<option value="">Open section…</option>
+<option value="#landing">Home</option>
+<option value="#journey">Start</option>
+<option value="#claim">Claim</option>
+<option value="#purpose-definition">Define Purpose</option>
+<option value="#framework">Eight Lenses</option>
+<option value="#features">Read a Portrait</option>
+<option value="#pulse">Community Pulse</option>
+<option value="#questions">Open Questions</option>
+<option value="#exchange">Contribute</option>
+<option value="#knapsack">Your Portrait</option>
+</select></nav>
+<aside aria-label="Building your portrait" class="portrait-builder collapsed" id="portraitBuilder">
+<div class="builder-top">
+<button aria-expanded="false" class="builder-toggle" id="builderToggle" onclick="togglePortraitBuilder(true)" type="button"><span class="builder-title">Building your portrait</span></button>
+<div class="builder-count" id="builderCount">0/7</div>
+</div>
+<div class="builder-body">
+<div class="builder-track"><div class="builder-fill" id="builderFill"></div></div>
+<div class="builder-list" id="builderList"></div>
+<div class="builder-reveal">
+<button onclick="togglePortraitBuilder(false)" type="button">Collapse</button>
+<a href="#knapsack">Reveal portrait</a>
+</div>
+<div class="builder-hint" id="builderHint">Start by adding your role.</div>
+</div>
+</aside>
+<div class="builder-toast" id="builderToast">Added to your portrait</div>
+<!-- LANDING -->
+
+<!-- GUIDED START -->
+
+<!-- THE CLAIM -->
+
+<!-- PURPOSE DEFINITION -->
+
+<!-- ARGUMENT -->
+
+<!-- FRAMEWORK -->
+
+<!-- GOVERNING FEATURES -->
+
+<!-- COMMUNITY PULSE -->
+
+<!-- OPEN QUESTIONS -->
+
+<!-- THE EXCHANGE -->
+
+<!-- PORTRAIT REVEAL -->
+
+<!-- FOOTER -->
+<main id="main-content"><section id="landing">
+<img alt="" aria-hidden="true" class="landing-mark" decoding="async" fetchpriority="high" src="assets/pip-lab-logo.png"/>
+<div class="prov-inner">
+<div class="prov-overline">
+<a href="https://www.psix.bctr.cornell.edu" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'" onmouseover="this.style.borderColor='rgba(255,255,255,0.6)'" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:1px;transition:border-color .2s" target="_blank">Purpose Science &amp; Innovation Exchange</a>
+       · 
+      <a href="https://www.lipurposefe.com" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'" onmouseover="this.style.borderColor='rgba(255,255,255,0.6)'" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:1px;transition:border-color .2s" target="_blank">Purpose and Identity Processes Lab</a>
+</div>
+<div class="prov-statement">
+<span class="sentence">We often ask whether young people <strong>have</strong> purpose.</span>
+<span class="sentence">We rarely ask whether the conditions around youth <em>support</em> it.</span>
+</div>
+<div class="prov-pause"></div>
+<p class="prov-response">This asymmetry can impose a deficit framing of young people as missing something, while letting programs, institutions, and relationships that shape their development off the hook. This exchange invites seeing youth differently.</p>
+<div class="prov-name">Portraits of <span>Purposeful</span> Youth</div>
+<div class="prov-actions">
+<a class="btn btn-teal" href="#journey">Create a portrait</a>
+</div>
+</div>
+</section><section id="journey">
+<div class="container journey-shell">
+<div>
+<div class="eyebrow">Start Here</div>
+<div class="rule"></div>
+<h2>Build a clearer <em>portrait</em> of youth purpose</h2>
+<p class="lead" style="font-size:0.975rem">Move through a few focused studios. Each one asks for a small response and adds something to your final portrait, while selected public contributions can inform an aggregate view of what the field is seeing.</p>
+</div>
+<div aria-label="Start here tabs" class="journey-tabs">
+<button aria-controls="journey-about" aria-selected="true" class="journey-tab active" data-journey="about" onclick="openJourney('about',this)" role="tab" type="button">About</button>
+<button aria-controls="journey-roles" aria-selected="false" class="journey-tab" data-journey="roles" onclick="openJourney('roles',this)" role="tab" type="button">Your Role</button>
+<button aria-controls="journey-artifacts" aria-selected="false" class="journey-tab" data-journey="artifacts" onclick="openJourney('artifacts',this)" role="tab" type="button">What You Get</button>
+</div>
+<div class="journey-panel active" id="journey-about" role="tabpanel">
+<div class="journey-grid">
+<div>
+<div class="eyebrow">About This Project</div>
+<h2 style="margin-bottom:0.85rem">See more clearly. <em>Contribute what you notice.</em></h2>
+<p class="lead" style="font-size:0.975rem;margin-bottom:1.25rem">Portraits of Purposeful You is an open and collaborative project created by the <a href="https://www.lipurposefe.com" rel="noopener" target="_blank">Purpose and Identity Processes Lab</a> and hosted in partnership with the <a href="https://psix.bctr.cornell.edu" rel="noopener" target="_blank">Purpose Science and Innovation Exchange (PSiX)</a> at Cornell University.</p>
+<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0 0 1.25rem">No single measure, moment, or characteristic can fully capture the complexity of a young person's purposeful life. Informed by developmental science and lived experience, this initiative honors the variety of ways purpose can manifest across people's lives and contexts.</p>
+<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0">Your responses here matter because they do three things: they build a private portrait you can keep, they surface public-facing contributions for review, and they help create an aggregate view of what different people notice about youth purpose.</p>
+<div class="outcome-grid">
+<a class="outcome-card" href="#knapsack">
+<span class="mini-example">You leave with</span>
+<strong>Your Portrait</strong>
+<p>A downloadable recap of your role, working definition, lens choices, questions, reflections, and seeing prompts.</p>
+</a>
+<a class="outcome-card" href="#journey-artifacts" onclick="openJourney('artifacts')">
+<span class="mini-example">The project builds</span>
+<strong>Aggregate Signal</strong>
+<p>A reviewed synthesis of patterns across users: what roles notice, where curiosity gathers, and which questions keep returning.</p>
+</a>
+<a class="outcome-card" href="#exchange">
+<span class="mini-example">The community receives</span>
+<strong>Shareable Contributions</strong>
+<p>Selected reflections, prompts, copy edits, and questions that help others see youth purpose with more nuance.</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="journey-panel" id="journey-roles" role="tabpanel">
+<div class="role-layout">
+<div>
+<div class="role-form-title">Choose one or more roles</div>
+<p class="role-form-copy">The exchange needs different things from different people. Pick the vantage points that feel true for you.</p>
+<div class="role-picks">
+<button class="role-chip" data-role="researcher" onclick="toggleRole(this)" type="button"><span>Research</span><strong>Researcher or Scholar</strong></button>
+<button class="role-chip" data-role="practitioner" onclick="toggleRole(this)" type="button"><span>Practice</span><strong>Practitioner or Educator</strong></button>
+<button class="role-chip" data-role="policy" onclick="toggleRole(this)" type="button"><span>Systems</span><strong>Policymaker or Funder</strong></button>
+<button class="role-chip" data-role="youth" onclick="toggleRole(this)" type="button"><span>Lived view</span><strong>Young Person</strong></button>
+<button class="role-chip" data-role="parent" onclick="toggleRole(this)" type="button"><span>Family</span><strong>Parent or Guardian</strong></button>
+<button class="role-chip" data-role="mentor" onclick="toggleRole(this)" type="button"><span>Support</span><strong>Mentor or Champion</strong></button>
+</div>
+</div>
+<div class="role-workspace">
+<div class="role-form-title">Add two quick notes</div>
+<p class="role-form-copy">These notes travel with your portrait and help shape the summary you receive at the end.</p>
+<label class="form-row">
+<span>What brings you to thinking about youth purpose right now?</span>
+<textarea id="purposeQuickAnswer" oninput="refreshArtifacts()" placeholder="A short answer is enough..."></textarea>
+</label>
+<div class="form-row">
+<label>When you think of "youth," who comes to mind?</label>
+<div class="choice-row" id="youthChoices">
+<button class="choice-pill" data-group="children" onclick="toggleYouthGroup(this)" type="button">Children</button>
+<button class="choice-pill" data-group="early adolescents" onclick="toggleYouthGroup(this)" type="button">Early adolescents</button>
+<button class="choice-pill" data-group="late adolescents" onclick="toggleYouthGroup(this)" type="button">Late adolescents</button>
+<button class="choice-pill" data-group="college students" onclick="toggleYouthGroup(this)" type="button">College students</button>
+</div>
+</div>
+<div class="artifact-actions">
+<button class="btn-sm btn-navy" onclick="saveOnboardingResponse()" type="button">Add to portrait →</button>
+<span class="save-note" id="onboardingSaveNote">Saved to the exchange.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="journey-panel" id="journey-artifacts" role="tabpanel">
+<div class="artifact-stage">
+<div class="viz-card">
+<div class="artifact-title">1. Role-based signal</div>
+<p class="artifact-copy">A visualization of how others who share a similar role frame what they notice about youth purpose.</p>
+<div class="viz-list" id="roleViz"></div>
+</div>
+<div class="report-card">
+<div class="artifact-title">2. Interpretive synthesis <span style="font-family:var(--sans);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);font-weight:800;margin-left:0.3rem">Sample</span></div>
+<p class="artifact-copy">A sample narrative generated from your role and early responses, designed to preview the kind of synthesis this exchange can produce.</p>
+<div class="report-body" id="gentleReport"></div>
+</div>
+</div>
+<div class="summary-card">
+<div class="artifact-title">3. Your private portrait record</div>
+<p class="artifact-copy">Download a clean recap of what you entered here, or open an email draft to yourself. Public-facing contributions remain separate and reviewable.</p>
+<div class="summary-lines" id="personalSummary"></div>
+<div class="artifact-actions">
+<button class="btn-sm btn-navy" onclick="downloadResponseSummary()" type="button">Download your responses</button>
+<button class="btn-sm btn-outline" onclick="emailResponseSummary()" type="button">Email them to yourself</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="app-shell" id="portraitStudio" aria-label="Portrait studio navigation">
+  <div class="app-shell-inner">
+    <div class="app-shell-copy">
+      <span>Portrait Studio</span>
+      <strong>Choose one focused workspace at a time.</strong>
+    </div>
+    <div class="app-tabs" role="tablist" aria-label="Portrait studio sections">
+      <a class="app-tab" href="#claim">Claim</a>
+      <a class="app-tab" href="#purpose-definition">Define</a>
+      <a class="app-tab" href="#framework">Lenses</a>
+      <a class="app-tab" href="#features">Read</a>
+      <a class="app-tab" href="#pulse">Pulse</a>
+      <a class="app-tab" href="#questions">Questions</a>
+      <a class="app-tab" href="#exchange">Contribute</a>
+      <a class="app-tab app-tab-strong" href="#knapsack">Portrait</a>
+    </div>
+  </div>
+</div>
+<section class="app-panel" id="claim">
+<div class="container claim-grid">
+<div>
+<div class="eyebrow">The Claim</div>
+<div class="rule"></div>
+<blockquote class="claim-pull">A sense of purpose is not distributed evenly across young people. It is <em>cultivated or constrained</em> by the unique set of conditions that surround them.</blockquote>
+<p style="font-size:0.95rem;color:var(--g600);line-height:1.75">This is a claim with evidence behind it. Purpose — a <strong>self-organizing and forward-looking life aim</strong> — is a developmental resource. Substantial research links it with a host of health and well-being benefits for those who cultivate it. But it does not emerge by chance. It grows in relation to what young people can see, what they are given the chance to do, who recognizes them, and what their environment makes possible.</p>
+</div>
+<div>
+<h2><em>Tuning how purpose is seen</em> <span style="display:block;color:var(--teal);font-family:var(--sans);font-size:1rem;font-style:normal;font-weight:700;margin-top:0.35rem">What sharing your perspective can impact:</span></h2>
+<ul class="consequence-list">
+<li>What researchers study — shifting from traits and scores to mechanisms and conditions</li>
+<li>What practitioners build — designing environments that actively cultivate purpose</li>
+<li>What policymakers fund — holding institutions accountable for creating conditions that support purposeful development</li>
+<li>Who is seen as purposeful — recognizing that constrained purpose often reflects constrained conditions, not constrained potential</li>
+</ul>
+<div class="condition-lab">
+<div class="artifact-kicker">Takeaway · Set your lens</div>
+<p class="activity-copy">Use the sliders to show what you tend to notice first when thinking about youth purpose. Higher numbers mean that part of the picture is more visible to you right now.</p>
+<div class="condition-grid">
+<div class="purpose-dial" id="conditionDial">
+<div class="dial-core"><strong id="conditionDialScore">55</strong><span>field of view</span></div>
+</div>
+<div class="condition-controls">
+<div class="slider-row">
+<label><span>I notice young people's direction</span><span id="opportunityValue">55</span></label>
+<input id="opportunitySlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
+</div>
+<div class="slider-row">
+<label><span>I notice the supports that surround young people</span><span id="recognitionValue">55</span></label>
+<input id="recognitionSlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
+</div>
+<div class="slider-row">
+<label><span>I notice blocked pathways for young people</span><span id="practiceValue">55</span></label>
+<input id="practiceSlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
+</div>
+<div class="slider-row">
+<label><span>I notice whether young people's pursuits benefit others</span><span id="benefitValue">55</span></label>
+<input id="benefitSlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
+</div>
+<div class="slider-row">
+<label><span>I notice whether young people's pursuits bring them joy</span><span id="joyValue">55</span></label>
+<input id="joySlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
+</div>
+</div>
+</div>
+<p class="activity-copy" style="margin-top:0.9rem">Now choose where you would look first if a young person’s purpose seemed out of focus.</p>
+<div aria-label="Where do you expect to look first" class="vote-row">
+<button class="vote-chip" data-overlooked="characteristics of the young person" onclick="chooseOverlooked(this)" type="button">At characteristics of the young person</button>
+<button class="vote-chip" data-overlooked="their relationships" onclick="chooseOverlooked(this)" type="button">At their relationships</button>
+<button class="vote-chip" data-overlooked="their school or programs" onclick="chooseOverlooked(this)" type="button">At their school or programs</button>
+<button class="vote-chip" data-overlooked="their community" onclick="chooseOverlooked(this)" type="button">At their community</button>
+<button class="vote-chip" data-overlooked="the broader culture" onclick="chooseOverlooked(this)" type="button">At the broader culture</button>
+</div>
+<div class="condition-summary" id="conditionSummary"></div>
+</div>
+</div>
+</div>
+</section><section class="app-panel" id="purpose-definition">
+<div class="container">
+<div class="eyebrow">Your Working Definition</div>
+<div class="rule"></div>
+<h2>Define <em>purpose</em> here to inform what to look for in the portraits.</h2>
+<p class="lead purpose-definition-note" style="font-size:0.975rem">Carry a working definition into the rest of the exchange. It does not need to be polished. We are interested in the words you are operating with right now.</p>
+<div class="purpose-definition-card">
+<label class="definition-label" for="purposeDefinitionInput">I would define purpose as:</label>
+<div class="form-row">
+<textarea id="purposeDefinitionInput" oninput="refreshArtifacts()" placeholder="One or two sentences is enough..."></textarea>
+</div>
+<div class="artifact-actions">
+<button class="btn-sm btn-navy" onclick="savePurposeDefinition()" type="button">Save definition</button>
+<span class="save-note" id="purposeDefinitionSaveNote">Saved to the exchange.</span>
+</div>
+</div>
+</div>
+</section><section class="app-panel app-panel-support" data-support-for="claim" id="argument">
+<div class="arg-inner">
+<div class="arg-eyebrow">What makes this an exchange?</div>
+<div class="arg-claim">If purpose <em>develops</em> in conditions,<br/>then what we understand about purpose<br/>must <em>engage</em> with <span class="plain-white">those conditions.</span></div>
+<p class="arg-body">Seeing youth purpose more clearly should change what we ask, what we build, and what we stop overlooking. This exchange is designed to collect those shifts in perspective from people who meet youth in different roles and settings.</p>
+<div class="arg-implication">"The exchange matters when better seeing leads to better questions and better choices."</div>
+<div class="seeing-response">
+<div class="artifact-kicker" style="color:var(--teal-light)">Takeaway · Your next move</div>
+<h3>When you see purpose arise for a young person, what would you do next?</h3>
+<p>This completes the “next move” item in your portrait. Pick the response you would most likely make from your selected role perspective.</p>
+<div class="seeing-grid">
+<button class="seeing-card active" data-stance="Notice and name what is already there" onclick="chooseSightAction(this)" type="button">Notice and name it<span>Point out the purpose, effort, or direction that may already be present.</span></button>
+<button class="seeing-card" data-stance="Look for the supports that make it possible" onclick="chooseSightAction(this)" type="button">Look for supports<span>Ask what relationships, opportunities, or settings might help amplify purpose.</span></button>
+<button class="seeing-card" data-stance="Change the setting" onclick="chooseSightAction(this)" type="button">Change the setting<span>Adjust the program, classroom, or relationship so purpose has more room to grow.</span></button>
+<button class="seeing-card" data-stance="Ask someone else to look with me" onclick="chooseSightAction(this)" type="button">Ask someone else to look<span>Bring the question to a colleague, young person, family member, or team.</span></button>
+</div>
+<div class="seeing-summary" id="stanceSummary"></div>
+</div>
+</div>
+</section><section class="app-panel" id="framework">
+<div class="container">
+<div class="framework-intro">
+<div class="eyebrow">The Framework</div>
+<div class="rule"></div>
+<h2>Introducing the Portraits of Purposeful Youth Framework:<br/><em>Eight Lenses of Purposeful Experience</em></h2>
+<div aria-label="Eight lenses overview" class="lens-overview" style="margin:1.75rem 0 2rem">
+<div class="lens-tab" onclick="scrollToLens(1)"><div class="lens-tab-num">01</div><div class="lens-tab-name">Sense of Purpose</div></div>
+<div class="lens-tab" onclick="scrollToLens(2)"><div class="lens-tab-num">02</div><div class="lens-tab-name">Scope and Awareness</div></div>
+<div class="lens-tab" onclick="scrollToLens(3)"><div class="lens-tab-num">03</div><div class="lens-tab-name">Orientation</div></div>
+<div class="lens-tab" onclick="scrollToLens(4)"><div class="lens-tab-num">04</div><div class="lens-tab-name">Content</div></div>
+<div class="lens-tab" onclick="scrollToLens(5)"><div class="lens-tab-num">05</div><div class="lens-tab-name">Opportunities for Practice</div></div>
+<div class="lens-tab" onclick="scrollToLens(6)"><div class="lens-tab-num">06</div><div class="lens-tab-name">Recognition and Reflection</div></div>
+<div class="lens-tab" onclick="scrollToLens(7)"><div class="lens-tab-num">07</div><div class="lens-tab-name">Environmental Affordances</div></div>
+<div class="lens-tab" onclick="scrollToLens(8)"><div class="lens-tab-num">08</div><div class="lens-tab-name">Cultural Context</div></div>
+</div>
+<p class="lead" style="font-size:0.975rem">The portraits framework is organized around eight interconnected "lenses" designed to see purpose from multiple vantage points. These lenses span personal, experiential, relational, and contextual domains, recognizing that purpose is shaped not only by individual beliefs and motivations, but also by opportunities, environments, relationships, and cultural signals.</p>
+<p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Each lens is grounded in developmental science while remaining open to revision, critique, and expansion. Rather than offering a single definition of purposeful youth, the framework seeks to create a more flexible and integrative array of portraits, each capable of capturing how young people experience purpose in their lives. There may be no <em>best</em> way to see purpose; instead, there may be numerous ways by adjusting and combining the lenses through which <strong>we chose to view them.</strong></p>
+<p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Explore the lenses actively. As you read, flag the lenses that resonate. Those choices will be tallied and translated into stacked color frames in your final portrait.</p>
+<div class="lens-frame-card" id="lensFrameSummary"><strong>Your resonant lens frame</strong><p>No lenses flagged yet. Use the “Resonates” flags on the cards below to build a visual frame for your portrait.</p><div class="lens-frame-mini" id="lensFrameMini"></div></div>
+</div>
+<div class="conf-legend">
+<span style="font-size:0.75rem;color:var(--g400);font-weight:500">Epistemic status:</span>
+<div class="conf-item"><div class="conf-dot"></div><span>Research-grounded</span></div>
+<div class="conf-item"><div class="conf-dot d"></div><span>Actively developing</span></div>
+<div class="conf-item"><div class="conf-dot e"></div><span>Empirically emerging</span></div>
+</div>
+<div class="lenses-grid">
+<div class="ap-card" id="lens-card-1">
+<div class="ap-header"><div class="ap-num">01 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
+<div class="ap-name">Sense of Purpose</div>
+<div class="ap-def">How purposeful one feels. The subjective experience of perceiving that one's actions carry meaning and direction, the felt sense of purpose, distinct from being able to articulate or explain it.</div>
+<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-expanded"><strong>In practice</strong>Does this young person report that what they do matters? Do they express a sense of drive or direction — even without words for it? Is there something they return to, even when it's hard?<div class="ap-exchange-link" onclick="goToAp(1)">→ See exchange discussions</div></div>
+<div class="ap-reactions" data-ap="1">
+<button class="react-btn" onclick="react(this,1,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,1,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,1,'more')" type="button">→ Want more <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,1,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+</div>
+</div>
+<div class="ap-card" id="lens-card-2">
+<div class="ap-header"><div class="ap-num">02 · Inner Experience</div><div class="ap-badge">Actively developing</div></div>
+<div class="ap-name">Scope and Awareness</div>
+<div class="ap-def">What a young person can imagine, see, or name as possible targets for purpose. The horizon of possibility — the range of lives, roles, and forms of contribution they can conceive of for someone like themselves.</div>
+<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-expanded"><strong>In practice</strong>Can this young person name roles, causes, or futures they care about? Has their horizon expanded over time, or stayed fixed? Constrained scope often reflects constrained exposure — not constrained capacity.<div class="ap-exchange-link" onclick="goToAp(2)">→ See exchange discussions</div></div>
+<div class="ap-reactions" data-ap="2">
+<button class="react-btn" onclick="react(this,2,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,2,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,2,'more')" type="button">→ Want more <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,2,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+</div>
+</div>
+<div class="ap-card" id="lens-card-3">
+<div class="ap-header"><div class="ap-num">03 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
+<div class="ap-name">Orientation</div>
+<div class="ap-def">The broad domain or general direction that frames a young person's purpose — whether prosocial, financial, vocational, religious, civic, creative, or otherwise. Orientation names the general category of contribution or becoming that organizes how they see themselves in relation to the world.</div>
+<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-expanded"><strong>In practice</strong>Does this young person have a general sense of what kind of contributor or person they want to become — even without a specific aim yet? Is their orientation toward serving others, building something, achieving mastery, or following a calling? Orientation can be present before specific goals form.<div class="ap-exchange-link" onclick="goToAp(3)">→ See exchange discussions</div></div>
+<div class="ap-reactions" data-ap="3">
+<button class="react-btn" onclick="react(this,3,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,3,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,3,'more')" type="button">→ Want more <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,3,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+</div>
+</div>
+<div class="ap-card" id="lens-card-4">
+<div class="ap-header"><div class="ap-num">04 · Inner Experience</div><div class="ap-badge">Actively developing</div></div>
+<div class="ap-name">Content</div>
+<div class="ap-def">The specific aspirational substance of what a young person understands they want to work toward. Not just a broad orientation, but a particular aim: being a great student, helping advance an important issue, mastering a craft, building something that matters. The articulation — even if partial or evolving — of what their purposeful effort is actually directed at.</div>
+<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-expanded"><strong>In practice</strong>Can this young person name something specific they want to do, become, or contribute — not just a general domain? Has that aspiration grown more concrete over time? Even a vague but genuine aim ("I want to do something with the environment") is purposeful content worth developing.<div class="ap-exchange-link" onclick="goToAp(4)">→ See exchange discussions</div></div>
+<div class="ap-reactions" data-ap="4">
+<button class="react-btn" onclick="react(this,4,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,4,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,4,'more')" type="button">→ Want more <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,4,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+</div>
+</div>
+<div class="ap-card" id="lens-card-5">
+<div class="ap-header"><div class="ap-num">05 · Active Engagement</div><div class="ap-badge">Actively developing</div></div>
+<div class="ap-name">Opportunities for Practice</div>
+<div class="ap-def">Concrete chances to explore, try, and enact purposeful action. Not just exposure — genuine opportunities to act, contribute, and experience oneself as a capable agent in something that matters beyond the self.</div>
+<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-expanded"><strong>In practice</strong>Does this young person have regular, authentic chances to act on what they care about? Are those opportunities real — with stakes and impact — or performative? Who controls access to them?<div class="ap-exchange-link" onclick="goToAp(5)">→ See exchange discussions</div></div>
+<div class="ap-reactions" data-ap="5">
+<button class="react-btn" onclick="react(this,5,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,5,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,5,'more')" type="button">→ Want more <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,5,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+</div>
+</div>
+<div class="ap-card" id="lens-card-6">
+<div class="ap-header"><div class="ap-num">06 · Active Engagement</div><div class="ap-badge">Research-grounded</div></div>
+<div class="ap-name">Recognition and Reflection</div>
+<div class="ap-def">Feedback, validation, and structured sense-making from oneself and others. The relational and reflective processes through which purposeful experience becomes visible, interpreted, and integrated into identity.</div>
+<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-expanded"><strong>In practice</strong>Do adults and peers name and affirm what this young person contributes? Are there structured opportunities to reflect and extract meaning? Is this young person developing a narrative of their own purposeful identity?<div class="ap-exchange-link" onclick="goToAp(6)">→ See exchange discussions</div></div>
+<div class="ap-reactions" data-ap="6">
+<button class="react-btn" onclick="react(this,6,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,6,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,6,'more')" type="button">→ Want more <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,6,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+</div>
+</div>
+<div class="ap-card" id="lens-card-7">
+<div class="ap-header"><div class="ap-num">07 · Conditions</div><div class="ap-badge">Actively developing</div></div>
+<div class="ap-name">Environmental Affordances</div>
+<div class="ap-def">Material, social, and institutional resources that make purposeful action possible. The structures, spaces, and relationships that either enable or foreclose what a young person can do with what they care about.</div>
+<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-expanded"><strong>In practice</strong>What resources does this young person have access to? Who gatekeeps them? Are the environments this young person inhabits designed with purposeful development in mind — or does it happen despite the design?<div class="ap-exchange-link" onclick="goToAp(7)">→ See exchange discussions</div></div>
+<div class="ap-reactions" data-ap="7">
+<button class="react-btn" onclick="react(this,7,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,7,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,7,'more')" type="button">→ Want more <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,7,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+</div>
+</div>
+<div class="ap-card" id="lens-card-8">
+<div class="ap-header"><div class="ap-num">08 · Conditions</div><div class="ap-badge">Empirically emerging</div></div>
+<div class="ap-name">Cultural Context</div>
+<div class="ap-def">The sociocultural signals — explicit and implicit — about what kinds of purpose are valued, legitimate, and possible in a given context. The messages a young person receives about who gets to pursue purpose, and what kinds count.</div>
+<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-expanded"><strong>In practice</strong>What does this environment communicate about whose futures matter and which forms of contribution are worth pursuing? Are cultural norms expanding or narrowing what this young person believes is possible for someone like them?<div class="ap-exchange-link" onclick="goToAp(8)">→ See exchange discussions</div></div>
+<div class="ap-reactions" data-ap="8">
+<button class="react-btn" onclick="react(this,8,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,8,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,8,'more')" type="button">→ Want more <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,8,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+</div>
+</div>
+<!-- NOMINATE A LENS CARD -->
+<div class="ap-card nominate-card">
+<div class="ap-header">
+<div class="ap-num">?? · Your nomination</div>
+<div class="ap-badge">Community proposal</div>
+</div>
+<div class="ap-name">Nominate a Lens</div>
+<div class="ap-def">Is there a dimension of purposeful experience that the eight lenses above don't capture? Name it here. Strong nominations will be considered for inclusion in future iterations of this framework — and posted here for community feedback.</div>
+<div id="nominateForm" style="margin-top:1rem">
+<input id="nominateName" placeholder="Name your lens (e.g. 'Belonging')" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;font-family:var(--sans);font-size:0.85rem;margin-bottom:0.55rem"/>
+<textarea id="nominateDef" placeholder="Describe it briefly — what does it mean, and why does it matter for understanding purpose in young people?" rows="3" style="width:100%;padding:0.5rem 0.7rem;border-radius:7px;font-family:var(--sans);font-size:0.85rem;resize:vertical;margin-bottom:0.55rem"></textarea>
+<button onclick="submitNomination()" style="border-radius:7px;padding:0.45rem 1.1rem;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .18s" type="button">Submit nomination →</button>
+<div id="nominateConfirm" style="display:none;margin-top:0.75rem;font-size:0.82rem;color:var(--g600);font-style:italic">Thank you — your nomination has been received. If it resonates with the community, it may appear here in a future iteration.</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="app-panel" id="features">
+<div class="container">
+<div class="eyebrow">Reading a purposeful experience</div>
+<div class="rule"></div>
+<h2>Which cue do you <em>attend to</em> the most?</h2>
+<p class="lead" style="font-size:0.975rem">Purpose can show up in different ways. Put these cues in the order you would use when trying to understand a young person’s purposeful experience. There is no right order; the point is to show how you look.</p>
+<div class="feature-activity">
+<div class="feature-cards" id="featureCards"></div>
+<div class="feature-workspace">
+<div class="activity-title">Build your detection order</div>
+<p class="activity-copy">Move the cues up or down. The top cue is what you would look for first; the note below explains what that order helps you notice.</p>
+<div class="feature-summary" id="featureSummary"></div>
+<label class="form-row" style="display:block">
+<span style="display:block;font-size:0.75rem;font-weight:600;color:var(--navy);margin-bottom:0.28rem;letter-spacing:0.04em">What does this order help you see?</span>
+<textarea class="feature-reflect" id="featureReflect" oninput="updateFeatureSummary()" placeholder="e.g. I would look for Fit first, because a direction that does not connect to the young person's lived reality may not hold."></textarea>
+</label>
+<div class="add-feature-row">
+<input id="newFeatureInput" onkeydown="if(event.key==='Enter')addFeature()" placeholder="Add a missing feature..."/>
+<button class="btn-sm btn-navy" onclick="addFeature()" type="button">Add</button>
+</div>
+<div class="activity-actions">
+<button class="btn-sm btn-outline" onclick="resetFeatures()" type="button">Reset order</button>
+<button class="btn-sm btn-navy" onclick="sendFeatureReflection()" type="button">Add this to your portrait</button>
+</div>
+</div>
+</div>
+</div>
+</section><section class="app-panel" id="pulse">
+<div class="pulse-inner">
+<div class="pulse-header">
+<div>
+<div class="pulse-eyebrow">Community Pulse</div>
+<div class="pulse-title">Which lenses should be <em>focal?</em></div>
+<p class="pulse-sub">This is merely a signal of your curiosity, not a poll attempting to draw scientific inference. Choose the lenses below that you think are most important to learn more about. Your responses can help us invest in learning more in areas of greatest interest.</p>
+</div>
+<div class="pulse-prompt-box">
+<div class="pulse-prompt-label">This month's question</div>
+<div class="pulse-prompt-q">Which lenses are you most interested in, and want to know more about?</div>
+<div class="pulse-ap-btns" id="pulseButtons">
+<button class="pulse-ap-btn" onclick="castPulse(1,this)" type="button"><span class="pulse-dot" style="background:#7B3D42"></span>Sense of Purpose</button>
+<button class="pulse-ap-btn" onclick="castPulse(2,this)" type="button"><span class="pulse-dot" style="background:#C9A499"></span>Scope &amp; Awareness</button>
+<button class="pulse-ap-btn" onclick="castPulse(3,this)" type="button"><span class="pulse-dot" style="background:#1E2D4A"></span>Orientation</button>
+<button class="pulse-ap-btn" onclick="castPulse(4,this)" type="button"><span class="pulse-dot" style="background:#3B7A8F"></span>Content</button>
+<button class="pulse-ap-btn" onclick="castPulse(5,this)" type="button"><span class="pulse-dot" style="background:#C4724A"></span>Opportunities for Practice</button>
+<button class="pulse-ap-btn" onclick="castPulse(6,this)" type="button"><span class="pulse-dot" style="background:#5B3D5A"></span>Recognition &amp; Reflection</button>
+<button class="pulse-ap-btn" onclick="castPulse(7,this)" type="button"><span class="pulse-dot" style="background:#8B7B6B"></span>Environmental Affordances</button>
+<button class="pulse-ap-btn" onclick="castPulse(8,this)" type="button"><span class="pulse-dot" style="background:#7A7840"></span>Cultural Context</button>
+</div>
+<div class="pulse-voted-note" id="pulseVotedNote">Thanks — your response is reflected in the pulse.</div>
+</div>
+</div>
+<div class="pulse-bars" id="pulseBars"></div>
+</div>
+</section><section class="app-panel" id="questions">
+<div class="container">
+<div style="margin-bottom:2.5rem">
+<div class="eyebrow">Open Questions</div>
+<div class="rule"></div>
+<h2>What do you <em>still want to know?</em></h2>
+<p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add the question that should have been here from the start.</p>
+</div>
+<div class="q-meta">This section will grow as the exchange develops. The questions below are starting points; the most useful contribution may be naming the better question.</div>
+<div class="q-categories">
+<div>
+<div class="q-cat-label">Questions the research community can address</div>
+<div class="q-cards">
+<div class="q-card"><div class="q-text">How do the eight lenses interact with each other? Is there a developmental sequence, or do they operate in parallel?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse('How do the eight lenses interact with each other? Is there a developmental sequence, or do they operate in parallel?','research','discussions')">+ Contribute to this question</a></div>
+<div class="q-card"><div class="q-text">When adults say a young person “lacks purpose,” what are they actually failing to notice?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse('When adults say a young person “lacks purpose,” what are they actually failing to notice?','research','discussions')">+ Contribute to this question</a></div>
+</div>
+</div>
+<div>
+<div class="q-cat-label">Questions practitioners can surface from the field</div>
+<div class="q-cards">
+<div class="q-card"><div class="q-text">How do you support Scope and Awareness with young people navigating genuinely constrained futures — without setting them up for harm?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse('How do you support Scope and Awareness with young people navigating genuinely constrained futures — without setting them up for harm?','practice','discussions')">+ Contribute to this question</a></div>
+<div class="q-card"><div class="q-text">Which lens breaks down first in under-resourced settings? What does the sequence of constraint look like in practice?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse('Which lens breaks down first in under-resourced settings? What does the sequence of constraint look like in practice?','practice','discussions')">+ Contribute to this question</a></div>
+</div>
+</div>
+<div>
+<div class="q-cat-label">Questions only young people can answer from the inside</div>
+<div class="q-cards">
+<div class="q-card"><div class="q-text">What does Resonance actually feel like when it's present — and what does its absence feel like, from the inside?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse("What does Resonance actually feel like when it's present — and what does its absence feel like, from the inside?",'experience','sparks')">+ Add a quick sighting</a></div>
+<div class="q-card"><div class="q-text">When purpose feels constrained, what do the adults and institutions around you most get wrong?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse('When purpose feels constrained, what do the adults and institutions around you most get wrong?','experience','sparks')">+ Add a quick sighting</a></div>
+</div>
+</div>
+</div>
+<!-- Community-submitted questions (rendered by JS after hydration) -->
+<div class="q-community-section" id="communityQuestions" style="display:none">
+<div class="q-community-label">From the community</div>
+<div class="q-cards" id="communityQCards"></div>
+</div>
+<!-- Submit a question -->
+<div class="q-submit-panel">
+<div class="q-submit-title">Add a question to this board</div>
+<div class="q-submit-sub">Have a question that would help others see youth purpose more clearly? Submit it here. Strong questions can inform this board and the Seeing Prompts collection.</div>
+<div class="q-submit-row">
+<textarea id="qSubmitText" placeholder="Write your question here…" rows="3"></textarea>
+</div>
+<div class="q-submit-actions">
+<button class="btn-sm btn-navy" onclick="submitOpenQuestion()" type="button">Submit question →</button>
+<div class="q-submit-confirm" id="qSubmitConfirm">Thank you — your question has been received for review.</div>
+</div>
+</div>
+</div>
+</section><section class="app-panel" id="exchange">
+<div class="container">
+<div class="exchange-header">
+<div>
+<div class="eyebrow">The Exchange</div>
+<div class="rule"></div>
+<h2>Share what you're <em>seeing</em></h2>
+<p class="lead" style="font-size:0.95rem">Share a fuller reflection or leave a prompt for seeing purpose in young people more clearly. Your insights may help others see things differently than what is typical for them.<br/><br/>Your private entries are captured in your portrait; selected public-facing pieces can also inform reviewed aggregate views of what the community is noticing.</p>
+</div>
+</div>
+<!-- Tab nav -->
+<div class="exchange-tabs">
+<button aria-controls="panel-sparks" aria-selected="true" class="ex-tab active" onclick="openTab('discussions',this)" role="tab" type="button">💬 Reflections</button>
+<button aria-controls="panel-sparks" aria-selected="false" class="ex-tab" onclick="openTab('sparks',this)" role="tab" type="button">💡 Seeing prompts</button>
+</div>
+<!-- DISCUSSIONS TAB -->
+<div class="tab-panel active" id="panel-discussions">
+<button class="btn btn-teal btn-sm" id="newPostBtn" onclick="toggleNewPost()" style="margin-bottom:1.25rem" type="button">+ Start a discussion</button>
+<div class="new-post-panel" id="newPostPanel">
+<div class="form-title">Add your contribution</div>
+<div class="context-note" id="postRoleContext">You are contributing from your selected role perspective.</div>
+<div class="source-question" id="sourceQuestionNote" style="display:none"></div>
+<div class="form-row"><label>Your name</label><input id="fAuthor" placeholder="Dr. Maya Ortega" type="text"/></div>
+<div class="form-2col">
+<div class="form-row"><label>Contribution type</label><select id="fCat"><option value="practice">Practice</option><option value="research">Research</option><option value="question">Question</option><option value="policy">Policy</option><option value="design">Design</option><option value="experience">Lived Experience</option></select></div>
+<div class="form-row"><label>Lens (if relevant)</label><select id="fAp"><option value="0">All / general</option><option value="1">01 · Sense of Purpose</option><option value="2">02 · Scope and Awareness</option><option value="3">03 · Orientation</option><option value="4">04 · Content</option><option value="5">05 · Opportunities for Practice</option><option value="6">06 · Recognition and Reflection</option><option value="7">07 · Environmental Affordances</option><option value="8">08 · Cultural Context</option></select></div>
+</div>
+<div class="form-row"><label>Title</label><input id="fTitle" placeholder="e.g. How Cultural Context showed up in our community assessment" type="text"/></div>
+<div class="form-row"><label>Your contribution</label><textarea id="fBody" placeholder="Share what you're seeing, asking, or thinking. Specific is better — a particular setting, student, or moment is more useful than a general observation."></textarea></div>
+<div class="form-actions"><button class="btn-sm btn-navy" onclick="submitPost()" type="button">Publish</button><button class="btn-sm btn-outline" onclick="toggleNewPost()" type="button">Cancel</button></div>
+</div>
+<div class="exchange-layout">
+<div class="ex-sidebar">
+<div class="sidebar-label">Filter by lens</div>
+<ul class="ap-filter-list" id="apFilterList">
+<li><button class="ap-filter-btn active" onclick="filterByAp(0,this)" type="button">All contributions <span class="f-count" id="cnt-0">—</span></button></li>
+<li><button class="ap-filter-btn" onclick="filterByAp(1,this)" type="button"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#7B3D42"></span>Sense of Purpose</span><span class="f-count" id="cnt-1">0</span></button></li>
+<li><button class="ap-filter-btn" onclick="filterByAp(2,this)" type="button"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#C9A499"></span>Scope &amp; Awareness</span><span class="f-count" id="cnt-2">0</span></button></li>
+<li><button class="ap-filter-btn" onclick="filterByAp(3,this)" type="button"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#1E2D4A"></span>Orientation</span><span class="f-count" id="cnt-3">0</span></button></li>
+<li><button class="ap-filter-btn" onclick="filterByAp(4,this)" type="button"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#3B7A8F"></span>Content</span><span class="f-count" id="cnt-4">0</span></button></li>
+<li><button class="ap-filter-btn" onclick="filterByAp(5,this)" type="button"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#C4724A"></span>Opps. for Practice</span><span class="f-count" id="cnt-5">0</span></button></li>
+<li><button class="ap-filter-btn" onclick="filterByAp(6,this)" type="button"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#5B3D5A"></span>Recognition &amp; Reflection</span><span class="f-count" id="cnt-6">0</span></button></li>
+<li><button class="ap-filter-btn" onclick="filterByAp(7,this)" type="button"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#8B7B6B"></span>Env. Affordances</span><span class="f-count" id="cnt-7">0</span></button></li>
+<li><button class="ap-filter-btn" onclick="filterByAp(8,this)" type="button"><span style="display:flex;align-items:center"><span class="ap-dot" style="background:#7A7840"></span>Cultural Context</span><span class="f-count" id="cnt-8">0</span></button></li>
+</ul>
+</div>
+<div><div id="filterLabel" style="font-size:0.82rem;color:var(--g600);margin-bottom:1rem"></div><div class="posts-list" id="postsList"></div></div>
+</div>
+</div>
+<!-- SPARKS TAB -->
+<div class="tab-panel" id="panel-sparks">
+<div class="sparks-intro">
+<div class="sparks-what">
+<strong>Seeing prompts — one useful question</strong>
+          Complete the prompt at right with a question you could actually ask a young person. Your response is added to your portrait.
+        </div>
+<div class="starter-widget">
+<div class="starter-tag">Seeing prompt</div>
+<div class="starter-prompt" id="starterPrompt"></div>
+<div class="starter-input-row">
+<input class="starter-input" id="starterInput" onkeydown="if(event.key==='Enter')submitStarter()" placeholder="finish the sentence…"/>
+<button class="starter-submit" onclick="submitStarter()" type="button">Add →</button>
+</div>
+<div class="starter-responses" id="starterResponses"></div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="app-panel" id="knapsack">
+<div class="container knapsack-shell">
+<div class="knapsack-head">
+<img alt="Purpose and Identity Processes Lab logo" class="knapsack-logo" decoding="async" loading="lazy" src="assets/pip-lab-download-logo.png"/>
+<div>
+<div class="eyebrow">Your Portrait Reveal</div>
+<div class="rule"></div>
+<h2>Produce your <em>Portrait of Purposeful Youth</em></h2>
+<p class="lead" style="font-size:0.975rem">This is the portrait you have been building. It pulls together your role, definition, lens settings, reading order, questions, reflections, and seeing prompts into one shareable view of how you are seeing youth purpose.</p>
+</div>
+</div>
+<div class="reveal-panel" id="portraitReveal"></div>
+<div class="portrait-thread" id="portraitThread"></div>
+<div class="knapsack-meta" id="knapsackMeta"></div>
+<div class="knapsack-grid" id="knapsackGrid"></div>
+<div class="artifact-actions">
+<button class="btn-sm btn-navy" onclick="downloadResponseSummary()" type="button">Download the full portrait</button>
+<button class="btn-sm btn-outline" onclick="emailResponseSummary()" type="button">Email the portrait to yourself</button>
+</div>
+</div>
+</section></main><footer>
+<div class="footer-logo">Portraits of <em>Purposeful</em> Youth</div>
+<div class="footer-sub">Purpose Science &amp; Innovation Exchange · Purpose and Identity Processes Lab</div>
+<div class="footer-links">
+<a href="#journey">Start Here</a><a href="#claim">The Claim</a><a href="#purpose-definition">Define Purpose</a><a href="#framework">Framework</a>
+<a href="#pulse">Community Pulse</a><a href="#questions">Open Questions</a><a href="#exchange">The Exchange</a>
+<a href="#knapsack">Your Portrait</a>
+</div>
+<div class="footer-draft">Working draft — the framework is actively evolving. What you contribute shapes what it becomes.</div>
+</footer>
+<script>
+// ─── Data ─────────────────────────────────────────────────
+const AP_COLORS=['#7B3D42','#C9A499','#1E2D4A','#3B7A8F','#C4724A','#5B3D5A','#8B7B6B','#7A7840'];
+const AP_NAMES=['','Sense of Purpose','Scope & Awareness','Orientation','Content','Opportunities for Practice','Recognition & Reflection','Environmental Affordances','Cultural Context'];
+const avatarColors=['#7B3D42','#1E2D4A','#C4724A','#5B3D5A','#3B7A8F','#7A7840','#8B7B6B'];
+
+const defaultFeatures=[
+  {name:'Strength',def:'How visible or consequential purposeful direction feels in the moment.'},
+  {name:'Durability',def:'Whether that direction seems sustained over time or only briefly present.'},
+  {name:'Fit',def:'Whether it feels connected to the young person’s identity, values, and lived reality.'},
+  {name:'Resonance',def:'Whether any aspect of purpose actually matters to a young person, and aligns with how they see themselves in the world.'}
+];
+let features=defaultFeatures.map(f=>({...f}));
+
+// Pulse votes
+let pulseVotes=[0,0,0,0,0,0,0,0,0];
+const pulseSelections=new Set();
+
+// Discussions
+let posts=[];
+let currentApFilter=0;
+let activeSourceQuestion='';
+let activePromptSourceQuestion='';
+const portraitContributions={reflections:[],questions:[],prompts:[],comments:[]};
+
+// Prompts
+let prompts=[];
+
+// Guided start
+const selectedRoles=new Set();
+const selectedYouthGroups=new Set();
+let selectedOverlooked='';
+let currentStance='Notice and name what is already there';
+let stanceChosen=false;
+const roleLabels={
+  researcher:'researchers',
+  practitioner:'practitioners',
+  policy:'policy leaders',
+  youth:'young people',
+  parent:'parents and guardians',
+  mentor:'mentors and champions'
+};
+const roleThemeWeights={
+  researcher:{Direction:84,Supports:76,Possibility:88,Voice:58},
+  practitioner:{Direction:62,Supports:91,Possibility:54,Voice:79},
+  policy:{Direction:68,Supports:87,Possibility:71,Voice:61},
+  youth:{Direction:44,Supports:74,Possibility:38,Voice:96},
+  parent:{Direction:48,Supports:82,Possibility:41,Voice:88},
+  mentor:{Direction:51,Supports:85,Possibility:46,Voice:90}
+};
+const stanceNotes={
+  'Notice and name what is already there':'You would point out purpose, effort, or direction that may already be present.',
+  'Look for the supports that make it possible':'You would look beyond the individual toward relationships, opportunities, and settings that might help amplify purpose.',
+  'Change the setting':'You would adjust the program, classroom, or relationship so purpose has more room to grow.',
+  'Ask someone else to look with me':'You would bring the question to another person or team so the picture gets wider.'
+};
+
+// Starters
+const starters=[
+  {stem:"The question that opens purpose up for the young people I work with is",blank:""}
+];
+let starterResponses=[[]];
+const starterIdx=0;
+let lastPortraitCount=0;
+let builderInitialized=false;
+
+// ─── Helpers ──────────────────────────────────────────────
+function initials(n){return n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase()}
+function avatarColor(n){let h=0;for(let c of n)h+=c.charCodeAt(0);return avatarColors[h%avatarColors.length]}
+function apDot(ap){return ap>0?`<span class="ap-dot" style="background:${AP_COLORS[ap-1]};display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px;vertical-align:middle"></span>`:''}
+function apLabel(ap){return ap>0?`<span class="ap-tag">${apDot(ap)}${AP_NAMES[ap]}</span>`:''}
+function catClass(c){return 'cat-'+c}
+function catLabel(c){return{practice:'Practice',research:'Research',question:'Question',policy:'Policy',design:'Design',experience:'Lived Experience',prompt:'Seeing Prompt',open_question:'Open Question'}[c]||c}
+function idArg(id){return "'"+String(id)+"'"}
+function sameId(a,b){return String(a)===String(b)}
+function scrollToLens(n){const el=document.getElementById('lens-card-'+n);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});}
+function navigateMobile(value){if(!value)return;const id=value.replace('#','');if(appPanelIds.includes(id)){history.pushState(null,'',value);showAppPanel(id,{scroll:true});}else{const el=document.querySelector(value);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}const jump=document.getElementById('mobileSectionJump');if(jump)jump.value='';}
+function setPressed(btn,isActive){if(btn)btn.setAttribute('aria-pressed',isActive?'true':'false')}
+function setTabA11y(groupSelector,activeSelector){document.querySelectorAll(groupSelector).forEach(el=>el.setAttribute('aria-selected',el.matches(activeSelector)?'true':'false'));}
+const API_READY=location.protocol!=='file:';
+async function saveRemote(type,payload={}){
+  if(!API_READY)return null;
+  try{
+    const res=await fetch('/api/ppy',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({type,payload})});
+    if(!res.ok)throw new Error(`API ${res.status}`);
+    return await res.json();
+  }catch(err){
+    console.warn('Exchange API write skipped:',err);
+    return null;
+  }
+}
+async function hydrateRemote(){
+  if(!API_READY)return;
+  try{
+    const res=await fetch('/api/ppy');
+    if(!res.ok)return;
+    const data=await res.json();
+    if(Array.isArray(data.posts)&&data.posts.length)posts=data.posts;
+    if(Array.isArray(data.prompts)&&data.prompts.length)prompts=data.prompts;
+    if(Array.isArray(data.pulseVotes)&&data.pulseVotes.some(Boolean)){
+      pulseVotes=data.pulseVotes.map((v,i)=>i===0?0:Number(v||0));
+    }
+    // Load cumulative lens reaction counts from the server
+    if(data.lensReactions&&typeof data.lensReactions==='object'){
+      for(const[lensNum,reactions]of Object.entries(data.lensReactions)){
+        const container=document.querySelector(`.ap-reactions[data-ap="${lensNum}"]`);
+        if(!container)continue;
+        for(const[rtype,count]of Object.entries(reactions)){
+          // Match each react-btn by its onclick reaction type argument
+          container.querySelectorAll('.react-btn').forEach(btn=>{
+            const oc=btn.getAttribute('onclick')||'';
+            if(oc.includes(`'${rtype}'`)){
+              const cnt=btn.querySelector('.react-count');
+              if(cnt)cnt.textContent=count;
+            }
+          });
+        }
+      }
+    }
+    renderPulse();renderPosts();renderPrompts();renderOpenQuestions();renderKnapsack();renderLensFrameSummary();
+  }catch(err){
+    console.warn('Exchange API hydrate skipped:',err);
+  }
+}
+
+// ─── Tabs ─────────────────────────────────────────────────
+function activateTab(name,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ex-tab').forEach(b=>b.classList.remove('active'));
+  const panel=document.getElementById('panel-'+name)||document.getElementById('panel-discussions');
+  panel.classList.add('active');
+  const activeName=panel.id.replace('panel-','');
+  if(btn){btn.classList.add('active')}
+  else{
+    const tabs={discussions:0,sparks:1};
+    const idx=tabs[activeName];
+    if(idx!==undefined)document.querySelectorAll('.ex-tab')[idx]?.classList.add('active');
+  }
+  setTabA11y('.ex-tab','.ex-tab.active');
+}
+function openTab(name,btn){
+  activateTab(name,btn);
+  if(location.hash!==`#exchange-${name}`)history.pushState(null,'',`#exchange-${name}`);
+  document.getElementById('exchange')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── Guided Start ─────────────────────────────────────────
+function activateJourney(name,btn){
+  document.querySelectorAll('.journey-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.journey-tab').forEach(t=>t.classList.remove('active'));
+  const panel=document.getElementById('journey-'+name)||document.getElementById('journey-about');
+  panel.classList.add('active');
+  const activeName=panel.id.replace('journey-','');
+  const tab=btn||document.querySelector(`.journey-tab[data-journey="${activeName}"]`);
+  if(tab)tab.classList.add('active');
+  setTabA11y('.journey-tab','.journey-tab.active');
+  refreshArtifacts();
+  updateRoleContextNotes?.();
+}
+function openJourney(name,btn){
+  activateJourney(name,btn);
+  if(location.hash!==`#journey-${name}`)history.pushState(null,'',`#journey-${name}`);
+  document.getElementById('journey')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function toggleRole(btn){
+  const role=btn.dataset.role;
+  if(selectedRoles.has(role)){selectedRoles.delete(role);btn.classList.remove('active');setPressed(btn,false)}
+  else{selectedRoles.add(role);btn.classList.add('active');setPressed(btn,true)}
+  refreshArtifacts();
+}
+function toggleYouthGroup(btn){
+  const group=btn.dataset.group;
+  if(selectedYouthGroups.has(group)){selectedYouthGroups.delete(group);btn.classList.remove('active');setPressed(btn,false)}
+  else{selectedYouthGroups.add(group);btn.classList.add('active');setPressed(btn,true)}
+  refreshArtifacts();
+}
+async function saveOnboardingResponse(){
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const roles=[...selectedRoles];
+  const youthGroups=[...selectedYouthGroups];
+  if(!roles.length&&!youthGroups.length&&!purpose){
+    alert('Please choose a role, select who comes to mind, or add a quick response first.');
+    return;
+  }
+  await saveRemote('onboarding_response',{
+    roles,
+    youth_groups:youthGroups,
+    purpose_response:purpose
+  });
+  const note=document.getElementById('onboardingSaveNote');
+  if(note){
+    note.style.display='inline';
+    setTimeout(()=>{note.style.display='none'},4000);
+  }
+  openJourney('artifacts');
+}
+
+const appPanelIds=['claim','purpose-definition','argument','framework','features','pulse','questions','exchange','knapsack'];
+const primaryAppPanelIds=['claim','purpose-definition','framework','features','pulse','questions','exchange','knapsack'];
+function showAppPanel(id,opts={}){
+  if(!appPanelIds.includes(id)) return;
+  const mainId=(id==='argument')?'claim':id;
+  document.querySelectorAll('.app-panel').forEach(panel=>{
+    const active=panel.id===mainId || panel.dataset.supportFor===mainId;
+    panel.classList.toggle('active',active);
+  });
+  document.querySelectorAll('.app-tab').forEach(tab=>{
+    const target=(tab.getAttribute('href')||'').replace('#','');
+    tab.classList.toggle('active',target===mainId);
+    tab.setAttribute('aria-selected',target===mainId?'true':'false');
+  });
+  if(opts.scroll!==false){
+    document.getElementById('portraitStudio')?.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+function maybeOpenAppHash(){
+  const id=location.hash.replace(/^#/,'');
+  if(appPanelIds.includes(id)){
+    showAppPanel(id,{scroll:true});
+    return true;
+  }
+  return false;
+}
+document.addEventListener('click',e=>{
+  const link=e.target.closest('a[href^="#"]');
+  if(!link) return;
+  const id=link.getAttribute('href').replace('#','');
+  if(appPanelIds.includes(id)){
+    e.preventDefault();
+    history.pushState(null,'','#'+id);
+    showAppPanel(id,{scroll:true});
+  }
+});
+
+function syncTabsFromHash(){
+  const hash=location.hash.replace(/^#/,'');
+  if(maybeOpenAppHash()) return;
+  if(hash.startsWith('journey-')){
+    activateJourney(hash.replace('journey-',''));
+    setTimeout(()=>document.getElementById('journey')?.scrollIntoView({block:'start'}),0);
+  }
+  if(hash.startsWith('exchange-')){
+    showAppPanel('exchange',{scroll:false});
+    activateTab(hash.replace('exchange-',''));
+    setTimeout(()=>document.getElementById('portraitStudio')?.scrollIntoView({block:'start'}),0);
+  }
+}
+window.addEventListener('hashchange',syncTabsFromHash);
+function averageThemeScores(){
+  const roles=[...selectedRoles];
+  const basis=roles.length?roles:['researcher','practitioner'];
+  const totals={Direction:0,Supports:0,Possibility:0,Voice:0};
+  basis.forEach(role=>Object.entries(roleThemeWeights[role]).forEach(([k,v])=>totals[k]+=v));
+  return Object.fromEntries(Object.entries(totals).map(([k,v])=>[k,Math.round(v/basis.length)]));
+}
+function roleSentence(){
+  const roles=[...selectedRoles].map(r=>roleLabels[r]);
+  if(!roles.length)return 'a mixed field view';
+  if(roles.length===1)return roles[0];
+  return `${roles.slice(0,-1).join(', ')} and ${roles.at(-1)}`;
+}
+function participantRole(){
+  return selectedRoles.size?roleSentence():'Exchange participant';
+}
+function conditionValues(){
+  return {
+    opportunity:Number(document.getElementById('opportunitySlider')?.value||55),
+    recognition:Number(document.getElementById('recognitionSlider')?.value||55),
+    practice:Number(document.getElementById('practiceSlider')?.value||55),
+    benefit:Number(document.getElementById('benefitSlider')?.value||55),
+    joy:Number(document.getElementById('joySlider')?.value||55)
+  };
+}
+function updateConditionPortrait(){
+  const values=conditionValues();
+  const score=Math.round((values.opportunity+values.recognition+values.practice+values.benefit+values.joy)/5);
+  document.getElementById('conditionDial')?.style.setProperty('--dial',score);
+  const scoreEl=document.getElementById('conditionDialScore');
+  if(scoreEl)scoreEl.textContent=score;
+  const fields=[
+    ['opportunityValue',values.opportunity],
+    ['recognitionValue',values.recognition],
+    ['practiceValue',values.practice],
+    ['benefitValue',values.benefit],
+    ['joyValue',values.joy]
+  ];
+  fields.forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.textContent=value});
+  const summary=document.getElementById('conditionSummary');
+  if(summary){
+    const strongestKey=Object.entries(values).sort((a,b)=>b[1]-a[1])[0][0];
+    const strongestLabels={opportunity:'young people’s direction',recognition:'surrounding supports',practice:'blocked pathways',benefit:'whether pursuits benefit others',joy:'whether pursuits bring joy'};
+    const orientationNote=values.benefit>=70?' You are especially attuned to self-transcendent purpose — whether young people’s aims extend outward to other people or communities.':values.benefit<=35?' You are not foregrounding benefit to others right now, which can help keep individual meaning, mastery, and identity visible alongside contribution.':'';
+    const wellbeingNote=values.joy>=70?' You are also strongly tracking whether purpose feels enlivening or joyful, linking purpose to subjective well-being rather than duty alone.':values.joy<=35?' Joy is less central in your current lens, which may reveal cases where purpose feels serious, demanding, or costly even when it matters.':'';
+    const overlooked=selectedOverlooked?` You expect to look first toward ${selectedOverlooked}.`:'';
+    summary.textContent=`Your viewing lens is widest around ${strongestLabels[strongestKey]}, with an overall field-of-view score of ${score}/100.${orientationNote}${wellbeingNote}${overlooked}`;
+  }
+  refreshArtifacts();
+}
+function chooseOverlooked(btn){
+  document.querySelectorAll('.vote-chip').forEach(chip=>chip.classList.remove('active'));
+  btn.classList.add('active');
+  selectedOverlooked=btn.dataset.overlooked||'';
+  updateConditionPortrait();
+}
+function chooseSightAction(btn){
+  document.querySelectorAll('.seeing-card').forEach(card=>card.classList.remove('active'));
+  btn.classList.add('active');
+  currentStance=btn.dataset.stance||currentStance;
+  stanceChosen=true;
+  updateExchangeStance();
+}
+function updateExchangeStance(){
+  const active=document.querySelector('.seeing-card.active');
+  if(active)currentStance=active.dataset.stance||currentStance;
+  const summary=document.getElementById('stanceSummary');
+  if(summary)summary.textContent=`${currentStance}: ${stanceNotes[currentStance]||''}`;
+  refreshArtifacts();
+}
+function refreshArtifacts(){
+  const scores=averageThemeScores();
+  const viz=document.getElementById('roleViz');
+  if(viz){
+    viz.innerHTML=Object.entries(scores).map(([label,value])=>`
+      <div class="viz-row">
+        <div class="viz-label">${label}</div>
+        <div class="viz-track"><div class="viz-fill" style="width:${value}%"></div></div>
+        <div class="viz-score">${value}</div>
+      </div>`).join('');
+  }
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const groups=[...selectedYouthGroups];
+  const report=document.getElementById('gentleReport');
+  if(report){
+    const groupCopy=groups.length?groups.join(', '):'a broad range of young people';
+    const purposeCopy=purpose?` Your note about "${purpose}" suggests the entry point is practical rather than abstract.`:'';
+    report.textContent=`Seen through ${roleSentence()}, youth purpose is framed most strongly through ${topThemes(scores)}. The implied picture is not simply whether young people possess purpose, but whether adults and settings make direction visible, actionable, and worth sustaining for ${groupCopy}.${purposeCopy}`;
+  }
+  const summary=document.getElementById('personalSummary');
+  if(summary){
+    summary.innerHTML=`
+      <div><strong>Roles:</strong> ${[...selectedRoles].map(r=>roleLabels[r]).join(', ')||'No role selected yet'}</div>
+      <div><strong>Who comes to mind:</strong> ${groups.join(', ')||'No youth group selected yet'}</div>
+      <div><strong>Purpose note:</strong> ${purpose||'No quick response entered yet'}</div>
+      <div><strong>Working definition:</strong> ${purposeDefinition||'No purpose definition entered yet'}</div>
+      <div><strong>Lens settings:</strong> Direction ${conditionValues().opportunity}/100; supports ${conditionValues().recognition}/100; blocked pathways ${conditionValues().practice}/100; benefit to others ${conditionValues().benefit}/100; joy ${conditionValues().joy}/100</div>
+      <div><strong>First place to look:</strong> ${selectedOverlooked||'No choice selected yet'}</div>
+      <div><strong>Resonant lenses:</strong> ${selectedResonantLenses().map(n=>AP_NAMES[n]).join(', ')||'No lenses flagged yet'}</div>
+      <div><strong>Next move:</strong> ${stanceChosen?currentStance:'No next move selected yet'}</div>
+      <div><strong>Reading reflection:</strong> ${(document.getElementById('featureReflect')?.value||'No feature reflection entered yet').trim()}</div>`;
+  }
+  renderLensFrameSummary();
+  renderKnapsack();
+}
+function topThemes(scores){
+  return Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k])=>k.toLowerCase()).join(' and ');
+}
+function summaryText(){
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const feature=(document.getElementById('featureReflect')?.value||'').trim();
+  const roles=[...selectedRoles].map(r=>roleLabels[r]).join(', ')||'No role selected';
+  const groups=[...selectedYouthGroups].join(', ')||'No youth group selected';
+  const values=conditionValues();
+  const score=Math.round((values.opportunity+values.recognition+values.practice+values.benefit+values.joy)/5);
+  const contributions=userContributionSummary();
+  return `Portraits of Purposeful Youth - Personal Response Summary
+
+Roles:
+${roles}
+
+Who comes to mind when I think of youth:
+${groups}
+
+What brings me to thinking about youth purpose right now:
+${purpose||'No quick response entered'}
+
+I would define purpose as:
+${purposeDefinition||'No purpose definition entered'}
+
+Viewing lens:
+Young people's direction ${values.opportunity}/100; Surrounding supports ${values.recognition}/100; Blocked pathways ${values.practice}/100; Benefit to others ${values.benefit}/100; Joy / subjective well-being ${values.joy}/100; Field of view ${score}/100${selectedOverlooked?`; First place I expect to look: ${selectedOverlooked}`:''}
+
+Next-move choice:
+${currentStance}
+
+Feature reflection:
+${feature||'No feature reflection entered'}
+
+Reflections I added:
+${compactList(contributions.reflections,'No reflection added')}
+
+Questions I added:
+${compactList(contributions.questions,'No open question added')}
+
+Seeing prompts I added:
+${compactList(contributions.prompts,'No seeing prompt added')}
+
+Replies I added:
+${compactList(contributions.comments,'No replies added')}
+`;
+}
+function escapeHtml(value){
+  return String(value).replace(/[&<>"']/g,char=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[char]));
+}
+function topConditionLabel(values){
+  const key=Object.entries(values).sort((a,b)=>b[1]-a[1])[0]?.[0]||'opportunity';
+  return {opportunity:'young people’s direction',recognition:'surrounding supports',practice:'blocked pathways',benefit:'whether pursuits benefit others',joy:'whether purpose brings joy'}[key];
+}
+function portraitMilestones(){
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const feature=(document.getElementById('featureReflect')?.value||'').trim();
+  return [
+    {key:'role',label:'Role selected',done:selectedRoles.size>0},
+    {key:'youth',label:'Youth named',done:selectedYouthGroups.size>0},
+    {key:'definition',label:'Purpose defined',done:purposeDefinition.length>0},
+    {key:'lens',label:'Lens tuned',done:Object.values(conditionValues()).some(v=>v!==55)||!!selectedOverlooked},
+    {key:'action',label:'Next move selected',done:stanceChosen},
+    {key:'features',label:'Reading order built',done:feature.length>0||features.map(f=>f.name).join('|')!==defaultFeatures.map(f=>f.name).join('|')},
+    {key:'exchange',label:'Contribution added',done:portraitContributions.reflections.length>0||portraitContributions.questions.length>0||portraitContributions.prompts.length>0||portraitContributions.comments.length>0}
+  ];
+}
+function renderPortraitBuilder(){
+  const list=document.getElementById('builderList');
+  const count=document.getElementById('builderCount');
+  const fill=document.getElementById('builderFill');
+  const hint=document.getElementById('builderHint');
+  if(!list||!count||!fill||!hint)return;
+  const items=portraitMilestones();
+  const completed=items.filter(i=>i.done).length;
+  count.textContent=`${completed}/${items.length}`;
+  fill.style.width=`${Math.round(completed/items.length*100)}%`;
+  list.innerHTML=items.map(item=>`<div class="builder-item ${item.done?'done':''}"><span class="builder-dot"></span><span>${escapeHtml(item.label)}</span></div>`).join('');
+  const next=items.find(i=>!i.done);
+  const nextHints={role:'select a role',youth:'name who comes to mind',definition:'define purpose',lens:'tune your lens',action:'choose your next move in the Claim studio',features:'build your reading order',exchange:'add a contribution'};
+  hint.textContent=next?`Next: ${nextHints[next.key]||next.label.toLowerCase()}`:'Ready to reveal';
+  if(builderInitialized&&completed>lastPortraitCount)flashBuilderToast();
+  lastPortraitCount=completed;
+  builderInitialized=true;
+}
+function flashBuilderToast(){
+  const toast=document.getElementById('builderToast');
+  if(!toast)return;
+  toast.classList.add('show');
+  clearTimeout(flashBuilderToast.timer);
+  flashBuilderToast.timer=setTimeout(()=>toast.classList.remove('show'),1800);
+}
+function togglePortraitBuilder(open){
+  const box=document.getElementById('portraitBuilder');
+  const toggle=document.getElementById('builderToggle');
+  if(!box)return;
+  const shouldOpen=open!==undefined?open:box.classList.contains('collapsed');
+  box.classList.toggle('collapsed',!shouldOpen);
+  if(toggle)toggle.setAttribute('aria-expanded',String(shouldOpen));
+}
+function userContributionSummary(){
+  return {
+    reflections:portraitContributions.reflections,
+    questions:portraitContributions.questions,
+    prompts:portraitContributions.prompts,
+    comments:portraitContributions.comments
+  };
+}
+function compactList(items,empty){
+  return items.length?items.slice(0,3).map(item=>`• ${item}`).join('\n'):empty;
+}
+
+function selectedResonantLenses(){
+  return [...document.querySelectorAll('.ap-reactions')].filter(container=>{
+    const active=container.querySelector('.react-btn.active');
+    return active && (active.getAttribute('onclick')||'').includes("'resonates'");
+  }).map(container=>Number(container.dataset.ap)).filter(Boolean);
+}
+function lensFrameHtml(dark=true){
+  const selected=selectedResonantLenses();
+  if(!selected.length)return `<div class="lens-frame-stack empty" aria-label="No resonant lenses selected yet"></div>`;
+  const frames=selected.slice(0,8).map((n,i)=>{
+    const rot=(i*5)-((selected.length-1)*2.5);
+    const scale=1-(Math.min(i,7)*0.025);
+    const x=(i%2===0?-4:4);
+    const y=(i*2)-Math.min(selected.length,8);
+    return `<div class="frame-rect" style="color:${AP_COLORS[n-1]};transform:translate(${x}px,${y}px) rotate(${rot}deg) scale(${scale});z-index:${20+i}"></div>`;
+  }).join('');
+  const names=selected.map(n=>AP_NAMES[n]).join(' · ');
+  return `<div class="lens-frame-stack" aria-label="Resonant lens frame">${frames}<div class="frame-caption">Resonant lenses: ${escapeHtml(names)}</div></div>`;
+}
+function renderLensFrameSummary(){
+  const wrap=document.getElementById('lensFrameSummary');
+  const mini=document.getElementById('lensFrameMini');
+  if(!wrap||!mini)return;
+  const selected=selectedResonantLenses();
+  const p=wrap.querySelector('p');
+  if(p)p.textContent=selected.length?`You have flagged ${selected.length} lens${selected.length===1?'':'es'} as especially resonant. These become stacked color frames in your portrait.`:'No lenses flagged yet. Use the “Resonates” flags on the cards below to build a visual frame for your portrait.';
+  mini.innerHTML=selected.map(n=>`<span class="lens-frame-pill">${escapeHtml(AP_NAMES[n])}</span>`).join('');
+}
+
+function renderPortraitReveal(){
+  const wrap=document.getElementById('portraitReveal');
+  if(!wrap)return;
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const values=conditionValues();
+  const conditionScore=Math.round((values.opportunity+values.recognition+values.practice+values.benefit+values.joy)/5);
+  const featureTop=features[0]?.name||'your first cue';
+  const roles=[...selectedRoles].map(r=>roleLabels[r]);
+  const roleCopy=roles.length?roles.join(', '):'a still-forming vantage point';
+  const youthCopy=selectedYouthGroups.size?[...selectedYouthGroups].join(', '):'young people broadly';
+  const definitionCopy=purposeDefinition?`Your working definition is: "${purposeDefinition}" `:'Your working definition is still open. ';
+  const contributions=userContributionSummary();
+  const contributionCount=Object.values(contributions).reduce((sum,items)=>sum+items.length,0);
+  const promptLine=contributions.prompts[0]?` The prompt you would bring to young people is: "${contributions.prompts[0]}."`:'';
+  const questionLine=contributions.questions[0]?` One question you are carrying forward is: "${contributions.questions[0]}."`:'';
+  const resonant=selectedResonantLenses().map(n=>AP_NAMES[n]);
+  const resonantLine=resonant.length?` Your resonant lens frame includes ${resonant.join(', ')}.`:'';
+  const text=`Seen through ${roleCopy}, your portrait centers ${topConditionLabel(values)} for ${youthCopy}. ${definitionCopy}Your first reading cue is ${featureTop.toLowerCase()}, and the action your seeing currently points toward is: ${stanceChosen?currentStance:'still open'}.${resonantLine}${promptLine}${questionLine} Across ${contributionCount} contribution${contributionCount===1?'':'s'}, your view suggests that seeing youth purpose means noticing young people's direction, their surrounding conditions, whether their pursuits benefit others, and whether purpose appears connected to joy or well-being.`;
+  wrap.innerHTML=`
+    <div class="reveal-layout">
+      <div>
+        <div class="reveal-kicker">Generated from your responses</div>
+        <h3>How you are seeing youth purpose</h3>
+        <div class="reveal-text">${escapeHtml(text)}</div>
+        <div class="reveal-grid">
+          <div class="reveal-chip"><span>You notice first</span><strong>${escapeHtml(topConditionLabel(values))}</strong></div>
+          <div class="reveal-chip"><span>Your reading cue</span><strong>${escapeHtml(featureTop)}</strong></div>
+          <div class="reveal-chip"><span>Field of view</span><strong>${conditionScore}/100</strong></div>
+        </div>
+        <div class="reveal-actions">
+          <button class="btn-sm btn-navy" onclick="downloadResponseSummary()">Download portrait</button>
+          <button class="btn-sm btn-outline" onclick="emailResponseSummary()">Email portrait</button>
+        </div>
+      </div>
+      <div class="reveal-art">${lensFrameHtml()}</div>
+    </div>`;
+}
+function renderPortraitThread(){
+  const wrap=document.getElementById('portraitThread');
+  if(!wrap)return;
+  const contributions=userContributionSummary();
+  wrap.innerHTML=[
+    ['Reflections',compactList(contributions.reflections,'No reflection added yet.')],
+    ['Questions',compactList(contributions.questions,'No open question added yet.')],
+    ['Seeing prompts',compactList(contributions.prompts,'No seeing prompt added yet.')]
+  ].map(([title,body])=>`<div class="thread-card"><strong>${escapeHtml(title)}</strong><p>${escapeHtml(body)}</p></div>`).join('');
+}
+function summaryHtml(){
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim()||'No quick response entered';
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim()||'No purpose definition entered';
+  const feature=(document.getElementById('featureReflect')?.value||'').trim()||'No feature reflection entered';
+  const roles=[...selectedRoles].map(r=>roleLabels[r]).join(', ')||'No role selected';
+  const groups=[...selectedYouthGroups].join(', ')||'No youth group selected';
+  const values=conditionValues();
+  const conditionScore=Math.round((values.opportunity+values.recognition+values.practice+values.benefit+values.joy)/5);
+  const contributions=userContributionSummary();
+  const compassSrc=new URL('assets/role-compass.png',location.href).href;
+  const labLogoSrc=new URL('assets/pip-lab-download-logo.png',location.href).href;
+  const contributionCount=Object.values(contributions).reduce((sum,items)=>sum+items.length,0);
+  const resonant=selectedResonantLenses().map(n=>AP_NAMES[n]);
+  const resonantLine=resonant.length?` Your resonant lenses are ${resonant.join(', ')}.`:'';
+  const narrative=`Seen through ${roles}, this portrait centers ${topConditionLabel(values)} for ${groups}. Your working definition of purpose is: "${purposeDefinition}" Your first reading cue is ${features[0]?.name||'still forming'}, and your next action is: ${currentStance}.${resonantLine} Across ${contributionCount} contribution${contributionCount===1?'':'s'}, your responses suggest that seeing youth purpose means noticing young people's direction, the conditions around them, their orientation toward others, and the joy or well-being their pursuits may carry.`;
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portraits of Purposeful Youth - Response Summary</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#FAF7F4;color:#0D1A2E;font-family:Inter,Arial,sans-serif;line-height:1.65}
+.sheet{max-width:920px;margin:0 auto;padding:56px 28px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch;padding:30px;border-radius:24px;background:#1E2D4A;color:#fff;margin-bottom:22px;overflow:hidden}
+.hero-media{display:grid;gap:14px;align-content:start}
+.hero-logo{justify-self:end;width:178px;max-width:80%;height:auto;display:block}
+.hero-art{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08)}
+.hero-art img{width:100%;height:100%;min-height:260px;object-fit:cover;display:block}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;margin-bottom:10px}
+h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
+.sub{font-size:16px;opacity:.82;margin:0}
+.narrative{margin-top:18px;font-size:17px;color:rgba(255,255,255,.84)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:18px}
+.card{padding:20px;border:1px solid #E0DEDB;border-radius:14px;background:#fff}
+.card h2{font-family:Georgia,serif;font-size:20px;line-height:1.25;margin:0 0 10px;color:#1E2D4A}
+.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3B7A8F;font-weight:700;margin-bottom:8px}
+.text{font-size:16px;color:#4f4c48;white-space:pre-wrap}
+.wide{grid-column:1/-1}
+.note{padding:18px 20px;border-left:4px solid #3B7A8F;background:#F0EFED;border-radius:12px;color:#4f4c48}
+.lens-frame-stack{position:relative;min-height:260px;width:100%;display:grid;place-items:center;background:rgba(255,255,255,.06);border-radius:18px;overflow:hidden}.lens-frame-stack.empty::before{content:"Flag lenses that resonate to build this frame.";font-size:14px;color:rgba(255,255,255,.58);text-align:center;max-width:210px;line-height:1.5}.frame-rect{position:absolute;width:58%;height:68%;border:4px solid currentColor;border-radius:12px;background:transparent;box-shadow:0 12px 30px rgba(0,0,0,.12);opacity:.84}.frame-rect::after{content:"";position:absolute;inset:10px;border:1.5px solid currentColor;border-radius:7px;opacity:.28}.frame-caption{position:absolute;bottom:1rem;left:1rem;right:1rem;text-align:center;font-size:13px;font-weight:700;color:rgba(255,255,255,.74);line-height:1.35}
+@media(max-width:720px){.hero,.grid{grid-template-columns:1fr}.sheet{padding:28px 16px}h1{font-size:32px}.hero-logo{justify-self:start;width:160px}}
+</style>
 </head>
 <body>
-  <p><a href="/ppy_v4.html">Open Portraits of Purposeful Youth</a></p>
+  <main class="sheet">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Portrait of Purposeful Youth</div>
+        <h1>Portraits of Purposeful Youth</h1>
+        <p class="sub">A personal recap of the perspective you built across the exchange.</p>
+        <div class="narrative">${escapeHtml(narrative)}</div>
+      </div>
+      <div class="hero-media">
+        <img class="hero-logo" src="${escapeHtml(labLogoSrc)}" alt="Purpose and Identity Processes Lab logo">
+        <div class="hero-art">${lensFrameHtml()}</div>
+      </div>
+    </section>
+    <section class="grid">
+      <article class="card">
+        <div class="label">Roles</div>
+        <h2>Your vantage point</h2>
+        <div class="text">${escapeHtml(roles)}</div>
+      </article>
+      <article class="card">
+        <div class="label">Youth</div>
+        <h2>Who came to mind</h2>
+        <div class="text">${escapeHtml(groups)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Purpose</div>
+        <h2>What brought you here</h2>
+        <div class="text">${escapeHtml(purpose)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Working definition</div>
+        <h2>I would define purpose as</h2>
+        <div class="text">${escapeHtml(purposeDefinition)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Viewing lens</div>
+        <h2>How you prepared to see</h2>
+        <div class="text">Young people's direction ${values.opportunity}/100
+Surrounding supports ${values.recognition}/100
+Blocked pathways ${values.practice}/100
+Benefit to others ${values.benefit}/100
+Joy / subjective well-being ${values.joy}/100
+Field of view ${conditionScore}/100${selectedOverlooked?`
+First place I expect to look: ${escapeHtml(selectedOverlooked)}`:''}${resonant.length?`
+Resonant lenses: ${escapeHtml(resonant.join(', '))}`:''}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Seeing to action</div>
+        <h2>What your seeing asks of you</h2>
+        <div class="text">${escapeHtml(currentStance)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Reflection</div>
+        <h2>Feature-order note</h2>
+        <div class="text">${escapeHtml(feature)}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Reflections</div>
+        <h2>What you shared in the exchange</h2>
+        <div class="text">${escapeHtml(compactList(contributions.reflections,'No reflection added'))}</div>
+      </article>
+      <article class="card">
+        <div class="label">Questions</div>
+        <h2>What you are still carrying</h2>
+        <div class="text">${escapeHtml(compactList(contributions.questions,'No open question added'))}</div>
+      </article>
+      <article class="card">
+        <div class="label">Seeing prompts</div>
+        <h2>What you might ask youth</h2>
+        <div class="text">${escapeHtml(compactList(contributions.prompts,'No seeing prompt added'))}</div>
+      </article>
+      <article class="card wide">
+        <div class="label">Replies</div>
+        <h2>How you responded to others</h2>
+        <div class="text">${escapeHtml(compactList(contributions.comments,'No replies added'))}</div>
+      </article>
+    </section>
+    <section class="note">
+      This summary is meant for your own reflection or for sharing with teammates and colleagues as a conversation starter.
+    </section>
+  </main>
+</body>
+</html>`;
+}
+function renderKnapsack(){
+  const grid=document.getElementById('knapsackGrid');
+  const meta=document.getElementById('knapsackMeta');
+  renderPortraitBuilder();
+  renderPortraitReveal();
+  renderPortraitThread();
+  if(!grid||!meta)return;
+  const purpose=(document.getElementById('purposeQuickAnswer')?.value||'').trim();
+  const purposeDefinition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  const feature=(document.getElementById('featureReflect')?.value||'').trim();
+  const values=conditionValues();
+  const conditionScore=Math.round((values.opportunity+values.recognition+values.practice+values.benefit+values.joy)/5);
+  const cards=[
+    {
+      title:'Role portrait',
+      body:`${[...selectedRoles].map(r=>roleLabels[r]).join(', ')||'No role chosen yet'}${selectedYouthGroups.size?` · focused on ${[...selectedYouthGroups].join(', ')}`:''}.`
+    },
+    {
+      title:'Purpose entry point',
+      body:purpose||'Add your quick response in the role step to capture what pulled you into the exchange.'
+    },
+    {
+      title:'Working definition',
+      body:purposeDefinition||'Add your own definition of purpose before moving deeper into the portraits.'
+    },
+    {
+      title:'Viewing lens',
+      body:`Field of view ${conditionScore}/100. Youth direction ${values.opportunity}, surrounding supports ${values.recognition}, blocked pathways ${values.practice}.${selectedOverlooked?` First place you expect to look: ${selectedOverlooked}.`:''}`
+    },
+    {
+      title:'Your next move',
+      body:currentStance
+    },
+    {
+      title:'Feature ordering',
+      body:`${features.map(f=>f.name).join(' -> ')}${feature?` Reflection: ${feature}`:''}`
+    },
+    {
+      title:'Question-building momentum',
+      body:`${portraitContributions.prompts.length} seeing prompt(s), ${portraitContributions.questions.length} open question(s), ${portraitContributions.reflections.length} reflection(s), and ${portraitContributions.comments.length} reply or comment response(s) added to your portrait.`
+    }
+  ];
+  meta.innerHTML=[
+    `${selectedRoles.size} role${selectedRoles.size===1?'':'s'}`,
+    `${selectedYouthGroups.size} youth group${selectedYouthGroups.size===1?'':'s'}`,
+    `next move: ${currentStance}`,
+    `field of view: ${conditionScore}/100`
+  ].map(text=>`<span class="knapsack-pill">${escapeHtml(text)}</span>`).join('');
+  grid.innerHTML=cards.map(card=>`<div class="knapsack-card"><strong>${escapeHtml(card.title)}</strong><p>${escapeHtml(card.body)}</p></div>`).join('');
+}
+async function savePurposeDefinition(){
+  const definition=(document.getElementById('purposeDefinitionInput')?.value||'').trim();
+  if(!definition){
+    alert('Please add your current definition of purpose first.');
+    return;
+  }
+  await saveRemote('purpose_definition',{definition});
+  const note=document.getElementById('purposeDefinitionSaveNote');
+  if(note){
+    note.style.display='inline';
+    setTimeout(()=>{note.style.display='none'},4000);
+  }
+  refreshArtifacts();
+}
+function downloadResponseSummary(){
+  const blob=new Blob([summaryHtml()],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='purposeful-youth-response-summary.html';a.click();
+  URL.revokeObjectURL(url);
+}
+function emailResponseSummary(){
+  const subject=encodeURIComponent('My Portraits of Purposeful Youth responses');
+  const body=encodeURIComponent(summaryText());
+  location.href=`mailto:?subject=${subject}&body=${body}`;
+}
+
+// ─── Lens cards ───────────────────────────────────────
+function toggleAp(toggle){
+  const card=toggle.closest('.ap-card');
+  const exp=card.querySelector('.ap-expanded');
+  const open=exp.style.display==='block';
+  exp.style.display=open?'none':'block';
+  toggle.textContent=open?'+ What to look for in practice':'− Hide';
+}
+function goToAp(n){
+  openTab('discussions');
+  setTimeout(()=>{filterByAp(n,document.querySelector(`#apFilterList li:nth-child(${n+1}) button`))},120);
+}
+
+// ─── Reactions ────────────────────────────────────────────
+function react(btn,apNum,type){
+  const siblings=btn.closest('.ap-reactions').querySelectorAll('.react-btn');
+  const wasActive=btn.classList.contains('active');
+  siblings.forEach(b=>{
+    if(b.classList.contains('active')&&b!==btn){
+      b.classList.remove('active');
+      const cnt=b.querySelector('.react-count');
+      cnt.textContent=Math.max(0,parseInt(cnt.textContent)-1);
+    }
+  });
+  const cnt=btn.querySelector('.react-count');
+  if(wasActive){btn.classList.remove('active');cnt.textContent=Math.max(0,parseInt(cnt.textContent)-1)}
+  else{
+    btn.classList.add('active');cnt.textContent=parseInt(cnt.textContent)+1;
+    saveRemote('lens_reaction',{target_type:'lens',target_id:String(apNum),lens_id:apNum,reaction:type});
+  }
+  renderLensFrameSummary();
+  refreshArtifacts();
+}
+
+// ─── Feature activity ─────────────────────────────────────
+function renderFeatures(){
+  const wrap=document.getElementById('featureCards');
+  if(!wrap)return;
+  wrap.innerHTML=features.map((f,i)=>`
+    <div class="feat-card">
+      <div class="feat-top">
+        <div class="feat-rank">${i+1}</div>
+        <div><div class="feat-name">${f.name}</div></div>
+        <div class="feat-actions">
+          <button class="rank-btn" onclick="moveFeature(${i},-1)" aria-label="Move ${f.name} up">↑</button>
+          <button class="rank-btn" onclick="moveFeature(${i},1)" aria-label="Move ${f.name} down">↓</button>
+        </div>
+      </div>
+      <div class="feat-def">${f.def}</div>
+    </div>`).join('');
+  updateFeatureSummary();
+}
+function moveFeature(i,dir){
+  const j=i+dir;
+  if(j<0||j>=features.length)return;
+  [features[i],features[j]]=[features[j],features[i]];
+  renderFeatures();
+}
+function updateFeatureSummary(){
+  const summary=document.getElementById('featureSummary');
+  if(!summary)return;
+  const reflection=(document.getElementById('featureReflect')?.value||'').trim();
+  const order=features.map(f=>f.name).join(' → ');
+  summary.innerHTML=`<strong>Current order:</strong> ${order}${reflection?`<br><br><strong>Question forming:</strong> ${reflection}`:''}`;
+  refreshArtifacts();
+}
+function addFeature(){
+  const input=document.getElementById('newFeatureInput');
+  const name=input.value.trim();
+  if(!name)return;
+  features.push({name,def:'A feature added because the current list may not be complete.'});
+  input.value='';
+  renderFeatures();
+  saveRemote('feature_added',{target_type:'feature_activity',target_id:name,payload:{name}});
+}
+function resetFeatures(){
+  features=defaultFeatures.map(f=>({...f}));
+  const reflect=document.getElementById('featureReflect');
+  if(reflect)reflect.value='';
+  renderFeatures();
+}
+function sendFeatureReflection(){
+  const reflection=(document.getElementById('featureReflect')?.value||'').trim();
+  if(reflection)portraitContributions.reflections.unshift(`Reading order: ${features.map(f=>f.name).join(' → ')}. ${reflection}`);
+  saveRemote('feature_reflection',{
+    feature_order:features.map(f=>f.name),
+    reflection,
+    added_features:features.filter(f=>!defaultFeatures.some(d=>d.name===f.name))
+  });
+  renderKnapsack();
+  flashBuilderToast();
+}
+
+// ─── Community Pulse ──────────────────────────────────────
+function renderPulse(){
+  const total=pulseVotes.slice(1).reduce((a,b)=>a+b,0);
+  const bars=document.getElementById('pulseBars');
+  bars.innerHTML=pulseVotes.slice(1).map((v,i)=>{
+    const pct=total>0?Math.round(v/total*100):Math.round(100/8);
+    return`<div class="pulse-bar-row">
+      <div class="pulse-bar-label">${AP_NAMES[i+1]}</div>
+      <div class="pulse-bar-track"><div class="pulse-bar-fill" style="width:${pct}%;background:${AP_COLORS[i]}"></div></div>
+      <div class="pulse-bar-count">${v}</div>
+    </div>`;
+  }).join('');
+}
+function castPulse(n,btn){
+  if(pulseSelections.has(n))return;
+  pulseSelections.add(n);
+  pulseVotes[n]++;
+  btn.classList.add('voted');
+  document.getElementById('pulseVotedNote').style.display='block';
+  renderPulse();
+  renderKnapsack();
+  saveRemote('pulse_vote',{prompt_key:'current_interest',lens_id:n});
+}
+
+
+function updateRoleContextNotes(){
+  const role=participantRole();
+  const text=role==='Exchange participant'?'You have not selected a role yet. Your contribution will be marked as coming from an exchange participant.':'You are contributing from your selected role perspective: '+role+'.';
+  ['postRoleContext','promptRoleContext'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=text;});
+}
+function beginQuestionResponse(question,cat='question',target='discussions'){
+  activeSourceQuestion=question;
+  activePromptSourceQuestion=question;
+  if(target==='sparks'){
+    openTab('sparks');
+    const note=document.getElementById('promptSourceQuestionNote');
+    if(note){note.style.display='block';note.innerHTML='<strong>Responding to:</strong> '+escapeHtml(question);}
+    setTimeout(()=>document.getElementById('starterInput')?.focus(),400);
+    return;
+  }
+  openTab('discussions');
+  openNewPost(cat);
+  const note=document.getElementById('sourceQuestionNote');
+  if(note){note.style.display='block';note.innerHTML='<strong>Responding to:</strong> '+escapeHtml(question);}
+  const title=document.getElementById('fTitle');
+  const body=document.getElementById('fBody');
+  if(title&&!title.value)title.value='Response to an open question';
+  if(body&&!body.value)body.placeholder='Build on the question shown above. What would you add, challenge, clarify, or test?';
+}
+function promptWallItem(p){
+  const isOpen=p.ctx&&p.ctx.startsWith('open_question');
+  return {
+    id:'prompt-'+p.id,source:'prompt',author:'Community',role:p.role||'Exchange participant',cat:isOpen?'open_question':'prompt',ap:p.ap||0,
+    title:isOpen?'Open question added':'Seeing prompt added',
+    body:isOpen?p.q:(p.ctx&&p.ctx!=='No context provided — context helps others know when to use this.'?`${p.q} — ${p.ctx}`:p.q),
+    sourceQuestion:p.sourceQuestion||'',likes:p.uses||0,liked:p.used||false,time:'just now',comments:[]
+  };
+}
+function wallItems(){return [...posts,...prompts.map(promptWallItem)].sort((a,b)=>String(b.id).localeCompare(String(a.id)));}
+
+// ─── Discussions ──────────────────────────────────────────
+function updateCounts(){
+  const items=wallItems();
+  document.getElementById('cnt-0').textContent=items.length;
+  for(let i=1;i<=8;i++){const el=document.getElementById('cnt-'+i);if(el)el.textContent=items.filter(p=>p.ap===i).length}
+}
+function renderPosts(){
+  const list=document.getElementById('postsList');
+  const items=wallItems();
+  const shown=currentApFilter===0?items:items.filter(p=>p.ap===currentApFilter);
+  document.getElementById('filterLabel').textContent=currentApFilter===0?`${items.length} contributions, prompts, and questions`:`${shown.length} item${shown.length!==1?'s':''} about ${AP_NAMES[currentApFilter]}`;
+  if(!shown.length){list.innerHTML=`<div class="empty-state">No contributions about ${escapeHtml(AP_NAMES[currentApFilter])} yet — be first.</div>`;updateCounts();return}
+  list.innerHTML=shown.map(p=>`
+    <div class="post-card">
+      <div class="post-meta">
+        <div class="post-avatar" style="background:${avatarColor(p.author)}">${escapeHtml(initials(p.author))}</div>
+        <div><div class="post-author">${escapeHtml(p.author)}</div><div class="post-role">${escapeHtml(p.role)}</div></div>
+        <span class="cat-tag ${catClass(p.cat)}">${escapeHtml(catLabel(p.cat))}</span>
+        ${apLabel(p.ap)}
+        <span class="post-time">${escapeHtml(p.time||'just now')}</span>
+      </div>
+      ${p.sourceQuestion?`<div class="source-question"><strong>Responding to:</strong> ${escapeHtml(p.sourceQuestion)}</div>`:''}
+      <div class="post-title">${escapeHtml(p.title)}</div>
+      <div class="post-body">${escapeHtml(p.body)}</div>
+      ${p.source==='prompt'?`<div class="post-footer"><button class="post-action ${p.liked?'liked':''}" onclick="usePrompt(${idArg(String(p.id).replace('prompt-',''))})">${p.liked?'✓ Used':'👍 Use / save'} ${p.likes}</button></div>`:`
+      <div class="post-footer">
+        <button class="post-action ${p.liked?'liked':''}" onclick="likePost(${idArg(p.id)})">${p.liked?'♥':'♡'} ${p.likes}</button>
+        <button class="post-action" onclick="toggleComments(${idArg(p.id)})">💬 ${p.comments.length} comment${p.comments.length!==1?'s':''}</button>
+      </div>
+      <div class="comments-section" id="cs-${p.id}">
+        ${p.comments.map(c=>`<div class="comment"><div class="c-avatar" style="background:${c.c||avatarColor(c.a)}">${escapeHtml(initials(c.a))}</div><div><div class="c-author">${escapeHtml(c.a)} <span class="c-role">· ${escapeHtml(c.r)}</span></div><div class="c-text">${escapeHtml(c.t)}</div></div></div>`).join('')}
+        <div class="comment-input-row">
+          <input class="comment-input" id="ci-${p.id}" placeholder="Reply…" onkeydown="if(event.key==='Enter')submitComment(${idArg(p.id)})"/>
+          <button class="btn-sm btn-navy" onclick="submitComment(${idArg(p.id)})">Reply</button>
+        </div>
+      </div>`}
+    </div>`).join('');
+  updateCounts();
+}
+function likePost(id){
+  const p=posts.find(x=>sameId(x.id,id));if(!p)return;
+  p.liked=!p.liked;p.likes+=p.liked?1:-1;renderPosts();
+  if(p.liked)saveRemote('post_like',{target_type:'exchange_posts',target_id:String(p.remoteId||p.id),lens_id:p.ap||0});
+}
+function toggleComments(id){const el=document.getElementById('cs-'+id);if(el)el.classList.toggle('open')}
+function submitComment(pid){
+  const inp=document.getElementById('ci-'+pid);const t=inp.value.trim();if(!t)return;
+  const p=posts.find(x=>sameId(x.id,pid));if(!p)return;
+  p.comments.push({a:'You',r:participantRole(),t,c:'#3B7A8F'});
+  portraitContributions.comments.unshift(t);
+  saveRemote('comment',{post_id:p.remoteId||p.id,target_seed_id:String(p.id),author:'You',role:participantRole(),body:t});
+  renderPosts();renderKnapsack();setTimeout(()=>{const el=document.getElementById('cs-'+pid);if(el)el.classList.add('open')},20);
+}
+function filterByAp(n,btn){
+  currentApFilter=n;
+  document.querySelectorAll('.ap-filter-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderPosts();
+}
+function toggleNewPost(){
+  const p=document.getElementById('newPostPanel');p.classList.toggle('open');
+  document.getElementById('newPostBtn').textContent=p.classList.contains('open')?'✕ Cancel':'+ Start a discussion';
+}
+function openNewPost(cat){
+  const p=document.getElementById('newPostPanel');
+  if(!p.classList.contains('open'))toggleNewPost();
+  const sel=document.getElementById('fCat');if(sel&&cat)sel.value=cat;
+}
+function submitPost(){
+  const author=document.getElementById('fAuthor').value.trim()||'Anonymous';
+  const role=participantRole();
+  const cat=document.getElementById('fCat').value;
+  const ap=parseInt(document.getElementById('fAp').value)||0;
+  const title=document.getElementById('fTitle').value.trim();
+  const body=document.getElementById('fBody').value.trim();
+  if(!title||!body){alert('Please add a title and your contribution.');return}
+  posts.unshift({id:Date.now(),author,role,cat,ap,title,body,sourceQuestion:activeSourceQuestion,likes:0,liked:false,time:'just now',comments:[]});
+  portraitContributions.reflections.unshift(`${title}: ${body}`);
+  saveRemote('discussion_post',{author,role,category:cat,lens_id:ap,title,body,source_question:activeSourceQuestion});
+  currentApFilter=0;
+  document.querySelectorAll('.ap-filter-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  renderPosts();
+  document.getElementById('newPostPanel').classList.remove('open');
+  document.getElementById('newPostBtn').textContent='+ Start a discussion';
+  ['fAuthor','fTitle','fBody'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  activeSourceQuestion='';
+  const note=document.getElementById('sourceQuestionNote');if(note){note.style.display='none';note.innerHTML='';}
+  document.getElementById('postsList').scrollIntoView({behavior:'smooth',block:'start'});
+  renderKnapsack();
+}
+
+// ─── Sentence Starter ─────────────────────────────────────
+function initStarter(){
+  const s=starters[starterIdx];
+  document.getElementById('starterPrompt').innerHTML=`${s.stem} <span class="blank">${s.blank||'&nbsp;'}</span>`;
+  renderStarterResponses();
+}
+function renderStarterResponses(){
+  const resps=starterResponses[starterIdx]||[];
+  document.getElementById('starterResponses').innerHTML=resps.map(r=>`<div class="starter-resp">→ ${escapeHtml(r)}</div>`).join('');
+}
+function submitStarter(){
+  const inp=document.getElementById('starterInput');
+  const val=inp.value.trim();if(!val)return;
+  if(!starterResponses[starterIdx])starterResponses[starterIdx]=[];
+  starterResponses[starterIdx].unshift(val);
+  portraitContributions.prompts.unshift(`${activePromptSourceQuestion?`Responding to: ${activePromptSourceQuestion} — `:''}${starters[starterIdx].stem} ${val}`);
+  saveRemote('starter_response',{starter_index:starterIdx,response:val,source_question:activePromptSourceQuestion});
+  activePromptSourceQuestion='';
+  const note=document.getElementById('promptSourceQuestionNote');if(note){note.style.display='none';note.innerHTML='';}
+  inp.value='';renderStarterResponses();
+  renderKnapsack();
+}
+
+// ─── Prompt Bank ──────────────────────────────────────────
+function renderPrompts(){
+  const cards=document.getElementById('promptCards');
+  if(!cards)return;
+  cards.innerHTML=prompts.map(p=>`
+    <div class="prompt-card">
+      ${p.sourceQuestion?`<div class="source-question"><strong>Responding to:</strong> ${escapeHtml(p.sourceQuestion)}</div>`:''}
+      <div class="prompt-q">"${escapeHtml(p.q)}"</div>
+      <div class="prompt-context">${escapeHtml(p.ctx)}</div>
+      <div class="prompt-footer">
+        ${p.ap>0?`<div class="prompt-ap-badge">${apDot(p.ap)}${AP_NAMES[p.ap]}</div>`:''}
+        <button class="prompt-used ${p.used?'used':''}" onclick="usePrompt(${idArg(p.id)})">
+          ${p.used?'✓ I\'ve used this':'👍 I\'ve used this'} (${p.uses})
+        </button>
+        ${p.role?`<div class="prompt-contrib">— ${escapeHtml(p.role)}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+function usePrompt(id){
+  const p=prompts.find(x=>sameId(x.id,id));if(!p)return;
+  p.used=!p.used;p.uses+=p.used?1:-1;renderPrompts();
+  if(p.used)saveRemote('prompt_use',{target_type:'prompt_bank',target_id:String(p.remoteId||p.id),lens_id:p.ap||0});
+}
+function submitPrompt(){
+  const q=(document.getElementById('pQ')?.value||'').trim();
+  const ctx=(document.getElementById('pCtx')?.value||'').trim();
+  const ap=parseInt(document.getElementById('pAp')?.value)||0;
+  const role=participantRole();
+  if(!q){alert('Please add a question.');return}
+  prompts.unshift({id:Date.now(),q,ctx:ctx||'No context provided — context helps others know when to use this.',ap,role,sourceQuestion:activePromptSourceQuestion,uses:0,used:false});
+  portraitContributions.prompts.unshift(q);
+  saveRemote('prompt',{question:q,context:ctx,lens_id:ap,role,source_question:activePromptSourceQuestion});
+  renderPrompts();
+  ['pQ','pCtx'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+  activePromptSourceQuestion='';
+  const pNote=document.getElementById('promptSourceQuestionNote');if(pNote){pNote.style.display='none';pNote.innerHTML='';}
+  renderPosts();
+  document.getElementById('postsList')?.scrollIntoView({behavior:'smooth',block:'start'});
+  renderKnapsack();
+}
+
+// ─── Pathways ─────────────────────────────────────────────
+function selectPw(id,card){
+  document.querySelectorAll('.pw-card').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.pw-detail').forEach(d=>d.classList.remove('active'));
+  card.classList.add('active');
+  const det=document.getElementById('detail-'+id);det.classList.add('active');
+  setTimeout(()=>det.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
+}
+
+// ─── Lens Nominations ─────────────────────────────────────
+function submitNomination(){
+  const name=document.getElementById('nominateName').value.trim();
+  const def=document.getElementById('nominateDef').value.trim();
+  const role=participantRole();
+  if(!name||!def){alert('Please add a name and description for your lens.');return}
+  saveRemote('lens_nomination',{target_type:'lens_nominations',target_id:name,payload:{name,definition:def,role}});
+  ['nominateName','nominateDef'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('nominateConfirm').style.display='block';
+}
+
+// ─── Open Questions submission ─────────────────────────────
+function submitOpenQuestion(){
+  const q=document.getElementById('qSubmitText').value.trim();
+  if(!q){alert('Please write a question first.');return}
+  const cat='general';
+  const role=participantRole();
+  prompts.unshift({id:Date.now(),q,ctx:'open_question:'+cat,ap:0,role,uses:0,used:false});
+  portraitContributions.questions.unshift(q);
+  saveRemote('prompt',{question:q,context:'open_question:'+cat,lens_id:0,role});
+  document.getElementById('qSubmitText').value='';
+  document.getElementById('qSubmitConfirm').style.display='block';
+  setTimeout(()=>{document.getElementById('qSubmitConfirm').style.display='none'},5000);
+  renderOpenQuestions();
+  renderPrompts();
+  renderPosts();
+  renderKnapsack();
+}
+
+function renderOpenQuestions(){
+  const community=prompts.filter(p=>p.ctx&&p.ctx.startsWith('open_question'));
+  const wrap=document.getElementById('communityQuestions');
+  const cards=document.getElementById('communityQCards');
+  if(!wrap||!cards)return;
+  if(!community.length){wrap.style.display='none';return}
+  wrap.style.display='block';
+  cards.innerHTML=community.map(p=>{
+    const cat=p.ctx.split(':')[1]||'general';
+    const catLabels={research:'Research',practice:'Practice',experience:'Lived experience',general:'General'};
+    return`<div class="q-card community-q">
+      <div class="q-text">${escapeHtml(p.q)}</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem">
+        ${p.role?`<span style="font-size:0.75rem;color:var(--g600)">${escapeHtml(p.role)}</span>`:'<span></span>'}
+        <a class="q-contribute" href="#exchange" onclick="beginQuestionResponse(${idArg(p.q)},cat,'discussions')">+ Contribute</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── Init ─────────────────────────────────────────────────
+showAppPanel(location.hash.replace(/^#/,'')||'claim',{scroll:false});
+renderFeatures();
+updateRoleContextNotes();
+renderPulse();
+renderPosts();
+initStarter();
+renderPrompts();
+renderOpenQuestions();
+updateConditionPortrait();
+updateExchangeStance();
+refreshArtifacts();
+hydrateRemote();
+syncTabsFromHash();
+</script>
 </body>
 </html>

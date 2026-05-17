@@ -765,6 +765,197 @@ nav{gap:1.25rem}
   #landing .prov-statement{font-size:clamp(1.45rem,6.4vw,2.02rem);}
 }
 
+
+
+/* --- PPY MOBILE ACCESSIBILITY + USABILITY REFINEMENTS --- */
+@media(max-width:760px){
+  /* 1. Make tab rows swipeable instead of cramped/wrapped */
+  .journey-tabs,
+  .exchange-tabs,
+  .app-tabs,
+  .lens-overview,
+  .ap-filter-list{
+    width:100%;
+    max-width:100%;
+    display:flex;
+    flex-wrap:nowrap!important;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    gap:0.45rem;
+    padding-bottom:0.45rem;
+  }
+  .journey-tabs::-webkit-scrollbar,
+  .exchange-tabs::-webkit-scrollbar,
+  .app-tabs::-webkit-scrollbar,
+  .lens-overview::-webkit-scrollbar,
+  .ap-filter-list::-webkit-scrollbar{display:none;}
+  .journey-tab,
+  .ex-tab,
+  .app-tab,
+  .lens-tab,
+  .ap-filter-btn{
+    flex:0 0 auto;
+    white-space:nowrap;
+    scroll-snap-align:start;
+  }
+
+  /* 2. Mobile-friendly tap targets */
+  button,
+  .btn,
+  .btn-sm,
+  .journey-tab,
+  .ex-tab,
+  .app-tab,
+  .ap-filter-btn,
+  .react-btn,
+  .pulse-ap-btn,
+  .role-chip,
+  .choice-pill,
+  .vote-chip,
+  .rank-btn,
+  .prompt-used,
+  .starter-submit{
+    min-height:44px;
+  }
+  .rank-btn{min-width:44px;}
+  .react-btn{padding:0.5rem 0.75rem;}
+
+  /* 3. More breathing room in stacked hero composition */
+  .landing-affiliation{margin-bottom:0.65rem;line-height:1.55;}
+  .landing-youth-wrap{margin-top:0.2rem;margin-bottom:1.1rem;}
+  #landing .prov-pause{margin:1.15rem 0;}
+  #landing .prov-response{font-size:0.98rem;line-height:1.72;}
+
+  /* 4. Keep secondary navigation useful but shorter on phones */
+  .app-shell{position:sticky;top:60px;padding:0.42rem 1rem;}
+  .app-tabs{padding-top:0.15rem;padding-bottom:0.2rem;}
+  .app-tab{padding:0.46rem 0.72rem;font-size:0.74rem;}
+
+  /* 5. Portrait builder stays compact and does not cover too much content */
+  .portrait-builder{max-height:44vh;overflow:auto;}
+  .portrait-builder.collapsed{left:auto;right:0.75rem;width:auto;min-width:0;max-width:calc(100vw - 1.5rem);}
+  .portrait-builder.collapsed .builder-title{max-width:42vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
+
+  /* 6. Rich cards get one-column space earlier */
+  .lenses-grid,
+  .q-cards,
+  .outcome-grid,
+  .pathway-grid,
+  .prompt-cards{
+    grid-template-columns:1fr!important;
+  }
+  .ap-card,
+  .q-card,
+  .prompt-card,
+  .outcome-card{
+    padding:1.25rem;
+  }
+
+  /* 7. Set Your Lens becomes vertical, centered, and easier to use */
+  .condition-lab,
+  .condition-lab-wide{
+    width:100%;
+    max-width:100%;
+    margin:1.5rem auto 0;
+    padding:1.1rem;
+  }
+  .condition-grid,
+  .condition-lab-wide .condition-grid{
+    display:grid;
+    grid-template-columns:1fr!important;
+    gap:1.25rem;
+    text-align:left;
+  }
+  .purpose-dial{width:158px;height:158px;justify-self:center;}
+  .condition-controls{width:100%;}
+  .slider-row{padding:0.35rem 0;}
+  .slider-row label{font-size:0.86rem;line-height:1.35;}
+  .slider-row input{height:34px;}
+  .vote-row{justify-content:flex-start;}
+
+  /* 8. Prevent iPhone zoom-in on form fields */
+  input,
+  textarea,
+  select,
+  .form-row input,
+  .form-row textarea,
+  .form-row select,
+  .starter-input,
+  .comment-input,
+  .feature-reflect,
+  .add-feature-row input{
+    font-size:16px!important;
+  }
+
+  /* 9. Youth wall image remains large but controlled */
+  .landing-youth-wall{
+    width:min(118%,760px);
+    max-width:none;
+    margin-left:-6%;
+    margin-right:-6%;
+  }
+
+  /* 10. Extra bottom padding so fixed portrait builder does not hide content */
+  main section:last-of-type,
+  #knapsack,
+  #exchange,
+  #questions{
+    padding-bottom:7.5rem;
+  }
+
+  /* Additional mobile readability improvements */
+  .feature-activity,
+  .claim-grid,
+  .role-layout,
+  .artifact-stage,
+  .pulse-header,
+  .prompts-intro,
+  .sparks-intro,
+  .exchange-layout{
+    grid-template-columns:1fr!important;
+  }
+  .post-time{margin-left:0;width:100%;}
+  .comment-input-row,
+  .starter-input-row,
+  .add-feature-row,
+  .form-actions,
+  .activity-actions,
+  .q-submit-actions{
+    align-items:stretch;
+  }
+  .comment-input-row button,
+  .starter-submit,
+  .add-feature-row button,
+  .form-actions button,
+  .activity-actions button,
+  .q-submit-actions button{
+    flex:0 0 auto;
+  }
+  .pulse-title{white-space:normal;}
+}
+
+@media(max-width:520px){
+  .starter-input-row,
+  .comment-input-row,
+  .add-feature-row{
+    flex-direction:column;
+  }
+  .starter-submit,
+  .comment-input-row button,
+  .add-feature-row button{
+    width:100%;
+    justify-content:center;
+  }
+  .prov-actions .btn,
+  .q-submit-actions .btn-sm,
+  .activity-actions .btn-sm{
+    width:100%;
+    justify-content:center;
+  }
+}
+
 </style>
 </head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>

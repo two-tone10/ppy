@@ -1076,79 +1076,59 @@ nav{gap:1.25rem}
 
 
 
-/* --- FINAL NAV LOGO VISIBILITY PATCH: larger, brighter, mobile-safe --- */
-nav{
-  min-height:68px;
-}
+/* --- LOCKED NAV LOGO SIZE PATCH: uses cropped nav logo asset and defeats mobile overrides --- */
 .nav-logo{
-  display:flex!important;
-  align-items:center!important;
-  gap:0.75rem!important;
-  min-width:0!important;
-  max-width:none!important;
-  overflow:visible!important;
-  text-overflow:clip!important;
-  white-space:normal!important;
+  display:flex !important;
+  align-items:center !important;
+  gap:0.72rem !important;
+  min-width:0 !important;
+  max-width:none !important;
+  overflow:visible !important;
+  text-decoration:none !important;
 }
-.nav-logo img{
-  height:52px!important;
-  width:auto!important;
-  max-width:none!important;
-  display:block!important;
-  object-fit:contain!important;
-  flex:0 0 auto!important;
-  filter:brightness(2.05) saturate(2.35) drop-shadow(0 0 14px rgba(123,191,212,0.62)) drop-shadow(0 2px 10px rgba(0,0,0,0.25))!important;
-}
-.nav-logo-text{
-  min-width:0!important;
+.nav-logo img,
+.nav-logo-img{
+  width:auto !important;
+  height:46px !important;
+  max-height:46px !important;
+  min-height:46px !important;
+  display:block !important;
+  object-fit:contain !important;
+  flex:0 0 auto !important;
+  filter:brightness(1.55) saturate(1.75) drop-shadow(0 0 10px rgba(123,191,212,0.55)) !important;
 }
 @media(max-width:900px){
-  nav{
-    height:68px!important;
-    min-height:68px!important;
-    padding:0 0.95rem!important;
+  nav{height:66px !important; padding:0 1rem !important;}
+  .nav-logo{max-width:calc(100vw - 88px) !important; overflow:visible !important;}
+  .nav-logo img,
+  .nav-logo-img{
+    width:auto !important;
+    height:44px !important;
+    max-height:44px !important;
+    min-height:44px !important;
   }
-  .nav-logo{
-    max-width:calc(100vw - 78px)!important;
-    gap:0.58rem!important;
-  }
-  .nav-logo img{
-    height:50px!important;
-    width:auto!important;
-  }
-  .nav-logo-text strong{
-    font-size:0.78rem!important;
-    line-height:1.12!important;
-  }
-  .nav-logo-text span{
-    display:none!important;
-  }
+  .nav-logo-text strong{font-size:0.78rem !important; line-height:1.12 !important;}
 }
 @media(max-width:520px){
-  .nav-logo img{
-    height:48px!important;
-    width:auto!important;
+  .nav-logo{gap:0.55rem !important; max-width:calc(100vw - 72px) !important;}
+  .nav-logo img,
+  .nav-logo-img{
+    width:auto !important;
+    height:42px !important;
+    max-height:42px !important;
+    min-height:42px !important;
   }
-  .nav-logo-text strong{
-    font-size:0.72rem!important;
-    line-height:1.08!important;
-  }
+  .nav-logo-text strong{font-size:0.70rem !important; line-height:1.08 !important;}
+  .nav-logo-text span{display:none !important;}
 }
-@media(max-width:390px){
-  .nav-logo-text{
-    display:none!important;
-  }
-  .nav-logo img{
-    height:50px!important;
-  }
-}
+
 </style>
 </head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
 <!-- NAV -->
 <nav aria-label="Primary navigation">
 <a class="nav-logo" href="#landing" aria-label="Purpose and Identity Processes Lab home">
-  <img alt="Purpose and Identity Processes Lab lighthouse logo" src="assets/pip-lab-logo.png"/>
+  <img alt="Purpose and Identity Processes Lab lighthouse logo" class="nav-logo-img" src="assets/pip-lab-nav-logo.png" style="height:44px!important;width:auto!important;max-height:44px!important;min-height:44px!important;display:block!important;"/>
   <span class="nav-logo-text"><strong>Purpose and Identity Processes Lab</strong><span>Portraits of Purposeful Youth</span></span>
 </a>
 <ul class="nav-links">
@@ -1232,7 +1212,7 @@ nav{
         <span class="sentence">We rarely ask whether the conditions around youth <em>support</em> it.</span>
       </div>
       <div class="prov-pause"></div>
-      <p class="prov-response">This asymmetry can impose a deficit framing of young people as missing something, while leaving the programs, institutions, and relationships that shape their development unexamined. This exchange invites seeing youth purpose through a wider set of lenses.</p>
+      <p class="prov-response">This asymmetry can impose a deficit framing of young people as missing something, while leaving programs, institutions, and relationships that shape their development unexamined. This exchange invites seeing youth purpose more fully</p>
       <div class="prov-actions">
         <a class="btn btn-teal" href="#journey">Create a portrait</a>
         <a class="btn btn-ghost" href="#framework">Explore the lenses</a>

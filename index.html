@@ -1122,6 +1122,42 @@ nav{gap:1.25rem}
   .nav-logo-text span{display:none !important;}
 }
 
+/* --- CONTACT: unobtrusive question pathway --- */
+.footer-contact{
+  margin:1.55rem auto 0;
+  max-width:760px;
+  padding:1rem 1.15rem;
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:14px;
+  background:rgba(255,255,255,0.045);
+  color:rgba(255,255,255,0.58);
+  line-height:1.65;
+}
+.footer-contact strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:1rem;
+  color:rgba(255,255,255,0.92);
+  margin-bottom:0.25rem;
+}
+.footer-contact a{
+  color:var(--teal-light);
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid rgba(123,191,212,0.35);
+}
+.footer-contact a:hover,
+.footer-contact a:focus-visible{
+  color:var(--white);
+  border-bottom-color:var(--white);
+}
+@media(max-width:640px){
+  .footer-contact{
+    text-align:left;
+    padding:1rem;
+  }
+}
+
 </style>
 </head>
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
@@ -1140,6 +1176,7 @@ nav{gap:1.25rem}
 <li><a href="#features">Read</a></li>
 <li><a href="#pulse">Pulse</a></li>
 <li><a href="#exchange">Contribute</a></li>
+<li><a href="#contact">Contact</a></li>
 <li><a class="nav-cta" href="#knapsack">Your Portrait</a></li>
 </ul>
 <div aria-label="Mobile section menu" class="mobile-menu" id="mobileMenu">
@@ -1157,6 +1194,7 @@ nav{gap:1.25rem}
     <a href="#pulse" onclick="navigateMobileMenu('#pulse')" role="menuitem">Community Pulse</a>
     <a href="#questions" onclick="navigateMobileMenu('#questions')" role="menuitem">Open Questions</a>
     <a href="#exchange" onclick="navigateMobileMenu('#exchange')" role="menuitem">Contribute</a>
+    <a href="#contact" onclick="navigateMobileMenu('#contact')" role="menuitem">Contact</a>
     <a href="#knapsack" onclick="navigateMobileMenu('#knapsack')" role="menuitem">Your Portrait</a>
   </div>
 </div></nav>
@@ -1779,6 +1817,10 @@ nav{gap:1.25rem}
 </section></main><footer>
 <div class="footer-logo">Portraits of <em>Purposeful</em> Youth</div>
 <div class="footer-sub">Purpose and Identity Processes Lab · in collaboration with Purpose Science &amp; Innovation Exchange</div>
+<div class="footer-contact" id="contact">
+  <strong>Questions or ideas?</strong>
+  <span>For questions about Portraits of Purposeful Youth, or to connect with the Purpose and Identity Processes Lab, contact <a href="mailto:alb325@cornell.edu">alb325@cornell.edu</a>.</span>
+</div>
 <div class="footer-links">
 <a href="#journey">Start Here</a><a href="#claim">The Claim</a><a href="#purpose-definition">Define Purpose</a><a href="#framework">Framework</a>
 <a href="#pulse">Community Pulse</a><a href="#questions">Open Questions</a><a href="#exchange">The Exchange</a>
@@ -2559,6 +2601,42 @@ h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
   .lead{font-size:1rem;line-height:1.72}
   h2{font-size:clamp(1.55rem,7vw,2.1rem)}
   .eyebrow{line-height:1.4}
+}
+
+/* --- CONTACT: unobtrusive question pathway --- */
+.footer-contact{
+  margin:1.55rem auto 0;
+  max-width:760px;
+  padding:1rem 1.15rem;
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:14px;
+  background:rgba(255,255,255,0.045);
+  color:rgba(255,255,255,0.58);
+  line-height:1.65;
+}
+.footer-contact strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:1rem;
+  color:rgba(255,255,255,0.92);
+  margin-bottom:0.25rem;
+}
+.footer-contact a{
+  color:var(--teal-light);
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid rgba(123,191,212,0.35);
+}
+.footer-contact a:hover,
+.footer-contact a:focus-visible{
+  color:var(--white);
+  border-bottom-color:var(--white);
+}
+@media(max-width:640px){
+  .footer-contact{
+    text-align:left;
+    padding:1rem;
+  }
 }
 
 </style>

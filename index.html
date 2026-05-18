@@ -78,14 +78,24 @@ h2 em{color:var(--teal);font-style:italic}
 .survey-nav-status{font-size:0.78rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--g600)}
 .survey-nav-actions{display:flex;gap:0.65rem;flex-wrap:wrap;justify-content:flex-end}
 .survey-nav .btn-sm{min-width:112px}
-.likert-grid{display:grid;gap:1rem}
-.likert-row{display:grid;grid-template-columns:minmax(180px,0.8fr) minmax(0,1.2fr);gap:1rem;align-items:center;padding:0.9rem;border:1.5px solid var(--g200);border-radius:10px;background:var(--white)}
-.likert-prompt{font-size:0.88rem;font-weight:700;color:var(--navy);line-height:1.45}
-.likert-scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0.35rem}
-.likert-btn{min-height:42px;border:1.5px solid var(--g200);border-radius:8px;background:var(--cream);color:var(--g600);font:700 0.72rem var(--sans);cursor:pointer;line-height:1.2;padding:0.35rem;transition:all .18s}
-.likert-btn:hover{border-color:var(--teal);color:var(--navy)}
-.likert-btn.active{background:var(--teal);border-color:var(--teal);color:var(--white)}
-.likert-value{font-size:0.72rem;font-weight:800;color:var(--teal);text-align:right;margin-top:0.35rem}
+.lens-meter{display:grid;gap:0.8rem}
+.lens-meter-note{font-size:0.82rem;color:var(--g600);line-height:1.6;background:var(--cream);border-left:3px solid var(--teal);border-radius:8px;padding:0.75rem 0.9rem}
+.lens-distribution{display:grid;gap:0.75rem;align-content:start;justify-items:center}
+.lens-donut{
+  --seg1:20%;--seg2:40%;--seg3:60%;--seg4:80%;
+  width:218px;height:218px;border-radius:50%;display:grid;place-items:center;position:relative;
+  background:conic-gradient(var(--burgundy) 0 var(--seg1),var(--teal) var(--seg1) var(--seg2),var(--terra) var(--seg2) var(--seg3),var(--purple) var(--seg3) var(--seg4),var(--olive) var(--seg4) 100%);
+  box-shadow:0 16px 34px rgba(13,26,46,0.12);
+}
+.lens-donut::before{content:'';position:absolute;inset:28px;background:var(--white);border-radius:50%;border:1px solid var(--g200)}
+.lens-donut-core{position:relative;z-index:1;text-align:center;width:126px}
+.lens-donut-core strong{display:block;font-family:var(--serif);font-size:1.65rem;line-height:1;color:var(--navy)}
+.lens-donut-core span{display:block;font-size:0.72rem;color:var(--g600);line-height:1.35;margin-top:0.35rem}
+.lens-legend{display:grid;gap:0.45rem;width:100%;font-size:0.78rem;color:var(--g600)}
+.lens-legend-row{display:grid;grid-template-columns:12px 1fr auto;gap:0.45rem;align-items:center}
+.lens-legend-dot{width:10px;height:10px;border-radius:50%;background:var(--teal)}
+.lens-legend-row strong{font-size:0.76rem;color:var(--navy);font-weight:800}
+.lens-legend-row span:last-child{font-weight:800;color:var(--teal)}
 .outcome-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.35rem}
 .outcome-card{display:block;text-decoration:none;background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1.05rem;transition:border-color .18s,box-shadow .18s,transform .18s}
 .outcome-card:hover{border-color:var(--teal);box-shadow:0 10px 24px rgba(59,122,143,0.11);transform:translateY(-1px)}
@@ -693,7 +703,7 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   .survey-nav{align-items:stretch;flex-direction:column}
   .survey-nav-actions{justify-content:stretch}
   .survey-nav .btn-sm{flex:1}
-  .likert-row{grid-template-columns:1fr}
+  .lens-donut{width:190px;height:190px}
 }
 @media(max-width:640px){
   nav{padding:0 1.25rem}
@@ -885,6 +895,7 @@ nav{gap:1.25rem}
     text-align:left;
   }
   .purpose-dial{width:158px;height:158px;justify-self:center;}
+  .lens-donut{width:184px;height:184px;}
   .condition-controls{width:100%;}
   .slider-row{padding:0.35rem 0;}
   .slider-row label{font-size:0.86rem;line-height:1.35;}
@@ -1416,18 +1427,37 @@ nav{gap:1.25rem}
 </div>
 </div>
 <div class="condition-lab condition-lab-wide">
-<div class="artifact-kicker">Survey item · What you notice</div>
-<p class="activity-copy">For each statement, choose how much it sounds like the way you currently see youth purpose. This is a snapshot of your attention, not a score of how well you are doing.</p>
+<div class="artifact-kicker">Takeaway · Set your lens</div>
+<p class="activity-copy">Adjust the lens to show what is most visible to you when you think about youth purpose. There is no ideal setting. A high field of vision means you are holding many cues in view at once; a low field of vision means your attention is more focused on a smaller part of the picture.</p>
 <div class="condition-grid">
-<div class="purpose-dial" id="conditionDial">
-<div class="dial-core"><strong id="conditionDialScore">50</strong><span>attention map</span></div>
+<div class="lens-distribution">
+<div class="lens-donut" id="conditionDial">
+<div class="lens-donut-core"><strong id="conditionDialScore">55</strong><span>field of vision</span></div>
 </div>
-<div class="condition-controls likert-grid">
-<div class="likert-row" data-field="opportunity"><div class="likert-prompt">I notice young people's direction.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('opportunity',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('opportunity',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('opportunity',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('opportunity',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('opportunity',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="opportunityValue">Not sure</span></div><input id="opportunitySlider" type="hidden" value="50"/></div></div>
-<div class="likert-row" data-field="recognition"><div class="likert-prompt">I notice the supports that surround young people.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('recognition',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('recognition',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('recognition',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('recognition',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('recognition',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="recognitionValue">Not sure</span></div><input id="recognitionSlider" type="hidden" value="50"/></div></div>
-<div class="likert-row" data-field="practice"><div class="likert-prompt">I notice blocked pathways for young people.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('practice',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('practice',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('practice',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('practice',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('practice',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="practiceValue">Not sure</span></div><input id="practiceSlider" type="hidden" value="50"/></div></div>
-<div class="likert-row" data-field="benefit"><div class="likert-prompt">I notice whether young people's pursuits benefit others.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('benefit',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('benefit',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('benefit',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('benefit',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('benefit',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="benefitValue">Not sure</span></div><input id="benefitSlider" type="hidden" value="50"/></div></div>
-<div class="likert-row" data-field="joy"><div class="likert-prompt">I notice whether young people's pursuits bring them joy.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('joy',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('joy',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('joy',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('joy',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('joy',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="joyValue">Not sure</span></div><input id="joySlider" type="hidden" value="50"/></div></div>
+<div class="lens-legend" id="conditionLegend"></div>
+</div>
+<div class="condition-controls lens-meter">
+<div class="lens-meter-note">Think of the center number as how wide the aperture is open across all five cues. The colored ring shows the relative mix: larger slices are the cues you are bringing most into focus.</div>
+<div class="slider-row">
+<label><span>I notice young people's direction</span><span id="opportunityValue">55</span></label>
+<input id="opportunitySlider" max="100" min="0" oninput="conditionLensTouched=true;updateConditionPortrait()" type="range" value="55"/>
+</div>
+<div class="slider-row">
+<label><span>I notice the supports that surround young people</span><span id="recognitionValue">55</span></label>
+<input id="recognitionSlider" max="100" min="0" oninput="conditionLensTouched=true;updateConditionPortrait()" type="range" value="55"/>
+</div>
+<div class="slider-row">
+<label><span>I notice blocked pathways for young people</span><span id="practiceValue">55</span></label>
+<input id="practiceSlider" max="100" min="0" oninput="conditionLensTouched=true;updateConditionPortrait()" type="range" value="55"/>
+</div>
+<div class="slider-row">
+<label><span>I notice whether young people's pursuits benefit others</span><span id="benefitValue">55</span></label>
+<input id="benefitSlider" max="100" min="0" oninput="conditionLensTouched=true;updateConditionPortrait()" type="range" value="55"/>
+</div>
+<div class="slider-row">
+<label><span>I notice whether young people's pursuits bring them joy</span><span id="joyValue">55</span></label>
+<input id="joySlider" max="100" min="0" oninput="conditionLensTouched=true;updateConditionPortrait()" type="range" value="55"/>
+</div>
 </div>
 </div>
 <p class="activity-copy" style="margin-top:0.9rem">Now choose where you would look first if a young person’s purpose seemed out of focus.</p>
@@ -1492,7 +1522,7 @@ nav{gap:1.25rem}
 <div class="lens-tab" onclick="scrollToLens(8)"><div class="lens-tab-num">08</div><div class="lens-tab-name">Cultural Context</div></div>
 </div>
 <p class="lead" style="font-size:0.975rem">The framework uses eight lenses to notice different parts of youth purpose: what young people feel, what they can imagine, what they get to practice, who recognizes them, and what their environments make possible.</p>
-<p class="lead" style="font-size:0.975rem;margin-top:0.85rem">As you read, mark which lenses make sense to you, which need a clearer example, and which raise questions. Your choices help shape the summary at the end.</p>
+<p class="lead" style="font-size:0.975rem;margin-top:0.85rem">As you read, mark your overall reaction to each lens: what resonates, what feels unclear, where you need an example, and what you question. That full sentiment pattern will inform your final portrait.</p>
 <div class="lens-frame-card" id="lensFrameSummary"><strong>Your resonant lens frame</strong><p>No lenses flagged yet. Use the “Resonates” flags on the cards below to build a visual frame for your portrait.</p><div class="lens-frame-mini" id="lensFrameMini"></div></div>
 </div>
 <div class="conf-legend">
@@ -1858,6 +1888,7 @@ const selectedYouthGroups=new Set();
 let selectedOverlooked='';
 let currentStance='Notice and name what is already there';
 let stanceChosen=false;
+let conditionLensTouched=false;
 const roleLabels={
   researcher:'researchers',
   practitioner:'practitioners',
@@ -2075,7 +2106,7 @@ function goSurveyStep(id){
 }
 function appendSurveyNavigation(){
   surveySteps.forEach(([id,label],idx)=>{
-    const panel=document.getElementById(id);
+    const panel=document.getElementById(id==='claim'?'argument':id);
     if(!panel||panel.querySelector('.survey-nav'))return;
     const prev=surveySteps[idx-1];
     const next=surveySteps[idx+1];
@@ -2139,29 +2170,80 @@ function roleSentence(){
 function participantRole(){
   return selectedRoles.size?roleSentence():'Exchange participant';
 }
-function likertLabel(value){
-  return {0:'Strongly disagree',25:'Disagree',50:'Not sure',75:'Agree',100:'Strongly agree'}[Number(value)]||'Not sure';
-}
-function setLikert(field,value,btn){
-  const input=document.getElementById(field+'Slider');
-  if(input)input.value=String(value);
-  const row=btn?.closest('.likert-row')||document.querySelector(`.likert-row[data-field="${field}"]`);
-  row?.querySelectorAll('.likert-btn').forEach(button=>button.classList.toggle('active',button===btn));
-  updateConditionPortrait();
-}
 function conditionValues(){
   return {
-    opportunity:Number(document.getElementById('opportunitySlider')?.value||50),
-    recognition:Number(document.getElementById('recognitionSlider')?.value||50),
-    practice:Number(document.getElementById('practiceSlider')?.value||50),
-    benefit:Number(document.getElementById('benefitSlider')?.value||50),
-    joy:Number(document.getElementById('joySlider')?.value||50)
+    opportunity:Number(document.getElementById('opportunitySlider')?.value||55),
+    recognition:Number(document.getElementById('recognitionSlider')?.value||55),
+    practice:Number(document.getElementById('practiceSlider')?.value||55),
+    benefit:Number(document.getElementById('benefitSlider')?.value||55),
+    joy:Number(document.getElementById('joySlider')?.value||55)
   };
+}
+const conditionLabels={
+  opportunity:'Direction',
+  recognition:'Supports',
+  practice:'Blocked pathways',
+  benefit:'Benefit to others',
+  joy:'Joy'
+};
+const conditionColors={
+  opportunity:'#7B3D42',
+  recognition:'#3B7A8F',
+  practice:'#C4724A',
+  benefit:'#5B3D5A',
+  joy:'#7A7840'
+};
+function fieldVisionMeaning(score){
+  if(score>=72)return 'wide field of vision: you are trying to hold several parts of the purpose picture in view at once.';
+  if(score<=38)return 'focused field of vision: you are bringing a narrower set of cues into sharper focus.';
+  return 'balanced field of vision: you are keeping multiple cues available without opening the lens equally wide on everything.';
+}
+function renderConditionDistribution(values){
+  const dial=document.getElementById('conditionDial');
+  const legend=document.getElementById('conditionLegend');
+  const entries=Object.entries(values);
+  const total=entries.reduce((sum,[,value])=>sum+Math.max(0,value),0)||entries.length;
+  let cumulative=0;
+  const stops=[];
+  entries.forEach(([key,value],idx)=>{
+    cumulative+=total===entries.length?1:Math.max(0,value);
+    const pct=idx===entries.length-1?100:Math.round(cumulative/total*1000)/10;
+    stops.push(pct);
+  });
+  if(dial){
+    dial.style.setProperty('--seg1',stops[0]+'%');
+    dial.style.setProperty('--seg2',stops[1]+'%');
+    dial.style.setProperty('--seg3',stops[2]+'%');
+    dial.style.setProperty('--seg4',stops[3]+'%');
+  }
+  if(legend){
+    legend.innerHTML=entries.map(([key,value])=>`
+      <div class="lens-legend-row">
+        <span class="lens-legend-dot" style="background:${conditionColors[key]}"></span>
+        <strong>${escapeHtml(conditionLabels[key])}</strong>
+        <span>${value}</span>
+      </div>`).join('');
+  }
+}
+function saveConditionLensDebounced(){
+  clearTimeout(saveConditionLensDebounced.timer);
+  saveConditionLensDebounced.timer=setTimeout(()=>{
+    const values=conditionValues();
+    saveRemote('condition_lens',{
+      direction:values.opportunity,
+      supports:values.recognition,
+      blocked_pathways:values.practice,
+      benefit_to_others:values.benefit,
+      joy:values.joy,
+      first_place_to_look:selectedOverlooked||null,
+      field_of_vision:Math.round((values.opportunity+values.recognition+values.practice+values.benefit+values.joy)/5)
+    });
+  },700);
 }
 function updateConditionPortrait(){
   const values=conditionValues();
   const score=Math.round((values.opportunity+values.recognition+values.practice+values.benefit+values.joy)/5);
-  document.getElementById('conditionDial')?.style.setProperty('--dial',score);
+  renderConditionDistribution(values);
   const scoreEl=document.getElementById('conditionDialScore');
   if(scoreEl)scoreEl.textContent=score;
   const fields=[
@@ -2171,7 +2253,7 @@ function updateConditionPortrait(){
     ['benefitValue',values.benefit],
     ['joyValue',values.joy]
   ];
-  fields.forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.textContent=likertLabel(value)});
+  fields.forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.textContent=value});
   const summary=document.getElementById('conditionSummary');
   if(summary){
     const strongestKey=Object.entries(values).sort((a,b)=>b[1]-a[1])[0][0];
@@ -2179,14 +2261,16 @@ function updateConditionPortrait(){
     const orientationNote=values.benefit>=70?' You are especially attuned to self-transcendent purpose — whether young people’s aims extend outward to other people or communities.':values.benefit<=35?' You are not foregrounding benefit to others right now, which can help keep individual meaning, mastery, and identity visible alongside contribution.':'';
     const wellbeingNote=values.joy>=70?' You are also strongly tracking whether purpose feels enlivening or joyful, linking purpose to subjective well-being rather than duty alone.':values.joy<=35?' Joy is less central in your current lens, which may reveal cases where purpose feels serious, demanding, or costly even when it matters.':'';
     const overlooked=selectedOverlooked?` You expect to look first toward ${selectedOverlooked}.`:'';
-    summary.textContent=`Your attention map currently points most strongly toward ${strongestLabels[strongestKey]}. A higher number here only means that theme is more prominent in your responses right now.${orientationNote}${wellbeingNote}${overlooked}`;
+    summary.textContent=`Your field of vision is ${score}/100, a ${fieldVisionMeaning(score)} The ring shows your mix of attention, with the largest slice currently around ${strongestLabels[strongestKey]}.${orientationNote}${wellbeingNote}${overlooked}`;
   }
   refreshArtifacts();
+  if(conditionLensTouched)saveConditionLensDebounced();
 }
 function chooseOverlooked(btn){
   document.querySelectorAll('.vote-chip').forEach(chip=>chip.classList.remove('active'));
   btn.classList.add('active');
   selectedOverlooked=btn.dataset.overlooked||'';
+  conditionLensTouched=true;
   updateConditionPortrait();
 }
 function chooseSightAction(btn){
@@ -2194,6 +2278,7 @@ function chooseSightAction(btn){
   btn.classList.add('active');
   currentStance=btn.dataset.stance||currentStance;
   stanceChosen=true;
+  saveRemote('next_move',{stance:currentStance,role:participantRole()});
   updateExchangeStance();
 }
 function updateExchangeStance(){
@@ -2232,7 +2317,7 @@ function refreshArtifacts(){
       <div><strong>Working definition:</strong> ${purposeDefinition||'No purpose definition entered yet'}</div>
       <div><strong>Lens settings:</strong> Direction ${conditionValues().opportunity}/100; supports ${conditionValues().recognition}/100; blocked pathways ${conditionValues().practice}/100; benefit to others ${conditionValues().benefit}/100; joy ${conditionValues().joy}/100</div>
       <div><strong>First place to look:</strong> ${selectedOverlooked||'No choice selected yet'}</div>
-      <div><strong>Resonant lenses:</strong> ${selectedResonantLenses().map(n=>AP_NAMES[n]).join(', ')||'No lenses flagged yet'}</div>
+      <div><strong>Lens sentiment:</strong> ${lensSentimentSummary()}</div>
       <div><strong>Next move:</strong> ${stanceChosen?currentStance:'No next move selected yet'}</div>
       <div><strong>Reading reflection:</strong> ${(document.getElementById('featureReflect')?.value||'No feature reflection entered yet').trim()}</div>`;
   }
@@ -2266,7 +2351,7 @@ I would define purpose as:
 ${purposeDefinition||'No purpose definition entered'}
 
 Viewing lens:
-Young people's direction: ${likertLabel(values.opportunity)}; Surrounding supports: ${likertLabel(values.recognition)}; Blocked pathways: ${likertLabel(values.practice)}; Benefit to others: ${likertLabel(values.benefit)}; Joy / well-being: ${likertLabel(values.joy)}; Attention map ${score}/100${selectedOverlooked?`; First place I expect to look: ${selectedOverlooked}`:''}
+Young people's direction ${values.opportunity}/100; Surrounding supports ${values.recognition}/100; Blocked pathways ${values.practice}/100; Benefit to others ${values.benefit}/100; Joy / well-being ${values.joy}/100; Field of vision ${score}/100${selectedOverlooked?`; First place I expect to look: ${selectedOverlooked}`:''}
 
 Next-move choice:
 ${currentStance}
@@ -2282,6 +2367,9 @@ ${compactList(contributions.questions,'No open question added')}
 
 Seeing prompts I added:
 ${compactList(contributions.prompts,'No seeing prompt added')}
+
+Lens sentiment:
+${lensSentimentSummary()}
 
 Replies I added:
 ${compactList(contributions.comments,'No replies added')}
@@ -2359,6 +2447,38 @@ function compactList(items,empty){
   return items.length?items.slice(0,3).map(item=>`• ${item}`).join('\n'):empty;
 }
 
+const lensReactionLabels={resonates:'resonates',missing:'not sure',more:'needs examples',skeptical:'questioned'};
+function lensReactionTypeFromButton(btn){
+  const oc=btn?.getAttribute('onclick')||'';
+  const match=oc.match(/'([^']+)'\s*\)/);
+  return match?.[1]||'';
+}
+function selectedLensReactions(){
+  return [...document.querySelectorAll('.ap-reactions')].map(container=>{
+    const active=container.querySelector('.react-btn.active');
+    const type=lensReactionTypeFromButton(active);
+    return type?{lens:Number(container.dataset.ap),type,name:AP_NAMES[Number(container.dataset.ap)]}:null;
+  }).filter(Boolean);
+}
+function lensSentimentCounts(){
+  return selectedLensReactions().reduce((acc,item)=>{
+    acc[item.type]=(acc[item.type]||0)+1;
+    return acc;
+  },{resonates:0,missing:0,more:0,skeptical:0});
+}
+function lensSentimentSummary(){
+  const reactions=selectedLensReactions();
+  if(!reactions.length)return 'No lens reactions selected yet.';
+  const counts=lensSentimentCounts();
+  const countLine=[
+    `${counts.resonates||0} resonant`,
+    `${counts.missing||0} not sure`,
+    `${counts.more||0} need examples`,
+    `${counts.skeptical||0} questioned`
+  ].join(', ');
+  const detail=reactions.map(item=>`${item.name}: ${lensReactionLabels[item.type]}`).join('; ');
+  return `${countLine}. ${detail}`;
+}
 function selectedResonantLenses(){
   return [...document.querySelectorAll('.ap-reactions')].filter(container=>{
     const active=container.querySelector('.react-btn.active');
@@ -2383,9 +2503,10 @@ function renderLensFrameSummary(){
   const mini=document.getElementById('lensFrameMini');
   if(!wrap||!mini)return;
   const selected=selectedResonantLenses();
+  const counts=lensSentimentCounts();
   const p=wrap.querySelector('p');
-  if(p)p.textContent=selected.length?`You have flagged ${selected.length} lens${selected.length===1?'':'es'} as especially resonant. These will appear in your portrait summary.`:'No lenses flagged yet. Use the “Resonates” flags on the cards below to shape your portrait summary.';
-  mini.innerHTML=selected.map(n=>`<span class="lens-frame-pill">${escapeHtml(AP_NAMES[n])}</span>`).join('');
+  if(p)p.textContent=selectedLensReactions().length?`Your lens sentiment so far: ${counts.resonates||0} resonant, ${counts.missing||0} not sure, ${counts.more||0} need examples, ${counts.skeptical||0} questioned. This pattern will appear in your portrait summary.`:'No lens reactions selected yet. Use the reaction buttons on the cards below to shape your portrait summary.';
+  mini.innerHTML=selectedLensReactions().map(item=>`<span class="lens-frame-pill">${escapeHtml(item.name)} · ${escapeHtml(lensReactionLabels[item.type])}</span>`).join('');
 }
 
 function renderPortraitReveal(){
@@ -2403,12 +2524,13 @@ function renderPortraitReveal(){
   const contributionCount=Object.values(contributions).reduce((sum,items)=>sum+items.length,0);
   const promptLine=contributions.prompts[0]?` The prompt you would bring to young people is: "${contributions.prompts[0]}."`:'';
   const questionLine=contributions.questions[0]?` One question you are carrying forward is: "${contributions.questions[0]}."`:'';
-  const resonant=selectedResonantLenses().map(n=>AP_NAMES[n]);
-  const resonantLine=resonant.length?`Your resonant lens frame includes ${resonant.join(', ')}.`:'';
+  const reactions=selectedLensReactions();
+  const resonant=reactions.filter(item=>item.type==='resonates').map(item=>item.name);
+  const sentimentLine=reactions.length?`Your lens sentiment pattern is: ${lensSentimentSummary()}`:'';
   const revealItems=[
     `Seen through ${roleCopy}, your portrait centers ${topConditionLabel(values)} for ${youthCopy}.`,
     `${definitionCopy}Your first reading cue is ${featureTop.toLowerCase()}, and the action your seeing currently points toward is: ${stanceChosen?currentStance:'still open'}.`,
-    resonantLine,
+    sentimentLine,
     contributions.prompts[0]?`The prompt you would bring to young people is: "${contributions.prompts[0]}."`:'',
     contributions.questions[0]?`One question you are carrying forward is: "${contributions.questions[0]}."`:'',
     `Across ${contributionCount} contribution${contributionCount===1?'':'s'}, your view suggests that seeing youth purpose means noticing young people's direction, their surrounding conditions, whether their pursuits benefit others, and whether purpose appears connected to joy or well-being.`
@@ -2423,7 +2545,7 @@ function renderPortraitReveal(){
         <div class="reveal-grid">
           <div class="reveal-chip"><span>You notice first</span><strong>${escapeHtml(topConditionLabel(values))}</strong></div>
           <div class="reveal-chip"><span>Your reading cue</span><strong>${escapeHtml(featureTop)}</strong></div>
-          <div class="reveal-chip"><span>Attention map</span><strong>${conditionScore}/100</strong></div>
+          <div class="reveal-chip"><span>Field of vision</span><strong>${conditionScore}/100</strong></div>
         </div>
         <div class="reveal-actions">
           <button class="btn-sm btn-navy" onclick="downloadResponseSummary()">Download portrait</button>
@@ -2456,12 +2578,12 @@ function summaryHtml(){
   const labLogoSrc=new URL('assets/pip-lab-download-logo.png',location.href).href;
   const contributionCount=Object.values(contributions).reduce((sum,items)=>sum+items.length,0);
   const resonant=selectedResonantLenses().map(n=>AP_NAMES[n]);
-  const resonantLine=resonant.length?`Your resonant lenses are ${resonant.join(', ')}.`:'';
+  const sentimentLine=selectedLensReactions().length?`Your lens sentiment pattern is: ${lensSentimentSummary()}`:'';
   const narrativeItems=[
     `Seen through ${roles}, this portrait centers ${topConditionLabel(values)} for ${groups}.`,
     `Your working definition of purpose is: "${purposeDefinition}"`,
     `Your first reading cue is ${features[0]?.name||'still forming'}, and your next action is: ${currentStance}.`,
-    resonantLine,
+    sentimentLine,
     `Across ${contributionCount} contribution${contributionCount===1?'':'s'}, your responses suggest that seeing youth purpose means noticing young people's direction, the conditions around them, their orientation toward others, and the joy or well-being their pursuits may carry.`
   ].filter(Boolean);
   const narrativeHtml=`<ul class="narrative-list">${narrativeItems.map(item=>`<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
@@ -2716,14 +2838,14 @@ h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
       <article class="card wide">
         <div class="label">Viewing lens</div>
         <h2>How you prepared to see</h2>
-        <div class="text">Young people's direction: ${likertLabel(values.opportunity)}
-Surrounding supports: ${likertLabel(values.recognition)}
-Blocked pathways: ${likertLabel(values.practice)}
-Benefit to others: ${likertLabel(values.benefit)}
-Joy / subjective well-being: ${likertLabel(values.joy)}
-Attention map ${conditionScore}/100${selectedOverlooked?`
-First place I expect to look: ${escapeHtml(selectedOverlooked)}`:''}${resonant.length?`
-Resonant lenses: ${escapeHtml(resonant.join(', '))}`:''}</div>
+        <div class="text">Young people's direction ${values.opportunity}/100
+Surrounding supports ${values.recognition}/100
+Blocked pathways ${values.practice}/100
+Benefit to others ${values.benefit}/100
+Joy / subjective well-being ${values.joy}/100
+Field of vision ${conditionScore}/100${selectedOverlooked?`
+First place I expect to look: ${escapeHtml(selectedOverlooked)}`:''}${selectedLensReactions().length?`
+Lens sentiment: ${escapeHtml(lensSentimentSummary())}`:''}</div>
       </article>
       <article class="card wide">
         <div class="label">Seeing to action</div>
@@ -2794,7 +2916,7 @@ function renderKnapsack(){
     },
     {
       title:'Viewing lens',
-      body:`Attention map ${conditionScore}/100. Youth direction: ${likertLabel(values.opportunity)}; surrounding supports: ${likertLabel(values.recognition)}; blocked pathways: ${likertLabel(values.practice)}.${selectedOverlooked?` First place you expect to look: ${selectedOverlooked}.`:''}`
+      body:`Field of vision ${conditionScore}/100. Youth direction ${values.opportunity}, surrounding supports ${values.recognition}, blocked pathways ${values.practice}.${selectedOverlooked?` First place you expect to look: ${selectedOverlooked}.`:''}`
     },
     {
       title:'Your next move',
@@ -2813,7 +2935,7 @@ function renderKnapsack(){
     `${selectedRoles.size} role${selectedRoles.size===1?'':'s'}`,
     `${selectedYouthGroups.size} youth group${selectedYouthGroups.size===1?'':'s'}`,
     `next move: ${currentStance}`,
-    `attention map: ${conditionScore}/100`
+    `field of vision: ${conditionScore}/100`
   ].map(text=>`<span class="knapsack-pill">${escapeHtml(text)}</span>`).join('');
   grid.innerHTML=cards.map(card=>`<div class="knapsack-card"><strong>${escapeHtml(card.title)}</strong><p>${escapeHtml(card.body)}</p></div>`).join('');
 }

@@ -74,6 +74,18 @@ h2 em{color:var(--teal);font-style:italic}
 .app-tab-strong{background:rgba(59,122,143,0.1);color:var(--teal)}
 .app-panel{display:none}
 .app-panel.active,.app-panel-support.active{display:block}
+.survey-nav{max-width:1080px;margin:2rem auto 0;padding:1rem;border-top:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.survey-nav-status{font-size:0.78rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--g600)}
+.survey-nav-actions{display:flex;gap:0.65rem;flex-wrap:wrap;justify-content:flex-end}
+.survey-nav .btn-sm{min-width:112px}
+.likert-grid{display:grid;gap:1rem}
+.likert-row{display:grid;grid-template-columns:minmax(180px,0.8fr) minmax(0,1.2fr);gap:1rem;align-items:center;padding:0.9rem;border:1.5px solid var(--g200);border-radius:10px;background:var(--white)}
+.likert-prompt{font-size:0.88rem;font-weight:700;color:var(--navy);line-height:1.45}
+.likert-scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0.35rem}
+.likert-btn{min-height:42px;border:1.5px solid var(--g200);border-radius:8px;background:var(--cream);color:var(--g600);font:700 0.72rem var(--sans);cursor:pointer;line-height:1.2;padding:0.35rem;transition:all .18s}
+.likert-btn:hover{border-color:var(--teal);color:var(--navy)}
+.likert-btn.active{background:var(--teal);border-color:var(--teal);color:var(--white)}
+.likert-value{font-size:0.72rem;font-weight:800;color:var(--teal);text-align:right;margin-top:0.35rem}
 .outcome-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.35rem}
 .outcome-card{display:block;text-decoration:none;background:var(--cream);border:1.5px solid var(--g200);border-radius:12px;padding:1.05rem;transition:border-color .18s,box-shadow .18s,transform .18s}
 .outcome-card:hover{border-color:var(--teal);box-shadow:0 10px 24px rgba(59,122,143,0.11);transform:translateY(-1px)}
@@ -153,7 +165,7 @@ h2 em{color:var(--teal);font-style:italic}
 .condition-grid{display:grid;grid-template-columns:190px 1fr;gap:1.25rem;align-items:center}
 .purpose-dial{
   width:170px;height:170px;border-radius:50%;margin:0 auto;position:relative;
-  background:conic-gradient(var(--teal) calc(var(--dial,55) * 1%),var(--g100) 0);
+  background:conic-gradient(var(--teal) calc(var(--dial,50) * 1%),var(--g100) 0);
   display:grid;place-items:center;
 }
 .purpose-dial::before{content:'';position:absolute;inset:18px;background:var(--white);border-radius:50%;border:1px solid var(--g200)}
@@ -678,6 +690,10 @@ footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:3rem 2.5rem;tex
   .ap-filter-list{flex-direction:row;flex-wrap:wrap}
   .ap-filter-btn{width:auto}
   .sidebar-label{display:none}
+  .survey-nav{align-items:stretch;flex-direction:column}
+  .survey-nav-actions{justify-content:stretch}
+  .survey-nav .btn-sm{flex:1}
+  .likert-row{grid-template-columns:1fr}
 }
 @media(max-width:640px){
   nav{padding:0 1.25rem}
@@ -1200,7 +1216,7 @@ nav{gap:1.25rem}
 </div></nav>
 <aside aria-label="Building your portrait" class="portrait-builder collapsed" id="portraitBuilder">
 <div class="builder-top">
-<button aria-expanded="false" class="builder-toggle" id="builderToggle" onclick="togglePortraitBuilder(true)" type="button"><span class="builder-title">Building your portrait</span></button>
+<button aria-expanded="false" class="builder-toggle" id="builderToggle" onclick="togglePortraitBuilder(true)" type="button"><span class="builder-title">Survey progress</span></button>
 <div class="builder-count" id="builderCount">0/7</div>
 </div>
 <div class="builder-body">
@@ -1250,7 +1266,7 @@ nav{gap:1.25rem}
         <span class="sentence">We rarely ask whether the conditions around them allow it to be <em>seen and supported.</em> </span>
       </div>
       <div class="prov-pause"></div>
-      <p class="prov-response">This asymmetry can impose a deficit framing of young people as missing something, while leaving programs, institutions, and relationships that shape their development unexamined. This exchange invites seeing youth purpose through a broader set of lenses.</p>
+      <p class="prov-response">Focusing only on whether youth have purpose can shift responsibility onto young people themselves. This exchange asks how relationships, programs, communities, and culture can help purpose become visible and supported.</p>
       <div class="prov-actions">
         <a class="btn btn-teal" href="#journey">Create a portrait</a>
         <a class="btn btn-ghost" href="#framework">Explore the lenses</a>
@@ -1266,7 +1282,7 @@ nav{gap:1.25rem}
 <div class="eyebrow">Start Here</div>
 <div class="rule"></div>
 <h2>Build a clearer <em>portrait</em> of youth purpose</h2>
-<p class="lead" style="font-size:0.975rem">Move through a small set of reflective studios. Each contribution adds to your own portrait while helping surface broader patterns in how young people experience purpose across contexts and communities.</p>
+<p class="lead" style="font-size:0.975rem">Complete a few short activities to create your personal purpose portrait. Your responses also help us understand how people notice and support youth purpose in different areas of life.</p>
 </div>
 <div aria-label="Start here tabs" class="journey-tabs">
 <button aria-controls="journey-about" aria-selected="true" class="journey-tab active" data-journey="about" onclick="openJourney('about',this)" role="tab" type="button">Why This Exists</button>
@@ -1279,7 +1295,7 @@ nav{gap:1.25rem}
 <p class="lead" style="font-size:0.975rem;margin-bottom:1.25rem">Portraits of Purposeful Youth is an open and collaborative project created by the <a href="https://www.lipurposefe.com" rel="noopener" target="_blank">Purpose and Identity Processes Lab</a> and hosted in partnership with the <a href="https://psix.bctr.cornell.edu" rel="noopener" target="_blank">Purpose Science and Innovation Exchange (PSiX)</a> at Cornell University.</p>
 <p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0 0 1.25rem">No single measure, moment, or characteristic can fully capture the complexity of a young person’s purposeful life.</p>
 <p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0 0 1.25rem">Portraits of Purposeful Youth explores how purpose takes shape across identities, experiences, relationships, and environments. Inspired by developmental science and many impactful and generative “portrait” initiatives in education and youth development, the project invites a broader and more human view of how purpose is expressed, supported, and understood.</p>
-<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0">Your responses here matter because they do three things: they build a private portrait you can keep, they surface public-facing contributions for review, and they help create an aggregate view of what different people notice about youth purpose.</p>
+<p style="font-size:0.95rem;color:var(--g600);line-height:1.75;margin:0">Your responses build a private portrait you can keep. When you submit reflections or questions, they can also help us see what excites, interests, or confuses people so we can build stronger research and practice questions.</p>
 <div class="outcome-grid">
 <a class="outcome-card" href="#knapsack">
 <span class="mini-example">You leave with</span>
@@ -1289,7 +1305,7 @@ nav{gap:1.25rem}
 <a class="outcome-card" href="#journey-artifacts" onclick="openJourney('artifacts')">
 <span class="mini-example">The project builds</span>
 <strong>Aggregate Signal</strong>
-<p>A reviewed synthesis of patterns across users: what roles notice, where curiosity gathers, and which questions keep returning.</p>
+<p>A reviewed summary of what people notice, what they want to understand better, and which questions keep returning.</p>
 </a>
 <a class="outcome-card" href="#exchange">
 <span class="mini-example">The community receives</span>
@@ -1400,33 +1416,18 @@ nav{gap:1.25rem}
 </div>
 </div>
 <div class="condition-lab condition-lab-wide">
-<div class="artifact-kicker">Takeaway · Set your lens</div>
-<p class="activity-copy">Use the sliders to show what you tend to notice first when thinking about youth purpose. Higher numbers mean that part of the picture is more visible to you right now.</p>
+<div class="artifact-kicker">Survey item · What you notice</div>
+<p class="activity-copy">For each statement, choose how much it sounds like the way you currently see youth purpose. This is a snapshot of your attention, not a score of how well you are doing.</p>
 <div class="condition-grid">
 <div class="purpose-dial" id="conditionDial">
-<div class="dial-core"><strong id="conditionDialScore">55</strong><span>field of view</span></div>
+<div class="dial-core"><strong id="conditionDialScore">50</strong><span>attention map</span></div>
 </div>
-<div class="condition-controls">
-<div class="slider-row">
-<label><span>I notice young people's direction</span><span id="opportunityValue">55</span></label>
-<input id="opportunitySlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
-</div>
-<div class="slider-row">
-<label><span>I notice the supports that surround young people</span><span id="recognitionValue">55</span></label>
-<input id="recognitionSlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
-</div>
-<div class="slider-row">
-<label><span>I notice blocked pathways for young people</span><span id="practiceValue">55</span></label>
-<input id="practiceSlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
-</div>
-<div class="slider-row">
-<label><span>I notice whether young people's pursuits benefit others</span><span id="benefitValue">55</span></label>
-<input id="benefitSlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
-</div>
-<div class="slider-row">
-<label><span>I notice whether young people's pursuits bring them joy</span><span id="joyValue">55</span></label>
-<input id="joySlider" max="100" min="0" oninput="updateConditionPortrait()" type="range" value="55"/>
-</div>
+<div class="condition-controls likert-grid">
+<div class="likert-row" data-field="opportunity"><div class="likert-prompt">I notice young people's direction.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('opportunity',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('opportunity',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('opportunity',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('opportunity',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('opportunity',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="opportunityValue">Not sure</span></div><input id="opportunitySlider" type="hidden" value="50"/></div></div>
+<div class="likert-row" data-field="recognition"><div class="likert-prompt">I notice the supports that surround young people.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('recognition',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('recognition',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('recognition',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('recognition',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('recognition',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="recognitionValue">Not sure</span></div><input id="recognitionSlider" type="hidden" value="50"/></div></div>
+<div class="likert-row" data-field="practice"><div class="likert-prompt">I notice blocked pathways for young people.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('practice',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('practice',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('practice',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('practice',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('practice',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="practiceValue">Not sure</span></div><input id="practiceSlider" type="hidden" value="50"/></div></div>
+<div class="likert-row" data-field="benefit"><div class="likert-prompt">I notice whether young people's pursuits benefit others.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('benefit',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('benefit',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('benefit',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('benefit',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('benefit',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="benefitValue">Not sure</span></div><input id="benefitSlider" type="hidden" value="50"/></div></div>
+<div class="likert-row" data-field="joy"><div class="likert-prompt">I notice whether young people's pursuits bring them joy.</div><div><div class="likert-scale"><button class="likert-btn" onclick="setLikert('joy',0,this)" type="button">Strongly disagree</button><button class="likert-btn" onclick="setLikert('joy',25,this)" type="button">Disagree</button><button class="likert-btn active" onclick="setLikert('joy',50,this)" type="button">Not sure</button><button class="likert-btn" onclick="setLikert('joy',75,this)" type="button">Agree</button><button class="likert-btn" onclick="setLikert('joy',100,this)" type="button">Strongly agree</button></div><div class="likert-value">Current: <span id="joyValue">Not sure</span></div><input id="joySlider" type="hidden" value="50"/></div></div>
 </div>
 </div>
 <p class="activity-copy" style="margin-top:0.9rem">Now choose where you would look first if a young person’s purpose seemed out of focus.</p>
@@ -1490,120 +1491,119 @@ nav{gap:1.25rem}
 <div class="lens-tab" onclick="scrollToLens(7)"><div class="lens-tab-num">07</div><div class="lens-tab-name">Environmental Affordances</div></div>
 <div class="lens-tab" onclick="scrollToLens(8)"><div class="lens-tab-num">08</div><div class="lens-tab-name">Cultural Context</div></div>
 </div>
-<p class="lead" style="font-size:0.975rem">The portraits framework is organized around eight interconnected "lenses" designed to see purpose from multiple vantage points. These lenses span personal, experiential, relational, and contextual domains, recognizing that purpose is shaped not only by individual beliefs and motivations, but also by opportunities, environments, relationships, and cultural signals.</p>
-<p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Each lens is grounded in developmental science while remaining open to revision, critique, and expansion. Rather than offering a single definition of purposeful youth, the framework seeks to create a more flexible and integrative array of portraits, each capable of capturing how young people experience purpose in their lives. There may be no <em>best</em> way to see purpose; instead, there may be numerous ways by adjusting and combining the lenses through which <strong>we chose to view them.</strong></p>
-<p class="lead" style="font-size:0.975rem;margin-top:0.85rem">Explore the lenses actively. As you read, flag the lenses that resonate. Those choices will be tallied and translated into stacked color frames in your final portrait.</p>
+<p class="lead" style="font-size:0.975rem">The framework uses eight lenses to notice different parts of youth purpose: what young people feel, what they can imagine, what they get to practice, who recognizes them, and what their environments make possible.</p>
+<p class="lead" style="font-size:0.975rem;margin-top:0.85rem">As you read, mark which lenses make sense to you, which need a clearer example, and which raise questions. Your choices help shape the summary at the end.</p>
 <div class="lens-frame-card" id="lensFrameSummary"><strong>Your resonant lens frame</strong><p>No lenses flagged yet. Use the “Resonates” flags on the cards below to build a visual frame for your portrait.</p><div class="lens-frame-mini" id="lensFrameMini"></div></div>
 </div>
 <div class="conf-legend">
-<span style="font-size:0.75rem;color:var(--g400);font-weight:500">Epistemic status:</span>
+<span style="font-size:0.75rem;color:var(--g400);font-weight:500">Evidence note:</span>
 <div class="conf-item"><div class="conf-dot"></div><span>Research-grounded</span></div>
 <div class="conf-item"><div class="conf-dot d"></div><span>Actively developing</span></div>
-<div class="conf-item"><div class="conf-dot e"></div><span>Empirically emerging</span></div>
+<div class="conf-item"><div class="conf-dot e"></div><span>Early evidence</span></div>
 </div>
 <div class="lenses-grid">
 <div class="ap-card" id="lens-card-1">
 <div class="ap-header"><div class="ap-num">01 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
 <div class="ap-name">Sense of Purpose</div>
 <div class="ap-def">How purposeful one feels. The subjective experience of perceiving that one's actions carry meaning and direction, the felt sense of purpose, distinct from being able to articulate or explain it.</div>
-<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-toggle" onclick="toggleAp(this)">Examples</div>
 <div class="ap-expanded"><strong>In practice</strong>Does this young person report that what they do matters? Do they express a sense of drive or direction — even without words for it? Is there something they return to, even when it's hard?<div class="ap-exchange-link" onclick="goToAp(1)">→ See exchange discussions</div></div>
 <div class="ap-reactions" data-ap="1">
 <button class="react-btn" onclick="react(this,1,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,1,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,1,'more')" type="button">→ Want more <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,1,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,1,'missing')" type="button">Not sure <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,1,'more')" type="button">Need example <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,1,'skeptical')" type="button">Question it <span class="react-count">0</span></button>
 </div>
 </div>
 <div class="ap-card" id="lens-card-2">
 <div class="ap-header"><div class="ap-num">02 · Inner Experience</div><div class="ap-badge">Actively developing</div></div>
 <div class="ap-name">Scope and Awareness</div>
 <div class="ap-def">What a young person can imagine, see, or name as possible targets for purpose. The horizon of possibility — the range of lives, roles, and forms of contribution they can conceive of for someone like themselves.</div>
-<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-toggle" onclick="toggleAp(this)">Examples</div>
 <div class="ap-expanded"><strong>In practice</strong>Can this young person name roles, causes, or futures they care about? Has their horizon expanded over time, or stayed fixed? Constrained scope often reflects constrained exposure — not constrained capacity.<div class="ap-exchange-link" onclick="goToAp(2)">→ See exchange discussions</div></div>
 <div class="ap-reactions" data-ap="2">
 <button class="react-btn" onclick="react(this,2,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,2,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,2,'more')" type="button">→ Want more <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,2,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,2,'missing')" type="button">Not sure <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,2,'more')" type="button">Need example <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,2,'skeptical')" type="button">Question it <span class="react-count">0</span></button>
 </div>
 </div>
 <div class="ap-card" id="lens-card-3">
 <div class="ap-header"><div class="ap-num">03 · Inner Experience</div><div class="ap-badge">Research-grounded</div></div>
 <div class="ap-name">Orientation</div>
 <div class="ap-def">The broad domain or general direction that frames a young person's purpose — whether prosocial, financial, vocational, religious, civic, creative, or otherwise. Orientation names the general category of contribution or becoming that organizes how they see themselves in relation to the world.</div>
-<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-toggle" onclick="toggleAp(this)">Examples</div>
 <div class="ap-expanded"><strong>In practice</strong>Does this young person have a general sense of what kind of contributor or person they want to become — even without a specific aim yet? Is their orientation toward serving others, building something, achieving mastery, or following a calling? Orientation can be present before specific goals form.<div class="ap-exchange-link" onclick="goToAp(3)">→ See exchange discussions</div></div>
 <div class="ap-reactions" data-ap="3">
 <button class="react-btn" onclick="react(this,3,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,3,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,3,'more')" type="button">→ Want more <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,3,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,3,'missing')" type="button">Not sure <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,3,'more')" type="button">Need example <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,3,'skeptical')" type="button">Question it <span class="react-count">0</span></button>
 </div>
 </div>
 <div class="ap-card" id="lens-card-4">
 <div class="ap-header"><div class="ap-num">04 · Inner Experience</div><div class="ap-badge">Actively developing</div></div>
 <div class="ap-name">Content</div>
 <div class="ap-def">The specific aspirational substance of what a young person understands they want to work toward. Not just a broad orientation, but a particular aim: being a great student, helping advance an important issue, mastering a craft, building something that matters. The articulation — even if partial or evolving — of what their purposeful effort is actually directed at.</div>
-<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-toggle" onclick="toggleAp(this)">Examples</div>
 <div class="ap-expanded"><strong>In practice</strong>Can this young person name something specific they want to do, become, or contribute — not just a general domain? Has that aspiration grown more concrete over time? Even a vague but genuine aim ("I want to do something with the environment") is purposeful content worth developing.<div class="ap-exchange-link" onclick="goToAp(4)">→ See exchange discussions</div></div>
 <div class="ap-reactions" data-ap="4">
 <button class="react-btn" onclick="react(this,4,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,4,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,4,'more')" type="button">→ Want more <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,4,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,4,'missing')" type="button">Not sure <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,4,'more')" type="button">Need example <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,4,'skeptical')" type="button">Question it <span class="react-count">0</span></button>
 </div>
 </div>
 <div class="ap-card" id="lens-card-5">
 <div class="ap-header"><div class="ap-num">05 · Active Engagement</div><div class="ap-badge">Actively developing</div></div>
 <div class="ap-name">Opportunities for Practice</div>
 <div class="ap-def">Concrete chances to explore, try, and enact purposeful action. Not just exposure — genuine opportunities to act, contribute, and experience oneself as a capable agent in something that matters beyond the self.</div>
-<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-toggle" onclick="toggleAp(this)">Examples</div>
 <div class="ap-expanded"><strong>In practice</strong>Does this young person have regular, authentic chances to act on what they care about? Are those opportunities real — with stakes and impact — or performative? Who controls access to them?<div class="ap-exchange-link" onclick="goToAp(5)">→ See exchange discussions</div></div>
 <div class="ap-reactions" data-ap="5">
 <button class="react-btn" onclick="react(this,5,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,5,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,5,'more')" type="button">→ Want more <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,5,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,5,'missing')" type="button">Not sure <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,5,'more')" type="button">Need example <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,5,'skeptical')" type="button">Question it <span class="react-count">0</span></button>
 </div>
 </div>
 <div class="ap-card" id="lens-card-6">
 <div class="ap-header"><div class="ap-num">06 · Active Engagement</div><div class="ap-badge">Research-grounded</div></div>
 <div class="ap-name">Recognition and Reflection</div>
 <div class="ap-def">Feedback, validation, and structured sense-making from oneself and others. The relational and reflective processes through which purposeful experience becomes visible, interpreted, and integrated into identity.</div>
-<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-toggle" onclick="toggleAp(this)">Examples</div>
 <div class="ap-expanded"><strong>In practice</strong>Do adults and peers name and affirm what this young person contributes? Are there structured opportunities to reflect and extract meaning? Is this young person developing a narrative of their own purposeful identity?<div class="ap-exchange-link" onclick="goToAp(6)">→ See exchange discussions</div></div>
 <div class="ap-reactions" data-ap="6">
 <button class="react-btn" onclick="react(this,6,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,6,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,6,'more')" type="button">→ Want more <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,6,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,6,'missing')" type="button">Not sure <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,6,'more')" type="button">Need example <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,6,'skeptical')" type="button">Question it <span class="react-count">0</span></button>
 </div>
 </div>
 <div class="ap-card" id="lens-card-7">
 <div class="ap-header"><div class="ap-num">07 · Conditions</div><div class="ap-badge">Actively developing</div></div>
 <div class="ap-name">Environmental Affordances</div>
 <div class="ap-def">Material, social, and institutional resources that make purposeful action possible. The structures, spaces, and relationships that either enable or foreclose what a young person can do with what they care about.</div>
-<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-toggle" onclick="toggleAp(this)">Examples</div>
 <div class="ap-expanded"><strong>In practice</strong>What resources does this young person have access to? Who gatekeeps them? Are the environments this young person inhabits designed with purposeful development in mind — or does it happen despite the design?<div class="ap-exchange-link" onclick="goToAp(7)">→ See exchange discussions</div></div>
 <div class="ap-reactions" data-ap="7">
 <button class="react-btn" onclick="react(this,7,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,7,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,7,'more')" type="button">→ Want more <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,7,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,7,'missing')" type="button">Not sure <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,7,'more')" type="button">Need example <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,7,'skeptical')" type="button">Question it <span class="react-count">0</span></button>
 </div>
 </div>
 <div class="ap-card" id="lens-card-8">
-<div class="ap-header"><div class="ap-num">08 · Conditions</div><div class="ap-badge">Empirically emerging</div></div>
+<div class="ap-header"><div class="ap-num">08 · Conditions</div><div class="ap-badge">Early evidence</div></div>
 <div class="ap-name">Cultural Context</div>
 <div class="ap-def">The sociocultural signals — explicit and implicit — about what kinds of purpose are valued, legitimate, and possible in a given context. The messages a young person receives about who gets to pursue purpose, and what kinds count.</div>
-<div class="ap-toggle" onclick="toggleAp(this)">+ What to look for in practice</div>
+<div class="ap-toggle" onclick="toggleAp(this)">Examples</div>
 <div class="ap-expanded"><strong>In practice</strong>What does this environment communicate about whose futures matter and which forms of contribution are worth pursuing? Are cultural norms expanding or narrowing what this young person believes is possible for someone like them?<div class="ap-exchange-link" onclick="goToAp(8)">→ See exchange discussions</div></div>
 <div class="ap-reactions" data-ap="8">
 <button class="react-btn" onclick="react(this,8,'resonates')" type="button">✓ <span>Resonates</span> <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,8,'missing')" type="button">+ Missing something <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,8,'more')" type="button">→ Want more <span class="react-count">0</span></button>
-<button class="react-btn" onclick="react(this,8,'skeptical')" type="button">? Skeptical <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,8,'missing')" type="button">Not sure <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,8,'more')" type="button">Need example <span class="react-count">0</span></button>
+<button class="react-btn" onclick="react(this,8,'skeptical')" type="button">Question it <span class="react-count">0</span></button>
 </div>
 </div>
 <!-- NOMINATE A LENS CARD -->
@@ -1627,7 +1627,7 @@ nav{gap:1.25rem}
 <div class="container">
 <div class="eyebrow">Reading a purposeful experience</div>
 <div class="rule"></div>
-<h2>Which cue do you <em>attend to</em> the most?</h2>
+<h2>What about purpose do you naturally notice in youth?</h2>
 <p class="lead" style="font-size:0.975rem">Purpose can show up in different ways. Put these cues in the order you would use when trying to understand a young person’s purposeful experience. There is no right order; the point is to show how you look.</p>
 <div class="feature-activity">
 <div class="feature-cards" id="featureCards"></div>
@@ -1656,7 +1656,7 @@ nav{gap:1.25rem}
 <div>
 <div class="pulse-eyebrow">Community Pulse</div>
 <div class="pulse-title">Which lenses should be <em>focal?</em></div>
-<p class="pulse-sub">This is merely a signal of your curiosity, not a poll attempting to draw scientific inference. Choose the lense(s) that you think should be the focus of research and practice. Your responses can help guide approaches for learning more about the areas of greatest interest</p>
+<p class="pulse-sub">Which areas feel most important to focus on? Please select the areas you think should be prioritized in research and practice.</p>
 </div>
 <div class="pulse-prompt-box">
 <div class="pulse-prompt-label">This month's question</div>
@@ -1682,7 +1682,7 @@ nav{gap:1.25rem}
 <div class="eyebrow">Open Questions</div>
 <div class="rule"></div>
 <h2>What do you <em>still want to know?</em></h2>
-<p class="lead" style="font-size:0.975rem">These are genuine open questions, not rhetorical ones. The invitation is to help us sharpen them, challenge them, or add the question that should have been here from the start.</p>
+<p class="lead" style="font-size:0.975rem">Choose a question to respond to, or add a question you think would help people see youth purpose more clearly.</p>
 </div>
 <div class="q-meta">This section will grow as the exchange develops. The questions below are starting points; the most useful contribution may be naming the better question.</div>
 <div class="q-categories">
@@ -1703,7 +1703,7 @@ nav{gap:1.25rem}
 <div>
 <div class="q-cat-label">Questions only young people can answer from the inside</div>
 <div class="q-cards">
-<div class="q-card"><div class="q-text">What does Resonance actually feel like when it's present — and what does its absence feel like, from the inside?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse("What does Resonance actually feel like when it's present — and what does its absence feel like, from the inside?",'experience','sparks')">+ Add a quick sighting</a></div>
+<div class="q-card"><div class="q-text">What does Resonance actually feel like when it's present — and what does its absence feel like, from the inside?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse('What does Resonance actually feel like when it\\'s present — and what does its absence feel like, from the inside?','experience','sparks')">+ Add a quick sighting</a></div>
 <div class="q-card"><div class="q-text">When purpose feels constrained, what do the adults and institutions around you most get wrong?</div><a class="q-contribute" href="#exchange" onclick="beginQuestionResponse('When purpose feels constrained, what do the adults and institutions around you most get wrong?','experience','sparks')">+ Add a quick sighting</a></div>
 </div>
 </div>
@@ -1733,7 +1733,7 @@ nav{gap:1.25rem}
 <div class="eyebrow">The Exchange</div>
 <div class="rule"></div>
 <h2>Share what you're <em>seeing</em></h2>
-<p class="lead" style="font-size:0.95rem">Share a fuller reflection or leave a prompt for seeing purpose in young people more clearly. Your insights may help others see things differently than what is typical for them.<br/><br/>Your private entries are captured in your portrait; selected public-facing pieces can also inform reviewed aggregate views of what the community is noticing.</p>
+<p class="lead" style="font-size:0.95rem">Build on a question, share a reflection, or write a seeing prompt someone could use with a young person.</p>
 </div>
 </div>
 <!-- Tab nav -->
@@ -1779,8 +1779,8 @@ nav{gap:1.25rem}
 <div class="tab-panel" id="panel-sparks">
 <div class="sparks-intro">
 <div class="sparks-what">
-<strong>Seeing prompts — one useful question</strong>
-          Complete the prompt at right with a question you could actually ask a young person. Your response is added to your portrait.
+<strong>Seeing prompts</strong>
+          Write one question you could actually ask a young person. Your response is added to your portrait.
         </div>
 <div class="starter-widget">
 <div class="starter-tag">Seeing prompt</div>
@@ -2042,6 +2042,16 @@ async function saveOnboardingResponse(){
 
 const appPanelIds=['claim','purpose-definition','argument','framework','features','pulse','questions','exchange','knapsack'];
 const primaryAppPanelIds=['claim','purpose-definition','framework','features','pulse','questions','exchange','knapsack'];
+const surveySteps=[
+  ['claim','Claim'],
+  ['purpose-definition','Define'],
+  ['framework','Lenses'],
+  ['features','Read'],
+  ['pulse','Pulse'],
+  ['questions','Questions'],
+  ['exchange','Contribute'],
+  ['knapsack','Portrait']
+];
 function showAppPanel(id,opts={}){
   if(!appPanelIds.includes(id)) return;
   const mainId=(id==='argument')?'claim':id;
@@ -2057,6 +2067,28 @@ function showAppPanel(id,opts={}){
   if(opts.scroll!==false){
     document.getElementById('portraitStudio')?.scrollIntoView({behavior:'smooth',block:'start'});
   }
+}
+function goSurveyStep(id){
+  if(!primaryAppPanelIds.includes(id))return;
+  history.pushState(null,'','#'+id);
+  showAppPanel(id,{scroll:true});
+}
+function appendSurveyNavigation(){
+  surveySteps.forEach(([id,label],idx)=>{
+    const panel=document.getElementById(id);
+    if(!panel||panel.querySelector('.survey-nav'))return;
+    const prev=surveySteps[idx-1];
+    const next=surveySteps[idx+1];
+    const nav=document.createElement('div');
+    nav.className='survey-nav';
+    nav.innerHTML=`
+      <div class="survey-nav-status">Step ${idx+1} of ${surveySteps.length}: ${escapeHtml(label)}</div>
+      <div class="survey-nav-actions">
+        ${prev?`<button class="btn-sm btn-outline" type="button" onclick="goSurveyStep('${prev[0]}')">Back</button>`:''}
+        ${next?`<button class="btn-sm btn-navy" type="button" onclick="goSurveyStep('${next[0]}')">Next</button>`:`<button class="btn-sm btn-navy" type="button" onclick="downloadResponseSummary()">Download portrait</button>`}
+      </div>`;
+    panel.appendChild(nav);
+  });
 }
 function maybeOpenAppHash(){
   const id=location.hash.replace(/^#/,'');
@@ -2107,13 +2139,23 @@ function roleSentence(){
 function participantRole(){
   return selectedRoles.size?roleSentence():'Exchange participant';
 }
+function likertLabel(value){
+  return {0:'Strongly disagree',25:'Disagree',50:'Not sure',75:'Agree',100:'Strongly agree'}[Number(value)]||'Not sure';
+}
+function setLikert(field,value,btn){
+  const input=document.getElementById(field+'Slider');
+  if(input)input.value=String(value);
+  const row=btn?.closest('.likert-row')||document.querySelector(`.likert-row[data-field="${field}"]`);
+  row?.querySelectorAll('.likert-btn').forEach(button=>button.classList.toggle('active',button===btn));
+  updateConditionPortrait();
+}
 function conditionValues(){
   return {
-    opportunity:Number(document.getElementById('opportunitySlider')?.value||55),
-    recognition:Number(document.getElementById('recognitionSlider')?.value||55),
-    practice:Number(document.getElementById('practiceSlider')?.value||55),
-    benefit:Number(document.getElementById('benefitSlider')?.value||55),
-    joy:Number(document.getElementById('joySlider')?.value||55)
+    opportunity:Number(document.getElementById('opportunitySlider')?.value||50),
+    recognition:Number(document.getElementById('recognitionSlider')?.value||50),
+    practice:Number(document.getElementById('practiceSlider')?.value||50),
+    benefit:Number(document.getElementById('benefitSlider')?.value||50),
+    joy:Number(document.getElementById('joySlider')?.value||50)
   };
 }
 function updateConditionPortrait(){
@@ -2129,7 +2171,7 @@ function updateConditionPortrait(){
     ['benefitValue',values.benefit],
     ['joyValue',values.joy]
   ];
-  fields.forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.textContent=value});
+  fields.forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.textContent=likertLabel(value)});
   const summary=document.getElementById('conditionSummary');
   if(summary){
     const strongestKey=Object.entries(values).sort((a,b)=>b[1]-a[1])[0][0];
@@ -2137,7 +2179,7 @@ function updateConditionPortrait(){
     const orientationNote=values.benefit>=70?' You are especially attuned to self-transcendent purpose — whether young people’s aims extend outward to other people or communities.':values.benefit<=35?' You are not foregrounding benefit to others right now, which can help keep individual meaning, mastery, and identity visible alongside contribution.':'';
     const wellbeingNote=values.joy>=70?' You are also strongly tracking whether purpose feels enlivening or joyful, linking purpose to subjective well-being rather than duty alone.':values.joy<=35?' Joy is less central in your current lens, which may reveal cases where purpose feels serious, demanding, or costly even when it matters.':'';
     const overlooked=selectedOverlooked?` You expect to look first toward ${selectedOverlooked}.`:'';
-    summary.textContent=`Your viewing lens is widest around ${strongestLabels[strongestKey]}, with an overall field-of-view score of ${score}/100.${orientationNote}${wellbeingNote}${overlooked}`;
+    summary.textContent=`Your attention map currently points most strongly toward ${strongestLabels[strongestKey]}. A higher number here only means that theme is more prominent in your responses right now.${orientationNote}${wellbeingNote}${overlooked}`;
   }
   refreshArtifacts();
 }
@@ -2224,7 +2266,7 @@ I would define purpose as:
 ${purposeDefinition||'No purpose definition entered'}
 
 Viewing lens:
-Young people's direction ${values.opportunity}/100; Surrounding supports ${values.recognition}/100; Blocked pathways ${values.practice}/100; Benefit to others ${values.benefit}/100; Joy / subjective well-being ${values.joy}/100; Field of view ${score}/100${selectedOverlooked?`; First place I expect to look: ${selectedOverlooked}`:''}
+Young people's direction: ${likertLabel(values.opportunity)}; Surrounding supports: ${likertLabel(values.recognition)}; Blocked pathways: ${likertLabel(values.practice)}; Benefit to others: ${likertLabel(values.benefit)}; Joy / well-being: ${likertLabel(values.joy)}; Attention map ${score}/100${selectedOverlooked?`; First place I expect to look: ${selectedOverlooked}`:''}
 
 Next-move choice:
 ${currentStance}
@@ -2266,7 +2308,7 @@ function portraitMilestones(){
     {key:'role',label:'Role selected',done:selectedRoles.size>0},
     {key:'youth',label:'Youth named',done:selectedYouthGroups.size>0},
     {key:'definition',label:'Purpose defined',done:purposeDefinition.length>0},
-    {key:'lens',label:'Lens tuned',done:Object.values(conditionValues()).some(v=>v!==55)||!!selectedOverlooked},
+    {key:'lens',label:'Lens question answered',done:Object.values(conditionValues()).some(v=>v!==50)||!!selectedOverlooked},
     {key:'action',label:'Next move selected',done:stanceChosen},
     {key:'features',label:'Reading order built',done:feature.length>0||features.map(f=>f.name).join('|')!==defaultFeatures.map(f=>f.name).join('|')},
     {key:'exchange',label:'Contribution added',done:portraitContributions.reflections.length>0||portraitContributions.questions.length>0||portraitContributions.prompts.length>0||portraitContributions.comments.length>0}
@@ -2342,7 +2384,7 @@ function renderLensFrameSummary(){
   if(!wrap||!mini)return;
   const selected=selectedResonantLenses();
   const p=wrap.querySelector('p');
-  if(p)p.textContent=selected.length?`You have flagged ${selected.length} lens${selected.length===1?'':'es'} as especially resonant. These become stacked color frames in your portrait.`:'No lenses flagged yet. Use the “Resonates” flags on the cards below to build a visual frame for your portrait.';
+  if(p)p.textContent=selected.length?`You have flagged ${selected.length} lens${selected.length===1?'':'es'} as especially resonant. These will appear in your portrait summary.`:'No lenses flagged yet. Use the “Resonates” flags on the cards below to shape your portrait summary.';
   mini.innerHTML=selected.map(n=>`<span class="lens-frame-pill">${escapeHtml(AP_NAMES[n])}</span>`).join('');
 }
 
@@ -2381,7 +2423,7 @@ function renderPortraitReveal(){
         <div class="reveal-grid">
           <div class="reveal-chip"><span>You notice first</span><strong>${escapeHtml(topConditionLabel(values))}</strong></div>
           <div class="reveal-chip"><span>Your reading cue</span><strong>${escapeHtml(featureTop)}</strong></div>
-          <div class="reveal-chip"><span>Field of view</span><strong>${conditionScore}/100</strong></div>
+          <div class="reveal-chip"><span>Attention map</span><strong>${conditionScore}/100</strong></div>
         </div>
         <div class="reveal-actions">
           <button class="btn-sm btn-navy" onclick="downloadResponseSummary()">Download portrait</button>
@@ -2674,12 +2716,12 @@ h1{font-family:Georgia,serif;font-size:40px;line-height:1.15;margin:0 0 10px}
       <article class="card wide">
         <div class="label">Viewing lens</div>
         <h2>How you prepared to see</h2>
-        <div class="text">Young people's direction ${values.opportunity}/100
-Surrounding supports ${values.recognition}/100
-Blocked pathways ${values.practice}/100
-Benefit to others ${values.benefit}/100
-Joy / subjective well-being ${values.joy}/100
-Field of view ${conditionScore}/100${selectedOverlooked?`
+        <div class="text">Young people's direction: ${likertLabel(values.opportunity)}
+Surrounding supports: ${likertLabel(values.recognition)}
+Blocked pathways: ${likertLabel(values.practice)}
+Benefit to others: ${likertLabel(values.benefit)}
+Joy / subjective well-being: ${likertLabel(values.joy)}
+Attention map ${conditionScore}/100${selectedOverlooked?`
 First place I expect to look: ${escapeHtml(selectedOverlooked)}`:''}${resonant.length?`
 Resonant lenses: ${escapeHtml(resonant.join(', '))}`:''}</div>
       </article>
@@ -2752,7 +2794,7 @@ function renderKnapsack(){
     },
     {
       title:'Viewing lens',
-      body:`Field of view ${conditionScore}/100. Youth direction ${values.opportunity}, surrounding supports ${values.recognition}, blocked pathways ${values.practice}.${selectedOverlooked?` First place you expect to look: ${selectedOverlooked}.`:''}`
+      body:`Attention map ${conditionScore}/100. Youth direction: ${likertLabel(values.opportunity)}; surrounding supports: ${likertLabel(values.recognition)}; blocked pathways: ${likertLabel(values.practice)}.${selectedOverlooked?` First place you expect to look: ${selectedOverlooked}.`:''}`
     },
     {
       title:'Your next move',
@@ -2771,7 +2813,7 @@ function renderKnapsack(){
     `${selectedRoles.size} role${selectedRoles.size===1?'':'s'}`,
     `${selectedYouthGroups.size} youth group${selectedYouthGroups.size===1?'':'s'}`,
     `next move: ${currentStance}`,
-    `field of view: ${conditionScore}/100`
+    `attention map: ${conditionScore}/100`
   ].map(text=>`<span class="knapsack-pill">${escapeHtml(text)}</span>`).join('');
   grid.innerHTML=cards.map(card=>`<div class="knapsack-card"><strong>${escapeHtml(card.title)}</strong><p>${escapeHtml(card.body)}</p></div>`).join('');
 }
@@ -2808,7 +2850,7 @@ function toggleAp(toggle){
   const exp=card.querySelector('.ap-expanded');
   const open=exp.style.display==='block';
   exp.style.display=open?'none':'block';
-  toggle.textContent=open?'+ What to look for in practice':'− Hide';
+  toggle.textContent=open?'Examples':'Hide examples';
 }
 function goToAp(n){
   openTab('discussions');
@@ -2942,7 +2984,7 @@ function beginQuestionResponse(question,cat='question',target='discussions'){
   const title=document.getElementById('fTitle');
   const body=document.getElementById('fBody');
   if(title&&!title.value)title.value='Response to an open question';
-  if(body&&!body.value)body.placeholder='Build on the question shown above. What would you add, challenge, clarify, or test?';
+  if(body&&!body.value)body.placeholder='What would you add, change, clarify, or test?';
 }
 function promptWallItem(p){
   const isOpen=p.ctx&&p.ctx.startsWith('open_question');
@@ -3169,6 +3211,7 @@ function renderOpenQuestions(){
 }
 
 // ─── Init ─────────────────────────────────────────────────
+appendSurveyNavigation();
 showAppPanel(location.hash.replace(/^#/,'')||'claim',{scroll:false});
 renderFeatures();
 updateRoleContextNotes();

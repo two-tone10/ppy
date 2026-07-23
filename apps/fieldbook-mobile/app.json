@@ -1,1 +1,1 @@
-{"expo":{"name":"Fieldbook","slug":"fieldbook","version":"0.1.0","orientation":"portrait","scheme":"fieldbook","userInterfaceStyle":"light","ios":{"supportsTablet":true,"bundleIdentifier":"org.purposecommons.fieldbook"},"android":{"package":"org.purposecommons.fieldbook"}}}
+{"expo":{"name":"Compass","slug":"compass","version":"0.1.0","orientation":"portrait","scheme":"compass","userInterfaceStyle":"light","ios":{"supportsTablet":true,"bundleIdentifier":"org.purposecommons.compass"},"android":{"package":"org.purposecommons.compass"}}}

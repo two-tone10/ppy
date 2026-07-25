@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import {View, Text, Pressable, TextInput} from 'react-native';
 
 const activities = [
+  ['What mattered to you today?', 'Did anything today feel important, meaningful, or worth your energy?', 'purpose', '#9b5b4d'],
+  ['Who did it reach?', 'Did what you care about connect to someone, a group, or something bigger than you?', 'scope', '#806d52'],
+  ['Which way were you moving?', 'Did you feel a sense of direction, even if it changed during the day?', 'orientation', '#657b68'],
+  ['What were you drawn to?', 'Did a topic, idea, person, or problem keep pulling your attention today?', 'content', '#6f5577'],
   ['Did you get to try something?', 'Did you get a real chance to try, make, lead, or explore something today?', 'tried', '#ec735f'],
   ['Did someone see it?', 'Did someone notice, name, or reflect back something you brought today?', 'seen', '#8e607e'],
   ['What helped you do it?', 'Did a person, place, tool, time, or bit of permission make something possible today?', 'helped', '#4d8b80'],

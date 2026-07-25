@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, ImageBackground} from 'react-native';
-const lens=[['tried','A chance to try','#ec735f'],['seen','Someone saw it','#8e607e'],['helped','What helped me','#4d8b80'],['other','The room made space','#35405a']];
+const lens=[['purpose','What mattered','#9b5b4d'],['scope','Who it reached','#806d52'],['orientation','A direction','#657b68'],['content','What drew you','#6f5577'],['tried','A chance to try','#ec735f'],['seen','Someone saw it','#8e607e'],['helped','What helped me','#4d8b80'],['other','The room made space','#35405a']];
 const panels=[['purpose','What matters'],['scope','How far it reaches'],['orientation',"Where I'm headed"],['content','What I care about'],['tried','A chance to try'],['seen','Someone saw it'],['helped','What helped me'],['other','The room made space']];
 export default function CompassPortrait({styles,signals=[],mood}) {
   const today=new Date().toISOString().slice(0,10); const todaysSignals=signals.filter(s=>!s.created_at||s.created_at.slice(0,10)===today); const active=new Set(todaysSignals.map(s=>s.tag));

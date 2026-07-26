@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useRef} from 'react';
 import {Animated, ImageBackground, Pressable, ScrollView, Text, View} from 'react-native';
+import {loadYouthData} from '../lib/supabase';
 
 const pieces=[
   ['first light','You opened Compass today.'],['a path','You noticed where you were landing.'],['a window','You named something that mattered.'],['a doorway','You found a little room to move.'],['a spark','You left a trace.'],
@@ -10,7 +11,9 @@ const pieces=[
 const chapters=[['NOTICE','notice a feeling, idea, or pull'],['MOVE','try, make, explore, or change'],['CONNECT','reach beyond yourself'],['MAKE ROOM','find support, recognition, or belonging']];
 
 export default function PuzzleBuild({styles,signals=[],mood}){
-  const unlocked=Math.min(20,1+(mood?2:0)+Math.min(12,signals.length*2));
+  const [personalSignals,setPersonalSignals]=React.useState(signals),[personalMood,setPersonalMood]=React.useState(mood);
+  useEffect(()=>{loadYouthData().then(data=>{setPersonalSignals(data.signals||data.moments||signals);setPersonalMood(data.mood||mood)}).catch(()=>{});},[]);
+  const unlocked=Math.min(20,1+(personalMood?2:0)+Math.min(12,personalSignals.length*2));
   const progress=useRef(new Animated.Value(0)).current;
   useEffect(()=>{Animated.spring(progress,{toValue:unlocked/20,useNativeDriver:false,bounciness:5}).start()},[unlocked]);
   const fill=progress.interpolate({inputRange:[0,1],outputRange:['0%','100%']});

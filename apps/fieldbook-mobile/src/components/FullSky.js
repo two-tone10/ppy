@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Pressable, ImageBackground} from 'react-native';
+import PuzzleBuild from './PuzzleBuild';
 
 export default function FullSky({styles, moods = [], onBack}) {
   return <>
@@ -12,5 +13,7 @@ export default function FullSky({styles, moods = [], onBack}) {
       {moods.length ? moods.map((m, i) => <Text key={i} style={[styles.fullSkyDot, {left: 20 + ((i * 47) % 70) + '%', top: 18 + ((i * 31) % 65) + '%'}]}>{i % 3 === 0 ? '✦' : '·'}</Text>) : <Text style={styles.fullSkyHint}>The sky opens after five check-ins.</Text>}
     </ImageBackground>
     <Text style={styles.skyReflection}>{moods.length ? 'Every dot is one small signal from the group.' : 'Invite a few people to place their weather, then come back here.'}</Text>
+    <Text style={styles.puzzleLaunchText}>YOUR DAILY BUILD</Text>
+    <PuzzleBuild styles={styles} signals={moods} mood={moods.length ? moods[0] : null} />
   </>;
 }

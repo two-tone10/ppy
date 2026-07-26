@@ -12,7 +12,7 @@ const chapters=[['NOTICE','notice a feeling, idea, or pull'],['MOVE','try, make,
 
 export default function PuzzleBuild({styles,signals=[],mood}){
   const [personalSignals,setPersonalSignals]=React.useState(signals),[personalMood,setPersonalMood]=React.useState(mood);
-  useEffect(()=>{loadYouthData().then(data=>{const savedSignals=data.signals?.length?data.signals:data.moments;setPersonalSignals(savedSignals?.length?savedSignals:signals);setPersonalMood(data.mood||mood)}).catch(()=>{});},[]);
+  useEffect(()=>{let mounted=true;const refresh=()=>loadYouthData().then(data=>{if(!mounted)return;const savedSignals=data.signals?.length?data.signals:data.moments;setPersonalSignals(savedSignals?.length?savedSignals:signals);setPersonalMood(data.mood||mood)}).catch(()=>{});refresh();const timer=setInterval(refresh,1800);return()=>{mounted=false;clearInterval(timer)};},[signals,mood]);
   const unlocked=Math.min(20,1+(personalMood?2:0)+Math.min(12,personalSignals.length*2));
   const progress=useRef(new Animated.Value(0)).current;
   useEffect(()=>{Animated.spring(progress,{toValue:unlocked/20,useNativeDriver:false,bounciness:5}).start()},[unlocked]);

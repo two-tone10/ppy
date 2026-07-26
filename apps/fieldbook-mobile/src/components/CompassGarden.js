@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import {View, Text, Animated, ImageBackground} from 'react-native';
 
 export default function CompassGarden({styles, count=0, signals=[], mood}) {
+  return null;
   const leaves = Math.min(count, 12);
   const bloom = useRef(new Animated.Value(0)).current;
   useEffect(()=>{Animated.spring(bloom,{toValue:1,useNativeDriver:true,damping:13}).start()},[leaves]);

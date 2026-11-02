@@ -1,4 +1,10 @@
-# Portraits of Purposeful Youth Exchange
+# Portraits of Purposeful Youth
+
+`index.html` is the public introduction: the idea, the eight lenses, one worked example, and a two-minute try-it. It is static and sends nothing anywhere.
+
+`exchange.html` is the earlier interactive exchange (roles, surveys, discussion, portrait builder). It is kept for reference and is no longer linked. The notes below apply to it.
+
+## Exchange (archived)
 
 Static prototype plus Vercel API route for writing exchange activity to Supabase.
 

@@ -167,6 +167,42 @@ function lensId(value, fallback = 0) {
   return Math.max(0, Math.min(8, n));
 }
 
+const NOTE_KINDS = new Set(['Comment', 'Question', 'Prompt']);
+
+function limited(value, max) {
+  return cleanText(value).slice(0, max);
+}
+
+function required(value, label, max) {
+  const text = cleanText(value);
+  if (!text) {
+    const err = new Error(`${label} is required.`);
+    err.statusCode = 400;
+    throw err;
+  }
+  return text.slice(0, max);
+}
+
+// Public wall for the portraits page: approved nominations and notes only.
+async function wall() {
+  const [nominations, notes] = await Promise.all([
+    supabase(`lens_nominations?select=id,created_at,name,definition,role&${approvedFilter(100)}`),
+    supabase(`exchange_posts?select=id,created_at,author,role,lens_id,title,body&category=eq.portrait_note&${approvedFilter(200)}`)
+  ]);
+  return {
+    nominations: nominations || [],
+    notes: (notes || []).map((n) => ({
+      id: n.id,
+      created_at: n.created_at,
+      author: n.author,
+      role: n.role,
+      lens_id: n.lens_id || 0,
+      kind: n.title,
+      body: n.body
+    }))
+  };
+}
+
 function approvedFilter(limit = 100) {
   return `status=eq.approved&order=created_at.desc&limit=${limit}`;
 }
@@ -429,11 +465,26 @@ async function record(body) {
 
   if (type === 'lens_nomination') {
     const nomination = payload.payload || payload;
+    if (cleanText(payload.website)) return null; // honeypot
     return insert(TABLES.lens_nomination, {
-      name: cleanText(nomination.name || payload.target_id),
-      definition: cleanText(nomination.definition),
-      role: cleanText(nomination.role),
-      status: 'approved'
+      name: required(nomination.name || payload.target_id, 'Lens name', 80),
+      definition: required(nomination.definition, 'Description', 1200),
+      role: limited(nomination.role, 80),
+      status: 'pending'
+    });
+  }
+
+  if (type === 'portrait_note') {
+    if (cleanText(payload.website)) return null; // honeypot
+    const kind = NOTE_KINDS.has(payload.kind) ? payload.kind : 'Comment';
+    return insert(TABLES.discussion_post, {
+      author: limited(payload.author, 80) || 'Anonymous',
+      role: limited(payload.role, 80) || 'Visitor',
+      category: 'portrait_note',
+      lens_id: lensId(payload.lens_id),
+      title: kind,
+      body: required(payload.body, 'Note', 1200),
+      status: 'pending'
     });
   }
 
@@ -474,6 +525,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'GET') {
+      if (url.searchParams.get('wall') === '1') return send(res, 200, await wall());
       return send(res, 200, await bootstrap());
     }
 

@@ -136,6 +136,43 @@ nav ul a.cta{color:#fff;background:var(--teal);padding:.45rem .9rem;border-radiu
 .lens .body b{display:block;color:var(--navy);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem}
 .evidence{font-size:.78rem;color:var(--g400);margin-top:.7rem}
 
+/* commons */
+.commons{background:#fff}
+.forms{margin-top:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.form{border:1px solid var(--line);background:#FBF9F4;padding:2rem;border-radius:2px}
+.form h3{font-weight:400;font-size:1.45rem;margin-bottom:.3rem}
+.form h3 .rn{font-style:italic;color:var(--g400);font-size:1.05rem;margin-right:.5rem}
+.form .one{color:var(--g600);font-size:.92rem;margin-bottom:1.2rem}
+.form label{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--g600);margin:1rem 0 .35rem}
+.form input,.form textarea,.form select{width:100%;font:1rem var(--sans);padding:.65rem .8rem;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink)}
+.form textarea{min-height:110px;resize:vertical;line-height:1.5}
+.form input:focus,.form textarea:focus,.form select:focus{outline:2px solid var(--teal);border-color:transparent}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.form .kinds{display:flex;gap:.4rem;flex-wrap:wrap}
+.form .kinds button{font:500 .85rem var(--sans);padding:.5rem .85rem;border:1px solid var(--line);border-radius:3px;background:#fff;cursor:pointer;color:var(--ink)}
+.form .kinds button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.form .send{margin-top:1.3rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.form .msg{font-size:.85rem;color:var(--g600)}
+.form .msg.err{color:#B9654E}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.wall-head{margin:4.5rem 0 1.5rem;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:.8rem}
+.wall-head h3{font-weight:400;font-size:1.6rem}
+.filters{display:flex;gap:1.2rem}
+.filters button{background:none;border:0;font:500 .85rem var(--sans);color:var(--g600);cursor:pointer;padding:.2rem 0;border-bottom:2px solid transparent}
+.filters button.on{color:var(--navy);border-color:var(--navy)}
+.wall{columns:3 300px;column-gap:1.5rem}
+.note{break-inside:avoid;margin-bottom:1.5rem;padding:1.4rem 1.5rem;background:#FBF9F4;border:1px solid var(--line)}
+.note.nom{background:#fff;border:1px dashed #A9A396}
+.note .tag{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--teal);margin-bottom:.5rem}
+.note.nom .tag{color:#7A6F5E}
+.note h4{font:400 1.3rem var(--serif);color:var(--navy);margin-bottom:.35rem}
+.note p{font-size:.95rem;color:var(--ink);line-height:1.6;white-space:pre-line}
+.note.kind-Prompt p{font-family:var(--serif);font-style:italic;font-size:1.05rem}
+.note .by{margin-top:.8rem;font-size:.8rem;color:var(--g600)}
+.mine{outline:2px solid var(--teal-light)}
+.mine .tag::after{content:" · waiting for review";color:var(--g400);letter-spacing:.06em}
+.empty{color:var(--g600);font-style:italic;font-family:var(--serif);font-size:1.1rem;padding:1rem 0}
+.missing{margin-top:1rem;font-size:.88rem}
 footer{background:var(--ink);color:rgba(255,255,255,.6);padding:3.5rem 0;font-size:.9rem}
 footer .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem}
 footer strong{color:#fff;font-family:var(--serif);font-size:1.15rem;font-weight:400;display:block;margin-bottom:.5rem}
@@ -143,6 +180,7 @@ footer a{color:var(--teal-light)}
 footer .draft{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:1rem}
 
 @media (max-width:900px){
+  .forms,.form .row{grid-template-columns:1fr}
   body{font-size:16px}
   section{padding:4rem 0}
   .wrap{padding:0 1.25rem}
@@ -173,6 +211,7 @@ footer .draft{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:1rem}
       <li><a href="#idea">The idea</a></li>
       <li><a href="#example">An example</a></li>
       <li><a href="#lenses">Eight lenses</a></li>
+      <li><a href="#commons">Commons</a></li>
       <li><a class="cta" href="#draw">Draw a portrait</a></li>
     </ul>
   </div>
@@ -247,6 +286,61 @@ footer .draft{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:1rem}
     <div class="groups" id="lensList"></div>
   </div>
 </section>
+
+<section class="commons" id="commons">
+  <div class="wrap">
+    <div class="narrow">
+      <div class="kicker">The commons</div>
+      <h2>What is the portrait missing?</h2>
+      <p class="lead">The eight lenses are a working draft. If you see a part of young people's purpose they don't cover, propose a new lens. If you have a comment, a question, or a prompt you'd ask a young person, add it to the wall.</p>
+    </div>
+    <div class="forms">
+      <form class="form" id="nomForm" novalidate>
+        <h3><span class="rn">IX.</span>Nominate a lens</h3>
+        <p class="one">A part of purpose the eight lenses don't yet look at.</p>
+        <label for="nName">Name of the lens</label>
+        <input id="nName" maxlength="80" placeholder="e.g. Belonging" required/>
+        <label for="nDef">What does it look at, and why does it matter?</label>
+        <textarea id="nDef" maxlength="1200" required placeholder="A sentence or two is enough."></textarea>
+        <label for="nRole">You are a… (optional)</label>
+        <select id="nRole"></select>
+        <div class="hp" aria-hidden="true"><input id="nWeb" tabindex="-1" autocomplete="off"/></div>
+        <div class="send"><button class="btn" type="submit">Nominate</button><span class="msg" aria-live="polite"></span></div>
+      </form>
+      <form class="form" id="noteForm" novalidate>
+        <h3>Add to the wall</h3>
+        <p class="one">About the whole idea, or about one lens.</p>
+        <label>Kind of note</label>
+        <div class="kinds" id="kinds">
+          <button type="button" class="on" data-k="Comment">Comment</button>
+          <button type="button" data-k="Question">Question</button>
+          <button type="button" data-k="Prompt">A prompt to ask a young person</button>
+        </div>
+        <label for="tLens">About</label>
+        <select id="tLens"></select>
+        <label for="tBody">Your note</label>
+        <textarea id="tBody" maxlength="1200" required placeholder="What are you seeing, wondering, or asking?"></textarea>
+        <div class="row">
+          <div><label for="tName">Name (optional)</label><input id="tName" maxlength="80" placeholder="First name or initials"/></div>
+          <div><label for="tRole">You are a… (optional)</label><select id="tRole"></select></div>
+        </div>
+        <div class="hp" aria-hidden="true"><input id="tWeb" tabindex="-1" autocomplete="off"/></div>
+        <div class="send"><button class="btn" type="submit">Add to the wall</button><span class="msg" aria-live="polite"></span></div>
+      </form>
+    </div>
+    <p class="private" style="margin-top:1rem">We read every note before it goes on the wall. Please don't include a young person's full name or anything that could identify them.</p>
+    <div class="wall-head">
+      <h3>On the wall</h3>
+      <div class="filters" id="filters">
+        <button type="button" class="on" data-f="all">Everything</button>
+        <button type="button" data-f="nom">Proposed lenses</button>
+        <button type="button" data-f="note">Comments &amp; prompts</button>
+      </div>
+    </div>
+    <div class="wall" id="wall"><p class="empty">Loading…</p></div>
+  </div>
+</section>
+
 
 </main>
 
@@ -567,6 +661,7 @@ function finish(){
   card.innerHTML=`${dots()}<div class="grp">Finished</div><h3>${esc(A.name?`${A.name}'s portrait`:'Your portrait')}</h3>
     <p class="one">Tap any bar above to change an answer.</p><ul class="look">${items}</ul>
     <div class="finish"><button class="btn" id="save" type="button">Save as image</button><button class="btn btn-line" id="again" type="button">Draw another</button></div>
+    <p class="missing">Is something missing from this portrait? <a href="#commons">Nominate a lens or add a note →</a></p>
     <p class="private">Nothing was saved or sent. The image downloads only to your device.</p>`;
   document.getElementById('save').onclick=save;
   document.getElementById('again').onclick=()=>{for(const k in A)delete A[k];step=0;render();};
@@ -590,6 +685,53 @@ async function save(){
   img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 render();
+
+/* ── commons ── */
+const API='/api/ppy';
+const ROLES=['Parent or caregiver','Teacher','Coach','Principal or school leader','Program leader','Mentor','Counselor','Researcher','Young person','Other'];
+const roleOpts='<option value="">Prefer not to say</option>'+ROLES.map(r=>`<option>${r}</option>`).join('');
+document.getElementById('nRole').innerHTML=roleOpts;
+document.getElementById('tRole').innerHTML=roleOpts;
+document.getElementById('tLens').innerHTML='<option value="0">The portrait idea as a whole</option>'+LENSES.map((l,i)=>`<option value="${i+1}">${ROMAN[i]}. ${l.n}</option>`).join('');
+let kind='Comment',wallData={nominations:[],notes:[]},filter='all';const mine=[];
+document.getElementById('kinds').onclick=e=>{const b=e.target.closest('button');if(!b)return;kind=b.dataset.k;
+  document.querySelectorAll('#kinds button').forEach(x=>x.classList.toggle('on',x===b));
+  document.getElementById('tBody').placeholder=kind==='Prompt'?'A question you would ask a young person, e.g. "When did you last lose track of time helping someone?"':kind==='Question'?'What do you still want to know?':'What are you seeing, wondering, or asking?';};
+document.getElementById('filters').onclick=e=>{const b=e.target.closest('button');if(!b)return;filter=b.dataset.f;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));drawWall();};
+
+const when=d=>{const t=new Date(d);return isNaN(t)?'':t.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});};
+const byline=(name,role,d)=>[name&&name!=='Anonymous'?esc(name):'',role&&role!=='Visitor'?esc(role):'',when(d)].filter(Boolean).join(' · ');
+function nomCard(n,me){return `<article class="note nom${me?' mine':''}"><div class="tag">Proposed lens</div><h4>${esc(n.name)}</h4><p>${esc(n.definition)}</p><div class="by">${byline('',n.role,n.created_at)}</div></article>`;}
+function noteCard(n,me){const lens=n.lens_id?`${ROMAN[n.lens_id-1]}. ${LENSES[n.lens_id-1].n}`:'The whole portrait';
+  return `<article class="note kind-${esc(n.kind)}${me?' mine':''}"><div class="tag">${n.kind==='Prompt'?'A prompt to ask':esc(n.kind)} · ${lens}</div><p>${esc(n.body)}</p><div class="by">${byline(n.author,n.role,n.created_at)}</div></article>`;}
+function drawWall(){
+  const items=[...mine,...wallData.nominations.map(n=>({t:'nom',d:n})),...wallData.notes.map(n=>({t:'note',d:n}))]
+    .filter(x=>filter==='all'||x.t===filter);
+  document.getElementById('wall').innerHTML=items.length?items.map(x=>x.t==='nom'?nomCard(x.d,x.me):noteCard(x.d,x.me)).join('')
+    :'<p class="empty">Nothing here yet. Be the first to add something.</p>';
+}
+fetch(API+'?wall=1').then(r=>r.ok?r.json():Promise.reject()).then(d=>{wallData=d;
+  const sort=a=>a.sort((x,y)=>new Date(y.created_at)-new Date(x.created_at));sort(wallData.nominations);sort(wallData.notes);drawWall();})
+  .catch(()=>{document.getElementById('wall').innerHTML='<p class="empty">The wall could not load right now.</p>';});
+
+async function submit(form,type,payload,onDone){
+  const msg=form.querySelector('.msg'),btn=form.querySelector('[type=submit]');
+  msg.className='msg';msg.textContent='Sending…';btn.disabled=true;
+  try{const r=await fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({type,payload})});
+    const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||'Something went wrong.');
+    onDone();form.reset();msg.textContent='Thank you. It will appear on the wall once we have read it.';}
+  catch(e){msg.className='msg err';msg.textContent=e.message||'Something went wrong. Please try again.';}
+  finally{btn.disabled=false;}
+}
+document.getElementById('nomForm').onsubmit=e=>{e.preventDefault();const f=e.target,
+  p={name:f.nName.value.trim(),definition:f.nDef.value.trim(),role:f.nRole.value,website:f.nWeb.value};
+  if(!p.name||!p.definition){const m=f.querySelector('.msg');m.className='msg err';m.textContent='Please add a name and a short description.';return;}
+  submit(f,'lens_nomination',p,()=>{mine.unshift({t:'nom',me:1,d:{...p,created_at:new Date()}});drawWall();});};
+document.getElementById('noteForm').onsubmit=e=>{e.preventDefault();const f=e.target,
+  p={kind,lens_id:+f.tLens.value,body:f.tBody.value.trim(),author:f.tName.value.trim(),role:f.tRole.value,website:f.tWeb.value};
+  if(!p.body){const m=f.querySelector('.msg');m.className='msg err';m.textContent='Please write a note first.';return;}
+  submit(f,'portrait_note',p,()=>{mine.unshift({t:'note',me:1,d:{...p,created_at:new Date()}});drawWall();});};
 </script>
 </body>
 </html>

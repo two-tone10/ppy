@@ -173,6 +173,19 @@ nav ul a.cta{color:#fff;background:var(--teal);padding:.45rem .9rem;border-radiu
 .mine .tag::after{content:" · waiting for review";color:var(--g400);letter-spacing:.06em}
 .empty{color:var(--g600);font-style:italic;font-family:var(--serif);font-size:1.1rem;padding:1rem 0}
 .missing{margin-top:1rem;font-size:.88rem}
+.acts{margin-top:.9rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.acts .by{margin:0}
+.acts span{display:flex;gap:.3rem;align-items:center}
+.vote,.flag{background:none;border:1px solid var(--line);border-radius:3px;font:500 .78rem var(--sans);color:var(--g600);padding:.25rem .55rem;cursor:pointer}
+.vote:hover,.flag:hover{border-color:var(--navy);color:var(--navy)}
+.vote.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.flag{border-color:transparent}
+.confirm{margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--g600)}
+.confirm input{width:100%;font:.88rem var(--sans);padding:.45rem .6rem;border:1px solid var(--line);border-radius:3px;margin:.4rem 0}
+.confirm button{font:600 .8rem var(--sans);padding:.4rem .75rem;border-radius:3px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;margin-right:.4rem}
+.confirm button.no{background:none;color:var(--g600);border-color:var(--line)}
+.note.gone{opacity:.6}
+.footnote{margin-top:1.5rem;font-size:.82rem;color:var(--g600);border-top:1px solid var(--line);padding-top:1rem;max-width:46rem}
 footer{background:var(--ink);color:rgba(255,255,255,.6);padding:3.5rem 0;font-size:.9rem}
 footer .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem}
 footer strong{color:#fff;font-family:var(--serif);font-size:1.15rem;font-weight:400;display:block;margin-bottom:.5rem}
@@ -338,6 +351,7 @@ footer .draft{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:1rem}
       </div>
     </div>
     <div class="wall" id="wall"><p class="empty">Loading…</p></div>
+    <p class="footnote">This space is monitored. Notes that are off-topic, unkind, or could identify a young person will be removed. If you see something that shouldn't be here, use <b>Flag</b> and it will be hidden until we review it.</p>
   </div>
 </section>
 
@@ -702,9 +716,36 @@ document.getElementById('filters').onclick=e=>{const b=e.target.closest('button'
 
 const when=d=>{const t=new Date(d);return isNaN(t)?'':t.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});};
 const byline=(name,role,d)=>[name&&name!=='Anonymous'?esc(name):'',role&&role!=='Visitor'?esc(role):'',when(d)].filter(Boolean).join(' · ');
-function nomCard(n,me){return `<article class="note nom${me?' mine':''}"><div class="tag">Proposed lens</div><h4>${esc(n.name)}</h4><p>${esc(n.definition)}</p><div class="by">${byline('',n.role,n.created_at)}</div></article>`;}
+const voted=new Set(JSON.parse(localStorage.getItem('ppy-votes')||'[]'));
+function acts(t,n,me){
+  const by=t==='nom'?byline('',n.role,n.created_at):byline(n.author,n.role,n.created_at);
+  if(me)return `<div class="by">${by}</div>`;
+  const on=voted.has(n.id);
+  return `<div class="acts"><div class="by">${by}</div><span>
+    <button type="button" class="vote${on?' on':''}" data-vote="${t}:${n.id}" aria-pressed="${on}" title="Upvote">▲ ${n.votes||0}</button>
+    <button type="button" class="flag" data-flag="${t}:${n.id}" title="Report this">Flag</button></span></div>`;}
+function nomCard(n,me){return `<article class="note nom${me?' mine':''}" data-id="${n.id||''}"><div class="tag">Proposed lens</div><h4>${esc(n.name)}</h4><p>${esc(n.definition)}</p>${acts('nom',n,me)}</article>`;}
 function noteCard(n,me){const lens=n.lens_id?`${ROMAN[n.lens_id-1]}. ${LENSES[n.lens_id-1].n}`:'The whole portrait';
-  return `<article class="note kind-${esc(n.kind)}${me?' mine':''}"><div class="tag">${n.kind==='Prompt'?'A prompt to ask':esc(n.kind)} · ${lens}</div><p>${esc(n.body)}</p><div class="by">${byline(n.author,n.role,n.created_at)}</div></article>`;}
+  return `<article class="note kind-${esc(n.kind)}${me?' mine':''}" data-id="${n.id||''}"><div class="tag">${n.kind==='Prompt'?'A prompt to ask':esc(n.kind)} · ${lens}</div><p>${esc(n.body)}</p>${acts('note',n,me)}</article>`;}
+document.getElementById('wall').addEventListener('click',async e=>{
+  const v=e.target.closest('[data-vote]'),f=e.target.closest('[data-flag]');
+  if(v){const [target,id]=v.dataset.vote.split(':');if(voted.has(id))return;
+    const item=(target==='nom'?wallData.nominations:wallData.notes).find(x=>x.id===id);
+    voted.add(id);localStorage.setItem('ppy-votes',JSON.stringify([...voted]));item.votes=(item.votes||0)+1;drawWall();
+    fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({type:'wall_vote',payload:{target,id}})}).catch(()=>{});}
+  if(f){const card=f.closest('.note');if(card.querySelector('.confirm'))return;const [target,id]=f.dataset.flag.split(':');
+    card.insertAdjacentHTML('beforeend',`<div class="confirm">Hide this and ask the moderator to review it?
+      <input maxlength="300" placeholder="What's wrong with it? (optional)"/><button type="button" class="yes">Flag it</button><button type="button" class="no">Cancel</button></div>`);
+    const box=card.querySelector('.confirm');
+    box.querySelector('.no').onclick=()=>box.remove();
+    box.querySelector('.yes').onclick=async()=>{const reason=box.querySelector('input').value.trim();
+      box.innerHTML='Sending…';
+      try{const r=await fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({type:'wall_flag',payload:{target,id,reason}})});
+        if(!r.ok)throw 0;
+        const list=target==='nom'?wallData.nominations:wallData.notes;list.splice(list.findIndex(x=>x.id===id),1);
+        card.classList.add('gone');card.innerHTML='<p class="empty" style="padding:0">Thanks. This is hidden while we review it.</p>';}
+      catch(err){box.innerHTML='That didn\'t go through. Please try again or email alb325@cornell.edu.';}};}
+});
 function drawWall(){
   const items=[...mine,...wallData.nominations.map(n=>({t:'nom',d:n})),...wallData.notes.map(n=>({t:'note',d:n}))]
     .filter(x=>filter==='all'||x.t===filter);

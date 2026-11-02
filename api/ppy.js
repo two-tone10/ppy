@@ -183,15 +183,76 @@ function required(value, label, max) {
   return text.slice(0, max);
 }
 
+// Moderator alerts. Off unless NOTIFY_URL is set in Vercel settings
+// (for example an ntfy.sh topic URL; NOTIFY_EMAIL adds an email copy there).
+async function notify(title, message) {
+  const target = process.env.NOTIFY_URL;
+  if (!target) return;
+  try {
+    const headers = { title: title.replace(/[^\x20-\x7E]/g, ''), click: `${SITE}/moderate` };
+    if (process.env.NOTIFY_EMAIL) headers.email = process.env.NOTIFY_EMAIL;
+    await fetch(target, { method: 'POST', headers, body: `${message}\n\nReview: ${SITE}/moderate` });
+  } catch (e) {
+    // A failed alert should never block a submission.
+  }
+}
+
+const SITE = 'https://ppy-pi.vercel.app';
+const WALL_TABLES = { nom: 'lens_nominations', note: 'exchange_posts' };
+
+function wallTarget(payload) {
+  const kind = payload.target === 'nom' ? 'nom' : payload.target === 'note' ? 'note' : '';
+  const id = cleanText(payload.id);
+  if (!kind || !/^[0-9a-f-]{36}$/i.test(id)) {
+    const err = new Error('Unknown item.');
+    err.statusCode = 400;
+    throw err;
+  }
+  return { kind, id, table: WALL_TABLES[kind] };
+}
+
+async function wallItem(table, id) {
+  const extra = table === 'exchange_posts' ? '&category=eq.portrait_note' : '';
+  const rows = await supabase(`${table}?select=*&id=eq.${id}${extra}`);
+  return rows && rows[0];
+}
+
+function itemText(kind, row) {
+  return kind === 'nom' ? `Proposed lens: ${row.name}\n${row.definition}` : `${row.title}: ${row.body}`;
+}
+
+// Everything the moderation page needs, with flag and vote tallies.
+async function commonsAdmin() {
+  const [noms, notes, events] = await Promise.all([
+    supabase('lens_nominations?select=*&status=neq.archived&order=created_at.desc&limit=500'),
+    supabase('exchange_posts?select=*&category=eq.portrait_note&status=neq.archived&order=created_at.desc&limit=500'),
+    supabase('interaction_events?select=event_type,target_id,payload,created_at&event_type=in.(wall_upvote,wall_flag)&limit=20000')
+  ]);
+  const votes = {}, flags = {};
+  for (const ev of events || []) {
+    if (ev.event_type === 'wall_upvote') votes[ev.target_id] = (votes[ev.target_id] || 0) + 1;
+    else (flags[ev.target_id] = flags[ev.target_id] || []).push({ reason: (ev.payload && ev.payload.reason) || '', at: ev.created_at });
+  }
+  const shape = (kind, r) => ({ ...r, kind, votes: votes[r.id] || 0, flags: flags[r.id] || [] });
+  return {
+    items: [...(noms || []).map((r) => shape('nom', r)), ...(notes || []).map((r) => shape('note', r))]
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+  };
+}
+
 // Public wall for the portraits page: approved nominations and notes only.
 async function wall() {
-  const [nominations, notes] = await Promise.all([
+  const [nominations, notes, upvotes] = await Promise.all([
     supabase(`lens_nominations?select=id,created_at,name,definition,role&${approvedFilter(100)}`),
-    supabase(`exchange_posts?select=id,created_at,author,role,lens_id,title,body&category=eq.portrait_note&${approvedFilter(200)}`)
+    supabase(`exchange_posts?select=id,created_at,author,role,lens_id,title,body&category=eq.portrait_note&${approvedFilter(200)}`),
+    supabase('interaction_events?select=target_id&event_type=eq.wall_upvote&limit=20000')
   ]);
+  const votes = {};
+  for (const v of upvotes || []) votes[v.target_id] = (votes[v.target_id] || 0) + 1;
   return {
-    nominations: nominations || [],
+    nominations: (nominations || []).map((n) => ({ ...n, votes: votes[n.id] || 0 })),
     notes: (notes || []).map((n) => ({
+      votes: votes[n.id] || 0,
       id: n.id,
       created_at: n.created_at,
       author: n.author,
@@ -466,18 +527,21 @@ async function record(body) {
   if (type === 'lens_nomination') {
     const nomination = payload.payload || payload;
     if (cleanText(payload.website)) return null; // honeypot
-    return insert(TABLES.lens_nomination, {
+    const row = {
       name: required(nomination.name || payload.target_id, 'Lens name', 80),
       definition: required(nomination.definition, 'Description', 1200),
       role: limited(nomination.role, 80),
       status: 'pending'
-    });
+    };
+    const saved = await insert(TABLES.lens_nomination, row);
+    await notify('Portraits: new lens nomination', itemText('nom', row));
+    return saved;
   }
 
   if (type === 'portrait_note') {
     if (cleanText(payload.website)) return null; // honeypot
     const kind = NOTE_KINDS.has(payload.kind) ? payload.kind : 'Comment';
-    return insert(TABLES.discussion_post, {
+    const row = {
       author: limited(payload.author, 80) || 'Anonymous',
       role: limited(payload.role, 80) || 'Visitor',
       category: 'portrait_note',
@@ -485,7 +549,29 @@ async function record(body) {
       title: kind,
       body: required(payload.body, 'Note', 1200),
       status: 'pending'
-    });
+    };
+    const saved = await insert(TABLES.discussion_post, row);
+    await notify(`Portraits: new ${kind.toLowerCase()} for the wall`, itemText('note', row));
+    return saved;
+  }
+
+  if (type === 'wall_vote') {
+    const t = wallTarget(payload);
+    const item = await wallItem(t.table, t.id);
+    if (!item || item.status !== 'approved') return null;
+    return insert(TABLES.event, { event_type: 'wall_upvote', target_type: t.kind, target_id: t.id, payload: {} });
+  }
+
+  if (type === 'wall_flag') {
+    const t = wallTarget(payload);
+    const item = await wallItem(t.table, t.id);
+    if (!item) return null;
+    const reason = limited(payload.reason, 300);
+    await insert(TABLES.event, { event_type: 'wall_flag', target_type: t.kind, target_id: t.id, payload: { reason } });
+    // Hide flagged items until reviewed.
+    if (item.status === 'approved') await update(t.table, t.id, { status: 'pending' });
+    await notify('Portraits: an item was flagged and hidden', `${itemText(t.kind, item)}${reason ? `\n\nReason given: ${reason}` : ''}`);
+    return { hidden: true };
   }
 
   return insert(TABLES.event, {
@@ -503,6 +589,10 @@ module.exports = async function handler(req, res) {
 
     if (url.searchParams.get('admin') === '1') {
       requireAdmin(req);
+
+      if (req.method === 'GET' && url.searchParams.get('commons') === '1') {
+        return send(res, 200, await commonsAdmin());
+      }
 
       if (req.method === 'GET') {
         const query = Object.fromEntries(url.searchParams.entries());

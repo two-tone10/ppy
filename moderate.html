@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Moderate · Portraits of Purposeful Youth</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#0D1A2E;--navy:#1E2D4A;--teal:#3B7A8F;--line:#E0DEDB;--g400:#B0ADA8;--g600:#6B6864;--red:#B9654E;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:#F5F1EB;color:var(--ink);line-height:1.6}
+header{background:var(--ink);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+header h1{font:400 1.2rem var(--serif)}
+header a{color:#7BBFD4;font-size:.85rem}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+.login{background:#fff;border:1px solid var(--line);padding:2rem;max-width:460px}
+.login p{color:var(--g600);font-size:.9rem;margin:.4rem 0 1rem}
+input,textarea{width:100%;font:1rem var(--sans);padding:.6rem .75rem;border:1px solid var(--line);border-radius:3px}
+button{font:600 .85rem var(--sans);padding:.5rem .9rem;border-radius:3px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer}
+button.line{background:#fff;color:var(--navy)}
+button.red{background:#fff;color:var(--red);border-color:var(--red)}
+.tabs{display:flex;gap:1.5rem;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;border-radius:0;color:var(--g600);padding:.6rem 0;font-weight:500}
+.tabs button.on{color:var(--navy);border-color:var(--navy)}
+.tabs b{display:inline-block;min-width:1.4rem;padding:0 .35rem;margin-left:.35rem;border-radius:999px;background:var(--line);color:var(--navy);font-size:.75rem;text-align:center}
+.tabs button.alert b{background:var(--red);color:#fff}
+.item{background:#fff;border:1px solid var(--line);padding:1.3rem 1.4rem;margin-bottom:1rem}
+.item.flagged{border-left:4px solid var(--red)}
+.tag{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--teal)}
+.item h3{font:400 1.25rem var(--serif);color:var(--navy);margin:.2rem 0}
+.item p{white-space:pre-line}
+.meta{font-size:.8rem;color:var(--g600);margin-top:.6rem}
+.flags{margin-top:.7rem;font-size:.85rem;color:var(--red)}
+.flags li{margin-left:1.1rem}
+.acts{margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.empty{color:var(--g600);font:italic 1.05rem var(--serif);padding:1rem 0}
+.err{color:var(--red);font-size:.9rem;margin-top:.7rem}
+</style>
+</head>
+<body>
+<header><h1>Portraits · Moderate the commons</h1><a href="/#commons" target="_blank">View the wall ↗</a></header>
+<main id="app"></main>
+<script>
+const API='/api/ppy';
+const LENSES=['Sense of Purpose','Scope and Awareness','Orientation','Content','Opportunities for Practice','Recognition and Reflection','Environmental Affordances','Cultural Context'];
+const ROMAN=['I','II','III','IV','V','VI','VII','VIII'];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const app=document.getElementById('app');
+let token=localStorage.getItem('ppy-admin')||'',items=[],tab='pending';
+
+function login(msg){
+  app.innerHTML=`<form class="login" id="lf"><h2 style="font:400 1.4rem var(--serif)">Sign in</h2>
+    <p>Paste the ADMIN_TOKEN from the Vercel project settings. It is remembered on this device only.</p>
+    <input id="tk" type="password" autocomplete="current-password" placeholder="Admin token"/>
+    <div style="margin-top:1rem"><button>Open</button></div>${msg?`<p class="err">${msg}</p>`:''}</form>`;
+  document.getElementById('lf').onsubmit=e=>{e.preventDefault();token=document.getElementById('tk').value.trim();localStorage.setItem('ppy-admin',token);load();};
+}
+async function api(path,opts={}){
+  const r=await fetch(API+path,{...opts,headers:{authorization:'Bearer '+token,'content-type':'application/json'}});
+  const d=await r.json().catch(()=>({}));
+  if(r.status===401){localStorage.removeItem('ppy-admin');throw Object.assign(new Error('That token did not work.'),{auth:1});}
+  if(!r.ok)throw new Error(d.error||'Request failed.');return d;
+}
+async function load(){
+  if(!token)return login();
+  app.innerHTML='<p class="empty">Loading…</p>';
+  try{items=(await api('?admin=1&commons=1')).items;draw();}
+  catch(e){e.auth?login(e.message):app.innerHTML=`<p class="err">${esc(e.message)}</p>`;}
+}
+const groups={pending:i=>i.status==='pending',approved:i=>i.status==='approved',rejected:i=>i.status==='rejected'};
+function draw(){
+  const count=k=>items.filter(groups[k]).length,flaggedWaiting=items.some(i=>i.status==='pending'&&i.flags.length);
+  const list=items.filter(groups[tab]);
+  app.innerHTML=`<div class="tabs">
+    <button data-t="pending" class="${tab==='pending'?'on':''} ${count('pending')?'alert':''}">Waiting<b>${count('pending')}</b></button>
+    <button data-t="approved" class="${tab==='approved'?'on':''}">On the wall<b>${count('approved')}</b></button>
+    <button data-t="rejected" class="${tab==='rejected'?'on':''}">Removed<b>${count('rejected')}</b></button></div>
+    ${tab==='pending'&&flaggedWaiting?'<p class="meta" style="margin:-.5rem 0 1rem">Items with a red edge were flagged by a visitor and hidden from the wall.</p>':''}
+    ${list.length?list.map(card).join(''):'<p class="empty">Nothing here.</p>'}`;
+  app.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw();});
+  app.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>setStatus(b.dataset.id,b.dataset.k,b.dataset.s,b));
+}
+function card(i){
+  const when=new Date(i.created_at).toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'});
+  const head=i.kind==='nom'?`<div class="tag">Proposed lens</div><h3>${esc(i.name)}</h3><p>${esc(i.definition)}</p>`
+    :`<div class="tag">${esc(i.title)} · ${i.lens_id?ROMAN[i.lens_id-1]+'. '+LENSES[i.lens_id-1]:'The whole portrait'}</div><p style="margin-top:.4rem">${esc(i.body)}</p>`;
+  const who=i.kind==='nom'?(i.role||''):[i.author!=='Anonymous'?i.author:'',i.role!=='Visitor'?i.role:''].filter(Boolean).join(' · ');
+  const btn=(s,label,cls='')=>`<button class="${cls}" data-id="${i.id}" data-k="${i.kind}" data-s="${s}">${label}</button>`;
+  const acts=i.status==='pending'?btn('approved','Approve')+btn('rejected','Remove','red')
+    :i.status==='approved'?btn('rejected','Remove from wall','red')
+    :btn('approved','Restore to wall','line')+btn('archived','Archive','red');
+  return `<div class="item ${i.flags.length?'flagged':''}">${head}
+    <div class="meta">${[who,when,`▲ ${i.votes}`].filter(Boolean).map(esc).join(' · ')}</div>
+    ${i.flags.length?`<ul class="flags">${i.flags.map(f=>`<li>Flagged ${new Date(f.at).toLocaleDateString()}${f.reason?': '+esc(f.reason):''}</li>`).join('')}</ul>`:''}
+    <div class="acts">${acts}</div></div>`;
+}
+async function setStatus(id,kind,status,b){
+  if(status==='archived'&&!confirm('Archive this? It will no longer show here or on the wall.'))return;
+  b.disabled=true;
+  try{await api('?admin=1',{method:'PATCH',body:JSON.stringify({type:kind==='nom'?'nominations':'posts',id,status})});
+    items.find(x=>x.id===id).status=status;if(status==='archived')items=items.filter(x=>x.id!==id);draw();}
+  catch(e){b.disabled=false;alert(e.message);}
+}
+load();
+</script>
+</body>
+</html>

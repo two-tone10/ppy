@@ -62,7 +62,7 @@ nav ul a.cta{color:#fff;background:var(--teal);padding:.45rem .9rem;border-radiu
 .claim{font-family:var(--serif);font-size:1.3rem;color:var(--navy);border-left:3px solid var(--teal);padding-left:1.3rem;margin-top:2rem}
 
 /* scene */
-.scene{display:block;width:100%;height:auto;background:var(--paper);border-radius:10px}
+.scene{display:block;width:100%;height:auto;background:#FBF9F4}
 .scene .focus{animation:pulse 1.3s ease-in-out infinite}
 .scene .pop{animation:pop .6s ease-out}
 @keyframes pulse{50%{opacity:.25}}
@@ -74,43 +74,43 @@ nav ul a.cta{color:#fff;background:var(--teal);padding:.45rem .9rem;border-radiu
 .example .lead{color:rgba(255,255,255,.7)}
 .example em{color:var(--teal-light)}
 .ex-grid{margin-top:2.5rem;display:grid;grid-template-columns:1.35fr 1fr;gap:2.5rem;align-items:start}
-.ex-grid .scene{box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.ex-grid .scene{box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
 .notes{list-style:none;display:grid;gap:.85rem}
-.notes li{font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.85);padding-left:1.4rem;position:relative}
-.notes li::before{content:"";position:absolute;left:0;top:.35rem;width:12px;height:10px;border:2px solid var(--c);transform:skew(-6deg)}
+.notes li{font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.85);padding-left:2.4rem;position:relative}
+.notes li::before{content:attr(data-n);position:absolute;left:0;top:-.05rem;font:italic .85rem var(--serif);color:rgba(255,255,255,.45)}
 .notes b{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:600}
 .takeaway{margin-top:2.5rem;font-family:var(--serif);font-size:1.3rem;line-height:1.5;max-width:46rem}
 .small{font-size:.8rem;color:rgba(255,255,255,.45);margin-top:1rem}
 
 /* studio */
 .draw{background:var(--parchment)}
-.studio{margin-top:2.5rem;display:grid;grid-template-columns:340px 1fr;gap:2.5rem;align-items:start}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.8rem;min-height:400px;display:flex;flex-direction:column}
-.dots{display:flex;gap:.45rem;margin-bottom:1.6rem}
-.dots button{width:24px;height:18px;border:2px solid var(--line);background:none;transform:skew(-6deg);cursor:pointer;padding:0}
-.dots button.done{border-color:var(--c);background:color-mix(in srgb,var(--c) 18%,transparent)}
-.dots button.unk{border-color:var(--c);border-style:dashed}
-.dots button.now{outline:2px solid var(--navy);outline-offset:2px}
+.studio{margin-top:2.5rem;display:grid;grid-template-columns:340px minmax(0,720px);justify-content:center;gap:2.5rem;align-items:start}
+.card{background:#FBF9F4;border:1px solid var(--line);border-radius:2px;padding:2rem;min-height:400px;display:flex;flex-direction:column}
+.dots{display:flex;gap:4px;margin-bottom:1.8rem}
+.dots button{flex:1;height:3px;border:0;background:var(--line);cursor:pointer;padding:0}
+.dots button.done{background:var(--navy)}
+.dots button.unk{background:repeating-linear-gradient(90deg,var(--g600) 0 3px,transparent 3px 6px)}
+.dots button.now{background:var(--teal)}
 .dots button:disabled{cursor:default}
 .card .grp{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);font-weight:600}
-.card h3{font-size:1.5rem;margin:.2rem 0 .3rem;display:flex;align-items:center;gap:.6rem}
-.card h3 i{width:22px;height:17px;border:3px solid var(--c);transform:skew(-6deg) rotate(-4deg);flex:none}
+.card h3{font-size:1.6rem;font-weight:400;margin:.3rem 0 .4rem;display:flex;align-items:baseline;gap:.7rem}
+.card h3 .rn{font-style:italic;color:var(--g400);font-size:1.1rem;min-width:1.6rem}
 .card .one{color:var(--g600);font-size:.92rem}
-.card .ask{font-weight:600;color:var(--navy);margin:1.4rem 0 .8rem;font-size:1.02rem;line-height:1.45}
+.card .ask{font-family:var(--serif);color:var(--navy);margin:1.5rem 0 .9rem;font-size:1.15rem;line-height:1.45}
 .choices{display:flex;flex-wrap:wrap;gap:.5rem}
-.choices button{font:500 .9rem var(--sans);padding:.55rem 1rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.choices button{font:500 .88rem var(--sans);padding:.6rem .95rem;border-radius:3px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
 .choices button:hover{border-color:var(--navy)}
 .choices button.on{background:var(--navy);border-color:var(--navy);color:#fff}
 .choices button.cant{border-style:dashed;color:var(--g600)}
 .choices button.cant.on{background:var(--g600);border-color:var(--g600);color:#fff}
-.card input{width:100%;font:1.35rem var(--hand);padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;margin-bottom:.8rem;color:var(--navy)}
+.card input{width:100%;font:italic 1.1rem var(--serif);padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;margin-bottom:.8rem;color:var(--navy)}
 .card input:focus{outline:2px solid var(--teal);border-color:transparent}
 .nav-row{margin-top:auto;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center}
 .back{background:none;border:0;color:var(--g600);font:500 .88rem var(--sans);cursor:pointer}
 .back:disabled{visibility:hidden}
 .private{font-size:.78rem;color:var(--g400);margin-top:1rem}
 .canvas{position:relative}
-.canvas .scene{border:1px solid var(--line);box-shadow:0 14px 40px rgba(30,45,74,.12)}
+.canvas .scene{box-shadow:0 1px 2px rgba(0,0,0,.08),0 30px 60px -24px rgba(30,45,74,.35);border-radius:0}
 .look{list-style:none;margin:1rem 0 0;display:grid;gap:.9rem}
 .look li{font-size:.9rem;color:var(--g600);line-height:1.55}
 .look b{color:var(--navy)}
@@ -214,7 +214,7 @@ footer .draft{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:1rem}
       <h2>A portrait of Jordan, 15</h2>
       <p class="lead">Asked "does Jordan have purpose?", most adults would say "sort of." Each part of this picture is one lens.</p>
     </div>
-    <div class="ex-grid" style="grid-template-columns:1.7fr 1fr">
+    <div class="ex-grid" style="grid-template-columns:1.25fr 1fr">
       <div id="jordanScene"></div>
       <ul class="notes" id="jordanNotes"></ul>
     </div>
@@ -228,7 +228,7 @@ footer .draft{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:1rem}
     <div class="narrow">
       <div class="kicker">Your turn</div>
       <h2>Draw a portrait of a young person you know</h2>
-      <p class="lead">Picture one young person: a student, a player, your own child. Answer eight short questions and their portrait draws itself. The picture comes into focus as you go. Whatever you can't see yet stays blurry.</p>
+      <p class="lead">Picture one young person: a student, a player, your own child. Answer eight short questions and their portrait draws itself. The portrait comes into focus as you answer. What you can't see yet stays out of focus, and that is part of the picture.</p>
     </div>
     <div class="studio">
       <div class="card" id="card"></div>
@@ -320,183 +320,145 @@ const L=Object.fromEntries(LENSES.map(l=>[l.k,l]));
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 /* ── scene ─────────────────────────────────────────────
-   answers: undefined = not asked yet (blurred, out of focus)
-            '?'       = can't see it (faded, marked with ?)
-   3-level lenses store 0 (high) / 1 / 2 (low)                */
-const W=960,H=620,HZ=322,INK='#3a352f';
+   A matted print. answers: undefined = not asked yet (out of focus)
+   '?' = can't see it (faded, marked)   3-level lenses: 0 high / 1 / 2 low   */
+const W=880,H=560,MW=960,MH=800,HZ=300,INK='#2E3236';
 const rng=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x);};
 const cub=(a,b,c,d,t)=>{const u=1-t;return [0,1].map(i=>u*u*u*a[i]+3*u*u*t*b[i]+3*u*t*t*c[i]+t*t*t*d[i]);};
-const SEG=[[[410,640],[380,545],[610,505],[540,430]],[[540,430],[480,375],[566,352],[560,322]]],SPLIT=.55;
+const SEG=[[[420,590],[352,470],[606,430],[522,372]],[[522,372],[470,338],[480,316],[474,HZ]]],SPLIT=.58;
 const at=s=>s<SPLIT?cub(...SEG[0],s/SPLIT):cub(...SEG[1],(s-SPLIT)/(1-SPLIT));
-const wAt=s=>8+185*Math.pow(1-s,1.25);
+const wAt=s=>3+205*Math.pow(1-s,1.35);
 const tan=s=>{const a=at(Math.max(0,s-.004)),b=at(Math.min(1,s+.004)),d=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return [(b[0]-a[0])/d,(b[1]-a[1])/d];};
 const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
 function wrap(s,n){const w=s.split(/\s+/),out=[''];for(const x of w){if((out.at(-1)+' '+x).trim().length>n&&out.at(-1))out.push(x);else out[out.length-1]=(out.at(-1)+' '+x).trim();}
   if(out.length>2){out.length=2;out[1]=out[1].slice(0,n-1)+'…';}return out;}
-const hand=(x,y,s,size,fill,anchor='middle')=>`<text x="${x}" y="${y}" font-family="Caveat,cursive" font-size="${size}" font-weight="700" fill="${fill}" text-anchor="${anchor}" stroke="none">${esc(s)}</text>`;
+const serif=(x,y,s,size,fill,anchor='middle',italic=true)=>`<text x="${x}" y="${y}" font-family="'Playfair Display',Georgia,serif" font-style="${italic?'italic':'normal'}" font-size="${size}" fill="${fill}" text-anchor="${anchor}">${esc(s)}</text>`;
+const caps=(x,y,s,size,fill,anchor='middle')=>`<text x="${x}" y="${y}" font-family="Inter,sans-serif" font-size="${size}" font-weight="600" letter-spacing="${size*.16}" fill="${fill}" text-anchor="${anchor}">${esc(s.toUpperCase())}</text>`;
+const ridge=(base,amp,f,ph,n=44)=>{const p=[[0,H]];for(let i=0;i<=n;i++){const x=i*W/n;p.push([x,base+amp*Math.sin(x*f+ph)+amp*.45*Math.sin(x*f*2.3+ph*1.7)]);}p.push([W,H]);return p;};
 
-/* landscape pieces */
-const cloud=(cx,cy,s,fill)=>`<path transform="translate(${cx},${cy}) scale(${s})" d="M-50 10 C-62 10,-62 -10,-46 -10 C-46 -28,-20 -32,-12 -20 C-6 -36,22 -36,26 -18 C40 -24,56 -10,48 4 C58 8,54 18,44 18 L-44 18 C-56 18,-58 10,-50 10 Z" fill="${fill}" stroke="${INK}" stroke-opacity=".45" stroke-width="1.3"/>`;
-const tree=(x,y,s,c='#A9B994')=>`<g transform="translate(${x},${y}) scale(${s})" stroke="${INK}" stroke-width="1.2"><path d="M-3 0 L-2 -26 L2 -26 L3 0 Z" fill="#8a6f52"/><circle cx="-10" cy="-34" r="13" fill="${c}"/><circle cx="10" cy="-36" r="14" fill="${c}"/><circle cx="0" cy="-50" r="15" fill="${c}"/><path d="M-6 -44 q4 -4 9 -1 M4 -30 q4 -3 8 0" fill="none" stroke-opacity=".4"/></g>`;
-const win=(x,y,n,gap=7)=>[...Array(n)].map((_,i)=>`<rect x="${x+i*gap}" y="${y}" width="4" height="5" fill="#7f8c93"/>`).join('');
-const BUILD={
-  school:(x,y)=>`<rect x="${x-24}" y="${y-20}" width="48" height="20" fill="#E8D9BC"/><path d="M${x-12} ${y-20} l12-11 l12 11 z" fill="#C9A499"/><rect x="${x-3}" y="${y-41}" width="6" height="10" fill="#E8D9BC"/><path d="M${x} ${y-41} v-10 l9 3 l-9 3" fill="#B98E80"/>${win(x-20,y-14,2)}${win(x+9,y-14,2)}<rect x="${x-4}" y="${y-10}" width="8" height="10" fill="#8f6f58"/>`,
-  house:(x,y)=>`<path d="M${x-13} ${y} v-18 l13-11 l13 11 v18 z" fill="#EAD9C6"/><path d="M${x-16} ${y-16} l16-14 l16 14" fill="none" stroke-width="2"/><rect x="${x-3}" y="${y-9}" width="6" height="9" fill="#9b7b62"/><rect x="${x+5}" y="${y-15}" width="5" height="5" fill="#7f8c93"/>`,
-  clinic:(x,y)=>`<rect x="${x-18}" y="${y-28}" width="36" height="28" fill="#E9EEF0"/><rect x="${x-3}" y="${y-24}" width="6" height="15" fill="#B9654E" stroke="none"/><rect x="${x-8}" y="${y-19}" width="16" height="5" fill="#B9654E" stroke="none"/>${win(x-14,y-7,1)}${win(x+10,y-7,1)}`,
-  workshop:(x,y)=>`<path d="M${x-26} ${y} v-16 l13-9 v9 l13-9 v9 l13-9 v9 l13-9 v25 z" fill="#D9CDB8"/><rect x="${x+16}" y="${y-36}" width="5" height="12" fill="#a0907a"/><rect x="${x-18}" y="${y-10}" width="12" height="10" fill="#8f7e66"/>`,
-  tower:(x,y)=>`<rect x="${x-10}" y="${y-52}" width="20" height="52" fill="#D6DEE2"/>${[0,1,2,3,4,5].map(r=>win(x-7,y-47+r*8,2,9)).join('')}`,
-  dome:(x,y)=>`<rect x="${x-17}" y="${y-16}" width="34" height="16" fill="#E6D7C0"/><path d="M${x-14} ${y-16} a14 14 0 0 1 28 0 z" fill="#C2B28F"/><path d="M${x} ${y-30} v-8" fill="none"/><circle cx="${x}" cy="${y-39}" r="2" fill="${INK}"/>${win(x-12,y-11,4,7)}`,
-  barn:(x,y)=>`<path d="M${x-16} ${y} v-18 l6-9 h20 l6 9 v18 z" fill="#C98F74"/><path d="M${x-6} ${y} v-12 h12 v12 M${x-6} ${y-12} l12 12 M${x+6} ${y-12} l-12 12" fill="none"/>`
+/* silhouettes */
+function youth(x,y,s=1){return `<g transform="translate(${x},${y}) scale(${s})" fill="${INK}">
+  <ellipse cx="0" cy="1" rx="22" ry="3" fill="#000" fill-opacity=".14"/>
+  <path d="M-15 -82 Q-14 -90 0 -91 Q14 -90 15 -82 L17 -50 Q16 -46 13 -47 L11 -1 L4 -1 L1.5 -43 L-1.5 -43 L-4 -1 L-11 -1 L-13 -47 Q-16 -46 -17 -50 Z"/>
+  <path d="M-10 -84 Q0 -80 10 -84 L11 -62 Q0 -58 -11 -62 Z" fill="#4A4F55"/>
+  <circle cx="0" cy="-101" r="9.5"/></g>`;}
+function adult(x,y,s,fill,dotted){const st=dotted?`fill="none" stroke="${INK}" stroke-width="1" stroke-dasharray="2 3"`:`fill="${fill}"`;
+  return `<g transform="translate(${x},${y}) scale(${s})">${dotted?'':'<ellipse cx="0" cy="1" rx="22" ry="3" fill="#000" fill-opacity=".12"/>'}
+  <path d="M-16 -96 Q-15 -104 0 -105 Q15 -104 16 -96 L19 -30 Q0 -26 -19 -30 Z M-9 -30 L-8 -1 L-3 -1 L-1 -30 Z M1 -30 L3 -1 L8 -1 L9 -30 Z" ${st}/>
+  <circle cx="0" cy="-116" r="10" ${st}/></g>`;}
+const BLD={
+  tower:(x,y)=>`<rect x="${x-4}" y="${y-44}" width="8" height="44"/><path d="M${x} ${y-44} v-12" stroke="#6E7A77" stroke-width="1"/>`,
+  gable:(x,y)=>`<path d="M${x-11} ${y} v-14 l11-9 l11 9 v14 z"/>`,
+  dome:(x,y)=>`<rect x="${x-13}" y="${y-12}" width="26" height="12"/><path d="M${x-10} ${y-12} a10 10 0 0 1 20 0 z"/>`,
+  hall:(x,y)=>`<path d="M${x-22} ${y} v-11 l22-8 l22 8 v11 z"/>`,
+  spire:(x,y)=>`<path d="M${x-6} ${y} v-24 l6-16 l6 16 v24 z"/>`,
+  block:(x,y)=>`<rect x="${x-9}" y="${y-28}" width="18" height="28"/>`,
+  mill:(x,y)=>`<path d="M${x-5} ${y} l2-26 h6 l2 26 z"/><path d="M${x} ${y-26} l-12-10 M${x} ${y-26} l12-10 M${x} ${y-26} l-11 12 M${x} ${y-26} l11 12" stroke="#6E7A77" stroke-width="1.4"/>`
 };
-const SKYLINE=[['school',660,1.5],['house',752,1.45],['clinic',862,1.4],['workshop',335,1.45],['tower',232,1.35],['dome',120,1.3],['barn',920,1.2]];
+const SKY=[['tower',560],['gable',620],['dome',690],['hall',760],['spire',300],['block',220],['mill',130]];
 
-function figureYouth(){return `<g transform="translate(400,612) scale(.86) translate(-400,-612)" stroke="${INK}" stroke-width="1.6" stroke-linejoin="round">
-  <ellipse cx="400" cy="613" rx="44" ry="7" fill="#000" fill-opacity=".12" stroke="none"/>
-  <path d="M383 540 L379 606 L392 608 L398 546 Z M402 546 L408 608 L421 606 L417 540 Z" fill="#56637A"/>
-  <path d="M376 606 q8-5 17 0 v5 h-18 z M407 606 q9-5 17 0 v5 h-18 z" fill="#2f2c2a"/>
-  <path d="M366 474 Q352 504 355 542 L366 543 Q367 508 373 490 Z M434 474 Q448 504 445 542 L434 543 Q433 508 427 490 Z" fill="#7E979F"/>
-  <path d="M366 472 Q368 452 400 448 Q432 452 434 472 L438 548 Q400 557 362 548 Z" fill="#8EA6AE"/>
-  <path d="M370 548 Q400 555 430 548" fill="none" stroke-opacity=".5"/>
-  <path d="M380 474 Q400 466 420 474 L423 524 Q400 531 377 524 Z" fill="#B48A5E"/>
-  <path d="M380 492 Q400 486 420 492 M398 503 h4" fill="none"/>
-  <path d="M381 474 Q376 462 372 456 M419 474 Q424 462 428 456" fill="none" stroke="#6f5640" stroke-width="3"/>
-  <path d="M376 456 Q400 474 424 456 Q414 440 400 440 Q386 440 376 456 Z" fill="#7E979F"/>
-  <ellipse cx="380" cy="425" rx="3.5" ry="6" fill="#B98A6C"/><ellipse cx="420" cy="425" rx="3.5" ry="6" fill="#B98A6C"/>
-  <circle cx="400" cy="422" r="21" fill="#3B2F2A"/>
-  <path d="M384 412 q4-6 9-2 M395 405 q5-5 10 0 M407 410 q5-4 9 2 M386 425 q5-3 8 1 M404 422 q5-4 9 1" fill="none" stroke="#6b574b" stroke-width="1.2"/>
-  <path d="M424 480 l6 30 M427 500 l6 2 M424 520 l8 2" fill="none" stroke-opacity=".35" stroke-width="1"/>
-</g>`;}
-function figureAdult(x,y,s,coat,hair,dash){const st=dash?`stroke="${INK}" stroke-dasharray="4 4" fill="none"`:'';
-  return `<g transform="translate(${x},${y}) scale(${s})" stroke="${INK}" stroke-width="1.6" stroke-linejoin="round">
-  ${dash?'':'<ellipse cx="0" cy="2" rx="38" ry="6" fill="#000" fill-opacity=".1" stroke="none"/>'}
-  <path d="M-14 -40 L-16 0 L-5 0 L-2 -38 Z M2 -38 L5 0 L16 0 L14 -40 Z" ${st||'fill="#4a4f5a"'}/>
-  <path d="M-26 -150 Q-32 -110 -30 -72 L-22 -72 Q-22 -110 -18 -130 Z M26 -150 Q32 -110 30 -72 L22 -72 Q22 -110 18 -130 Z" ${st||`fill="${coat}"`}/>
-  <path d="M-24 -150 Q0 -160 24 -150 L28 -34 Q0 -28 -28 -34 Z" ${st||`fill="${coat}"`}/>
-  <path d="M0 -154 V-36" fill="none" stroke-opacity=".3"/>
-  <circle cx="0" cy="-172" r="18" ${st||`fill="${hair}"`}/>
-</g>`;}
-
-/* lens parts: draw(v,p) + default + where the ? badge sits */
 const parts={
-  culture:{def:1,q:[840,112],draw(v,p){
-    const sky=[['#F2D9AE','#FBF3E2'],['#DEE0D8','#F5F1E6'],['#C4C8C6','#E6E7E1']][v];
-    let s=`<defs><linearGradient id="${p}sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="1" stop-color="${sky[1]}"/></linearGradient>
-      <radialGradient id="${p}sun"><stop offset="0" stop-color="#F7D27E" stop-opacity=".9"/><stop offset="1" stop-color="#F7D27E" stop-opacity="0"/></radialGradient></defs>
-      <rect width="${W}" height="${HZ+8}" fill="url(#${p}sky)" stroke="none"/>`;
-    const sun=`<circle cx="840" cy="112" r="78" fill="url(#${p}sun)" stroke="none"/><circle cx="840" cy="112" r="30" fill="#F2C46D" stroke="#c99a3e" stroke-width="1.5"/>`;
-    if(v===0)return s+sun+cloud(250,90,.8,'#FFFDF8')+`<path d="M640 120 q6-6 12 0 q6-6 12 0 M676 100 q5-5 10 0 q5-5 10 0" fill="none" stroke="${INK}" stroke-width="1.5"/>`;
-    if(v===1)return s+sun+cloud(812,140,1.1,'#F7F5EF')+cloud(300,96,1,'#F3F1EA')+cloud(520,70,.7,'#F3F1EA');
-    return s+[[180,90,1.3],[430,70,1.5],[690,96,1.4],[880,70,1.2],[560,140,1.1]].map(c=>cloud(...c,'#D5D7D3')).join('')+
-      [...Array(26)].map((_,i)=>{const x=60+i*34+rng(i)*10,y=150+rng(i+40)*110;return `<line x1="${x}" y1="${y}" x2="${x-6}" y2="${y+16}" stroke="#8d9496" stroke-width="1.3"/>`}).join('');
+  culture:{def:1,q:[740,196],draw(v,p){
+    const g=[['#E9CFA0','#F3E6CC','#F6EEDD'],['#D9DAD3','#E9E6DD','#F2EEE5'],['#AEB4B4','#C8CBC7','#DCDCD6']][v];
+    let s=`<defs><linearGradient id="${p}sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${g[0]}"/><stop offset=".65" stop-color="${g[1]}"/><stop offset="1" stop-color="${g[2]}"/></linearGradient>
+      <radialGradient id="${p}halo"><stop offset="0" stop-color="#F0C98A" stop-opacity=".55"/><stop offset="1" stop-color="#F0C98A" stop-opacity="0"/></radialGradient></defs>
+      <rect width="${W}" height="${HZ+20}" fill="url(#${p}sky)"/>`;
+    const streak=(x,y,w,c,o)=>`<rect x="${x}" y="${y}" width="${w}" height="7" rx="3.5" fill="${c}" opacity="${o}"/>`;
+    if(v===0)return s+`<circle cx="740" cy="196" r="120" fill="url(#${p}halo)"/><circle cx="740" cy="196" r="44" fill="#DFAE63"/>`+streak(80,120,160,'#F7EEDD',.7)+streak(130,134,90,'#F7EEDD',.6);
+    if(v===1)return s+`<circle cx="740" cy="196" r="44" fill="#E3C38E"/>`+streak(640,182,210,'#EEEBE3',.92)+streak(690,198,170,'#EEEBE3',.85)+streak(610,214,150,'#EEEBE3',.8)+streak(90,110,190,'#F4F1EA',.8)+streak(150,124,110,'#F4F1EA',.7);
+    return s+[[40,70,300],[300,92,340],[560,64,300],[120,128,260],[520,140,330],[700,110,180]].map(([x,y,w],i)=>`<rect x="${x}" y="${y}" width="${w}" height="${14+i%3*4}" rx="8" fill="${i%2?'#9FA6A7':'#B3B8B7'}" opacity=".8"/>`).join('')+
+      `<g stroke="#8F979A" stroke-width=".9" opacity=".5">${[...Array(40)].map((_,i)=>{const x=rng(i)*W,y=160+rng(i+50)*120;return `<line x1="${x}" y1="${y}" x2="${x-5}" y2="${y+14}"/>`}).join('')}</g>`;
   }},
-  scope:{def:1,q:[700,262],draw(v){const n=[7,4,2][v];
-    return `<g stroke="${INK}" stroke-width="1.3" stroke-linejoin="round">${SKYLINE.slice(0,n).map(([t,x,sc])=>`<g transform="translate(${x},${HZ+3}) scale(${sc}) translate(${-x},${-(HZ+3)})">${BUILD[t](x,HZ+3)}</g>`).join('')}</g>`;
+  scope:{def:1,q:[660,262],draw(v){const n=[7,4,2][v];
+    return `<g fill="#68767A" stroke="none">${SKY.slice(0,n).map(([t,x])=>BLD[t](x,HZ+1)+`<circle cx="${x+(t==='hall'?10:0)}" cy="${HZ-(t==='tower'?30:t==='block'?18:t==='spire'?14:6)}" r="1.6" fill="#F2CE86"/>`).join('')}</g>`;
   }},
-  access:{def:1,q:[600,430],draw(v){const [cx,cy]=at(SPLIT),[tx,ty]=tan(SPLIT),th=Math.atan2(-tx,ty)*180/Math.PI,w=wAt(SPLIT)+20,l=74,hw=w/2,hl=l/2;
-    const planks=(a,b)=>{let o='';for(let y=a;y<=b;y+=7)o+=`<line x1="${-hw}" y1="${y}" x2="${hw}" y2="${y}" stroke="#8a6a48" stroke-width="1.1"/>`;return o;};
-    const post=(x,y)=>`<rect x="${x-3}" y="${y-3}" width="6" height="6" fill="#6f5640" stroke="${INK}" stroke-width="1"/>`;
-    let g='';
-    if(v===0)g=`<rect x="${-hw}" y="${-hl}" width="${w}" height="${l}" fill="#C8A57E" stroke="${INK}" stroke-width="1.3"/>${planks(-hl+4,hl-4)}
-      <line x1="${-hw}" y1="${-hl}" x2="${-hw}" y2="${hl}" stroke="${INK}" stroke-width="3"/><line x1="${hw}" y1="${-hl}" x2="${hw}" y2="${hl}" stroke="${INK}" stroke-width="3"/>
-      ${[-hl,0,hl].map(y=>post(-hw,y)+post(hw,y)).join('')}`;
-    else if(v===1)g=`<path d="M${-hw} ${-hl} H${hw} V${-hl+20} l-8 5 l-10-6 l-12 7 l-9-4 l-14 6 L${-hw} ${-hl+22} Z" fill="#C8A57E" stroke="${INK}" stroke-width="1.3"/>
-      <path d="M${-hw} ${hl} H${hw} V${hl-18} l-10 -4 l-12 6 l-10-5 l-12 5 L${-hw} ${hl-20} Z" fill="#C8A57E" stroke="${INK}" stroke-width="1.3"/>
-      ${planks(-hl+4,-hl+16)}${planks(hl-14,hl-4)}
-      <path d="M${-hw} ${-hl} V${-hl+24} M${hw} ${-hl} V${-hl+20} M${-hw} ${hl} V${hl-22} M${hw} ${hl} V${hl-20}" stroke="${INK}" stroke-width="3"/>
-      ${post(-hw,-hl)+post(hw,-hl)+post(-hw,hl)+post(hw,hl)}
-      <rect x="${hw+16}" y="-6" width="26" height="6" fill="#C8A57E" stroke="${INK}" stroke-width="1" transform="rotate(24)"/>`;
-    else g=`${post(-hw,-hl)+post(hw,-hl)+post(-hw,hl)+post(hw,hl)}
-      <rect x="${-hw-4}" y="${-hl+2}" width="${w+8}" height="9" fill="#F3EDE2" stroke="${INK}" stroke-width="1.3"/>
-      ${[...Array(Math.ceil(w/14))].map((_,i)=>`<rect x="${-hw+i*14}" y="${-hl+2}" width="7" height="9" fill="#B9654E" stroke="none"/>`).join('')}
-      <path d="M${-hw-2} ${-hl+11} v14 M${hw+2} ${-hl+11} v14" stroke="${INK}" stroke-width="2.4"/>`;
-    return `<g transform="translate(${cx},${cy}) rotate(${th})">${g}</g>`;
+  access:{def:1,q:[600,372],draw(v){const [cx,cy]=at(SPLIT),w=wAt(SPLIT)+22,hw=w/2,y0=cy-17,y1=cy+17,R=`stroke="${INK}" stroke-width="1.1"`;
+    const rail=(a,b)=>`<line x1="${cx+a}" y1="${y0}" x2="${cx+a}" y2="${y1}" ${R}/>`;
+    const deck=(ya,yb)=>`<rect x="${cx-hw}" y="${ya}" width="${w}" height="${yb-ya}" fill="#A8977C"/>`+[...Array(Math.floor((yb-ya)/4))].map((_,i)=>`<line x1="${cx-hw}" y1="${ya+2+i*4}" x2="${cx+hw}" y2="${ya+2+i*4}" stroke="#8D7C62" stroke-width=".6"/>`).join('');
+    const post=(x,y)=>`<rect x="${x-1.6}" y="${y-9}" width="3.2" height="11" fill="${INK}"/>`;
+    if(v===0)return deck(y0,y1)+`<path d="M${cx-hw} ${y0} V${y1} M${cx+hw} ${y0} V${y1}" ${R}/>`+[y0,cy,y1].map(y=>post(cx-hw,y)+post(cx+hw,y)).join('');
+    if(v===1)return deck(cy+3,y1)+deck(y0,cy-9)+`<path d="M${cx-hw} ${y1} V${cy+2} M${cx+hw} ${y1} V${cy+5} M${cx-hw} ${y0} V${cy-8} M${cx+hw} ${y0} V${cy-11}" ${R}/>`+post(cx-hw,y1)+post(cx+hw,y1)+post(cx-hw,y0)+post(cx+hw,y0)+
+      `<rect x="${cx+hw+20}" y="${cy-2}" width="16" height="3" fill="#A8977C" transform="rotate(-8 ${cx+hw+28} ${cy})"/>`;
+    return post(cx-hw,y1+2)+post(cx+hw,y1+2)+`<line x1="${cx-hw-4}" y1="${y1-4}" x2="${cx+hw+4}" y2="${y1-4}" stroke="${INK}" stroke-width="2"/><line x1="${cx-hw-4}" y1="${y1-4}" x2="${cx+hw+4}" y2="${y1-4}" stroke="#B9654E" stroke-width="2" stroke-dasharray="5 5"/>`;
   }},
-  practice:{def:1,q:[490,520],draw(v){const ss=[.2,.29,.38,.46,.66,.76,.86],n=[6,3,1][v];
-    return ss.map((s,i)=>{const [x,y]=at(s),[tx,ty]=tan(s),w=wAt(s),off=(i%2?1:-1)*w*.13,px=x+ty*off,py=y-tx*off,r=w*.2;
-      const poly=[...Array(7)].map((_,k)=>{const a=k/7*Math.PI*2+rng(i*7+k)*.5,rad=r*(.78+rng(i*13+k)*.3);return [px+Math.cos(a)*rad,py+Math.sin(a)*rad*.46];});
-      const lit=i<n;
-      return `<polygon points="${pts(poly)}" fill="${lit?'#D8A07C':'#EFE6D3'}" stroke="${lit?'#7a4f34':'#CDBFA8'}" stroke-width="${lit?1.5:1.2}" ${lit?'':'stroke-dasharray="3 3"'}/>`+
-        (lit?`<path d="M${px-r*.45} ${py-r*.12} q${r*.4} ${-r*.22} ${r*.8} 0" fill="none" stroke="#F3D3B8" stroke-width="1.6"/>`:'');}).join('');
+  practice:{def:1,q:[540,470],draw(v){const ss=[.16,.26,.36,.46,.69,.79,.88],n=[6,3,1][v];
+    return ss.map((s,i)=>{const [x,y]=at(s),[tx,ty]=tan(s),w=wAt(s),off=(i%2?1:-1)*w*.14,px=x+ty*off,py=y-tx*off,r=Math.max(2.5,w*.13);
+      return i<n?`<ellipse cx="${px}" cy="${py}" rx="${r}" ry="${r*.42}" fill="#7E6E5C"/><ellipse cx="${px-r*.2}" cy="${py-r*.12}" rx="${r*.55}" ry="${r*.16}" fill="#9F8E78"/>`
+               :`<ellipse cx="${px}" cy="${py}" rx="${r}" ry="${r*.42}" fill="none" stroke="#A3967F" stroke-width=".9" stroke-dasharray="2 2"/>`;}).join('');
   }},
-  aim:{def:'something they care about',q:[606,200],draw(v){const x=560,y=HZ+2,lines=wrap(v,26),lw=Math.max(...lines.map(s=>s.length));
-    const bw=Math.max(150,lw*11.5+50),bh=18+lines.length*26,by=236-bh,x0=x-bw/2,x1=x+bw/2;
-    return `<line x1="${x}" y1="${y}" x2="${x}" y2="${y-84}" stroke="${INK}" stroke-width="2.4"/>
-      <path d="M${x} ${y-84} l38 11 l-38 11 z" fill="#3B7A8F" stroke="${INK}" stroke-width="1.3" stroke-linejoin="round"/>
-      <line x1="${x}" y1="${by+bh}" x2="${x}" y2="${y-84}" stroke="${INK}" stroke-width="1" stroke-dasharray="2 3"/>
-      <path d="M${x0} ${by} H${x1} L${x1-12} ${by+bh/2} L${x1} ${by+bh} H${x0} L${x0+12} ${by+bh/2} Z" fill="#FBF6EA" stroke="${INK}" stroke-width="1.3" stroke-linejoin="round"/>
-      ${lines.map((s,i)=>hand(x,by+29+i*26,s,27,'#2E5F70')).join('')}`;
+  aim:{def:'something they care about',q:[500,150],draw(v){const [x,y]=at(1),lines=wrap('“'+v+'”',30),top=128-(lines.length-1)*24;
+    return `<line x1="${x}" y1="${y}" x2="${x}" y2="${y-34}" stroke="${INK}" stroke-width="1.2"/><path d="M${x} ${y-34} l16 4.5 l-16 4.5 z" fill="#3B7A8F"/>
+      <line x1="${x}" y1="${y-40}" x2="${x}" y2="${top+lines.length*24-6}" stroke="${INK}" stroke-width=".7" stroke-dasharray="1 3"/>
+      ${lines.map((s,i)=>serif(x,top+i*24,s,22,'#22313A')).join('')}`;
   }},
-  orient:{def:'Helping others',q:[742,440],draw(v){const x=700,y=585,o=L.orient.opts.filter(s=>s!==v).slice(0,2),t=v.length>18?v.slice(0,17)+'…':v,bw=Math.max(120,t.length*8.8+36);
-    const grain=(x0,y0,w)=>`<path d="M${x0+8} ${y0+7} h${w*.5} M${x0+w*.3} ${y0+20} h${w*.45}" stroke="#b39a74" stroke-width="1" fill="none"/>`;
-    return `<g stroke="${INK}" stroke-width="1.4" stroke-linejoin="round">
-      <rect x="${x-5}" y="${y-132}" width="10" height="134" fill="#A88A63"/>
-      <g transform="rotate(-7 ${x} ${y-112})"><path d="M${x-26} ${y-126} h${bw} l15 14 l-15 14 h${-bw} z" fill="#EEDFBF"/>${grain(x-26,y-126,bw)}
-        <text x="${x-26+bw/2}" y="${y-107}" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="#1E2D4A" text-anchor="middle" stroke="none">${esc(t)}</text></g>
-      <path d="M${x+16} ${y-88} h-96 l-12 11 l12 11 h96 z" fill="#E2D7C3"/><text x="${x-34}" y="${y-73}" font-family="Inter,sans-serif" font-size="11" fill="#9a8f7c" text-anchor="middle" stroke="none">${esc(o[0]||'')}</text>
-      <path d="M${x-14} ${y-58} h92 l12 11 l-12 11 h-92 z" fill="#E2D7C3"/><text x="${x+32}" y="${y-43}" font-family="Inter,sans-serif" font-size="11" fill="#9a8f7c" text-anchor="middle" stroke="none">${esc(o[1]||'')}</text>
-    </g>`;
+  orient:{def:'Helping others',q:[690,410],draw(v){const x=676,y=520,o=L.orient.opts.filter(s=>s!==v).slice(0,2),t=(v.length>18?v.slice(0,17)+'…':v),bw=Math.max(108,t.length*7.6+30);
+    return `<line x1="${x}" y1="${y}" x2="${x}" y2="${y-96}" stroke="${INK}" stroke-width="1.6"/>
+      <path d="M${x-8} ${y-96} h${bw} l10 10 l-10 10 h${-bw} z" fill="#F7F3EA" stroke="${INK}" stroke-width="1"/>${caps(x-8+bw/2,y-82.5,t,9.5,INK)}
+      <g opacity=".45"><path d="M${x-3} ${y-68} h-108 l-9 8 l9 8 h108 z" fill="none" stroke="${INK}" stroke-width=".8"/>${caps(x-57,y-57,o[0]||'',7,INK)}
+      <path d="M${x+3} ${y-44} h108 l9 8 l-9 8 h-108 z" fill="none" stroke="${INK}" stroke-width=".8"/>${caps(x+57,y-33,o[1]||'',7,INK)}</g>`;
   }},
-  sense:{def:1,q:[318,470],draw(v,p){const r=[200,145,92][v];
-    return `<defs><radialGradient id="${p}glow"><stop offset="0" stop-color="#F7D493" stop-opacity=".85"/><stop offset=".45" stop-color="#EBA977" stop-opacity=".4"/><stop offset="1" stop-color="#7B3D42" stop-opacity="0"/></radialGradient></defs>
-      <ellipse cx="400" cy="512" rx="${r}" ry="${r*.92}" fill="url(#${p}glow)" stroke="none"/>`+
-      (v===0?[...Array(9)].map((_,i)=>{const a=(-160+i*17.5)*Math.PI/180;return `<line x1="${400+Math.cos(a)*70}" y1="${470+Math.sin(a)*70}" x2="${400+Math.cos(a)*150}" y2="${470+Math.sin(a)*150}" stroke="#EDB872" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>`}).join(''):'');
+  sense:{def:1,q:[372,440],draw(v,p){const r=[150,105,66][v];
+    return `<defs><radialGradient id="${p}glow"><stop offset="0" stop-color="#F6DCA6" stop-opacity=".95"/><stop offset=".5" stop-color="#EDBE85" stop-opacity=".38"/><stop offset="1" stop-color="#EDBE85" stop-opacity="0"/></radialGradient></defs>
+      <ellipse cx="420" cy="500" rx="${r}" ry="${r*.8}" fill="url(#${p}glow)"/>`+
+      (v===0?[1,1.35,1.7].map(k=>`<ellipse cx="420" cy="500" rx="${46*k}" ry="${40*k}" fill="none" stroke="#D9A867" stroke-width=".7" opacity="${.6/k}"/>`).join(''):'');
   }},
-  people:{def:['a coach','an aunt'],q:[256,440],draw(v){const spots=[[214,606,.84,'#9C7FA0','#4a3b33'],[300,622,.9,'#7F8F6E','#a37b52'],[560,622,.86,'#B98E80','#2e2a28']];
-    if(v==='none')return figureAdult(214,606,.84,'','',true)+figureAdult(300,622,.9,'','',true)+hand(256,420,'no one yet',28,'#5B3D5A');
-    return v.slice(0,3).map((n,i)=>{const [x,y,s,c,h]=spots[i],top=y-196*s;
-      return figureAdult(x,y,s,c,h)+`<path d="M${x} ${top+4} v10" stroke="#5B3D5A" stroke-width="1.4"/>`+hand(x,top,n.length>14?n.slice(0,13)+'…':n,24,'#5B3D5A');}).join('');
+  people:{def:['a coach','an aunt'],q:[318,420],draw(v){const spots=[[318,552,.9,'#5E5563'],[262,560,.98,'#4E5A54'],[566,560,.95,'#6A5B52']];
+    if(v==='none')return adult(318,552,.9,'',true)+adult(262,560,.98,'',true)+serif(290,410,'no one yet',17,'#5B3D5A');
+    return v.slice(0,3).map((n,i)=>{const [x,y,s,c]=spots[i],top=y-128*s,ly=i===1?top-36:top-14;
+      return adult(x,y,s,c)+`<line x1="${x}" y1="${top}" x2="${x}" y2="${ly+4}" stroke="${INK}" stroke-width=".6"/>`+serif(x,ly,n.length>16?n.slice(0,15)+'…':n,16,'#4A3348');}).join('');
   }}
 };
 
 function part(k,a,p,focus,popped){
   const P=parts[k],v=a[k],l=L[k];let inner,attrs='',badge='';
-  if(v===undefined){inner=P.draw(P.def,p);attrs=`filter="url(#${p}fog)" opacity=".55"`;}
-  else if(v==='?'){inner=P.draw(P.def,p);attrs=`filter="url(#${p}ghost)" opacity=".3"`;
-    badge=`<circle cx="${P.q[0]}" cy="${P.q[1]}" r="17" fill="#FBF8F2" stroke="${l.c}" stroke-width="2" stroke-dasharray="4 3"/>`+hand(P.q[0],P.q[1]+9,'?',28,l.c);}
+  if(v===undefined){inner=P.draw(P.def,p);attrs=`filter="url(#${p}fog)" opacity=".5"`;}
+  else if(v==='?'){inner=P.draw(P.def,p);attrs=`filter="url(#${p}ghost)" opacity=".22"`;
+    badge=`<circle cx="${P.q[0]}" cy="${P.q[1]}" r="13" fill="#F7F3EA" stroke="${INK}" stroke-width=".8"/>`+serif(P.q[0],P.q[1]+6,'?',17,INK);}
   else inner=P.draw(v,p);
   const cls=[k===focus&&v===undefined?'focus':'',k===popped?'pop':''].join(' ');
   return `<g class="${cls}"><title>${l.n}</title><g ${attrs}>${inner}</g>${badge}</g>`;
 }
 
+const ROMAN=['I','II','III','IV','V','VI','VII','VIII'];
+function mark(k,v){if(v===undefined)return ['—','#B9B3A8'];if(v==='?')return ['?','#8A8378'];
+  if(typeof v==='number')return [['●','◐','○'][v],'#2E3236'];if(v==='none')return ['○','#2E3236'];return ['●','#2E3236'];}
+
 function scene(a,p,focus,popped){
-  const n=LENSES.filter(l=>a[l.k]!==undefined).length,sat=(.3+.7*n/8).toFixed(2);
-  const road=[],L1=[],R1=[];
-  for(let i=0;i<=90;i++){const s=i/90,[x,y]=at(s),[tx,ty]=tan(s),w=wAt(s)/2;L1.push([x-ty*w,y+tx*w]);R1.push([x+ty*w,y-tx*w]);}
-  const river=(off,ph)=>[...Array(49)].map((_,i)=>[i*20,430+off+5*Math.sin(i*20/70+ph)]);
-  const rTop=river(-19,0),rBot=river(19,1.3);
-  const grass=[...Array(90)].map((_,i)=>{const x=rng(i)*W,y=HZ+14+Math.pow(rng(i+99),.75)*(H-HZ-14),s=.5+(y-HZ)/(H-HZ)*1.1;
-    return `<path d="M${x} ${y} l${-3*s} ${-7*s} M${x} ${y} l0 ${-9*s} M${x} ${y} l${3*s} ${-7*s}"/>`}).join('');
-  const title=a.name?`A portrait of ${a.name}`:'';
-  return `<svg class="scene" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(title||'Portrait')} drawn from eight lenses">
+  const n=LENSES.filter(l=>a[l.k]!==undefined).length,sat=(.25+.75*n/8).toFixed(2);
+  const Lp=[],Rp=[];for(let i=0;i<=90;i++){const s=i/90,[x,y]=at(s),[tx,ty]=tan(s),w=wAt(s)/2;Lp.push([x-ty*w,y+tx*w]);Rp.push([x+ty*w,y-tx*w]);}
+  const RY=at(SPLIT)[1],rv=(o,ph)=>[...Array(45)].map((_,i)=>[i*20,RY+o+3*Math.sin(i*20/90+ph)]);
+  const rT=rv(-15,0),rB=rv(15,1.1);
+  const name=a.name||'';
+  const legend=LENSES.map((l,i)=>{const [m,c]=mark(l.k,a[l.k]),col=i<4?0:1,x=430+col*250,y=676+(i%4)*24;
+    return `<text x="${x}" y="${y}" font-family="'Playfair Display',Georgia,serif" font-size="12" fill="#8A8378">${ROMAN[i]}</text>${caps(x+30,y,l.n,8.5,'#4A4A48','start')}<text x="${x+228}" y="${y+1}" font-size="13" fill="${c}" text-anchor="end" font-family="Georgia,serif">${m}</text>`;}).join('');
+  return `<svg class="scene" viewBox="0 0 ${MW} ${MH}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(name?'A portrait of '+name:'Portrait')} in eight lenses">
   <defs>
-    <filter id="${p}fog" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/><feColorMatrix type="saturate" values=".15"/></filter>
+    <filter id="${p}fog" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/><feColorMatrix type="saturate" values=".1"/></filter>
     <filter id="${p}ghost"><feColorMatrix type="saturate" values="0"/></filter>
     <filter id="${p}sat"><feColorMatrix type="saturate" values="${sat}"/></filter>
-    <filter id="${p}ink"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter>
-    <filter id="${p}paper"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" seed="9"/><feColorMatrix type="saturate" values="0"/></filter>
-    <linearGradient id="${p}meadow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCE2CB"/><stop offset="1" stop-color="#CBD5B2"/></linearGradient>
-    <linearGradient id="${p}sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFE6D2"/><stop offset="1" stop-color="#E2D2B2"/></linearGradient>
+    <filter id="${p}grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="11"/><feColorMatrix type="saturate" values="0"/></filter>
+    <linearGradient id="${p}plain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9CDB8"/><stop offset="1" stop-color="#ABB497"/></linearGradient>
+    <linearGradient id="${p}road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6DFCF"/><stop offset="1" stop-color="#DDD1B9"/></linearGradient>
+    <radialGradient id="${p}vig" cx=".5" cy=".45" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".14"/></radialGradient>
+    <clipPath id="${p}clip"><rect width="${W}" height="${H}"/></clipPath>
   </defs>
-  <rect width="${W}" height="${H}" fill="#FBF8F2"/>
-  <g filter="url(#${p}ink)">
+  <rect width="${MW}" height="${MH}" fill="#FBF9F4"/>
+  <rect x="39.5" y="39.5" width="${W+1}" height="${H+1}" fill="none" stroke="#D8D2C6"/>
+  <g transform="translate(40,40)" clip-path="url(#${p}clip)">
     ${part('culture',a,p,focus,popped)}
     <g filter="url(#${p}sat)">
-      <path d="M0 ${HZ} L0 292 C120 262,230 284,330 276 S520 252,640 280 S860 256,${W} 286 L${W} ${HZ} Z" fill="#C3CEC6" stroke="${INK}" stroke-opacity=".35" stroke-width="1.2"/>
-      <path d="M0 ${HZ} L0 306 C160 292,300 304,420 298 S700 292,${W} 304 L${W} ${HZ} Z" fill="#B5C2B4" stroke="none"/>
-      <rect y="${HZ}" width="${W}" height="${H-HZ}" fill="url(#${p}meadow)"/>
-      <line x1="0" y1="${HZ}" x2="${W}" y2="${HZ}" stroke="${INK}" stroke-opacity=".5" stroke-width="1.2"/>
-      <g stroke="#8A9670" stroke-width="1.1" fill="none" stroke-linecap="round">${grass}</g>
-      ${tree(84,392,1.15)}${tree(170,372,.8,'#B4C29F')}${tree(782,362,.7,'#B4C29F')}${tree(884,398,1.2)}
+      <polygon points="${pts(ridge(236,14,.006,1))}" fill="#BAC3C0"/>
+      <polygon points="${pts(ridge(262,10,.009,3))}" fill="#A5B1AC"/>
+      <polygon points="${pts(ridge(284,6,.013,5))}" fill="#93A19A"/>
+      <g fill="#7F8E86">${[18,34,46,62,80,104,118,790,806,826,842,858].map((x,i)=>`<path d="M${x} ${HZ+1} c-4-10 -3-22 0-${20+(i*7)%14} c3 ${-2+(i*7)%14-20+22} 4 10 0 ${20+(i*7)%14}z"/>`).join('')}</g>
     </g>
     ${part('scope',a,p,focus,popped)}
     <g filter="url(#${p}sat)">
-      <polygon points="${pts([...L1,...R1.slice().reverse()])}" fill="url(#${p}sand)"/>
-      <polyline points="${pts(L1)}" fill="none" stroke="${INK}" stroke-opacity=".55" stroke-width="1.3"/>
-      <polyline points="${pts(R1)}" fill="none" stroke="${INK}" stroke-opacity=".55" stroke-width="1.3"/>
-      <polygon points="${pts([...rTop,...rBot.slice().reverse()])}" fill="#BCD3D6"/>
-      <polyline points="${pts(rTop)}" fill="none" stroke="${INK}" stroke-opacity=".5" stroke-width="1.3"/>
-      <polyline points="${pts(rBot)}" fill="none" stroke="${INK}" stroke-opacity=".5" stroke-width="1.3"/>
-      <g stroke="#7FA2A8" stroke-width="1.3" fill="none">${[40,150,260,330,640,720,820,910].map((x,i)=>`<path d="M${x} ${428+(i%3)*5} q8-4 16 0 q8 4 16 0"/>`).join('')}</g>
+      <rect y="${HZ}" width="${W}" height="${H-HZ}" fill="url(#${p}plain)"/>
+      <g stroke="#97A083" stroke-width=".8" opacity=".55">${[...Array(55)].map((_,i)=>{const y=HZ+8+Math.pow(rng(i+7),.8)*(H-HZ),x=rng(i)*W,l=2+(y-HZ)/26;return `<line x1="${x}" y1="${y}" x2="${x+l*3}" y2="${y}"/>`}).join('')}</g>
+      <polygon points="${pts([...Lp,...Rp.slice().reverse()])}" fill="url(#${p}road)"/>
+      <polygon points="${pts([...rT,...rB.slice().reverse()])}" fill="#9AB0B2"/>
+      <g stroke="#C9D7D7" stroke-width="1" opacity=".8">${[60,180,300,640,740,820].map((x,i)=>`<line x1="${x}" y1="${RY-4+i%3*4}" x2="${x+26+i*3}" y2="${RY-4+i%3*4}"/>`).join('')}</g>
     </g>
     ${part('access',a,p,focus,popped)}
     ${part('practice',a,p,focus,popped)}
@@ -504,17 +466,21 @@ function scene(a,p,focus,popped){
     ${part('orient',a,p,focus,popped)}
     ${part('sense',a,p,focus,popped)}
     ${part('people',a,p,focus,popped)}
-    <g filter="url(#${p}sat)">${figureYouth()}${tree(938,470,1.05)}</g>
+    <g filter="url(#${p}sat)">${youth(420,548,1.02)}<g stroke="#7E8A6C" stroke-width="1.1" stroke-linecap="round" opacity=".7">${[...Array(46)].map((_,i)=>{const x=rng(i+300)*W,h=8+rng(i+400)*18;return (x>330&&x<520)?'':`<path d="M${x} ${H} q${-2+rng(i)*4} ${-h*.6} ${-4+rng(i+9)*8} ${-h}"/>`}).join('')}</g></g>
+    <rect width="${W}" height="${H}" fill="url(#${p}vig)"/>
+    <rect width="${W}" height="${H}" filter="url(#${p}grain)" opacity=".06"/>
   </g>
-  <rect width="${W}" height="${H}" filter="url(#${p}paper)" opacity=".07" style="mix-blend-mode:multiply"/>
-  ${title?hand(30,56,title,44,'#1E2D4A','start'):''}
+  ${name?serif(40,668,name,40,'#1E2D4A','start',false):serif(40,668,'Untitled',40,'#B9B3A8','start',false)}
+  ${serif(40,698,'Portrait in eight lenses',16,'#6B6864','start')}
+  ${caps(40,752,'Portraits of Purposeful Youth · '+new Date().getFullYear(),8.5,'#9A948A','start')}
+  ${legend}
 </svg>`;
 }
 
 /* ── example ── */
 const JORDAN={name:'Jordan',sense:1,scope:2,orient:'Helping others',aim:'help people eat better',practice:2,people:'none',access:1,culture:1};
 document.getElementById('jordanScene').innerHTML=scene(JORDAN,'j');
-document.getElementById('jordanNotes').innerHTML=LENSES.map(l=>`<li style="--c:${l.c}"><b>${l.n} · ${l.draws}</b>${l.ex}</li>`).join('');
+document.getElementById('jordanNotes').innerHTML=LENSES.map((l,i)=>`<li data-n="${ROMAN[i]}"><b>${l.n} · ${l.draws}</b>${l.ex}</li>`).join('');
 
 /* ── lens reference ── */
 document.getElementById('lensList').innerHTML=GROUPS.map((gname,gi)=>
@@ -558,8 +524,8 @@ function render(){
         <div class="choices">${l.none?`<button type="button" class="cant ${v==='none'?'on':''}" data-v='"none"'>${l.none}</button>`:''}
         <button type="button" class="cant ${v==='?'?'on':''}" data-v='"?"'>Can't tell yet</button></div>`;
     }
-    card.innerHTML=`${dots()}<div class="grp">${step} of 8 · ${GROUPS[l.g]}</div>
-      <h3 style="--c:${l.c}"><i></i>${l.n}</h3><p class="one">${l.one}</p>
+    card.innerHTML=`${dots()}<div class="grp">${GROUPS[l.g]}</div>
+      <h3><span class="rn">${ROMAN[step-1]}.</span>${l.n}</h3><p class="one">${l.one}</p>
       <p class="ask">${l.q}</p>${body}
       <div class="nav-row"><button class="back" id="back" type="button">← Back</button>
       <button class="btn" id="next" type="button" ${answered(l.k)||l.free?'':'disabled'}>${step===8?'Finish':'Next'}</button></div>`;
@@ -599,7 +565,7 @@ function finish(){
   if(inner.length)items+=`<li><b>Worth a second look.</b> Low marks on ${inner.join(' and ')} often reflect what a young person has been exposed to, not what they're capable of.</li>`;
   if(!items)items=`<li><b>A full picture.</b> Every lens is visible. Try drawing a young person you know less well and compare the two.</li>`;
   card.innerHTML=`${dots()}<div class="grp">Finished</div><h3>${esc(A.name?`${A.name}'s portrait`:'Your portrait')}</h3>
-    <p class="one">Tap any frame above to change an answer.</p><ul class="look">${items}</ul>
+    <p class="one">Tap any bar above to change an answer.</p><ul class="look">${items}</ul>
     <div class="finish"><button class="btn" id="save" type="button">Save as image</button><button class="btn btn-line" id="again" type="button">Draw another</button></div>
     <p class="private">Nothing was saved or sent. The image downloads only to your device.</p>`;
   document.getElementById('save').onclick=save;
@@ -608,18 +574,18 @@ function finish(){
 
 let fontFace=null;
 async function caveat(){if(fontFace!==null)return fontFace;fontFace='';
-  try{const css=await (await fetch('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap')).text();
-    const url=[...css.matchAll(/url\((https:[^)]+)\)/g)].map(m=>m[1]).at(-1);
-    const buf=await (await fetch(url)).blob();
-    const b64=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(buf);});
-    fontFace=`<style>@font-face{font-family:Caveat;font-weight:700;src:url(${b64})}</style>`;}catch(e){}
+  try{const css=await (await fetch('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Inter:wght@600&display=swap')).text();
+    const blocks=css.split('/*').filter(b=>b.startsWith(' latin */')).map(b=>b.replace(' latin */',''));
+    const out=[];for(const blk of blocks){const url=blk.match(/url\((https:[^)]+)\)/)[1];
+      const data=await new Promise(async r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(await (await fetch(url)).blob());});
+      out.push(blk.replace(url,data));}
+    fontFace=`<style>${out.join('')}</style>`;}catch(e){}
   return fontFace;}
 async function save(){
   const ff=await caveat();
   const svg=canvas.querySelector('svg').outerHTML.replace(/class="[^"]*"/g,'').replace(/(<svg[^>]*>)/,'$1'+ff);
-  const img=new Image(),c=document.createElement('canvas');c.width=1920;c.height=1240;
-  img.onload=()=>{const x=c.getContext('2d');x.drawImage(img,0,0,1920,1240);
-    x.font='500 22px Inter, sans-serif';x.fillStyle='rgba(58,53,47,.6)';x.fillText('Portraits of Purposeful Youth',40,1210);
+  const img=new Image(),c=document.createElement('canvas');c.width=1920;c.height=1600;
+  img.onload=()=>{const x=c.getContext('2d');x.drawImage(img,0,0,1920,1600);
     c.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`portrait-${(A.name||'young-person').replace(/\W+/g,'-').toLowerCase()}.png`;a.click();});};
   img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }

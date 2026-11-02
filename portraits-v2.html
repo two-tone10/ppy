@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Portraits of Purposeful Youth looks at a young person's purpose through eight lenses: what they feel and imagine, what they get to do, and what the world around them makes possible."/>
+<meta name="theme-color" content="#0D1A2E"/>
+<title>Portraits of Purposeful Youth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#0D1A2E; --navy:#1E2D4A; --teal:#3B7A8F; --teal-light:#7BBFD4;
+  --cream:#FAF7F4; --parchment:#F5F1EB; --paper:#FBF8F2; --line:#E0DEDB; --g400:#B0ADA8; --g600:#6B6864;
+  --serif:'Playfair Display',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --hand:'Caveat',cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.7;font-size:17px}
+a{color:var(--teal)}
+em{font-style:italic;color:var(--teal)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 2rem}
+.narrow{max-width:680px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--navy);line-height:1.2}
+h2{font-size:clamp(1.8rem,3.2vw,2.5rem);margin-bottom:1rem}
+.kicker{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--teal);margin-bottom:.9rem}
+.lead{color:var(--g600);font-size:1.05rem}
+section{padding:6rem 0}
+.skip{position:absolute;left:1rem;top:-4rem;background:#fff;padding:.6rem 1rem;border-radius:8px;z-index:20}
+.skip:focus{top:1rem}
+
+nav{position:sticky;top:0;z-index:10;background:var(--ink);color:#fff}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
+.brand{display:flex;align-items:center;gap:.7rem;color:#fff;text-decoration:none;font-family:var(--serif);font-size:1.02rem}
+.brand img{height:34px;width:auto}
+nav ul{display:flex;gap:1.6rem;list-style:none}
+nav ul a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.85rem;font-weight:500}
+nav ul a:hover{color:#fff}
+nav ul a.cta{color:#fff;background:var(--teal);padding:.45rem .9rem;border-radius:6px}
+
+.hero{padding:5rem 0 4rem;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%)}
+.hero .wrap{max-width:1240px;display:grid;grid-template-columns:1fr 1.15fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2rem,3.6vw,2.7rem);font-weight:400;margin-bottom:1.5rem}
+.hero h1 span{display:block;margin-top:.6rem}
+.hero p{color:var(--g600);margin-bottom:2rem;max-width:34rem}
+.hero img{width:100%;height:auto;mix-blend-mode:multiply}
+.btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;padding:.85rem 1.5rem;border-radius:8px;border:0;cursor:pointer;font-family:var(--sans)}
+.btn:hover{background:#2f6577}
+.btn:disabled{background:var(--g400);cursor:default}
+.btn-line{background:transparent;color:var(--teal);border:1px solid var(--line);margin-left:.6rem}
+.btn-line:hover{background:#fff}
+
+.idea{background:#fff}
+.compare{display:grid;grid-template-columns:1fr 1fr;margin:2.5rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.compare div{padding:1.8rem 1.8rem 1.8rem 0}
+.compare div+div{padding-left:1.8rem;border-left:1px solid var(--line)}
+.compare b{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--g400);margin-bottom:.6rem}
+.compare div+div b{color:var(--teal)}
+.compare q{font-family:var(--serif);font-size:1.35rem;color:var(--navy);quotes:"\201C" "\201D"}
+.compare p{color:var(--g600);font-size:.95rem;margin-top:.6rem}
+.claim{font-family:var(--serif);font-size:1.3rem;color:var(--navy);border-left:3px solid var(--teal);padding-left:1.3rem;margin-top:2rem}
+
+/* scene */
+.scene{display:block;width:100%;height:auto;background:var(--paper);border-radius:10px}
+.scene .focus{animation:pulse 1.3s ease-in-out infinite}
+.scene .pop{animation:pop .6s ease-out}
+@keyframes pulse{50%{opacity:.25}}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}}
+
+/* example */
+.example{background:var(--navy);color:#fff}
+.example h2{color:#fff}
+.example .lead{color:rgba(255,255,255,.7)}
+.example em{color:var(--teal-light)}
+.ex-grid{margin-top:2.5rem;display:grid;grid-template-columns:1.35fr 1fr;gap:2.5rem;align-items:start}
+.ex-grid .scene{box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.notes{list-style:none;display:grid;gap:.85rem}
+.notes li{font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.85);padding-left:1.4rem;position:relative}
+.notes li::before{content:"";position:absolute;left:0;top:.35rem;width:12px;height:10px;border:2px solid var(--c);transform:skew(-6deg)}
+.notes b{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:600}
+.takeaway{margin-top:2.5rem;font-family:var(--serif);font-size:1.3rem;line-height:1.5;max-width:46rem}
+.small{font-size:.8rem;color:rgba(255,255,255,.45);margin-top:1rem}
+
+/* studio */
+.draw{background:var(--parchment)}
+.studio{margin-top:2.5rem;display:grid;grid-template-columns:340px 1fr;gap:2.5rem;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.8rem;min-height:400px;display:flex;flex-direction:column}
+.dots{display:flex;gap:.45rem;margin-bottom:1.6rem}
+.dots button{width:24px;height:18px;border:2px solid var(--line);background:none;transform:skew(-6deg);cursor:pointer;padding:0}
+.dots button.done{border-color:var(--c);background:color-mix(in srgb,var(--c) 18%,transparent)}
+.dots button.unk{border-color:var(--c);border-style:dashed}
+.dots button.now{outline:2px solid var(--navy);outline-offset:2px}
+.dots button:disabled{cursor:default}
+.card .grp{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--g600);font-weight:600}
+.card h3{font-size:1.5rem;margin:.2rem 0 .3rem;display:flex;align-items:center;gap:.6rem}
+.card h3 i{width:22px;height:17px;border:3px solid var(--c);transform:skew(-6deg) rotate(-4deg);flex:none}
+.card .one{color:var(--g600);font-size:.92rem}
+.card .ask{font-weight:600;color:var(--navy);margin:1.4rem 0 .8rem;font-size:1.02rem;line-height:1.45}
+.choices{display:flex;flex-wrap:wrap;gap:.5rem}
+.choices button{font:500 .9rem var(--sans);padding:.55rem 1rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.choices button:hover{border-color:var(--navy)}
+.choices button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.choices button.cant{border-style:dashed;color:var(--g600)}
+.choices button.cant.on{background:var(--g600);border-color:var(--g600);color:#fff}
+.card input{width:100%;font:1.35rem var(--hand);padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;margin-bottom:.8rem;color:var(--navy)}
+.card input:focus{outline:2px solid var(--teal);border-color:transparent}
+.nav-row{margin-top:auto;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.back{background:none;border:0;color:var(--g600);font:500 .88rem var(--sans);cursor:pointer}
+.back:disabled{visibility:hidden}
+.private{font-size:.78rem;color:var(--g400);margin-top:1rem}
+.canvas{position:relative}
+.canvas .scene{border:1px solid var(--line);box-shadow:0 14px 40px rgba(30,45,74,.12)}
+.look{list-style:none;margin:1rem 0 0;display:grid;gap:.9rem}
+.look li{font-size:.9rem;color:var(--g600);line-height:1.55}
+.look b{color:var(--navy)}
+.finish{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.4rem}
+.finish .btn{font-size:.88rem;padding:.65rem 1.1rem}
+.finish .btn-line{margin-left:0}
+
+/* lenses */
+.groups{margin-top:3rem;display:grid;gap:2.8rem}
+.group h3{font-family:var(--sans);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--g600);font-weight:600;padding-bottom:.7rem;border-bottom:1px solid var(--line)}
+.lens{border-bottom:1px solid var(--line)}
+.lens summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px 1fr auto;gap:1.2rem;align-items:center;padding:1.15rem 0}
+.lens summary::-webkit-details-marker{display:none}
+.frame{width:40px;height:32px;border:3px solid var(--c);transform:skew(-6deg) rotate(-4deg)}
+.lens .name{font-family:var(--serif);font-size:1.2rem;color:var(--navy)}
+.lens .one{display:block;color:var(--g600);font-size:.95rem;margin-top:.1rem}
+.lens .draws{display:block;font-family:var(--hand);font-size:1.15rem;color:var(--c);line-height:1.2}
+.lens .more{font-size:.8rem;color:var(--teal);font-weight:600;white-space:nowrap}
+.lens[open] .more{color:var(--g400)}
+.lens[open] .more::after{content:" ×"}
+.lens:not([open]) .more::after{content:" +"}
+.lens .body{padding:0 0 1.5rem calc(44px + 1.2rem);display:grid;grid-template-columns:1fr 1fr;gap:2rem;font-size:.95rem;color:var(--g600)}
+.lens .body b{display:block;color:var(--navy);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem}
+.evidence{font-size:.78rem;color:var(--g400);margin-top:.7rem}
+
+footer{background:var(--ink);color:rgba(255,255,255,.6);padding:3.5rem 0;font-size:.9rem}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem}
+footer strong{color:#fff;font-family:var(--serif);font-size:1.15rem;font-weight:400;display:block;margin-bottom:.5rem}
+footer a{color:var(--teal-light)}
+footer .draft{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:1rem}
+
+@media (max-width:900px){
+  body{font-size:16px}
+  section{padding:4rem 0}
+  .wrap{padding:0 1.25rem}
+  nav ul li:not(:last-child){display:none}
+  .brand span{display:none}
+  .hero{padding:3rem 0}
+  .hero .wrap,.ex-grid,.studio,footer .wrap{grid-template-columns:1fr}
+  .hero img{order:-1;max-width:460px}
+  .btn-line{margin:.6rem 0 0}
+  .compare{grid-template-columns:1fr}
+  .compare div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .canvas{order:-1}
+  .card{min-height:0}
+  .lens .body{grid-template-columns:1fr;padding-left:0;gap:1rem}
+  .lens summary{grid-template-columns:40px 1fr}
+  .lens .more{display:none}
+}
+@media (prefers-reduced-motion:reduce){.scene .focus,.scene .pop{animation:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<nav aria-label="Primary">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/pip-lab-logo.png" alt="Purpose and Identity Processes Lab"/><span>Portraits of Purposeful Youth</span></a>
+    <ul>
+      <li><a href="#idea">The idea</a></li>
+      <li><a href="#example">An example</a></li>
+      <li><a href="#lenses">Eight lenses</a></li>
+      <li><a class="cta" href="#draw">Draw a portrait</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="kicker">Purpose and Identity Processes Lab · Cornell</div>
+      <h1>We often ask whether young people <em>have</em> purpose.
+        <span>We rarely ask whether the conditions around them let it be <em>seen and supported.</em></span></h1>
+      <p>A portrait of purposeful youth looks at a young person's purpose through eight lenses: what they feel and can imagine, what they get to do, and what the world around them makes possible.</p>
+      <a class="btn" href="#draw">Draw a portrait</a><a class="btn btn-line" href="#example">See an example</a>
+    </div>
+    <img src="assets/youthwall.png" alt="Five young people sit on a stone wall, looking through a row of colored frames." fetchpriority="high"/>
+  </div>
+</header>
+
+<section class="idea" id="idea">
+  <div class="wrap narrow">
+    <div class="kicker">The idea</div>
+    <h2>A portrait, not a score</h2>
+    <p class="lead">Most tools ask one question about a young person and return one number. That number can make it look like purpose is something a young person either has or lacks, on their own.</p>
+    <div class="compare">
+      <div><b>A score asks</b><q>Does this young person have purpose?</q><p>The answer lives inside the young person.</p></div>
+      <div><b>A portrait asks</b><q>What helps or blocks their purpose, and who can see it?</q><p>The answer includes the people, places, and chances around them.</p></div>
+    </div>
+    <p class="claim">Purpose is not spread evenly across young people. It is <em>grown or held back</em> by the conditions around them.</p>
+    <p class="lead" style="margin-top:1.5rem">Research links purpose, a lasting aim that organizes a young person's life, with better health and well-being. It grows in relation to what young people can see, what they get to do, who recognizes them, and what their surroundings make possible. The eight lenses give adults a shared way to look at all of that.</p>
+  </div>
+</section>
+
+<section class="example" id="example">
+  <div class="wrap" style="max-width:1320px">
+    <div class="narrow">
+      <div class="kicker" style="color:var(--teal-light)">An example</div>
+      <h2>A portrait of Jordan, 15</h2>
+      <p class="lead">Asked "does Jordan have purpose?", most adults would say "sort of." Each part of this picture is one lens.</p>
+    </div>
+    <div class="ex-grid" style="grid-template-columns:1.7fr 1fr">
+      <div id="jordanScene"></div>
+      <ul class="notes" id="jordanNotes"></ul>
+    </div>
+    <p class="takeaway">The purpose is already there. What's thin is <em>practice, recognition, and access</em>, and those are things the adults around Jordan can change.</p>
+    <p class="small">Jordan is an illustrative composite, not a real person.</p>
+  </div>
+</section>
+
+<section class="draw" id="draw">
+  <div class="wrap" style="max-width:1320px">
+    <div class="narrow">
+      <div class="kicker">Your turn</div>
+      <h2>Draw a portrait of a young person you know</h2>
+      <p class="lead">Picture one young person: a student, a player, your own child. Answer eight short questions and their portrait draws itself. The picture comes into focus as you go. Whatever you can't see yet stays blurry.</p>
+    </div>
+    <div class="studio">
+      <div class="card" id="card"></div>
+      <div class="canvas" id="canvas"></div>
+    </div>
+  </div>
+</section>
+
+<section id="lenses">
+  <div class="wrap">
+    <div class="narrow">
+      <div class="kicker">The framework</div>
+      <h2>Eight lenses of purposeful experience</h2>
+      <p class="lead">Each lens looks at a different part of the picture. Open any lens for the full definition and questions to ask.</p>
+    </div>
+    <div class="groups" id="lensList"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong>Portraits of <em style="color:var(--teal-light)">Purposeful</em> Youth</strong>
+      A project of the <a href="https://www.lipurposefe.com" rel="noopener">Purpose and Identity Processes Lab</a>, in collaboration with the <a href="https://psix.bctr.cornell.edu" rel="noopener">Purpose Science &amp; Innovation Exchange (PSiX)</a> at Cornell University.
+      <div class="draft">Working draft. The framework is still changing. © PIPLab 2026.</div>
+    </div>
+    <div>
+      <strong>Questions or ideas?</strong>
+      Contact Anthony Burrow at <a href="mailto:alb325@cornell.edu">alb325@cornell.edu</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+const LENSES=[
+  {k:'sense',n:'Sense of Purpose',c:'#7B3D42',g:0,e:'Research-grounded',draws:'the glow around them',
+   one:'How purposeful they feel, even before they can explain it.',
+   def:"The felt sense that one's actions matter and have direction. It is distinct from being able to put it into words.",
+   ask:"Do they say that what they do matters? Is there something they keep coming back to, even when it's hard?",
+   q:'How purposeful do they seem to feel?',opts:['Strongly','Somewhat','Hardly at all'],
+   ex:'Says Saturdays at the food pantry "feel like the point of the week," but can\'t say why.'},
+  {k:'scope',n:'Scope and Awareness',c:'#B98E80',g:0,e:'Actively developing',draws:'the futures on their horizon',
+   one:'The range of futures they can picture for someone like them.',
+   def:'What a young person can imagine or name as possible aims: the range of lives, roles, and ways of contributing they can see for someone like themselves.',
+   ask:'Can they name roles, causes, or futures they care about? Has that range grown over time? A narrow range often reflects narrow exposure, not narrow ability.',
+   q:'How many futures can they picture for someone like them?',opts:['Lots','A handful','One or two'],
+   ex:'Can name nurse and teacher, the jobs of adults she knows. Has never met anyone in public health.'},
+  {k:'orient',n:'Orientation',c:'#1E2D4A',g:0,e:'Research-grounded',draws:'the signpost',
+   one:'The general direction their purpose points.',
+   def:'The broad domain that frames their purpose: helping others, building something, mastering a craft, faith, civic life, earning, creating.',
+   ask:'Do they have a sense of what kind of person or contributor they want to become, even without a specific goal yet?',
+   q:'Which way does their purpose seem to point?',opts:['Helping others','Making things','Creating','Mastering a skill','Leading','Faith','Earning'],free:true,
+   ex:'Points clearly toward helping others.'},
+  {k:'aim',n:'Content',c:'#3B7A8F',g:0,e:'Actively developing',draws:'the flag at the end of the path',
+   one:'The specific aim they are working toward, even if it is rough.',
+   def:'The particular aim, not just the broad direction: the thing their effort is actually aimed at, even if partial or still changing.',
+   ask:'Can they name something specific they want to do, become, or contribute? Even a loose aim ("something with the environment") counts.',
+   q:'What are they working toward? Write it the way they would say it.',text:'e.g. make varsity, help my brother read',
+   ex:'"I want to help people eat better." Still loose, but real.'},
+  {k:'practice',n:'Opportunities for Practice',c:'#C4724A',g:1,e:'Actively developing',draws:'the stepping stones',
+   one:'Real chances to act on what they care about.',
+   def:'Concrete chances to try and act on purpose, with real stakes, and to experience themselves as capable in something beyond themselves.',
+   ask:'Do they get regular, real chances to act on what they care about? Are those chances real or for show? Who controls access?',
+   q:'How often do they get real chances to act on it?',opts:['Often','Sometimes','Rarely'],
+   ex:'Volunteers weekly, but only sorts cans. Has never been asked to plan or lead anything.'},
+  {k:'people',n:'Recognition and Reflection',c:'#5B3D5A',g:1,e:'Research-grounded',draws:'the people beside them',
+   one:'Whether others name what they add, and they get to make sense of it.',
+   def:'Feedback and sense-making, from themselves and others, through which purposeful experience becomes visible and part of who they are.',
+   ask:'Do adults and peers name what this young person contributes? Do they have time and help to reflect on it?',
+   q:'Who tells them what they bring? Up to three, separated by commas.',text:'e.g. Coach Reyes, grandma',none:'No one yet',
+   ex:'No adult at the pantry has told her what her work adds up to.'},
+  {k:'access',n:'Environmental Affordances',c:'#8B7B6B',g:2,e:'Actively developing',draws:'the bridge',
+   one:'The resources, spaces, and people that open or close doors.',
+   def:'The material, social, and institutional resources that make purposeful action possible, or shut it down.',
+   ask:'What resources can they reach? Who decides? Are their settings designed with purpose in mind, or does it happen in spite of them?',
+   q:'Can they reach what they need: places, people, money, time?',opts:['Mostly yes','Some of it','Mostly no'],
+   ex:'The pantry is a bus ride away. When her job schedule shifts, she misses it.'},
+  {k:'culture',n:'Cultural Context',c:'#7A7840',g:2,e:'Early evidence',draws:'the sky',
+   one:'The messages they get about whose purpose counts.',
+   def:'The spoken and unspoken signals about what kinds of purpose are valued, legitimate, and possible, and for whom.',
+   ask:'What does this setting say about whose futures matter? Are those messages widening or narrowing what they think is possible?',
+   q:'What do the messages around them say about their kind of purpose?',opts:['It counts','Mixed','It doesn\'t count'],
+   ex:'At home, helping is valued. At school, "your future" only ever means grades.'}
+];
+const GROUPS=['Inside the young person','What they get to do','What surrounds them'];
+const L=Object.fromEntries(LENSES.map(l=>[l.k,l]));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ── scene ─────────────────────────────────────────────
+   answers: undefined = not asked yet (blurred, out of focus)
+            '?'       = can't see it (faded, marked with ?)
+   3-level lenses store 0 (high) / 1 / 2 (low)                */
+const W=960,H=620,HZ=322,INK='#3a352f';
+const rng=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x);};
+const cub=(a,b,c,d,t)=>{const u=1-t;return [0,1].map(i=>u*u*u*a[i]+3*u*u*t*b[i]+3*u*t*t*c[i]+t*t*t*d[i]);};
+const SEG=[[[410,640],[380,545],[610,505],[540,430]],[[540,430],[480,375],[566,352],[560,322]]],SPLIT=.55;
+const at=s=>s<SPLIT?cub(...SEG[0],s/SPLIT):cub(...SEG[1],(s-SPLIT)/(1-SPLIT));
+const wAt=s=>8+185*Math.pow(1-s,1.25);
+const tan=s=>{const a=at(Math.max(0,s-.004)),b=at(Math.min(1,s+.004)),d=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return [(b[0]-a[0])/d,(b[1]-a[1])/d];};
+const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+function wrap(s,n){const w=s.split(/\s+/),out=[''];for(const x of w){if((out.at(-1)+' '+x).trim().length>n&&out.at(-1))out.push(x);else out[out.length-1]=(out.at(-1)+' '+x).trim();}
+  if(out.length>2){out.length=2;out[1]=out[1].slice(0,n-1)+'…';}return out;}
+const hand=(x,y,s,size,fill,anchor='middle')=>`<text x="${x}" y="${y}" font-family="Caveat,cursive" font-size="${size}" font-weight="700" fill="${fill}" text-anchor="${anchor}" stroke="none">${esc(s)}</text>`;
+
+/* landscape pieces */
+const cloud=(cx,cy,s,fill)=>`<path transform="translate(${cx},${cy}) scale(${s})" d="M-50 10 C-62 10,-62 -10,-46 -10 C-46 -28,-20 -32,-12 -20 C-6 -36,22 -36,26 -18 C40 -24,56 -10,48 4 C58 8,54 18,44 18 L-44 18 C-56 18,-58 10,-50 10 Z" fill="${fill}" stroke="${INK}" stroke-opacity=".45" stroke-width="1.3"/>`;
+const tree=(x,y,s,c='#A9B994')=>`<g transform="translate(${x},${y}) scale(${s})" stroke="${INK}" stroke-width="1.2"><path d="M-3 0 L-2 -26 L2 -26 L3 0 Z" fill="#8a6f52"/><circle cx="-10" cy="-34" r="13" fill="${c}"/><circle cx="10" cy="-36" r="14" fill="${c}"/><circle cx="0" cy="-50" r="15" fill="${c}"/><path d="M-6 -44 q4 -4 9 -1 M4 -30 q4 -3 8 0" fill="none" stroke-opacity=".4"/></g>`;
+const win=(x,y,n,gap=7)=>[...Array(n)].map((_,i)=>`<rect x="${x+i*gap}" y="${y}" width="4" height="5" fill="#7f8c93"/>`).join('');
+const BUILD={
+  school:(x,y)=>`<rect x="${x-24}" y="${y-20}" width="48" height="20" fill="#E8D9BC"/><path d="M${x-12} ${y-20} l12-11 l12 11 z" fill="#C9A499"/><rect x="${x-3}" y="${y-41}" width="6" height="10" fill="#E8D9BC"/><path d="M${x} ${y-41} v-10 l9 3 l-9 3" fill="#B98E80"/>${win(x-20,y-14,2)}${win(x+9,y-14,2)}<rect x="${x-4}" y="${y-10}" width="8" height="10" fill="#8f6f58"/>`,
+  house:(x,y)=>`<path d="M${x-13} ${y} v-18 l13-11 l13 11 v18 z" fill="#EAD9C6"/><path d="M${x-16} ${y-16} l16-14 l16 14" fill="none" stroke-width="2"/><rect x="${x-3}" y="${y-9}" width="6" height="9" fill="#9b7b62"/><rect x="${x+5}" y="${y-15}" width="5" height="5" fill="#7f8c93"/>`,
+  clinic:(x,y)=>`<rect x="${x-18}" y="${y-28}" width="36" height="28" fill="#E9EEF0"/><rect x="${x-3}" y="${y-24}" width="6" height="15" fill="#B9654E" stroke="none"/><rect x="${x-8}" y="${y-19}" width="16" height="5" fill="#B9654E" stroke="none"/>${win(x-14,y-7,1)}${win(x+10,y-7,1)}`,
+  workshop:(x,y)=>`<path d="M${x-26} ${y} v-16 l13-9 v9 l13-9 v9 l13-9 v9 l13-9 v25 z" fill="#D9CDB8"/><rect x="${x+16}" y="${y-36}" width="5" height="12" fill="#a0907a"/><rect x="${x-18}" y="${y-10}" width="12" height="10" fill="#8f7e66"/>`,
+  tower:(x,y)=>`<rect x="${x-10}" y="${y-52}" width="20" height="52" fill="#D6DEE2"/>${[0,1,2,3,4,5].map(r=>win(x-7,y-47+r*8,2,9)).join('')}`,
+  dome:(x,y)=>`<rect x="${x-17}" y="${y-16}" width="34" height="16" fill="#E6D7C0"/><path d="M${x-14} ${y-16} a14 14 0 0 1 28 0 z" fill="#C2B28F"/><path d="M${x} ${y-30} v-8" fill="none"/><circle cx="${x}" cy="${y-39}" r="2" fill="${INK}"/>${win(x-12,y-11,4,7)}`,
+  barn:(x,y)=>`<path d="M${x-16} ${y} v-18 l6-9 h20 l6 9 v18 z" fill="#C98F74"/><path d="M${x-6} ${y} v-12 h12 v12 M${x-6} ${y-12} l12 12 M${x+6} ${y-12} l-12 12" fill="none"/>`
+};
+const SKYLINE=[['school',660,1.5],['house',752,1.45],['clinic',862,1.4],['workshop',335,1.45],['tower',232,1.35],['dome',120,1.3],['barn',920,1.2]];
+
+function figureYouth(){return `<g transform="translate(400,612) scale(.86) translate(-400,-612)" stroke="${INK}" stroke-width="1.6" stroke-linejoin="round">
+  <ellipse cx="400" cy="613" rx="44" ry="7" fill="#000" fill-opacity=".12" stroke="none"/>
+  <path d="M383 540 L379 606 L392 608 L398 546 Z M402 546 L408 608 L421 606 L417 540 Z" fill="#56637A"/>
+  <path d="M376 606 q8-5 17 0 v5 h-18 z M407 606 q9-5 17 0 v5 h-18 z" fill="#2f2c2a"/>
+  <path d="M366 474 Q352 504 355 542 L366 543 Q367 508 373 490 Z M434 474 Q448 504 445 542 L434 543 Q433 508 427 490 Z" fill="#7E979F"/>
+  <path d="M366 472 Q368 452 400 448 Q432 452 434 472 L438 548 Q400 557 362 548 Z" fill="#8EA6AE"/>
+  <path d="M370 548 Q400 555 430 548" fill="none" stroke-opacity=".5"/>
+  <path d="M380 474 Q400 466 420 474 L423 524 Q400 531 377 524 Z" fill="#B48A5E"/>
+  <path d="M380 492 Q400 486 420 492 M398 503 h4" fill="none"/>
+  <path d="M381 474 Q376 462 372 456 M419 474 Q424 462 428 456" fill="none" stroke="#6f5640" stroke-width="3"/>
+  <path d="M376 456 Q400 474 424 456 Q414 440 400 440 Q386 440 376 456 Z" fill="#7E979F"/>
+  <ellipse cx="380" cy="425" rx="3.5" ry="6" fill="#B98A6C"/><ellipse cx="420" cy="425" rx="3.5" ry="6" fill="#B98A6C"/>
+  <circle cx="400" cy="422" r="21" fill="#3B2F2A"/>
+  <path d="M384 412 q4-6 9-2 M395 405 q5-5 10 0 M407 410 q5-4 9 2 M386 425 q5-3 8 1 M404 422 q5-4 9 1" fill="none" stroke="#6b574b" stroke-width="1.2"/>
+  <path d="M424 480 l6 30 M427 500 l6 2 M424 520 l8 2" fill="none" stroke-opacity=".35" stroke-width="1"/>
+</g>`;}
+function figureAdult(x,y,s,coat,hair,dash){const st=dash?`stroke="${INK}" stroke-dasharray="4 4" fill="none"`:'';
+  return `<g transform="translate(${x},${y}) scale(${s})" stroke="${INK}" stroke-width="1.6" stroke-linejoin="round">
+  ${dash?'':'<ellipse cx="0" cy="2" rx="38" ry="6" fill="#000" fill-opacity=".1" stroke="none"/>'}
+  <path d="M-14 -40 L-16 0 L-5 0 L-2 -38 Z M2 -38 L5 0 L16 0 L14 -40 Z" ${st||'fill="#4a4f5a"'}/>
+  <path d="M-26 -150 Q-32 -110 -30 -72 L-22 -72 Q-22 -110 -18 -130 Z M26 -150 Q32 -110 30 -72 L22 -72 Q22 -110 18 -130 Z" ${st||`fill="${coat}"`}/>
+  <path d="M-24 -150 Q0 -160 24 -150 L28 -34 Q0 -28 -28 -34 Z" ${st||`fill="${coat}"`}/>
+  <path d="M0 -154 V-36" fill="none" stroke-opacity=".3"/>
+  <circle cx="0" cy="-172" r="18" ${st||`fill="${hair}"`}/>
+</g>`;}
+
+/* lens parts: draw(v,p) + default + where the ? badge sits */
+const parts={
+  culture:{def:1,q:[840,112],draw(v,p){
+    const sky=[['#F2D9AE','#FBF3E2'],['#DEE0D8','#F5F1E6'],['#C4C8C6','#E6E7E1']][v];
+    let s=`<defs><linearGradient id="${p}sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="1" stop-color="${sky[1]}"/></linearGradient>
+      <radialGradient id="${p}sun"><stop offset="0" stop-color="#F7D27E" stop-opacity=".9"/><stop offset="1" stop-color="#F7D27E" stop-opacity="0"/></radialGradient></defs>
+      <rect width="${W}" height="${HZ+8}" fill="url(#${p}sky)" stroke="none"/>`;
+    const sun=`<circle cx="840" cy="112" r="78" fill="url(#${p}sun)" stroke="none"/><circle cx="840" cy="112" r="30" fill="#F2C46D" stroke="#c99a3e" stroke-width="1.5"/>`;
+    if(v===0)return s+sun+cloud(250,90,.8,'#FFFDF8')+`<path d="M640 120 q6-6 12 0 q6-6 12 0 M676 100 q5-5 10 0 q5-5 10 0" fill="none" stroke="${INK}" stroke-width="1.5"/>`;
+    if(v===1)return s+sun+cloud(812,140,1.1,'#F7F5EF')+cloud(300,96,1,'#F3F1EA')+cloud(520,70,.7,'#F3F1EA');
+    return s+[[180,90,1.3],[430,70,1.5],[690,96,1.4],[880,70,1.2],[560,140,1.1]].map(c=>cloud(...c,'#D5D7D3')).join('')+
+      [...Array(26)].map((_,i)=>{const x=60+i*34+rng(i)*10,y=150+rng(i+40)*110;return `<line x1="${x}" y1="${y}" x2="${x-6}" y2="${y+16}" stroke="#8d9496" stroke-width="1.3"/>`}).join('');
+  }},
+  scope:{def:1,q:[700,262],draw(v){const n=[7,4,2][v];
+    return `<g stroke="${INK}" stroke-width="1.3" stroke-linejoin="round">${SKYLINE.slice(0,n).map(([t,x,sc])=>`<g transform="translate(${x},${HZ+3}) scale(${sc}) translate(${-x},${-(HZ+3)})">${BUILD[t](x,HZ+3)}</g>`).join('')}</g>`;
+  }},
+  access:{def:1,q:[600,430],draw(v){const [cx,cy]=at(SPLIT),[tx,ty]=tan(SPLIT),th=Math.atan2(-tx,ty)*180/Math.PI,w=wAt(SPLIT)+20,l=74,hw=w/2,hl=l/2;
+    const planks=(a,b)=>{let o='';for(let y=a;y<=b;y+=7)o+=`<line x1="${-hw}" y1="${y}" x2="${hw}" y2="${y}" stroke="#8a6a48" stroke-width="1.1"/>`;return o;};
+    const post=(x,y)=>`<rect x="${x-3}" y="${y-3}" width="6" height="6" fill="#6f5640" stroke="${INK}" stroke-width="1"/>`;
+    let g='';
+    if(v===0)g=`<rect x="${-hw}" y="${-hl}" width="${w}" height="${l}" fill="#C8A57E" stroke="${INK}" stroke-width="1.3"/>${planks(-hl+4,hl-4)}
+      <line x1="${-hw}" y1="${-hl}" x2="${-hw}" y2="${hl}" stroke="${INK}" stroke-width="3"/><line x1="${hw}" y1="${-hl}" x2="${hw}" y2="${hl}" stroke="${INK}" stroke-width="3"/>
+      ${[-hl,0,hl].map(y=>post(-hw,y)+post(hw,y)).join('')}`;
+    else if(v===1)g=`<path d="M${-hw} ${-hl} H${hw} V${-hl+20} l-8 5 l-10-6 l-12 7 l-9-4 l-14 6 L${-hw} ${-hl+22} Z" fill="#C8A57E" stroke="${INK}" stroke-width="1.3"/>
+      <path d="M${-hw} ${hl} H${hw} V${hl-18} l-10 -4 l-12 6 l-10-5 l-12 5 L${-hw} ${hl-20} Z" fill="#C8A57E" stroke="${INK}" stroke-width="1.3"/>
+      ${planks(-hl+4,-hl+16)}${planks(hl-14,hl-4)}
+      <path d="M${-hw} ${-hl} V${-hl+24} M${hw} ${-hl} V${-hl+20} M${-hw} ${hl} V${hl-22} M${hw} ${hl} V${hl-20}" stroke="${INK}" stroke-width="3"/>
+      ${post(-hw,-hl)+post(hw,-hl)+post(-hw,hl)+post(hw,hl)}
+      <rect x="${hw+16}" y="-6" width="26" height="6" fill="#C8A57E" stroke="${INK}" stroke-width="1" transform="rotate(24)"/>`;
+    else g=`${post(-hw,-hl)+post(hw,-hl)+post(-hw,hl)+post(hw,hl)}
+      <rect x="${-hw-4}" y="${-hl+2}" width="${w+8}" height="9" fill="#F3EDE2" stroke="${INK}" stroke-width="1.3"/>
+      ${[...Array(Math.ceil(w/14))].map((_,i)=>`<rect x="${-hw+i*14}" y="${-hl+2}" width="7" height="9" fill="#B9654E" stroke="none"/>`).join('')}
+      <path d="M${-hw-2} ${-hl+11} v14 M${hw+2} ${-hl+11} v14" stroke="${INK}" stroke-width="2.4"/>`;
+    return `<g transform="translate(${cx},${cy}) rotate(${th})">${g}</g>`;
+  }},
+  practice:{def:1,q:[490,520],draw(v){const ss=[.2,.29,.38,.46,.66,.76,.86],n=[6,3,1][v];
+    return ss.map((s,i)=>{const [x,y]=at(s),[tx,ty]=tan(s),w=wAt(s),off=(i%2?1:-1)*w*.13,px=x+ty*off,py=y-tx*off,r=w*.2;
+      const poly=[...Array(7)].map((_,k)=>{const a=k/7*Math.PI*2+rng(i*7+k)*.5,rad=r*(.78+rng(i*13+k)*.3);return [px+Math.cos(a)*rad,py+Math.sin(a)*rad*.46];});
+      const lit=i<n;
+      return `<polygon points="${pts(poly)}" fill="${lit?'#D8A07C':'#EFE6D3'}" stroke="${lit?'#7a4f34':'#CDBFA8'}" stroke-width="${lit?1.5:1.2}" ${lit?'':'stroke-dasharray="3 3"'}/>`+
+        (lit?`<path d="M${px-r*.45} ${py-r*.12} q${r*.4} ${-r*.22} ${r*.8} 0" fill="none" stroke="#F3D3B8" stroke-width="1.6"/>`:'');}).join('');
+  }},
+  aim:{def:'something they care about',q:[606,200],draw(v){const x=560,y=HZ+2,lines=wrap(v,26),lw=Math.max(...lines.map(s=>s.length));
+    const bw=Math.max(150,lw*11.5+50),bh=18+lines.length*26,by=236-bh,x0=x-bw/2,x1=x+bw/2;
+    return `<line x1="${x}" y1="${y}" x2="${x}" y2="${y-84}" stroke="${INK}" stroke-width="2.4"/>
+      <path d="M${x} ${y-84} l38 11 l-38 11 z" fill="#3B7A8F" stroke="${INK}" stroke-width="1.3" stroke-linejoin="round"/>
+      <line x1="${x}" y1="${by+bh}" x2="${x}" y2="${y-84}" stroke="${INK}" stroke-width="1" stroke-dasharray="2 3"/>
+      <path d="M${x0} ${by} H${x1} L${x1-12} ${by+bh/2} L${x1} ${by+bh} H${x0} L${x0+12} ${by+bh/2} Z" fill="#FBF6EA" stroke="${INK}" stroke-width="1.3" stroke-linejoin="round"/>
+      ${lines.map((s,i)=>hand(x,by+29+i*26,s,27,'#2E5F70')).join('')}`;
+  }},
+  orient:{def:'Helping others',q:[742,440],draw(v){const x=700,y=585,o=L.orient.opts.filter(s=>s!==v).slice(0,2),t=v.length>18?v.slice(0,17)+'…':v,bw=Math.max(120,t.length*8.8+36);
+    const grain=(x0,y0,w)=>`<path d="M${x0+8} ${y0+7} h${w*.5} M${x0+w*.3} ${y0+20} h${w*.45}" stroke="#b39a74" stroke-width="1" fill="none"/>`;
+    return `<g stroke="${INK}" stroke-width="1.4" stroke-linejoin="round">
+      <rect x="${x-5}" y="${y-132}" width="10" height="134" fill="#A88A63"/>
+      <g transform="rotate(-7 ${x} ${y-112})"><path d="M${x-26} ${y-126} h${bw} l15 14 l-15 14 h${-bw} z" fill="#EEDFBF"/>${grain(x-26,y-126,bw)}
+        <text x="${x-26+bw/2}" y="${y-107}" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="#1E2D4A" text-anchor="middle" stroke="none">${esc(t)}</text></g>
+      <path d="M${x+16} ${y-88} h-96 l-12 11 l12 11 h96 z" fill="#E2D7C3"/><text x="${x-34}" y="${y-73}" font-family="Inter,sans-serif" font-size="11" fill="#9a8f7c" text-anchor="middle" stroke="none">${esc(o[0]||'')}</text>
+      <path d="M${x-14} ${y-58} h92 l12 11 l-12 11 h-92 z" fill="#E2D7C3"/><text x="${x+32}" y="${y-43}" font-family="Inter,sans-serif" font-size="11" fill="#9a8f7c" text-anchor="middle" stroke="none">${esc(o[1]||'')}</text>
+    </g>`;
+  }},
+  sense:{def:1,q:[318,470],draw(v,p){const r=[200,145,92][v];
+    return `<defs><radialGradient id="${p}glow"><stop offset="0" stop-color="#F7D493" stop-opacity=".85"/><stop offset=".45" stop-color="#EBA977" stop-opacity=".4"/><stop offset="1" stop-color="#7B3D42" stop-opacity="0"/></radialGradient></defs>
+      <ellipse cx="400" cy="512" rx="${r}" ry="${r*.92}" fill="url(#${p}glow)" stroke="none"/>`+
+      (v===0?[...Array(9)].map((_,i)=>{const a=(-160+i*17.5)*Math.PI/180;return `<line x1="${400+Math.cos(a)*70}" y1="${470+Math.sin(a)*70}" x2="${400+Math.cos(a)*150}" y2="${470+Math.sin(a)*150}" stroke="#EDB872" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>`}).join(''):'');
+  }},
+  people:{def:['a coach','an aunt'],q:[256,440],draw(v){const spots=[[214,606,.84,'#9C7FA0','#4a3b33'],[300,622,.9,'#7F8F6E','#a37b52'],[560,622,.86,'#B98E80','#2e2a28']];
+    if(v==='none')return figureAdult(214,606,.84,'','',true)+figureAdult(300,622,.9,'','',true)+hand(256,420,'no one yet',28,'#5B3D5A');
+    return v.slice(0,3).map((n,i)=>{const [x,y,s,c,h]=spots[i],top=y-196*s;
+      return figureAdult(x,y,s,c,h)+`<path d="M${x} ${top+4} v10" stroke="#5B3D5A" stroke-width="1.4"/>`+hand(x,top,n.length>14?n.slice(0,13)+'…':n,24,'#5B3D5A');}).join('');
+  }}
+};
+
+function part(k,a,p,focus,popped){
+  const P=parts[k],v=a[k],l=L[k];let inner,attrs='',badge='';
+  if(v===undefined){inner=P.draw(P.def,p);attrs=`filter="url(#${p}fog)" opacity=".55"`;}
+  else if(v==='?'){inner=P.draw(P.def,p);attrs=`filter="url(#${p}ghost)" opacity=".3"`;
+    badge=`<circle cx="${P.q[0]}" cy="${P.q[1]}" r="17" fill="#FBF8F2" stroke="${l.c}" stroke-width="2" stroke-dasharray="4 3"/>`+hand(P.q[0],P.q[1]+9,'?',28,l.c);}
+  else inner=P.draw(v,p);
+  const cls=[k===focus&&v===undefined?'focus':'',k===popped?'pop':''].join(' ');
+  return `<g class="${cls}"><title>${l.n}</title><g ${attrs}>${inner}</g>${badge}</g>`;
+}
+
+function scene(a,p,focus,popped){
+  const n=LENSES.filter(l=>a[l.k]!==undefined).length,sat=(.3+.7*n/8).toFixed(2);
+  const road=[],L1=[],R1=[];
+  for(let i=0;i<=90;i++){const s=i/90,[x,y]=at(s),[tx,ty]=tan(s),w=wAt(s)/2;L1.push([x-ty*w,y+tx*w]);R1.push([x+ty*w,y-tx*w]);}
+  const river=(off,ph)=>[...Array(49)].map((_,i)=>[i*20,430+off+5*Math.sin(i*20/70+ph)]);
+  const rTop=river(-19,0),rBot=river(19,1.3);
+  const grass=[...Array(90)].map((_,i)=>{const x=rng(i)*W,y=HZ+14+Math.pow(rng(i+99),.75)*(H-HZ-14),s=.5+(y-HZ)/(H-HZ)*1.1;
+    return `<path d="M${x} ${y} l${-3*s} ${-7*s} M${x} ${y} l0 ${-9*s} M${x} ${y} l${3*s} ${-7*s}"/>`}).join('');
+  const title=a.name?`A portrait of ${a.name}`:'';
+  return `<svg class="scene" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(title||'Portrait')} drawn from eight lenses">
+  <defs>
+    <filter id="${p}fog" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/><feColorMatrix type="saturate" values=".15"/></filter>
+    <filter id="${p}ghost"><feColorMatrix type="saturate" values="0"/></filter>
+    <filter id="${p}sat"><feColorMatrix type="saturate" values="${sat}"/></filter>
+    <filter id="${p}ink"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter>
+    <filter id="${p}paper"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" seed="9"/><feColorMatrix type="saturate" values="0"/></filter>
+    <linearGradient id="${p}meadow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCE2CB"/><stop offset="1" stop-color="#CBD5B2"/></linearGradient>
+    <linearGradient id="${p}sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFE6D2"/><stop offset="1" stop-color="#E2D2B2"/></linearGradient>
+  </defs>
+  <rect width="${W}" height="${H}" fill="#FBF8F2"/>
+  <g filter="url(#${p}ink)">
+    ${part('culture',a,p,focus,popped)}
+    <g filter="url(#${p}sat)">
+      <path d="M0 ${HZ} L0 292 C120 262,230 284,330 276 S520 252,640 280 S860 256,${W} 286 L${W} ${HZ} Z" fill="#C3CEC6" stroke="${INK}" stroke-opacity=".35" stroke-width="1.2"/>
+      <path d="M0 ${HZ} L0 306 C160 292,300 304,420 298 S700 292,${W} 304 L${W} ${HZ} Z" fill="#B5C2B4" stroke="none"/>
+      <rect y="${HZ}" width="${W}" height="${H-HZ}" fill="url(#${p}meadow)"/>
+      <line x1="0" y1="${HZ}" x2="${W}" y2="${HZ}" stroke="${INK}" stroke-opacity=".5" stroke-width="1.2"/>
+      <g stroke="#8A9670" stroke-width="1.1" fill="none" stroke-linecap="round">${grass}</g>
+      ${tree(84,392,1.15)}${tree(170,372,.8,'#B4C29F')}${tree(782,362,.7,'#B4C29F')}${tree(884,398,1.2)}
+    </g>
+    ${part('scope',a,p,focus,popped)}
+    <g filter="url(#${p}sat)">
+      <polygon points="${pts([...L1,...R1.slice().reverse()])}" fill="url(#${p}sand)"/>
+      <polyline points="${pts(L1)}" fill="none" stroke="${INK}" stroke-opacity=".55" stroke-width="1.3"/>
+      <polyline points="${pts(R1)}" fill="none" stroke="${INK}" stroke-opacity=".55" stroke-width="1.3"/>
+      <polygon points="${pts([...rTop,...rBot.slice().reverse()])}" fill="#BCD3D6"/>
+      <polyline points="${pts(rTop)}" fill="none" stroke="${INK}" stroke-opacity=".5" stroke-width="1.3"/>
+      <polyline points="${pts(rBot)}" fill="none" stroke="${INK}" stroke-opacity=".5" stroke-width="1.3"/>
+      <g stroke="#7FA2A8" stroke-width="1.3" fill="none">${[40,150,260,330,640,720,820,910].map((x,i)=>`<path d="M${x} ${428+(i%3)*5} q8-4 16 0 q8 4 16 0"/>`).join('')}</g>
+    </g>
+    ${part('access',a,p,focus,popped)}
+    ${part('practice',a,p,focus,popped)}
+    ${part('aim',a,p,focus,popped)}
+    ${part('orient',a,p,focus,popped)}
+    ${part('sense',a,p,focus,popped)}
+    ${part('people',a,p,focus,popped)}
+    <g filter="url(#${p}sat)">${figureYouth()}${tree(938,470,1.05)}</g>
+  </g>
+  <rect width="${W}" height="${H}" filter="url(#${p}paper)" opacity=".07" style="mix-blend-mode:multiply"/>
+  ${title?hand(30,56,title,44,'#1E2D4A','start'):''}
+</svg>`;
+}
+
+/* ── example ── */
+const JORDAN={name:'Jordan',sense:1,scope:2,orient:'Helping others',aim:'help people eat better',practice:2,people:'none',access:1,culture:1};
+document.getElementById('jordanScene').innerHTML=scene(JORDAN,'j');
+document.getElementById('jordanNotes').innerHTML=LENSES.map(l=>`<li style="--c:${l.c}"><b>${l.n} · ${l.draws}</b>${l.ex}</li>`).join('');
+
+/* ── lens reference ── */
+document.getElementById('lensList').innerHTML=GROUPS.map((gname,gi)=>
+  `<div class="group"><h3>${gname}</h3>${LENSES.map(l=>l.g!==gi?'':
+  `<details class="lens" style="--c:${l.c}"><summary><div class="frame"></div>
+   <div><span class="name">${l.n}</span><span class="one">${l.one}</span><span class="draws">In the portrait: ${l.draws}</span></div><span class="more">Open</span></summary>
+   <div class="body"><div><b>What it is</b>${l.def}<div class="evidence">Evidence: ${l.e.toLowerCase()}</div></div>
+   <div><b>Questions to ask</b>${l.ask}</div></div></details>`).join('')}</div>`).join('');
+
+/* ── studio ── */
+const A={};let step=0,popped=null;
+const card=document.getElementById('card'),canvas=document.getElementById('canvas');
+const answered=k=>A[k]!==undefined;
+
+function paint(){canvas.innerHTML=scene(A,'s',step>=1&&step<=8?LENSES[step-1].k:null,popped);popped=null;}
+
+function dots(){return `<div class="dots" aria-label="Progress">${LENSES.map((l,i)=>{
+  const k=l.k,cls=[A[k]==='?'?'unk':answered(k)?'done':'',step===i+1?'now':''].join(' ');
+  return `<button type="button" style="--c:${l.c}" class="${cls}" data-go="${i+1}" aria-label="${l.n}" ${answered(k)||step===i+1?'':'disabled'}></button>`}).join('')}</div>`;}
+
+function render(){
+  if(step===0){
+    card.innerHTML=`<div class="grp">Before you start</div><h3>Who are you picturing?</h3>
+      <p class="one">A first name or initial. It only appears on your portrait.</p>
+      <p class="ask">Their name</p><input id="nm" maxlength="18" placeholder="e.g. Sam" value="${esc(A.name||'')}"/>
+      <div class="nav-row"><span></span><button class="btn" id="start">Start drawing</button></div>
+      <p class="private">Nothing you enter here is saved or sent anywhere. It stays in this browser tab.</p>`;
+    const go=()=>{A.name=document.getElementById('nm').value.trim();step=1;render();};
+    document.getElementById('start').onclick=go;
+    document.getElementById('nm').onkeydown=e=>{if(e.key==='Enter')go();};
+  } else if(step<=8){
+    const l=LENSES[step-1],v=A[l.k];
+    let body='';
+    if(l.opts){
+      body=`<div class="choices">${l.opts.map((o,i)=>{const val=l.free?o:i;return `<button type="button" class="${v===val?'on':''}" data-v='${JSON.stringify(val)}'>${o}</button>`}).join('')}
+        <button type="button" class="cant ${v==='?'?'on':''}" data-v='"?"'>Can't tell yet</button></div>`;
+      if(l.free)body+=`<input id="tx" style="margin-top:.8rem" maxlength="16" placeholder="or in your own words" value="${typeof v==='string'&&v!=='?'&&!l.opts.includes(v)?esc(v):''}"/>`;
+    } else {
+      const cur=Array.isArray(v)?v.join(', '):(typeof v==='string'&&v!=='?'&&v!=='none'?v:'');
+      body=`<input id="tx" maxlength="${l.k==='aim'?48:60}" placeholder="${l.text}" value="${esc(cur)}"/>
+        <div class="choices">${l.none?`<button type="button" class="cant ${v==='none'?'on':''}" data-v='"none"'>${l.none}</button>`:''}
+        <button type="button" class="cant ${v==='?'?'on':''}" data-v='"?"'>Can't tell yet</button></div>`;
+    }
+    card.innerHTML=`${dots()}<div class="grp">${step} of 8 · ${GROUPS[l.g]}</div>
+      <h3 style="--c:${l.c}"><i></i>${l.n}</h3><p class="one">${l.one}</p>
+      <p class="ask">${l.q}</p>${body}
+      <div class="nav-row"><button class="back" id="back" type="button">← Back</button>
+      <button class="btn" id="next" type="button" ${answered(l.k)||l.free?'':'disabled'}>${step===8?'Finish':'Next'}</button></div>`;
+    const tx=document.getElementById('tx');
+    card.querySelectorAll('.choices button').forEach(b=>b.onclick=()=>{set(l.k,JSON.parse(b.dataset.v));if(tx)tx.value='';setTimeout(advance,380);});
+    if(tx){
+      const take=()=>{const s=tx.value.trim();if(!s)return false;
+        set(l.k,l.k==='people'?s.split(',').map(x=>x.trim()).filter(Boolean):s);return true;};
+      tx.oninput=()=>{document.getElementById('next').disabled=!tx.value.trim()&&!answered(l.k);};
+      tx.onkeydown=e=>{if(e.key==='Enter'&&take())advance();};
+      document.getElementById('next').onclick=()=>{take();if(answered(l.k))advance();};
+      if(!l.opts)setTimeout(()=>tx.focus({preventScroll:true}),50);
+    } else document.getElementById('next').onclick=advance;
+    document.getElementById('back').onclick=()=>{step--;render();};
+  } else finish();
+  card.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{step=+b.dataset.go;render();});
+  paint();
+}
+function set(k,v){A[k]=v;popped=k;paint();card.querySelectorAll('.dots,.choices button').length&&refreshMarks(k,v);}
+function refreshMarks(k,v){card.querySelectorAll('.choices button').forEach(b=>b.classList.toggle('on',JSON.stringify(v)===b.dataset.v));
+  const d=card.querySelector('.dots');if(d)d.outerHTML=dots();card.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{step=+b.dataset.go;render();});
+  const n=document.getElementById('next');if(n)n.disabled=false;}
+function advance(){step++;render();}
+
+function finish(){
+  const who=A.name||'this young person';
+  const cant=LENSES.filter(l=>A[l.k]==='?');
+  const thin=[];
+  if(A.practice===2)thin.push('real chances to practice');
+  if(A.people==='none')thin.push('someone who names what they bring');
+  if(A.access===2)thin.push('access to what they need');
+  if(A.culture===2)thin.push('messages that their purpose counts');
+  const inner=[A.sense===2&&'how purposeful they feel',A.scope===2&&'the futures they can picture'].filter(Boolean);
+  let items='';
+  if(cant.length)items+=`<li><b>Where to look next.</b> You couldn't see ${cant.map(l=>l.n).join(', ')}. Try asking: ${esc(cant[0].ask.split('?')[0])}?</li>`;
+  if(thin.length)items+=`<li><b>Where adults can help.</b> The picture is thin on ${thin.join(', ')}. These sit around ${esc(who)}, not inside them, so the adults nearby can change them.</li>`;
+  if(inner.length)items+=`<li><b>Worth a second look.</b> Low marks on ${inner.join(' and ')} often reflect what a young person has been exposed to, not what they're capable of.</li>`;
+  if(!items)items=`<li><b>A full picture.</b> Every lens is visible. Try drawing a young person you know less well and compare the two.</li>`;
+  card.innerHTML=`${dots()}<div class="grp">Finished</div><h3>${esc(A.name?`${A.name}'s portrait`:'Your portrait')}</h3>
+    <p class="one">Tap any frame above to change an answer.</p><ul class="look">${items}</ul>
+    <div class="finish"><button class="btn" id="save" type="button">Save as image</button><button class="btn btn-line" id="again" type="button">Draw another</button></div>
+    <p class="private">Nothing was saved or sent. The image downloads only to your device.</p>`;
+  document.getElementById('save').onclick=save;
+  document.getElementById('again').onclick=()=>{for(const k in A)delete A[k];step=0;render();};
+}
+
+let fontFace=null;
+async function caveat(){if(fontFace!==null)return fontFace;fontFace='';
+  try{const css=await (await fetch('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap')).text();
+    const url=[...css.matchAll(/url\((https:[^)]+)\)/g)].map(m=>m[1]).at(-1);
+    const buf=await (await fetch(url)).blob();
+    const b64=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(buf);});
+    fontFace=`<style>@font-face{font-family:Caveat;font-weight:700;src:url(${b64})}</style>`;}catch(e){}
+  return fontFace;}
+async function save(){
+  const ff=await caveat();
+  const svg=canvas.querySelector('svg').outerHTML.replace(/class="[^"]*"/g,'').replace(/(<svg[^>]*>)/,'$1'+ff);
+  const img=new Image(),c=document.createElement('canvas');c.width=1920;c.height=1240;
+  img.onload=()=>{const x=c.getContext('2d');x.drawImage(img,0,0,1920,1240);
+    x.font='500 22px Inter, sans-serif';x.fillStyle='rgba(58,53,47,.6)';x.fillText('Portraits of Purposeful Youth',40,1210);
+    c.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`portrait-${(A.name||'young-person').replace(/\W+/g,'-').toLowerCase()}.png`;a.click();});};
+  img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+}
+render();
+</script>
+</body>
+</html>

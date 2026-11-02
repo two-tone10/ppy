@@ -184,14 +184,20 @@ function required(value, label, max) {
 }
 
 // Moderator alerts. Off unless NOTIFY_URL is set in Vercel settings
-// (for example an ntfy.sh topic URL; NOTIFY_EMAIL adds an email copy there).
+// (an ntfy.sh topic URL). ntfy only sends email for signed-in accounts, so
+// NOTIFY_EMAIL needs NOTIFY_TOKEN too; without it the alert goes out as a push.
 async function notify(title, message) {
   const target = process.env.NOTIFY_URL;
   if (!target) return;
   try {
     const headers = { title: title.replace(/[^\x20-\x7E]/g, ''), click: `${SITE}/moderate` };
-    if (process.env.NOTIFY_EMAIL) headers.email = process.env.NOTIFY_EMAIL;
-    await fetch(target, { method: 'POST', headers, body: `${message}\n\nReview: ${SITE}/moderate` });
+    if (process.env.NOTIFY_TOKEN) headers.authorization = `Bearer ${process.env.NOTIFY_TOKEN}`;
+    const body = `${message}\n\nReview: ${SITE}/moderate`;
+    if (process.env.NOTIFY_EMAIL) {
+      const sent = await fetch(target, { method: 'POST', headers: { ...headers, email: process.env.NOTIFY_EMAIL }, body });
+      if (sent.ok) return;
+    }
+    await fetch(target, { method: 'POST', headers, body });
   } catch (e) {
     // A failed alert should never block a submission.
   }
